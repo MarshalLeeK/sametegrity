@@ -64,9 +64,12 @@
                                 <input type="password" class="form-control" name="password_confirmation" placeholder="Confirmación Contraseña">
                             </div>  
                             <hr class="my-4">
-                            <div class="py-1 text-Left">
+                            <div class="py-1 text-Left col-6">
                                 <h4>Modulos asignados</h4>
                                 <p class="lead">Por favor ingrese los datos relacionados al los privilegios del usuario</p>
+                            </div>
+                            <div class="py-1 col-6">
+                                <button class="btn btn-success btn-lg col-2 btn-lg float-end mx-1" type="submit"><i class="fa fa-folder mx-1"></i> Agregar</button>
                             </div>
                             <div class="table-responsive g-12">
                                 <table class="table g-12">
@@ -153,11 +156,10 @@
                                 </table>
                             </div>
                             <hr class="my-2">
-                            <div class="row">
-                            <button class="btn btn-success btn-lg col-2 mx-1" type="submit">Guardar</button>
-                            <button class="btn btn-secondary btn-lg col-2 mx-1" type="submit">Cancelar</button>
+                            <div class="row d-flex flex-row-reverse">
+                                <button class="btn btn-secondary btn-lg col-2 mx-1" type="submit">Cancelar</button>
+                                <button class="btn btn-success btn-lg col-2 mx-1" type="submit">Guardar</button>
                             </div>
-
                         </div>
                     </div>  
                 </div>
