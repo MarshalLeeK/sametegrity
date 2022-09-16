@@ -19,7 +19,9 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'lastname',
         'email',
+        'username',
         'password',
     ];
 
@@ -41,4 +43,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**  Encriptar la contraseña mediante metodo 'bcrypt'
+     * en estos casos debe nombrarse de la siguiente forma
+     * Sintaxis:
+     * Accion(set)Campo[o nombre del atributo](Password) y al final Attribute
+    */
+    public function setPasswordAttribute  ($value){
+        $this->attributes['password']=bcrypt($value);
+    }
 }

@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/sametegrity', function () {
+    return view('login');
 });
+
+Route::get('/sametegrity/register', function () {
+    return view('accountModule.register');
+})->name('userNew');

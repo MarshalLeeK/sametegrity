@@ -1,0 +1,172 @@
+@extends('components\header')
+@extends('components\footer')
+@csrf
+    <body>
+    <form action="" class="p-2 form h-100">
+        <div class="container bg-light">
+            <main class="my-4">
+                <div class="py-5 text-center" >
+                    <!-- <img class="d-block mx-auto mb-4" src="/docs/5.2/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
+                    <h1  class="text-success">Registro de usuarios</h1>
+                    <hr class="my-1">
+
+                </div>
+                <div class="row g-12 h-100">
+                    <div class="col-md-12 col-lg-12">
+                        <h4 class="mb-3">Datos básicos</h4>
+                        <p class="lead">Por favor ingrese los datos relacionados al usuario</p>
+                        <hr class="my-1">
+                        <div class="row mt-g-3">
+                            <div class="col-sm-6">
+                                <label for="lastName" class="form-label">Número Documento</label>
+                                <input type="text" class="form-control" name="lastName" placeholder="" value="" required="" 
+                                oninvalid="this.setCustomValidity('Por favor ingrese un apellido valido')" oninput="setCustomValidity('')">
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="lastName" class="form-label">Privilegio Asignado</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="inputGroupSelect01">Rol</label>
+                                    </div>
+                                    <select type="text" class="form-control" name="lastName" placeholder="" value="" required="" 
+                                    oninvalid="this.setCustomValidity('Por favor ingrese un apellido valido')" oninput="setCustomValidity('')">
+                                        <option value="0">Médico</option>
+                                        <option value="1">Enfermero</option>
+                                        <option value="2">Aux Contable</option>
+                                        <option value="3">Facturacion</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="firstName" class="form-label">Nombre</label>
+                                <input type="text" class="form-control" name="name" placeholder="" value="" required="" 
+                                oninvalid="this.setCustomValidity('Por favor ingrese un nombre valido')" oninput="setCustomValidity('')">
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="lastName" class="form-label">Apellido</label>
+                                <input type="text" class="form-control" name="lastName" placeholder="" value="" required="" 
+                                oninvalid="this.setCustomValidity('Por favor ingrese un apellido valido')" oninput="setCustomValidity('')">
+                            </div>
+                            <div class="col-12">
+                                <label for="username" class="form-label">Nombre de usuario</label>
+                                <div class="input-group has-validation">
+                                    <span class="input-group-text">@</span>
+                                    <input type="text" class="form-control" name="username" placeholder="Username" required=""
+                                        oninvalid="this.setCustomValidity('Por favor ingrese un Nombre de usuario valido')" oninput="setCustomValidity('')" disabled>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <label for="address2" class="form-label">Contraseña <span class="text-muted">(Optional)</span></label>
+                                <input type="password" class="form-control" name="password" placeholder="Contraseña">
+                            </div> 
+                            <div class="col-12">
+                                <label for="address2" class="form-label">Confirmación Contraseña <span class="text-muted">(Optional)</span></label>
+                                <input type="password" class="form-control" name="password_confirmation" placeholder="Confirmación Contraseña">
+                            </div>  
+                            <hr class="my-4">
+                            <div class="py-1 text-Left">
+                                <h4>Modulos asignados</h4>
+                                <p class="lead">Por favor ingrese los datos relacionados al los privilegios del usuario</p>
+                            </div>
+                            <div class="table-responsive g-12">
+                                <table class="table g-12">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" class="col-1">#</th>
+                                            <th scope="col" class="col-5">Módulo</th>
+                                            <th scope="col" class="col-1">Ver</th>
+                                            <th scope="col" class="col-1">Crear</th>
+                                            <th scope="col" class="col-1">Modificar</th>
+                                            <th scope="col" class="col-1">Inactivar</th>
+                                            <th scope="col" class="col-1">Imprimir</th>
+                                            <th scope="col" class="col-1">Exportar</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>Usuarios</td>
+                                            <td>
+                                            <input name="psPrint" type="checkbox" aria-label="Radio button for following text input">
+                                            </td>
+                                            <td>
+                                            <input name="psPrint" type="checkbox" aria-label="Radio button for following text input">
+                                            </td>
+                                            <td>
+                                            <input name="psPrint" type="checkbox" aria-label="Radio button for following text input">
+                                            </td>
+                                            <td>
+                                            <input name="psPrint" type="checkbox" aria-label="Radio button for following text input">
+                                            </td>
+                                            <td>
+                                            <input name="psPrint" type="checkbox" aria-label="Radio button for following text input">
+                                            </td>
+                                            <td>
+                                            <input name="psExport" type="checkbox" aria-label="Radio button for following text input">
+                                            </td>
+                                        </tr>
+                                    <tr>
+                                        <th scope="row">2</th>
+                                        <td>Prioritaria</td>
+                                        <td>
+                                        <input name="psRead" type="checkbox" aria-label="Radio button for following text input">
+                                        </td>
+                                        <td>
+                                                        <input name="psCreate" type="checkbox" aria-label="Radio button for following text input">
+                                        </td>
+                                        <td>
+                                        <input name="psModify" type="checkbox" aria-label="Radio button for following text input">
+                                        </td>
+                                        <td>
+                                        <input name="psDelete" type="checkbox" aria-label="Radio button for following text input">
+                                        </td>
+                                        <td>
+                                        <input name="psPrint" type="checkbox" aria-label="Radio button for following text input">
+                                        </td>
+                                        <td>
+                                        <input name="psExport" type="checkbox" aria-label="Radio button for following text input">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>Asist-TOP</td>
+                                        <td>
+                                        <input name="psRead" type="checkbox" aria-label="Radio button for following text input">
+                                        </td>
+                                        <td>
+                                        <input name="psCreate" type="checkbox" aria-label="Radio button for following text input">
+                                        </td>
+                                        <td>
+                                        <input name="psModify" type="checkbox" aria-label="Radio button for following text input">
+                                        </td>
+                                        <td>
+                                        <input name="psDelete" type="checkbox" aria-label="Radio button for following text input">
+                                        </td>
+                                        <td>
+                                        <input name="psPrint" type="checkbox" aria-label="Radio button for following text input">
+                                        </td>
+                                        <td>
+                                        <input name="psExport" type="checkbox" aria-label="Radio button for following text input">
+                                        </td>
+                                    </tr>
+                                    </tbody>          
+                                </table>
+                            </div>
+                            <hr class="my-2">
+                            <div class="row">
+                            <button class="btn btn-success btn-lg col-2 mx-1" type="submit">Guardar</button>
+                            <button class="btn btn-secondary btn-lg col-2 mx-1" type="submit">Cancelar</button>
+                            </div>
+
+                        </div>
+                    </div>  
+                </div>
+            </main>
+        </div>
+    </form>
+
+    <script src="/docs/5.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <script src="form-validation.js"></script>
+</body>
+
+
