@@ -1,15 +1,14 @@
 @extends('components\header')
 @extends('components\footer')
-@csrf
     <body>
-    <form action="" class="p-2 form h-100">
+    <form action="{{ route('sametegrity.update',$user->id) }}" method="POST" class="p-2 form h-100">
+    @csrf
+    @method('PUT')
         <div class="container bg-light">
             <main class="my-4">
                 <div class="py-5 text-center" >
-                    <!-- <img class="d-block mx-auto mb-4" src="/docs/5.2/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
-                    <h1  class="text-success">Registro de usuarios</h1>
+                    <h1  class="text-success">Actualización de usuarios</h1>
                     <hr class="my-1">
-
                 </div>
                 <div class="row g-12 h-100">
                     <div class="col-md-12 col-lg-12">
@@ -18,18 +17,18 @@
                         <hr class="my-1">
                         <div class="row mt-g-3">
                             <div class="col-sm-6">
-                                <label for="lastName" class="form-label">Número Documento</label>
-                                <input type="text" class="form-control" name="lastName" placeholder="" value="" required="" 
-                                oninvalid="this.setCustomValidity('Por favor ingrese un apellido valido')" oninput="setCustomValidity('')">
+                                <label for="dni" class="form-label">Número Documento</label>
+                                <input type="text" class="form-control" name="dni" placeholder="" value="{{$user->dni}}" required="" 
+                                oninvalid="this.setCustomValidity('Por favor ingrese un número de documento valido')" oninput="setCustomValidity('')">
                             </div>
                             <div class="col-sm-6">
-                                <label for="lastName" class="form-label">Privilegio Asignado</label>
+                                <label for="privilegeSet" class="form-label">Privilegio Asignado</label>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <label class="input-group-text" for="inputGroupSelect01">Rol</label>
                                     </div>
-                                    <select type="text" class="form-control" name="lastName" placeholder="" value="" required="" 
-                                    oninvalid="this.setCustomValidity('Por favor ingrese un apellido valido')" oninput="setCustomValidity('')">
+                                    <select type="text" class="form-control" name="privilegeSet" placeholder="" value="" required="" 
+                                    oninvalid="this.setCustomValidity('Por favor ingrese un cargo valido')" oninput="setCustomValidity('')">
                                         <option value="0">Médico</option>
                                         <option value="1">Enfermero</option>
                                         <option value="2">Aux Contable</option>
@@ -39,28 +38,33 @@
                             </div>
                             <div class="col-sm-6">
                                 <label for="firstName" class="form-label">Nombre</label>
-                                <input type="text" class="form-control" name="name" placeholder="" value="" required="" 
+                                <input type="text" class="form-control" name="name" placeholder="" value="{{$user->name}}" required="" 
                                 oninvalid="this.setCustomValidity('Por favor ingrese un nombre valido')" oninput="setCustomValidity('')">
                             </div>
                             <div class="col-sm-6">
-                                <label for="lastName" class="form-label">Apellido</label>
-                                <input type="text" class="form-control" name="lastName" placeholder="" value="" required="" 
+                                <label for="lastname" class="form-label">Apellido</label>
+                                <input type="text" class="form-control" name="lastname" placeholder="" value="{{$user->lastname}}" required="" 
                                 oninvalid="this.setCustomValidity('Por favor ingrese un apellido valido')" oninput="setCustomValidity('')">
                             </div>
-                            <div class="col-12">
+                            <div class="col-sm-6">
+                                <label for="email" class="form-label">Correo Electronico</label>
+                                <input type="text" class="form-control" name="email" placeholder="" value="{{$user->email}}" required="" 
+                                oninvalid="this.setCustomValidity('Por favor ingrese un correo valido')" oninput="setCustomValidity('')">
+                            </div>
+                            <div class="col-6">
                                 <label for="username" class="form-label">Nombre de usuario</label>
                                 <div class="input-group has-validation">
                                     <span class="input-group-text">@</span>
-                                    <input type="text" class="form-control" name="username" placeholder="Username" required=""
-                                        oninvalid="this.setCustomValidity('Por favor ingrese un Nombre de usuario valido')" oninput="setCustomValidity('')" disabled>
+                                    <input type="text" class="form-control" name="username" placeholder="Username" value="{{$user->username}}" required=""
+                                        oninvalid="this.setCustomValidity('Por favor ingrese un Nombre de usuario valido')" oninput="setCustomValidity('')">
                                 </div>
                             </div>
-                            <div class="col-12">
-                                <label for="address2" class="form-label">Contraseña <span class="text-muted">(Optional)</span></label>
+                            <div class="col-6">
+                                <label for="address2" class="form-label">Contraseña <span class="text-muted"></span></label>
                                 <input type="password" class="form-control" name="password" placeholder="Contraseña">
                             </div> 
-                            <div class="col-12">
-                                <label for="address2" class="form-label">Confirmación Contraseña <span class="text-muted">(Optional)</span></label>
+                            <div class="col-6">
+                                <label for="address2" class="form-label">Confirmación Contraseña <span class="text-muted"></span></label>
                                 <input type="password" class="form-control" name="password_confirmation" placeholder="Confirmación Contraseña">
                             </div>  
                             <hr class="my-4">
@@ -157,8 +161,9 @@
                             </div>
                             <hr class="my-2">
                             <div class="row d-flex flex-row-reverse">
-                                <button class="btn btn-secondary btn-lg col-2 mx-1" type="submit">Cancelar</button>
-                                <button class="btn btn-success btn-lg col-2 mx-1" type="submit">Guardar</button>
+                                <input type="submit" class="btn btn-primary btn-lg col-2 mx-1" Value="Guardar">
+                                <input type="submit" class="btn btn-default btn-lg col-2 mx-1" Value="Cancelar">
+                                <a href="javascript:history.back()">Ir al listado</a>
                             </div>
                         </div>
                     </div>  

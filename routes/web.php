@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RegisterControler;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,10 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/sametegrity', function () {
+Route::get('/Loginsametegrity', function () {
     return view('login');
 });
 
-Route::get('/sametegrity/register', function () {
-    return view('accountModule.register');
-})->name('userNew');
+
+Route::resource('/sametegrity',RegisterControler::class);
+
