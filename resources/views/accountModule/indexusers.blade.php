@@ -56,14 +56,13 @@
                                     <td>{{$user->lastname}}</td>
                                     <td>{{$user->email}}</td>
                                     <td>{{$user->username}}</td>
-                                    <td><a href="{{route('sametegrity.edit', $user->id)}}" class="btn btn-warning">Editar</a> | 
-                                    <form href="{{route('sametegrity.destroy', $user->id)}}">
-                                        @csrf
-                                        @method('DELETE')
-                                        <input type="submit" class="btn btn-danger " value="Eliminar">
-                                    </form>
+                                    <td><a href="{{route('sametegrity.edit', $user->id)}}" class="btn btn-warning btn-sm">Editar</a>
+                                    <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modal-delete-{{$user->id}}">
+                                        Eliminar
+                                    </button>
                                     </td>   
                                 </tr>
+                                 @include('accountModule.deleteuser')
                             @endforeach
                         @endif
                         </tbody>
