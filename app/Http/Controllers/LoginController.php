@@ -28,6 +28,6 @@ class LoginController extends Controller
     }
 
     public function authenticated (Request $request,$user){
-        return view('index');
+        return view('menu.principalmenu');
     }
 }
