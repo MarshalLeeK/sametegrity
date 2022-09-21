@@ -1,5 +1,4 @@
-@extends('components\header')
-@extends('components\footer')
+@extends('components.header')
 
 <!DOCTYPE html>
 <html lang="en">
@@ -8,8 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Usuarios registrados</title>
+
 </head>
 <body>
+@include('components.navbar')
+
     <div class="container">
         <h4 class="text-muted mt-4">Gestión de usuarios</h4>
         <div class="row">
@@ -73,4 +75,10 @@
         </div>
     </div>
 </body>
+  <footer class="text-center text-white" style="background-color: #0a4275;display: block;">
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+      © 2022 Samein Copyright:
+      <a class="text-white" target="_blank" href="https://www.samein.com.co/">www.samein.com.co</a>
+    </div>
+  </footer>
 </html>

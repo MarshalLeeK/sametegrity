@@ -10,8 +10,22 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Same-Tegrity</title>
     <style>
-        .d-flex { 
+            .d-flex { 
             margin-top: 1.9em;
+            }
+            .footer {
+            position: fixed;
+            z-index: 2;
+            background-color: black;
+            height: 50px;
+            width: 100%;
+            }
+
+            .content {
+            position: relative;
+            z-index: 1;
+            background-color: red;
+            height: 80px;
             }
     </style>
 </head>
