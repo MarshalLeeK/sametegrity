@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\contracts\Validation\Factory as ValidationFactory;
+use Illuminate\Contracts\Validation\Factory as ValidationFactory;
 
 class loginrequest extends FormRequest
 {
@@ -33,18 +33,21 @@ class loginrequest extends FormRequest
 
     public function getCredentials(){
         $username = $this->get('username');
+        $password = bcrypt($this->get('password'));
 
-        if( $this->isMail($username) ){ 
-            return['email'=> $username,
-                    'password' => $this->get('password')
-            ];
+        // return dd([ 'username' => $username ,'password'=> $password]);
+
+        if( $this->isMail($username) ){             
+            return['email'=> $username,'password' => $password];
          }
-         return $this->only('username','password');
+         return ['username' => $username ,'password'=> $password];
     }
 
     public function isMail($value){
+
         $factory = $this->container->make(ValidationFactory::class);
-        
         return !$factory->make(['username'=>$value],['username'=>'email'])->fails();
-    }
+        
+    } 
+
 }

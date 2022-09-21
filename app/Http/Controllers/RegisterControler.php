@@ -72,6 +72,14 @@ class RegisterControler extends Controller
     public function show($id)
     {
     }
+
+    public function edit($id)
+    {
+        $user=User::findOrFail($id);
+        return view('accountModule.editusers',compact('user'));
+    }
+
+
     /**
      * Update the specified resource in storage.
      *

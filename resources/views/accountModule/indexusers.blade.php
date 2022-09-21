@@ -15,6 +15,7 @@
         <div class="row">
             <div class="col-xl-12">
                 <form action="{{ route('sametegrity.index') }}" method="GET">
+                @csrf
                     <div class="row">
                         <div class="col-sm-4 my-1">
                             <input type="text" class="form-control" name="userseach" value="{{ $searchbox }}">

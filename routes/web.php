@@ -22,5 +22,7 @@ Route::get('/',[LoginController::class,'index']);
 Route::post('/samein',[LoginController::class,'login'])->name('samein.login');
 
 
+
+
 Route::resource('/sametegrity',RegisterControler::class);
 

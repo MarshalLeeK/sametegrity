@@ -2,16 +2,16 @@
 <section class="vh-100">
   <div class="container-fluid h-custom">
     <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-12 justify-content-center align-items-center">
+      <div class="col-5 justify-content-center align-items-center">
           <img src="{{ URL::asset('img/logo.png') }}"
-          class="img-fluid" height="120">
+          class="img-fluid" height="100">
       </div>
       <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
         <form action="{{route('samein.login')}}" method="POST">
           @csrf
           <!-- Email input -->
           <div class="form-outline mb-4">
-            <input type="text" id="username" name="username" class="form-control form-control-lg"
+            <input type="text" id="username" name="username" class="form-control form-control-lg"compact takes a variable number of parameters. Each parameter can be either a string containing the name of the variable, or an array of variable names. The array can contain other arrays of variable names inside it; compact handles it recursively.
               placeholder="Usuario" />
             <label class="form-label" for="username">Usuario</label>
           </div>
