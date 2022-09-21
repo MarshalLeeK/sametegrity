@@ -1,9 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Http\Requests\loginrequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Illuminate\Queue\RedisQueue;
 
 class RegisterControler extends Controller
 {
@@ -56,7 +60,7 @@ class RegisterControler extends Controller
         //comando de guardado.
         $user->save();
         //retonar vista
-        return redirect()->route('sametegrity.index');
+        return redirect()->route('sametegrity.index')->with('successs','Registro guardado satisfactoriamente');
     }
 
     /**
@@ -67,21 +71,7 @@ class RegisterControler extends Controller
      */
     public function show($id)
     {
-        //
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $user=User::findOrFail($id);
-        return view('accountModule.editusers',compact('user'));
-    }
-
     /**
      * Update the specified resource in storage.
      *
@@ -115,4 +105,5 @@ class RegisterControler extends Controller
         $user->delete();
         return redirect()->route('sametegrity.index');
     }
+
 }

@@ -163,7 +163,6 @@
                             <div class="row d-flex flex-row-reverse">
                                 <input type="submit" class="btn btn-primary btn-lg col-2 mx-1" Value="Guardar">
                                 <input type="submit" class="btn btn-default btn-lg col-2 mx-1" Value="Cancelar">
-                                <a href="javascript:history.back()">Ir al listado</a>
                             </div>
                         </div>
                     </div>  

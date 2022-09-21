@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterControler;
 
@@ -14,9 +15,11 @@ use App\Http\Controllers\RegisterControler;
 |
 */
 
-Route::get('/Loginsametegrity', function () {
-    return view('login');
-});
+// Route::get('/Loginsametegrity', function () {
+//     return view('login');
+// });
+Route::get('/',[LoginController::class,'index']);
+Route::post('/samein',[LoginController::class,'login'])->name('samein.login');
 
 
 Route::resource('/sametegrity',RegisterControler::class);
