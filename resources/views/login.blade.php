@@ -1,4 +1,4 @@
-@extends('components\header')
+@extends('components.header')
 <section class="vh-100">
   <div class="container-fluid h-custom">
     <div class="row d-flex justify-content-center align-items-center h-100">
@@ -11,16 +11,17 @@
           @csrf
           <!-- Email input -->
           <div class="form-outline mb-4">
-            <input type="text" id="username" name="username" class="form-control form-control-lg"compact takes a variable number of parameters. Each parameter can be either a string containing the name of the variable, or an array of variable names. The array can contain other arrays of variable names inside it; compact handles it recursively.
-              placeholder="Usuario" />
             <label class="form-label" for="username">Usuario</label>
+            <div class="input-group">
+              <input type="text" id="username" name="username" class="form-control form-control-lg" placeholder="Usuario" />
+              <i class="input-icon uil uil-at"></i> 
+            </div>
           </div>
-
           <!-- Password input -->
           <div class="form-outline mb-3">
+          <label class="form-label" for="password">Contraseña</label>
             <input type="password" id="password" name="password" class="form-control form-control-lg"
               placeholder="Contraseña" />
-            <label class="form-label" for="password">Contraseña</label>
           </div>
 
           <div class="text-rigth text-lg-between mt-4 pt-2">

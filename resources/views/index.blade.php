@@ -26,7 +26,7 @@
             
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                     @auth
-                        <a href="{{ route('return') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dev</a>
+                        <a href="{{ route('returnMenu') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dev</a>
                     @else
                         <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
 

@@ -1,19 +1,9 @@
-@extends('components.header')
+@extends('components.footer')
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Usuarios registrados</title>
-
-</head>
-<body>
 @include('components.navbar')
-
+<body class="mt-12">
     <div class="container">
-        <h4 class="text-muted mt-4">Gestión de usuarios</h4>
+        <h1 class="text-muted mt-4">Gestión de usuarios</h1>
         <div class="row">
             <div class="col-xl-12">
                 <form action="{{ route('sametegrity.index') }}" method="GET">
@@ -74,11 +64,8 @@
             </div>
         </div>
     </div>
+    @section('footer')
+        
+    @endsection
 </body>
-  <footer class="text-center text-white" style="background-color: #0a4275;display: block;">
-    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-      © 2022 Samein Copyright:
-      <a class="text-white" target="_blank" href="https://www.samein.com.co/">www.samein.com.co</a>
-    </div>
-  </footer>
 </html>

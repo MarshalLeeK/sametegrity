@@ -1,0 +1,25 @@
+    
+    
+    .d-flex { 
+    margin-top: 1.9em;
+    }
+
+    #navbar {   
+        width: 100%;
+        background-color: #BFBFBF;
+        }
+
+    html, body {   
+    height: 100%;
+    background-color: white;
+    position: relative;
+    }
+
+    footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    height: 10%;
+    width: 100%;
+    background-color: #0a4275;
+    }  

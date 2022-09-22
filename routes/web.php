@@ -22,6 +22,7 @@ Route::get('/index', function(){
     return view('index');
 })->name('returnMenu');
 
+
 Route::get('/',[LoginController::class,'index']);
 Route::post('/samein',[LoginController::class,'login'])->name('samein.login');
 
