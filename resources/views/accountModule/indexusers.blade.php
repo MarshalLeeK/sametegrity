@@ -2,7 +2,7 @@
 
 @include('components.navbar')
 <body class="mt-12">
-    <div class="container">
+    <div class="container-fluid">
         <h1 class="text-muted mt-4">Gestión de usuarios</h1>
         <div class="row">
             <div class="col-xl-12">

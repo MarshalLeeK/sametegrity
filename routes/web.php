@@ -20,7 +20,7 @@ use App\Http\Controllers\RegisterControler;
 // });
 Route::get('/index', function(){
     return view('index');
-})->name('returnMenu');
+})->name('menu');
 
 
 Route::get('/',[LoginController::class,'index']);
@@ -28,6 +28,7 @@ Route::post('/samein',[LoginController::class,'login'])->name('samein.login');
 
 
 
+Route::get('/account',[RegisterControler::class,'index'])->name('accountModule');
 
 Route::resource('/sametegrity',RegisterControler::class);
 
