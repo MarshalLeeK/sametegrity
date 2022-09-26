@@ -23,3 +23,14 @@
         width: 100%;
         background-color: #0a4275;
     }  
+
+    .menubutton {
+        background:    #030a8c;
+        border-radius: 12px;
+        box-shadow:    -5px -5px #bfbfbf;
+        padding:       32px 32px;
+        color:         #ffffff;
+        display:       inline-block;
+        font:          normal bold 36px/1 "Open Sans", sans-serif;
+        text-align:    center;
+    }
