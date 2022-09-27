@@ -3,6 +3,8 @@
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterControler;
+use App\Http\Controllers\PatientsController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -27,8 +29,10 @@ Route::get('/',[LoginController::class,'index']);
 Route::post('/samein',[LoginController::class,'login'])->name('samein.login');
 
 
-
 Route::get('/account',[RegisterControler::class,'index'])->name('accountModule');
-
 Route::resource('/sametegrity',RegisterControler::class);
+
+Route::get('/account',[PatientsController::class,'index'])->name('patientModule');
+Route::resource('/patients',PatientsController::class);
+
 

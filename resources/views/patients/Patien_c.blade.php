@@ -1,25 +1,45 @@
 @include('components.navbar')
 @extends('components\footer')
     <body>
-    <form action="{{ route('sametegrity.store') }}" method="POST" class="p-2 form h-100">
+    <form action="#" method="POST" class="p-2 form h-100">
     @csrf
         <div class="container bg-light">
             <main>
                 <div class="text-center" >
-                    <h1  class="">Registro de usuarios</h1>
+                    <h1  class="">Registro de Pacientes</h1>
                     <hr class="my-1">
                 </div>
                 <div class="row g-12 h-100">
                     <div class="col-md-12 col-lg-12">
                         <h4 class="mb-3">Datos básicos</h4>
-                        <p class="lead">Por favor ingrese los datos relacionados al usuario</p>
+                        <p class="lead">Por favor ingrese los datos relacionados al paciente</p>
                         <hr class="my-1">
                         <div class="row mt-g-3">
+                            <div class="col-sm-6">
+                                <label for="dni" class="form-label">Tipo Documento</label>
+                                <select class="form-select" name="documenttype" aria-label="Default select example" required
+                                oninvalid="this.setCustomValidity('Por favor ingrese un tipo de documento de documento valido')" 
+                                3oninput="setCustomValidity('')"
+                                >
+                                    <option selected value="">Seleccione el tipo de documento</option>
+                                    <option value='11'>Registro Civil de nacimiento</option>
+                                    <option value="12">Tarjeta Identidad</option>
+                                    <option value="13">Cedula de ciudadanía</option>
+                                    <option value="21">Tarjeta de extranjería</option>
+                                    <option value="22">Cédula de extranjería</option>
+                                    <option value="31">NIT</option>
+                                    <option value="41">Pasaport</option>
+                                    <option value="42">Tipo Documento extranjero</option>
+                                    <option value="43">No definido por la DIAN</option>
+                                </Select>
+                            </div>
+
                             <div class="col-sm-6">
                                 <label for="dni" class="form-label">Número Documento</label>
                                 <input type="text" class="form-control" name="dni" placeholder="" value="" required="" 
                                 oninvalid="this.setCustomValidity('Por favor ingrese un número de documento valido')" oninput="setCustomValidity('')">
                             </div>
+                            
                             <div class="col-sm-6">
                                 <label for="privilegeSet" class="form-label">Privilegio Asignado</label>
                                 <div class="input-group mb-3">
@@ -161,7 +181,7 @@
                             <hr >
                             <div class="row d-flex flex-row-reverse">
                                 <input type="submit" class="btn btn-primary btn-lg col-2 mx-1" Value="Guardar">
-                                <input type="button" class="btn btn-default btn-lg col-2 mx-1" href="{{ route('accountModule') }}" Value="Cancelar">
+                                <input type="button" class="btn btn-default btn-lg col-2 mx-1" href="#" Value="Cancelar">
                             </div>
                         </div>
                     </div>  

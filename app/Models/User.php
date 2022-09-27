@@ -18,6 +18,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
 
+
     protected $table = "users";
     protected $primaryKey = "id";
     
@@ -53,7 +54,7 @@ class User extends Authenticatable
      * Sintaxis:
      * Accion(set)Campo[o nombre del atributo](Password) y al final Attribute
     */
-    public function setPasswordAttribute  ($value){
+    public function setPasswordAttribute ($value) {
         $this->attributes['password']=bcrypt($value);
     }
 }

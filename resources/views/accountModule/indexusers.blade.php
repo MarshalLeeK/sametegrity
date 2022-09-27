@@ -10,7 +10,7 @@
                 @csrf
                     <div class="row">
                         <div class="col-sm-4 my-1">
-                            <input type="text" class="form-control" name="userseach" value="{{ $searchbox }}">
+                            <input type="text" class="form-control" name="userseach" value="{{ $searchbox }}" placeholder="Buscar Usuario">
                         </div>
                         <div class="col-auto my-1">
                             <input type="submit" class="btn btn-primary" value="Buscar">
@@ -25,8 +25,8 @@
                 <div class="table-responsive">
                     <table class="table table-striped">
                         <thead>
-                            <tr>
-                                <th>ID</th>
+                            <tr class="table text-light" style="background-color:#0a4275;">
+                                <th hidden></th>
                                 <th>Documento</th>
                                 <th>Nombre</th>
                                 <th>Apellidos</th>
@@ -43,7 +43,7 @@
                         @else
                             @foreach ( $accounts as $user )
                                 <tr>
-                                    <td>{{$user->id}}</td>
+                                    <td hidden >{{$user->id}}</td>
                                     <td>{{$user->dni}}</td>
                                     <td>{{$user->name}}</td>
                                     <td>{{$user->lastname}}</td>
