@@ -15,7 +15,7 @@
                     <!-- botones -->
                     <div class="grid col align-content-center justify-content-center">
                         <div class="btn btn-primary pb-1 border-secundary shadow mb-2 rounded">
-                            <a href="{{ route('patientModule')}}" class="text-white" title="Pacientes">
+                            <a href="{{ route('patients.index')}}" class="text-white" title="Pacientes">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" fill="currentColor" class="bi bi-person-rolodex" viewBox="0 0 18 18">
                                     <path d="M8 9.05a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
                                     <path d="M1 1a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h.5a.5.5 0 0 0 .5-.5.5.5 0 0 1 1 0 .5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5.5.5 0 0 1 1 0 .5.5 0 0 0 .5.5h.5a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H6.707L6 1.293A1 1 0 0 0 5.293 1H1Zm0 1h4.293L6 2.707A1 1 0 0 0 6.707 3H15v10h-.085a1.5 1.5 0 0 0-2.4-.63C11.885 11.223 10.554 10 8 10c-2.555 0-3.886 1.224-4.514 2.37a1.5 1.5 0 0 0-2.4.63H1V2Z"/>                                
@@ -54,7 +54,7 @@
 
                     <div class="grid col align-content-center justify-content-center">
                         <div class="btn btn-secondary pb-1 border-secundary shadow mb-2 rounded">
-                            <a href="{{ route('sametegrity.index')}}" class="text-white" title="Usuarios">
+                            <a href="{{ route('accountModule')}}" class="text-white" title="Usuarios">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" fill="currentColor" class="bi bi-person-rolodex" viewBox="0 0 18 18">
                                     <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
                                     <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
@@ -300,8 +300,9 @@
                 </div>             
             </div>
 
-                </div>
+        </div>
     </div>
+
 </body>
     @section('footer')
     @endsection

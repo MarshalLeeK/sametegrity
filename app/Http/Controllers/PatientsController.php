@@ -18,21 +18,7 @@ class PatientsController extends Controller
     {   
 
         return view('patients.Patiens_I');
-
-        // $getAuthToken = Http::withHeaders([
-        //     "Accept" => "application/json",
-        //     "api-token"=> "_sJrhBbZKEWeBaS4sxDRjWwaWG6oPy1CwlpwTl7YNZKjL36JWi0-FFHZj6l1icCmHYk",
-        //     "user-email"=> "julianrodriguez19961@gmail.com"
-        // ])->get('https://www.universal-tutorial.com/api/getaccesstoken');
-
-        // $token = $getAuthToken->json('auth_token');
-
-        // $countries = Http::withHeaders([
-        //         "Authorization"=> "Bearer ". $token,
-        //         "Accept"=> "application/json"
-        //     ])->get('https://www.universal-tutorial.com/api/countries');
-
-        // return dd($countries->json());
+        
     }
 
 
@@ -102,6 +88,11 @@ class PatientsController extends Controller
     public function destroy(Patients $patients)
     {
         //
+    }
+
+    public function currentage()
+    {
+        return dd('hi');
     }
 
 }

@@ -161,7 +161,7 @@
                             <hr >
                             <div class="row d-flex flex-row-reverse">
                                 <input type="submit" class="btn btn-primary btn-lg col-2 mx-1" Value="Guardar">
-                                <input type="button" class="btn btn-default btn-lg col-2 mx-1" href="{{ route('accountModule') }}" Value="Cancelar">
+                                <a type="button" class="btn btn-default btn-lg col-2 mx-1" href="{{ route('accountModule') }}">Cancelar</a>
                             </div>
                         </div>
                     </div>  

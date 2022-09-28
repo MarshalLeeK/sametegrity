@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApiController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterControler;
@@ -24,15 +25,27 @@ Route::get('/index', function(){
     return view('index');
 })->name('menu');
 
-
+//Login
 Route::get('/',[LoginController::class,'index']);
 Route::post('/samein',[LoginController::class,'login'])->name('samein.login');
 
-
+//Account Module
 Route::get('/account',[RegisterControler::class,'index'])->name('accountModule');
 Route::resource('/sametegrity',RegisterControler::class);
 
-Route::get('/account',[PatientsController::class,'index'])->name('patientModule');
+//Patient Module
+Route::get('/patients',[PatientsController::class,'index'])->name('patientModule');
 Route::resource('/patients',PatientsController::class);
+Route::post('/currentAge',[PatientsController::class,'PatientsController@currentage'])->name('currentAge');
+
+
+
+
+
+//** esta es la ruta al controlador nuevo */
+Route::get('/apitest/{call}',[ApiController::class,'LocationsApi'])->name('apitest');
+
+
+
 
 

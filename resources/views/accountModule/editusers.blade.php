@@ -1,4 +1,4 @@
-@extends('components\header')
+@include('components.navbar')
 @extends('components\footer')
     <body>
     <form action="{{ route('sametegrity.update',$user->id) }}" method="POST" class="p-2 form h-100">
@@ -162,7 +162,7 @@
                             <hr class="my-2">
                             <div class="row d-flex flex-row-reverse">
                                 <input type="submit" class="btn btn-primary btn-lg col-2 mx-1" Value="Guardar">
-                                <input type="submit" class="btn btn-default btn-lg col-2 mx-1" Value="Cancelar">
+                                <a type="button" class="btn btn-default btn-lg col-2 mx-1" href="{{ route('accountModule') }}">Cancelar</a>
                             </div>
                         </div>
                     </div>  
