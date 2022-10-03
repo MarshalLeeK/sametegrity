@@ -8,7 +8,19 @@ use Illuminate\Support\Facades\Http;
 class ApiController extends Controller
 {
 
-    public function LocationsApi (Request $request, $call){ 
+    
+    function index(){
+        
+        $list = ['id' => 1, 'id'=>2];
+        return [$list];
+
+        // $url = "https://www.universal-tutorial.com/api/";
+
+        // echo $url;
+
+    }
+
+    public function couuntriescall (Request $request, $call){ 
         
         $url = "https://www.universal-tutorial.com/api/";
         $token = "_sJrhBbZKEWeBaS4sxDRjWwaWG6oPy1CwlpwTl7YNZKjL36JWi0-FFHZj6l1icCmHYk";
@@ -22,7 +34,6 @@ class ApiController extends Controller
             $state = 'Santander';
             $lib = "cities/".$state;
         }
-
 
         $getAuthToken = Http::withHeaders([
             "Accept" => "application/json",

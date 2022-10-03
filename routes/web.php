@@ -21,29 +21,34 @@ use App\Http\Controllers\PatientsController;
 // Route::get('/Loginsametegrity', function () {
 //     return view('login');
 // });
+
+
+//Login
+Route::get('/',[LoginController::class,'index'])->name('login');;
+Route::post('/login',[LoginController::class,'login'])->name('signIn');
+
+// menu
 Route::get('/index', function(){
     return view('index');
 })->name('menu');
-
-//Login
-Route::get('/',[LoginController::class,'index']);
-Route::post('/samein',[LoginController::class,'login'])->name('samein.login');
 
 //Account Module
 Route::get('/account',[RegisterControler::class,'index'])->name('accountModule');
 Route::resource('/sametegrity',RegisterControler::class);
 
 //Patient Module
-Route::get('/patients',[PatientsController::class,'index'])->name('patientModule');
+Route::get('/patients_L',[PatientsController::class,'index'])->name('patientModule');
 Route::resource('/patients',PatientsController::class);
-Route::post('/currentAge',[PatientsController::class,'PatientsController@currentage'])->name('currentAge');
 
+// Route::get('/patients/create/{edad}',[PatientsController::class,'test'])->name('currentAge');
 
-
+// Route::get('/patients/create/{edad?}',function ($edad = '0'){
+//     return dd('edad: ' . $edad);
+// });
 
 
 //** esta es la ruta al controlador nuevo */
-Route::get('/apitest/{call}',[ApiController::class,'LocationsApi'])->name('apitest');
+Route::get('/apitest',[ApiController::class,'calllocations'])->name('apitest');
 
 
 
