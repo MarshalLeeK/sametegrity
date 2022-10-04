@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\TypeDocs;
 use Illuminate\Queue\RedisQueue;
 
 class RegisterControler extends Controller
@@ -37,7 +38,8 @@ class RegisterControler extends Controller
      */
     public function create()
     {
-        return view('accountModule.registeruser');
+        $typeDocs = TypeDocs::get();
+        return view('accountModule.registeruser',compact('typeDocs'));
     }
 
     /**
@@ -53,6 +55,8 @@ class RegisterControler extends Controller
         //establecer campos con el contenido del request
         $user->dni = $request->input('dni');
         $user->name = $request->input('name');
+        $user->documenttype = $request->input('tdoc');
+        $user->gender = $request->input('gender');
         $user->lastname = $request->input('lastname');
         $user->email = $request->input('email');
         $user->username = $request->input('username');
@@ -64,6 +68,7 @@ class RegisterControler extends Controller
     }
 
     /**
+     *
      * Display the specified resource.
      *
      * @param  int  $id
@@ -71,7 +76,9 @@ class RegisterControler extends Controller
      */
     public function show($id)
     {
+        //
     }
+
 
     public function edit($id)
     {

@@ -57,7 +57,10 @@ hd-description="Módulo de pacientes"
                                 <td >{{$patient->gender == 1 ? 'Hombre' : 'Mujer' ; }}</td>
                                 <td >{{$patient->phone}}</td>
                                 <td >{{$patient->email}}</td>
-                                <td ><a href="" class="btn btn-warning btn-sm">Editar</a>
+                                <td >
+                                <button class="btn btn-warning btn-sm" onclick="location.href = '{{route('patients.edit', $patient->id)}}';">
+                                    Modificar
+                                </button>
                                 <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modal-delete-{{$patient->id}}">
                                     Eliminar
                                 </button>

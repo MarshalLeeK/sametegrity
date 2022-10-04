@@ -17,6 +17,7 @@ return new class extends Migration
         Schema::create('type_docs', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('abbreviation')->nullable();
             $table->timestamps();
         });
     }

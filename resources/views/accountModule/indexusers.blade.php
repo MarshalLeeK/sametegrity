@@ -1,6 +1,5 @@
-@extends('components.footer')
+<x-header>
 
-@include('components.navbar')
 <body class="mt-12">
     <div class="container-fluid">
         <h1 class="text-muted mt-4">Gestión de usuarios</h1>
@@ -49,13 +48,16 @@
                                     <td>{{$user->lastname}}</td>
                                     <td>{{$user->email}}</td>
                                     <td>{{$user->username}}</td>
-                                    <td><a href="{{route('sametegrity.edit', $user->id)}}" class="btn btn-warning btn-sm">Editar</a>
+                                    <td>
+                                    <button class="btn btn-warning btn-sm" onclick="location.href = '{{route('sametegrity.edit', $user->id)}}';">
+                                        Modificar
+                                    </button>
                                     <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modal-delete-{{$user->id}}">
                                         Eliminar
                                     </button>
                                     </td>   
                                 </tr>
-                                 @include('accountModule.deleteuser')
+                                @include('accountModule.deleteuser')
                             @endforeach
                         @endif
                         </tbody>
@@ -64,8 +66,5 @@
             </div>
         </div>
     </div>
-    @section('footer')
-        
-    @endsection
-</body>
-</html>
+</x-header>
+<x-footer/>

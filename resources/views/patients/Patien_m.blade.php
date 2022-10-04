@@ -2,8 +2,9 @@
 hd-title="Nuevo Paciente"
 hd-meta-description="Nuevo Paciente"
 >
-<form id="patientform" action="{{ route('patients.store') }}" method="POST" class="p-2 form h-100">
+<form id="patientform" action="{{ route('patients.update',$patient->id) }}" method="POST" class="p-2 form h-100">
     @csrf
+    @method('PUT')
         <div class="container bg-light">
             <main>
                 <div class="text-center" >
@@ -24,14 +25,14 @@ hd-meta-description="Nuevo Paciente"
                                 required>
                                 {{-- LV --}}
                                     @foreach ( $typeDocs as $typeDoc )
-                                    <option value="{{ $typeDoc->id }}" {{ $typeDoc->id == '13' ? 'selected' : '-' ; }}> {{ $typeDoc->name }} </option>
+                                    <option value="{{ $typeDoc->id }}" {{ $typeDoc->id == $patient->documenttype ? 'selected' : '-' ; }}> {{ $typeDoc->name }} </option>
                                     @endforeach
                                 </Select>
                             </div>
 
                             <div class="col-sm-3">
                                 <label for="dni" class="form-label">Número Documento</label>
-                                <input type="text" class="form-control" name="dni" id="dni" placeholder="Número Documento" 
+                                <input type="text" class="form-control" name="dni" id="dni" placeholder="Número Documento" value="{{ $patient->dni }}"
                                 oninvalid="this.setCustomValidity('Por favor ingrese un número de documento valido')" 
                                 required>
                             </div>
@@ -39,54 +40,56 @@ hd-meta-description="Nuevo Paciente"
                             <div class="col-sm-3">
                                 <label for="documentplace" class="form-label">Lugar Expedición</label>
                                 <select class="form-select" name="documentplace" id="documentplace" aria-label="">
-                                    <option selected value="">Seleccione ciudad</option>
-                                    <option value='Bello'>Bello</option>
-                                    <option value="Medellin">Medellin</option>
-                                    <option value="Manizales">Manizales</option>
+                                    <option value='Medellin' {{ $patient->documentplace == 'Medellin'  ? 'selected':''; }} >Medellin</option>
+                                    <option value='Bello' {{ $patient->documentplace == 'Bello'  ? 'selected':''; }} >Bello</option>
+                                    <option value='Sabaneta' {{ $patient->documentplace == 'Sabaneta'  ? 'selected':''; }} >Sabaneta</option>
+                                    <option value='Rionegro' {{ $patient->documentplace == 'Rionegro' ? 'selected':''; }} >Rionegro</option>
                                 </Select>
                             </div>
 
                             <div class="col-sm-6">
                                 <label for="name" class="form-label">Nombre</label>
-                                <input type="text" class="form-control" name="name" id="name" placeholder="Nombres" value=""
+                                <input type="text" class="form-control" name="name" id="name" placeholder="Nombres" value="{{ $patient->name }}"
                                 oninvalid="this.setCustomValidity('Por favor ingrese un nombre valido')" 
                                 required>
                             </div>
                             <div class="col-sm-6">
                                 <label for="lastname" class="form-label">Apellido</label>
-                                <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Apellidos" value=""
+                                <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Apellidos" value="{{ $patient->lastname }}"
                                 oninvalid="this.setCustomValidity('Por favor ingrese un apellido valido')" 
                                 required>
                             </div>
                             <div class="w-100 mt-2"></div>
                             <div class="col-sm-3">
                                 <label for="gender" class="form-label">Género</label>
-                                <select class="form-select" name="gender" id="gender" aria-label="" value="">
-                                    <option value="" selected>Genero</option>
-                                    <option value='0'>Mujer</option>
-                                    <option value="1">Hombre</option>
-                                    <option value="2">Otro</option>
+                                <select class="form-select" name="gender" id="gender" 
+                                    aria-label="">
+                                    <option value=""  >Genero</option>
+                                    <option value='0' {{ $patient->gender == 0 ? 'selected':''; }} >Mujer</option>
+                                    <option value="1" {{ $patient->gender == 1 ? 'selected':''; }} >Hombre</option>
+                                    <option value="2" {{ $patient->gender == 2 ? 'selected':''; }} >Otro</option>
                                 </Select>
                             </div>
                             <div class="col-sm-3">
                                 <label for="borndate" class="form-label">Fecha Nacimiento</label>
-                                <input type="date" class="form-control" name="borndate" id="borndate" placeholder="" value="">
+                                <input type="date" class="form-control" name="borndate" id="borndate" placeholder="" value="{{ $patient->borndate }}">
                             </div>
 
                             <div class="col-sm-3">
                                 <label for="age" class="form-label">Edad</label>
-                                <input type="number" class="form-control" name="age" id="age" placeholder="Edad" readonly>
+                                <input type="number" class="form-control" name="age" id="age" placeholder="Edad" value="{{ $patient->age }}" onlyread>
                             </div>
 
                             <div class="col-sm-3">
                                 <label for="academiclevel" class="form-label">Escolaridad</label>
-                                <select class="form-select" name="academiclevel" id="academiclevel" aria-label="">
-                                    <option selected value="">Seleccione Nivel</option>
-                                    <option value='Bello'>Primaria</option>
-                                    <option value="Medellin">Bachillerato</option>
-                                    <option value="Manizales">Secundaria</option>
-                                    <option value="Manizales">Profesional</option>
-                                    <option value="Manizales">Especialización</option>
+                                <select class="form-select" name="academiclevel" id="academiclevel" aria-label=""
+                                    oninput="setCustomValidity('')">
+                                    <option selected value="{{ $patient->academiclevel }}">Seleccione Nivel</option>
+                                    <option value='0' {{ $patient->academiclevel == 0 ? 'selected' : '' ; }} >Primaria</option>
+                                    <option value="1" {{ $patient->academiclevel == 1 ? 'selected' : '' ; }} >Bachillerato</option>
+                                    <option value="2" {{ $patient->academiclevel == 2 ? 'selected' : '' ; }} >Secundaria</option>
+                                    <option value="3" {{ $patient->academiclevel == 3 ? 'selected' : '' ; }} >Profesional</option>
+                                    <option value="4" {{ $patient->academiclevel == 4 ? 'selected' : '' ; }} >Especialización</option>
 
                                 </Select>
                             </div>
@@ -95,10 +98,10 @@ hd-meta-description="Nuevo Paciente"
                                 <label for="borncountry" class="form-label">Pais de nacimiento</label>
                                 @if ( auth()->check() )       
                                     <select class="form-select" name="borncountry" id="borncountry" aria-label="">
-                                        <option value='Colombia' selected>Colombia</option>
-                                        <option value='Andorra'>Andorra</option>
-                                        <option value="Afganistan">Afganistan</option>
-                                        <option value="Dubai">Dubai</option>
+                                        <option value='Colombia' {{ $patient->fkborncountry == 'Colombia'  ? 'selected':''; }} >Colombia</option>
+                                        <option value='Chile' {{ $patient->fkborncountry == 'Chile'  ? 'selected':''; }} >Chile</option>
+                                        <option value='Venezuela' {{ $patient->fkborncountry == 'Venezuela'  ? 'selected':''; }} >Venezuela</option>
+                                        <option value='India' {{ $patient->fkborncountry == 'India' ? 'selected':''; }} >India</option>
                                     </Select>
                                 @endif
                             </div>
@@ -106,61 +109,61 @@ hd-meta-description="Nuevo Paciente"
                             <div class="col-sm-3">
                                 <label for="bornstate" class="form-label">Depto de nacimiento</label>
                                 <select class="form-select" name="bornstate" id="bornstate" aria-label="">
-                                    <option value='Antioquia' selected>Antioquia</option>
-                                    <option value="Santander">Santander</option>
-                                    <option value="Cundinamarca">Cundinamarca</option>
+                                    <option value='Antioquia' {{ $patient->fkbornstate == 'Antioquia' ? 'selected':''; }} >Antioquia</option>
+                                    <option value='Santander' {{ $patient->fkbornstate == 'Santander' ? 'selected':''; }} >Santander</option>
+                                    <option value='Cundinamarca' {{ $patient->fkbornstate == 'Cundinamarca' ? 'selected':''; }} >Cundinamarca</option>
+                                    <option value='Rionegro' {{ $patient->fkbornstate == 'Rionegro' ? 'selected':''; }} >Rionegro</option>
                                 </Select>
                             </div>
 
                             <div class="col-sm-3">
                                 <label for="borncity" class="form-label">Ciudad de nacimiento</label>
                                 <select class="form-select" name="borncity" id="borncity" aria-label="">
-                                    <option value="" selected>Seleccione ciudad</option>
-                                    <option value='Bello'>Bello</option>
-                                    <option value="Medellin">Medellin</option>
-                                    <option value="Manizales">Manizales</option>
+                                    <option value='Medellin' {{ $patient->fkborncity == 'Medellin'  ? 'selected':''; }} >Medellin</option>
+                                    <option value='Bello' {{ $patient->fkborncity == 'Bello'  ? 'selected':''; }} >Bello</option>
+                                    <option value='Sabaneta' {{ $patient->fkborncity == 'Sabaneta'  ? 'selected':''; }} >Sabaneta</option>
+                                    <option value='Rionegro' {{ $patient->fkborncity == 'Rionegro' ? 'selected':''; }} >Rionegro</option>
                                 </Select>
                             </div>
 
                             <div class="col-sm-3">
                                 <label for="job" class="form-label">Ocupación</label>
                                 <select class="form-select" name="job" id="job" aria-label="">
-                                    <option value="" selected>Seleccione Ocupación</option>
-                                    <option value='Obrero'>Obrero</option>
-                                    <option value="Paletero">Paletero</option>
-                                    <option value="Gerente">Gerente</option>
-                                    <option value="Estudiante">Estudiante</option>
-                                    <option value="Ninguna">Ninguna</option>
+                                    <option value="Obrero" {{ $patient->job == 'Obrero'  ? 'selected':''; }}>Obrero</option>
+                                    <option value="Paletero" {{ $patient->job == 'Paletero'  ? 'selected':''; }}>Paletero</option>
+                                    <option value="Gerente" {{ $patient->job == 'Gerente'  ? 'selected':''; }}>Gerente</option>
+                                    <option value="Estudiante" {{ $patient->job == 'Estudiante'  ? 'selected':''; }}>Estudiante</option>
+                                    <option value="Ninguna" {{ $patient->job == 'Ninguna'  ? 'selected':''; }}>Ninguna</option>
                                 </Select>
                             </div>
 
                             <div class="col-sm-3">
                                 <label for="livecontry" class="form-label">Pais de Residencia</label>
                                 <select class="form-select" name="livecontry" id="livecontry" aria-label="" >
-                                    <option selected value="Colombia">Colombia</option>
-                                    <option value='Andorra'>Andorra</option>
-                                    <option value="Afganistan">Afganistan</option>
-                                    <option value="Dubai">Dubai</option>
+                                    <option value='Colombia' {{ $patient->fklivecountry == 'Colombia'  ? 'selected':''; }} >Colombia</option>
+                                    <option value='Chile' {{ $patient->fklivecountry == 'Chile'  ? 'selected':''; }} >Chile</option>
+                                    <option value='Venezuela' {{ $patient->fklivecountry == 'Venezuela'  ? 'selected':''; }} >Venezuela</option>
+                                    <option value='India' {{ $patient->fklivecountry == 'India' ? 'selected':''; }} >India</option> 
                                 </Select>
                             </div>
 
                             <div class="col-sm-3">
                                 <label for="livestate" class="form-label">Depto de Residencia</label>
                                 <select class="form-select" name="livestate" id="livestate" aria-label="">
-                                    <option selected value="">Seleccione estado/depto</option>
-                                    <option value='Antioquia'>Antioquia</option>
-                                    <option value="Santander">Santander</option>
-                                    <option value="Cundinamarca">Cundinamarca</option>
+                                    <option value='Antioquia' {{ $patient->fklivestate == 'Antioquia' ? 'selected':''; }} >Antioquia</option>
+                                    <option value='Santander' {{ $patient->fklivestate == 'Santander' ? 'selected':''; }} >Santander</option>
+                                    <option value='Cundinamarca' {{ $patient->fklivestate == 'Cundinamarca' ? 'selected':''; }} >Cundinamarca</option>
+                                    <option value='Rionegro' {{ $patient->fklivestate == 'Rionegro' ? 'selected':''; }} >Rionegro</option>
                                 </Select>
                             </div>
 
                             <div class="col-sm-3">
                                 <label for="livecity" class="form-label">Ciudad de Residencia</label>
                                 <select class="form-select" name="livecity" id="livecity" aria-label="" >
-                                    <option selected value="">Seleccione ciudad</option>
-                                    <option value='Bello'>Bello</option>
-                                    <option value="Medellin">Medellin</option>
-                                    <option value="Manizales">Manizales</option>
+                                    <option value='Medellin' {{ $patient->fklivecity == 'Medellin'  ? 'selected':''; }} >Medellin</option>
+                                    <option value='Bello' {{ $patient->fklivecity == 'Bello'  ? 'selected':''; }} >Bello</option>
+                                    <option value='Sabaneta' {{ $patient->fklivecity == 'Sabaneta'  ? 'selected':''; }} >Sabaneta</option>
+                                    <option value='Rionegro' {{ $patient->fklivecity == 'Rionegro' ? 'selected':''; }} >Rionegro</option>
                                 </Select>
                             </div>
 
@@ -168,39 +171,48 @@ hd-meta-description="Nuevo Paciente"
                             <div class="col-sm-3">
                                 <label for="civilsate" class="form-label">Estado Civil</label>
                                 <select class="form-select" name="civilsate" id="civilsate" aria-label="" >
-                                    <option selected value="">Seleccione Estado</option>
-                                    <option value='Bello'>Soltero</option>
-                                    <option value="Medellin">Casado</option>
-                                    <option value="Manizales">Viudo</option>
+                                    <option value='0' {{ $patient->civilsate == 0 ? 'selected' : '' ; }}>Soltero</option>
+                                    <option value='1' {{ $patient->civilsate == 1 ? 'selected' : '' ; }}>Casado</option>
+                                    <option value='2' {{ $patient->civilsate == 2 ? 'selected' : '' ; }}>Viudo</option>
                                 </Select>
                             </div>
 
 
                             <div class="col-sm-12">
                                 <label for="address" class="form-label">Dirección </label>
-                                <input type="text" class="form-control" name="address" id="address" placeholder="Dirección">
+                                <input type="text" class="form-control" name="address" id="address" placeholder="Dirección"
+                                value="{{ $patient->address }}">
                             </div> 
 
                             <div class="col-sm-6">
                                 <label for="phone" class="form-label">Teléfono </label>
-                                <input type="number" class="form-control" name="phone" id="phone" placeholder="Teléfono" 
+                                <input type="number" class="form-control" name="phone" id="phone" placeholder="Teléfono"
+                                value="{{ $patient->phone }}" 
                                 oninvalid="this.setCustomValidity('Es necesario ingresar un número de teléfono')" 
+                                oninput="this.setCustomValidity('')" 
                                 required>
                             </div> 
 
                             <div class="col-sm-6">
                                 <label for="cellphone" class="form-label">Celular </label>
-                                <input type="text" class="form-control" name="cellphone" id="cellphone" placeholder="Celular">
+                                <input type="text" class="form-control" name="cellphone" id="cellphone" placeholder="Celular"
+                                value="{{ $patient->cellphone }}" 
+                                
+                                >
                             </div> 
 
                             <div class="col-sm-6">
                                 <label for="mail" class="form-label">Email </label>
-                                <input type="text" class="form-control" name="mail" id="mail" placeholder="Email">
+                                <input type="text" class="form-control" name="mail" id="mail" placeholder="Email"
+                                value="{{ $patient->email }}" 
+                                >
                             </div> 
 
                             <div class="col-sm-6">
                                 <label for="maileb" class="form-label">Facturación electronica </label>
-                                <input type="text" class="form-control" name="maileb" id="maileb" placeholder="Email Facturación">
+                                <input type="text" class="form-control" name="maileb" id="maileb" placeholder="Email Facturación"
+                                value="{{ $patient->emailfa }}" 
+                                >
                             </div> 
 
                             <div class="col-sm-12 mt-2 mb-2">
@@ -230,7 +242,7 @@ hd-meta-description="Nuevo Paciente"
                                                         <label class="form-label" for="capitado">
                                                             Capitado 
                                                         </label>
-                                                        <input class="form-check-input" name="capitado" id="capitado" type="checkbox" size="10px" value="" id="flexCheckDefault">
+                                                        <input class="form-check-input" name="capitado" id="capitado" type="checkbox" size="10px" value="{{ $patient->dni }}" id="flexCheckDefault">
                                                     </div>
                                                 </div>
                                                 <input type="text" class="form-control col-sm-9 align-bottom" width="" name="eps" id="eps" placeholder="Entidad">
@@ -240,7 +252,6 @@ hd-meta-description="Nuevo Paciente"
                                             <div class="col-sm-3">
                                                 <label for="epstype" class="form-label"> Regimen </label>
                                                 <select class="form-select" name="epstype" id="epstype" aria-label="" >
-                                                    <option selected value="">Seleccione tipo</option>
                                                     <option value="C">Contribuitivo</option>
                                                     <option value="S">Subsidiado</option>
                                                 </Select>
@@ -248,7 +259,7 @@ hd-meta-description="Nuevo Paciente"
                                             <div class="col-sm-3">
                                                 <label for="contract" class="form-label"> Contrato </label>
                                                 <select class="form-select" name="contract" id="contract" aria-label="" >
-                                                    <option selected value="">Seleccione contrato</option>
+                                                    <option selected value="{{ $patient->dni }}">Seleccione contrato</option>
                                                     <option value='1'>contrato1</option>
                                                     <option value="2">contrato2</option>
                                                 </Select>
@@ -280,7 +291,7 @@ hd-meta-description="Nuevo Paciente"
                                             <div class="col-sm-4">
                                                 <label for="Ips" class="form-label"> IPS </label>
                                                 <select class="form-select" name="Ips" id="Ips" aria-label="" >
-                                                    <option selected value="">Seleccione Ips</option>
+                                                    <option selected value="{{ $patient->dni }}">Seleccione Ips</option>
                                                     <option value='Bello'>Hospital mental antioquia (HOMO)</option>
                                                     <option value="Medellin">Ips salud de antioquia</option>
                                                     <option value="Manizales">Ips medellin</option>
@@ -320,15 +331,15 @@ hd-meta-description="Nuevo Paciente"
 
                                                 <div class="col-sm-3">
                                                     <label for="kindred" class="form-label">Relación / Parentesco</label>
-                                                    <select class="form-select" name="kindred" id = "kindred" aria-label="legal document type" >
-                                                        <option value="">Seleccion</option>
-                                                        <option value='0'>Conyugue</option>
-                                                        <option value='1'>Madre</option>
-                                                        <option value="2">Padre</option>
-                                                        <option value="3">Hija/o</option>
-                                                        <option value="4">Hermana/o</option>
-                                                        <option value="5">Abuela/o</option>
-                                                        <option value="6">Otro</option>
+                                                    <select class="form-select" name="kindred" id = "kindred" aria-label="legal document type" 
+                                                    oninput="setCustomValidity('')" >
+                                                        <option value='0' {{ $patient->kindred == 0 ? 'selected' : '' ; }}>Conyugue</option>
+                                                        <option value='1' {{ $patient->kindred == 1 ? 'selected' : '' ; }}>Madre</option>
+                                                        <option value="2" {{ $patient->kindred == 2 ? 'selected' : '' ; }}>Padre</option>
+                                                        <option value="3" {{ $patient->kindred == 3 ? 'selected' : '' ; }}>Hija/o</option>
+                                                        <option value="4" {{ $patient->kindred == 4 ? 'selected' : '' ; }}>Hermana/o</option>
+                                                        <option value="5" {{ $patient->kindred == 5 ? 'selected' : '' ; }}>Abuela/o</option>
+                                                        <option value="6" {{ $patient->kindred == 6 ? 'selected' : '' ; }}>Otro</option>
                                                     </Select>
                                                 </div>
                                             </div>

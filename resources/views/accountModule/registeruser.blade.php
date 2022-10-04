@@ -1,5 +1,4 @@
-@include('components.navbar')
-@extends('components\footer')
+<x-header>
     <body>
     <form action="{{ route('sametegrity.store') }}" method="POST" class="p-2 form h-100">
     @csrf
@@ -15,7 +14,19 @@
                         <p class="lead">Por favor ingrese los datos relacionados al usuario</p>
                         <hr class="my-1">
                         <div class="row mt-g-3">
-                            <div class="col-sm-6">
+                            <div class="col-sm-2">
+                                <label for="tdoc" class="form-label">Tipo Documento</label>
+                                <select class="form-select" name="tdoc" id="tdoc" aria-label=""
+                                oninvalid="this.setCustomValidity('Por favor ingrese un tipo de documento de documento valido')" 
+                                oninput="setCustomValidity('')"
+                                required >
+                                {{-- LV --}}
+                                    @foreach ( $typeDocs as $typeDoc )
+                                    <option value="{{ $typeDoc->id }}" {{ $typeDoc->id == 13 ? "selected" : '' ; }} > {{ $typeDoc->name }} </option>
+                                    @endforeach
+                                </Select>
+                            </div>
+                            <div class="col-sm-4">
                                 <label for="dni" class="form-label">Número Documento</label>
                                 <input type="text" class="form-control" name="dni" placeholder="" value="" required="" 
                                 oninvalid="this.setCustomValidity('Por favor ingrese un número de documento valido')" oninput="setCustomValidity('')">
@@ -28,10 +39,12 @@
                                     </div>
                                     <select type="text" class="form-control" name="privilegeSet" placeholder="" value="" required="" 
                                     oninvalid="this.setCustomValidity('Por favor ingrese un cargo valido')" oninput="setCustomValidity('')">
-                                        <option value="0">Médico</option>
-                                        <option value="1">Enfermero</option>
-                                        <option value="2">Aux Contable</option>
-                                        <option value="3">Facturacion</option>
+                                        <option class="text-muted" value=""> -- Asignar</option>
+                                        <option value="0">Root</option>
+                                        <option value="1">Médico</option>
+                                        <option value="2">Enfermero</option>
+                                        <option value="3">Aux Contable</option>
+                                        <option value="4">Facturacion</option>
                                     </select>
                                 </div>
                             </div>
@@ -172,7 +185,7 @@
 
     <script src="/docs/5.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
     <script src="form-validation.js"></script>
-    
-</body>
+</x-header>
+<x-footer/>
 
 

@@ -30,12 +30,6 @@ class PatientsController extends Controller
                         ->orderBy( 'dni','asc')
                         ->paginate(18);      
         return view('patients.Patiens_I',['patients'=>$patients]);
-
-
-
-
-
-        
     }
 
 
@@ -64,23 +58,55 @@ class PatientsController extends Controller
     public function store(Request $request)
     {
         //
+
         $uuid = Str::uuid();
         //Crear usuario
         $patient = new Patients;
         $patient->kp_uuid =  $uuid ;
         $patient->documenttype = $request->input('tdoc');
         $patient->dni = $request->input('dni');
+        $patient->documentplace = $request->input('documentplace');
         $patient->name = $request->input('name');
         $patient->lastname = $request->input('lastname');
         $patient->borndate = $request->input('borndate');
+        $patient->fkborncountry = $request->input('borncountry');
+        $patient->fkbornstate = $request->input('bornstate');
+        $patient->fkborncity = $request->input('borncity');
         $patient->age = $request->input('age');
         $patient->gender = $request->input('gender');
         $patient->phone = $request->input('phone');
-        $patient->email = $request->input('email');
+        $patient->email = $request->input('mail');
+        $patient->academiclevel = $request->input('academiclevel');
+        $patient->fklivecountry = $request->input('livecontry');
+        $patient->fklivestate = $request->input('livestate');
+        $patient->fklivecity = $request->input('livecity');
+        $patient->civilsate = $request->input('civilsate');
+        $patient->job = $request->input('job');
+        $patient->address = $request->input('address');
+        $patient->cellphone = $request->input('cellphone');
+        $patient->emailfa = $request->input('maileb');
+        $patient->capitado = $request->input('capitado');
+        $patient->fkeps = $request->input('eps');
+        $patient->epstype = $request->input('epstype');
+        $patient->contract = $request->input('contract');
+        $patient->epslevel = $request->input('epslevel');
+        $patient->legaldni = $request->input('legaldni');
+        $patient->legaldocumenttype = $request->input('legaldocumenttype');
+        $patient->legalname = $request->input('legalname');
+        $patient->kindred = $request->input('kindred');
+        $patient->legalphone = $request->input('legalphone');
+        $patient->legaladress = $request->input('legaladress');
+        $patient->observation = $request->input('observation');
         $patient->save();
 
+        // Se debe crear campo para poliza $patient->policy = $request->input('policy');
+        // Se debe crear campo para poliza $patient->membertype = $request->input('membertype');
+        // Se debe crear campo para poliza $patient->membertype = $request->input('contributor');
+        // Se debe crear campo para poliza $patient->membertype = $request->input('Ips');
+
         //retonar vista
-        return redirect()->route('patientModule')->with('successs','Registro guardado satisfactoriamente');
+        return redirect()->route('patientModule');
+    
     }
 
     /**
@@ -100,9 +126,14 @@ class PatientsController extends Controller
      * @param  \App\Models\Patients  $patients
      * @return \Illuminate\Http\Response
      */
-    public function edit(Patients $patients)
+    public function edit($id)
     {
-        //
+        //cosulta a pacientes
+        $patient = Patients::findOrFail($id);
+        //consulta tipos documento
+        $typeDocs = TypeDocs::get();
+
+        return view('patients.Patien_m',compact('patient','typeDocs'));
     }
 
     /**
@@ -112,9 +143,48 @@ class PatientsController extends Controller
      * @param  \App\Models\Patients  $patients
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Patients $patients)
+    public function update(Request $request, $id)
     {
         //
+        $patient = Patients::findOrFail($id);
+        $patient->documenttype = $request->input('tdoc');
+        $patient->dni = $request->input('dni');
+        $patient->documentplace = $request->input('documentplace');
+        $patient->name = $request->input('name');
+        $patient->lastname = $request->input('lastname');
+        $patient->borndate = $request->input('borndate');
+        $patient->fkborncountry = $request->input('borncountry');
+        $patient->fkbornstate = $request->input('bornstate');
+        $patient->fkborncity = $request->input('borncity');
+        $patient->age = $request->input('age');
+        $patient->gender = $request->input('gender');
+        $patient->phone = $request->input('phone');
+        $patient->email = $request->input('mail');
+        $patient->academiclevel = $request->input('academiclevel');
+        $patient->fklivecountry = $request->input('livecontry');
+        $patient->fklivestate = $request->input('livestate');
+        $patient->fklivecity = $request->input('livecity');
+        $patient->civilsate = $request->input('civilsate');
+        $patient->job = $request->input('job');
+        $patient->address = $request->input('address');
+        $patient->cellphone = $request->input('cellphone');
+        $patient->emailfa = $request->input('maileb');
+        $patient->capitado = $request->input('capitado');
+        $patient->fkeps = $request->input('eps');
+        $patient->epstype = $request->input('epstype');
+        $patient->contract = $request->input('contract');
+        $patient->epslevel = $request->input('epslevel');
+        $patient->legaldni = $request->input('legaldni');
+        $patient->legaldocumenttype = $request->input('legaldocumenttype');
+        $patient->legalname = $request->input('legalname');
+        $patient->kindred = $request->input('kindred');
+        $patient->legalphone = $request->input('legalphone');
+        $patient->legaladress = $request->input('legaladress');
+        $patient->observation = $request->input('observation');
+        $patient->save();
+
+        return redirect()->route('patientModule');
+
     }
 
     /**
