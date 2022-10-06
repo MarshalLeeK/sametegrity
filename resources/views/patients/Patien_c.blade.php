@@ -39,10 +39,7 @@ hd-meta-description="Nuevo Paciente"
                             <div class="col-sm-3">
                                 <label for="documentplace" class="form-label">Lugar Expedición</label>
                                 <select class="form-select" name="documentplace" id="documentplace" aria-label="">
-                                    <option selected value="">Seleccione ciudad</option>
-                                    <option value='Bello'>Bello</option>
-                                    <option value="Medellin">Medellin</option>
-                                    <option value="Manizales">Manizales</option>
+                                    <x-locations-api to='cities'/>
                                 </Select>
                             </div>
 
@@ -93,32 +90,22 @@ hd-meta-description="Nuevo Paciente"
                             
                             <div class="col-sm-3">
                                 <label for="borncountry" class="form-label">Pais de nacimiento</label>
-                                @if ( auth()->check() )       
-                                    <select class="form-select" name="borncountry" id="borncountry" aria-label="">
-                                        <option value='Colombia' selected>Colombia</option>
-                                        <option value='Andorra'>Andorra</option>
-                                        <option value="Afganistan">Afganistan</option>
-                                        <option value="Dubai">Dubai</option>
-                                    </Select>
-                                @endif
+                                <select class="form-select" name="borncountry" id="borncountry" aria-label="">
+                                    <x-locations-api />
+                                </Select>
                             </div>
 
                             <div class="col-sm-3">
                                 <label for="bornstate" class="form-label">Depto de nacimiento</label>
                                 <select class="form-select" name="bornstate" id="bornstate" aria-label="">
-                                    <option value='Antioquia' selected>Antioquia</option>
-                                    <option value="Santander">Santander</option>
-                                    <option value="Cundinamarca">Cundinamarca</option>
+                                    <x-locations-api to='states' />
                                 </Select>
                             </div>
 
                             <div class="col-sm-3">
                                 <label for="borncity" class="form-label">Ciudad de nacimiento</label>
                                 <select class="form-select" name="borncity" id="borncity" aria-label="">
-                                    <option value="" selected>Seleccione ciudad</option>
-                                    <option value='Bello'>Bello</option>
-                                    <option value="Medellin">Medellin</option>
-                                    <option value="Manizales">Manizales</option>
+                                    <x-locations-api to='cities'/>
                                 </Select>
                             </div>
 

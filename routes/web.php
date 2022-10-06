@@ -48,7 +48,9 @@ Route::resource('/patients',PatientsController::class);
 
 
 //** esta es la ruta al controlador nuevo */
-Route::get('/apitest',[ApiController::class,'calllocations'])->name('apitest');
+Route::get('/apitest',  function () {
+    return view('patients.test');
+})->name('apitest');
 
 
 
