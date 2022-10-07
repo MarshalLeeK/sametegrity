@@ -1,10 +1,9 @@
 <x-header
-hd-title="Nuevo Paciente"
-hd-meta-description="Nuevo Paciente"
->
-<form id="patientform" action="{{ route('patients.update',$patient->id) }}" method="POST" class="p-2 form h-100">
-    @csrf
-    @method('PUT')
+hd-title="Actualización Paciente"
+hd-meta-description="Actualización Paciente">
+    <form id="patientform" action="{{ route('patients.update',$patient->id) }}" method="POST" class="p-2 form h-100">
+        @csrf
+        @method('PUT')
         <div class="container bg-light">
             <main>
                 <div class="text-center" >
@@ -40,9 +39,9 @@ hd-meta-description="Nuevo Paciente"
                             <div class="col-sm-3">
                                 <label for="documentplace" class="form-label">Lugar Expedición</label>
                                 <select class="form-select" name="documentplace" id="documentplace" aria-label="">
-                                    <option value='Medellin' {{ $patient->documentplace == 'Medellin'  ? 'selected':''; }} >Medellin</option>
-                                    <option value='Bello' {{ $patient->documentplace == 'Bello'  ? 'selected':''; }} >Bello</option>
-                                    <option value='Sabaneta' {{ $patient->documentplace == 'Sabaneta'  ? 'selected':''; }} >Sabaneta</option>
+                                    <option value='Medellin' {{ $patient->documentplace == 'Medellin'  ? 'selected':''; }}>Medellin</option>
+                                    <option value='Bello'    {{ $patient->documentplace == 'Bello'  ? 'selected':''; }}   >Bello</option>
+                                    <option value='Sabaneta' {{ $patient->documentplace == 'Sabaneta'  ? 'selected':''; }}>Sabaneta</option>
                                     <option value='Rionegro' {{ $patient->documentplace == 'Rionegro' ? 'selected':''; }} >Rionegro</option>
                                 </Select>
                             </div>
@@ -390,7 +389,7 @@ hd-meta-description="Nuevo Paciente"
             </main>
         </div>
     </form>
-     <script src="{{asset('js/patiencrud.js')}}"></script>
+    <script src="{{asset('js/patiencrud.js')}}"></script>
 </x-header>
 
 

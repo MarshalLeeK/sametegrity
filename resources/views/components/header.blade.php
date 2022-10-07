@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{URL::asset('css/structure.css')}}">        
+    <link rel="stylesheet" href="{{ Request::Path() != '/' ?  URL::asset('css/structure.css') : URL::asset('css/guessStructure.css') }}">        
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.2/dist/umd/popper.min.js" 
         integrity="sha384-q9CRHqZndzlxGLOj+xrdLDJa9ittGte1NksRmgJKeCV9DrM7Kz868XYqsKWPpAmn" crossorigin="anonymous"></script>
@@ -21,14 +21,19 @@
     <script src="http://momentjs.com/downloads/moment.min.js"></script>
 
     <title>SAMEIN - {{ $hdTitle ?? 'ND' }}</title>
+    
 </head>
 <body>
 
-    @if (Request::route()->getName() != 'login')
+    @if ( Request::Path() != '/' )
         <x-layouts.navbar />
     @endif
 
     {{ $slot }}
+
+    @if ( Request::Path() != '/' )
+        <x-footer />
+    @endif
 </body>
 </html>
 

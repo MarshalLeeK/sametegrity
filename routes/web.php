@@ -24,30 +24,33 @@ use App\Http\Controllers\PatientsController;
 
 
 //Login
-Route::get('/',[LoginController::class,'index'])->name('login');;
+Route::get('/',[LoginController::class,'index'])->name('login');
 Route::post('/login',[LoginController::class,'login'])->name('signIn');
 
 // menu
-Route::get('/index', function(){
-    return view('index');
-})->name('menu');
+Route::view('/index', 'index')->name('menu');
 
 //Account Module
-Route::get('/account',[RegisterControler::class,'index'])->name('accountModule');
+Route::controller(RegisterControler::class)->group(function(){
+
+    Route::get('/accounts_L','index')->name('accountModule');
+    Route::get('/account_C','create')->name('accountCreate');
+    Route::get('/account_M/{id}','edit')->name('accountEdit');
+
+});
 Route::resource('/sametegrity',RegisterControler::class);
+//
 
-//Patient Module
-Route::get('/patients_L',[PatientsController::class,'index'])->name('patientModule');
+//Account Module
+Route::controller(PatientsController::class)->group(function(){
+    Route::get('/patients_L','index')->name('patientModule');
+    Route::get('/patient_C','create')->name('patientCreate');
+    Route::get('/patient_M/{id}','edit')->name('patientEdit');
+});
 Route::resource('/patients',PatientsController::class);
+//
 
-// Route::get('/patients/create/{edad}',[PatientsController::class,'test'])->name('currentAge');
-
-// Route::get('/patients/create/{edad?}',function ($edad = '0'){
-//     return dd('edad: ' . $edad);
-// });
-
-
-//** esta es la ruta al controlador nuevo */
+//** Pruebas */
 Route::get('/apitest',  function () {
     return view('patients.test');
 })->name('apitest');

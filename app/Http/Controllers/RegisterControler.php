@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\loginrequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\TypeDocs;
-use Illuminate\Queue\RedisQueue;
 
 class RegisterControler extends Controller
 {
@@ -20,6 +17,7 @@ class RegisterControler extends Controller
     public function index( Request $request)
     {
         
+        $columns=['Documento','Nombre','Apellidos','Email','Nombre Usuario'];
         $searchbox = trim($request->get('userseach'));
         $accounts = DB::table('users')
                         ->select('id','name','lastname','email','username','dni')
@@ -28,7 +26,7 @@ class RegisterControler extends Controller
                         ->orderBy( 'dni','asc')
                         ->paginate(10);                        ;
 
-        return view('accountModule.indexusers', compact('accounts','searchbox'));
+        return view('accountModule.accounts_l', compact('accounts','searchbox','columns'));
     }
 
     /**
@@ -39,7 +37,7 @@ class RegisterControler extends Controller
     public function create()
     {
         $typeDocs = TypeDocs::get();
-        return view('accountModule.registeruser',compact('typeDocs'));
+        return view('accountModule.account_c',compact('typeDocs'));
     }
 
     /**
@@ -64,7 +62,7 @@ class RegisterControler extends Controller
         //comando de guardado.
         $user->save();
         //retonar vista
-        return redirect()->route('sametegrity.index')->with('successs','Registro guardado satisfactoriamente');
+        return redirect()->route('accountModule')->with('successs','Registro guardado satisfactoriamente');
     }
 
     /**
@@ -74,16 +72,16 @@ class RegisterControler extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        return view('login');
     }
 
 
     public function edit($id)
     {
         $user=User::findOrFail($id);
-        return view('accountModule.editusers',compact('user'));
+        return view('accountModule.account_m',compact('user'));
     }
 
 
@@ -104,7 +102,7 @@ class RegisterControler extends Controller
         $user->username = $request->input('username');
         $user->password = $request->input('password');
         $user->save();
-        return redirect()->route('sametegrity.index');
+        return redirect()->route('accountModule');
 
     }
 
@@ -114,11 +112,12 @@ class RegisterControler extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function destroy($id)
     {
         $user= User::findOrFail($id);
         $user->delete();
-        return redirect()->route('sametegrity.index');
+        return redirect()->route('accountModule');
     }
 
 }

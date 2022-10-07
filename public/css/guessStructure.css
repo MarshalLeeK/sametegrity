@@ -1,0 +1,68 @@
+    
+     :root{
+        --IDarkBlue: #222653;
+        --IDarLigthkBlue: #0C1360;
+        --ILigthDarkBlue: #030A8C;
+        --ILigthBlue: #0511F2;
+        --ILigthGray: #BFBFBF;
+        --Iwhite: #fafaff;
+    }    
+
+    html, body {   
+        height: 100%;
+        overflow: hidden;
+        background-color: var(--Iwhite);
+        position: relative;
+    }
+
+    #navbar {   
+        width: 100%;
+        background-color: var(--ILigthBlue);
+        }
+
+
+    .d-flex { 
+        margin-top: 1.9em;
+    }
+
+    footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        height: 30;
+        width: 100%;
+        background-color: #0a4275;
+    }  
+
+    .menubutton {
+        background:    #030a8c;
+        border-radius: 12px;
+        box-shadow:    -5px -5px #bfbfbf;
+        padding:       32px 32px;
+        color:         #ffffff;
+        display:       inline-block;
+        font:          normal bold 36px/1 "Open Sans", sans-serif;
+        text-align:    center;
+    }
+
+    #nav-tabContent {
+        background:    #a4bbd128;
+        border-bottom-left-radius: 4px;
+        border-bottom-right-radius: 4px;
+    }
+    #nav-tab {
+        background-color: #0a4275bf ;
+        --bs-nav-link-color: #ffffff;
+        --bs-nav-link-hover-color:#ffffff;
+        --bs-nav-tabs-border-radius: 0;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+    }
+
+    #endbuttons {
+        overflow: auto;
+      }
+
+    .right {
+        float: right;
+      }

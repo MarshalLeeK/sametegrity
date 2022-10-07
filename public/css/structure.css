@@ -1,16 +1,20 @@
+
+:root{
+    --IDarkBlue: #222653;
+    --IDarLigthkBlue: #0C1360;
+    --NavBackGround: #0a4275;
+    --ILigthDarkBlue: #030A8C;
+    --ILigthBlue: #0511F2;
+    --ILigthGray: #BFBFBF;
+    --Iwhite: #fafaff;
+    --PaddingCols: calc(var(--bs-gutter-x) * .1);
+}    
     
     
-    .d-flex { 
-        margin-top: 1.9em;
-    }
-
-    #navbar {   
-        width: 100%;
-        background-color: #0a4275;
-        }
-
-    html, body {   
+    html, body {
         height: 100%;
+        overflow-y: auto;
+        overflow-x: hidden;
         background-color: white;
         position: relative;
     }
@@ -19,10 +23,25 @@
         position: fixed;
         left: 0;
         bottom: 0;
-        height: 30;
+        height: 20;
         width: 100%;
         background-color: #0a4275;
     }  
+
+    #navbar {   
+        width: 100%;
+        background-color: var(--NavBackGround);
+        }
+
+    .d-flex { 
+            margin-top: 1.9em;
+        }
+    
+    .container-fluid,#tittleModule{    
+        /*Bootstrap var*/
+        padding-right: var(--PaddingCols);
+        padding-left:  var(--PaddingCols);
+    }
 
     .menubutton {
         background:    #030a8c;
@@ -36,23 +55,43 @@
     }
 
     #nav-tabContent {
-        background:    #a4bbd128;
+        /*Bootsrap var*/
         border-bottom-left-radius: 4px;
         border-bottom-right-radius: 4px;
+
+        background:    #a4bbd128;
     }
+
     #nav-tab {
-        background-color: #0a4275bf ;
+        /*Bootsrap var*/
         --bs-nav-link-color: #ffffff;
         --bs-nav-link-hover-color:#ffffff;
         --bs-nav-tabs-border-radius: 0;
+
+        background-color: #0a4275bf ;
         border-top-left-radius: 4px;
         border-top-right-radius: 4px;
     }
-
+    
     #endbuttons {
         overflow: auto;
       }
+      
+
+    tbody {
+        /*Bootsrap var*/
+        --bs-table-striped-bg: #0a42750d ;
+        }
+      
+    thead {
+        background-color: var(--IDarkBlue);
+        }
 
     .right {
         float: right;
       }
+
+    #tittleModule{        
+        background-color:var(--NavBackGround);
+        color: white;
+        }

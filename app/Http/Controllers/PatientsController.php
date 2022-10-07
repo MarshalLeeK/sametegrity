@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\ApiController;
 use App\Models\Patients;
 use App\Models\TypeDocs;
+use App\View\Components\locationsApi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\DB;
@@ -19,8 +20,9 @@ class PatientsController extends Controller
     public function index( Request $request )
     {   
 
+        $columns=['Documento','Nombre','Apellidos','Edad','Género','Teléfono','Email'];
+        
         $searchbox = trim($request->get('searchbox'));
-
         $patients = DB::table('patients')
                         ->select('id','dni','name','lastname','age','gender','phone','email')
                         ->where( 'name','LIKE','%'.$searchbox.'%')
@@ -29,7 +31,7 @@ class PatientsController extends Controller
                         ->orWhere( 'age','LIKE','%'.$searchbox.'%')
                         ->orderBy( 'dni','asc')
                         ->paginate(18);      
-        return view('patients.Patiens_I',['patients'=>$patients]);
+        return view('patients.Patiens_I',compact('patients','searchbox','columns'));
     }
 
 
@@ -41,10 +43,8 @@ class PatientsController extends Controller
     public function create()
     {
         
-
         $defaults = ['defCountry' => 'Colombia','defState' => 'Antioquia',];
         $typeDocs = TypeDocs::get();
-
         return view('patients.Patien_c',['defaults'=>$defaults],['typeDocs'=>$typeDocs]);
 
     }

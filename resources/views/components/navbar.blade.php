@@ -1,4 +1,3 @@
-@extends('components.header')
 <nav class="navbar navbar-expand-lg" id="navbar">
         <div class="container-fluid">
           <a class="navbar-brand" href="#"><img class="imag" src="{{ URL::asset('img/logo.png') }}" alt="logo" width="100"></a>

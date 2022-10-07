@@ -20,7 +20,7 @@ class locationsApi extends Component
      * @return void
      */
 
-     public function __construct( $to='countries', $country = 'colombia', $state= 'Antioquia',  )
+     public function __construct( $to='countries', $country = 'colombia', $state= 'Antioquia' , $default = '0' )
     {
         $this->to = $to;
         $this->country = $country;
@@ -58,6 +58,10 @@ class locationsApi extends Component
 
         // $result = $items->json();
         $this->apires = $items->json();
+        
+        if ( $default == 0 ) {
+            return $this->apires;
+        }
 
     }
 

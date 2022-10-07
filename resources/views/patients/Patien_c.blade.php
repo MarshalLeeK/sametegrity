@@ -8,7 +8,7 @@ hd-meta-description="Nuevo Paciente"
             <main>
                 <div class="text-center" >
                     <h1  class=""><span class="w-100">Creación de Paciente</span></h1>
-                    <hr class="my-1">
+                    <hr class="my-1">                
                 </div>
                 <div class="row g-12">
                     <div class="col-md-12 col-lg-12">
