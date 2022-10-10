@@ -16,45 +16,72 @@ hd-meta-description="Nuevo Paciente"
                         <p class="lead">Por favor ingrese los datos relacionados al paciente</p>
                         <hr class="my-1 pb-1">
                         <div class="row mt-g-3">
+
+                            <div class="row-flex col-sm-2 d-inline-flex justify-content-center">
+                                <div class="avatar-upload">
+
+                                    <label class="avatar-preview" for="imageUpload">
+                                        <img src="{{ URL::asset('img/bluebanner.png') }}"
+                                        alt="Logo Generado forma generica" title="Cick para cargar imagen"
+                                        class="img-fluid" id="imagePreview">
+                                    </label>
+
+                                    <div class="avatar-edit">
+                                            <input type='file' id="imageUpload" 
+                                            alt="Imagen cargada por el usuario" class="img-fluid" 
+                                            accept=".png, .jpg, .jpeg"/> 
+                                    </div>
+
+                                </div>    
+                            </div>    
                             {{-- @dump($countries) --}}
-                            <div class="col-sm-6">
-                                <label for="tdoc" class="form-label">Tipo Documento</label>
-                                <select class="form-select" name="tdoc" id="tdoc" aria-label=""
-                                oninvalid="this.setCustomValidity('Por favor ingrese un tipo de documento de documento valido')" 
-                                required>
-                                {{-- LV --}}
-                                    @foreach ( $typeDocs as $typeDoc )
-                                    <option value="{{ $typeDoc->id }}" {{ $typeDoc->id == '13' ? 'selected' : '-' ; }}> {{ $typeDoc->name }} </option>
-                                    @endforeach
-                                </Select>
+                            <div class="container-fluid align-self-end col-sm-10">
+                                <div class="row col-12">
+                                    
+                                    <div class="col-sm-3">
+                                        <label for="tdoc" class="form-label">Tipo Documento</label>
+                                        <select class="form-select" name="tdoc" id="tdoc" aria-label=""
+                                        oninvalid="this.setCustomValidity('Por favor ingrese un tipo de documento de documento valido')" 
+                                        required>
+                                        {{-- LV --}}
+                                            @foreach ( $typeDocs as $typeDoc )
+                                            <option value="{{ $typeDoc->id }}" {{ $typeDoc->id == '13' ? 'selected' : '-' ; }}> {{ $typeDoc->name }} </option>
+                                            @endforeach
+                                        </Select>
+                                    </div>
+
+                                    <div class="col-sm-5">
+                                        <label for="dni" class="form-label">Número Documento</label>
+                                        <input type="text" class="form-control" name="dni" id="dni" placeholder="Número Documento" 
+                                        oninvalid="this.setCustomValidity('Por favor ingrese un número de documento valido')" 
+                                        required>
+                                    </div>
+
+                                    <div class="col-sm-4">
+                                        <label for="documentplace" class="form-label">Lugar Expedición</label>
+                                        <select class="form-select" name="documentplace" id="documentplace" aria-label="">
+                                            <x-locations-api to='cities'/>
+                                        </Select>
+                                    </div>
+                                </div>
+
+                                <div class="row col-12">
+                                    <div class="col-sm-6">
+                                        <label for="name" class="form-label">Nombre</label>
+                                        <input type="text" class="form-control" name="name" id="name" placeholder="Nombres" value=""
+                                        oninvalid="this.setCustomValidity('Por favor ingrese un nombre valido')" 
+                                        required>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label for="lastname" class="form-label">Apellido</label>
+                                        <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Apellidos" value=""
+                                        oninvalid="this.setCustomValidity('Por favor ingrese un apellido valido')" 
+                                        required>
+                                    </div>
+                                </div>
                             </div>
 
-                            <div class="col-sm-3">
-                                <label for="dni" class="form-label">Número Documento</label>
-                                <input type="text" class="form-control" name="dni" id="dni" placeholder="Número Documento" 
-                                oninvalid="this.setCustomValidity('Por favor ingrese un número de documento valido')" 
-                                required>
-                            </div>
-
-                            <div class="col-sm-3">
-                                <label for="documentplace" class="form-label">Lugar Expedición</label>
-                                <select class="form-select" name="documentplace" id="documentplace" aria-label="">
-                                    <x-locations-api to='cities'/>
-                                </Select>
-                            </div>
-
-                            <div class="col-sm-6">
-                                <label for="name" class="form-label">Nombre</label>
-                                <input type="text" class="form-control" name="name" id="name" placeholder="Nombres" value=""
-                                oninvalid="this.setCustomValidity('Por favor ingrese un nombre valido')" 
-                                required>
-                            </div>
-                            <div class="col-sm-6">
-                                <label for="lastname" class="form-label">Apellido</label>
-                                <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Apellidos" value=""
-                                oninvalid="this.setCustomValidity('Por favor ingrese un apellido valido')" 
-                                required>
-                            </div>
+                           
                             <div class="w-100 mt-2"></div>
                             <div class="col-sm-3">
                                 <label for="gender" class="form-label">Género</label>

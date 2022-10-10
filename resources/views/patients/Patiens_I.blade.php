@@ -31,4 +31,3 @@ hd-description="Módulo de pacientes"
             </div>
     </div>
 </x-header>
-<x-footer/>

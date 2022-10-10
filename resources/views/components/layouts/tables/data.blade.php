@@ -7,18 +7,25 @@
     @foreach ( $rows as $row )
         <tr>
             @foreach ( $row as $key => $column )
-                <td {{ $key == 'id' ? 'hidden' : '' ;}} > {{ $column }} </td>
-            @endforeach
-            <td>
-            <div class="row col-sm-12 justify-content-around">
-                <button class="btn btn-warning btn-md col-sm-5 text-white" onclick="location.href = '{{ route( $module.'Edit', $row->id )}}';">
-                    Modificar
-                </button>
-                <button class="btn btn-danger btn-md col-sm-5" data-bs-toggle="modal" data-bs-target="#modal-delete-{{$row->id}}" type="button">
-                    Eliminar
-                </button>
-            </div>
 
+                @if ( $key == 'id')
+                    <td hidden> {{ $column }} </td>
+                @elseif ($key == 'gender')   
+                    <td > {{ $column == '0' ? "Mujer" : "Hombre" }} </td>
+                @else
+                    <td > {{ $column }} </td>
+                @endif
+            @endforeach
+
+            <td>
+                <div class="row col-sm-12 justify-content-around">
+                    <button class="btn btn-warning btn-md col-sm-5 text-white" onclick="location.href = '{{ route( $module.'Edit', $row->id )}}';">
+                        Modificar
+                    </button>
+                    <button class="btn btn-danger btn-md col-sm-5" data-bs-toggle="modal" data-bs-target="#modal-delete-{{$row->id}}" type="button">
+                        Eliminar
+                    </button>
+                </div>
             </td>   
         </tr>
 

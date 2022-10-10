@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->uuid('kp_uuid');
             $table->string('dni', 14)->unique();
+            $table->binary('photo')->nullable();
             $table->smallInteger('documenttype')->nullable();
             $table->string('documentplace',170)->nullable();
             $table->char('name', 50);
@@ -52,7 +53,7 @@ return new class extends Migration
             $table->smallInteger('observation')->nullable();
             $table->boolean('z_xOne')->default(True);
             $table->string('createdUser',20)->nullable();
-            $table->string('updatedUser',20);
+            $table->string('updatedUser',20)->nullable();
             $table->timestamps();
         });
     }
