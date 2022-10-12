@@ -1,9 +1,10 @@
 <x-header
 hd-title="Actualización Paciente"
-hd-meta-description="Actualización Paciente">
-    <form id="patientform" action="{{ route('patients.update',$patient->id) }}" method="POST" class="p-2 form h-100">
-        @csrf
-        @method('PUT')
+hd-meta-description="Actualización Paciente"
+>
+<form id="patientform" action="{{ route('patients.update',$patient->id) }}" method="POST" class="p-2 form h-100" enctype="multipart/form-data">
+    @csrf
+    @method('PUT')
         <div class="container bg-light">
             <main>
                 <div class="text-center" >
@@ -16,45 +17,42 @@ hd-meta-description="Actualización Paciente">
                         <p class="lead">Por favor ingrese los datos relacionados al paciente</p>
                         <hr class="my-1 pb-1">
                         <div class="row mt-g-3 p-2">
-                            
-                            <div class="row-flex col-sm-2 d-inline-flex justify-content-center img-thumbnail">
-                                <div class="container-flex avatar-upload">
-                                    <label class="avatar-preview" for="imageUpload">
+
+                            <div class="row-flex col-sm-2 d-inline-flex justify-content-center">
+                                <div class="avatar-upload">
+                                    <label class="avatar-preview"for="imageUpload">
                                         <img src="{{ is_null($patient->photo) ? URL::asset( 'img/logo.png' ) : URL::asset( 'img/patients/photos/' . $patient->photo ); }}"
-                                        alt="{{ is_null($patient->photo) ? 'Logo Generado forma generica' : 'userUpload: ' . $patient->photo ; }}"
-                                        title="Cick para cargar imagen"
+                                        alt="{{ is_null($patient->photo) ? 'Logo Generado forma generica' : 'userUpload: ' . $patient->photo ; }}" title="Cick para cargar imagen"
                                         class="img-fluid" id="imagePreview">
                                     </label>
-                                    
                                     <div class="avatar-edit">
-                                            <input type='file' id="imageUpload" 
-                                            alt="Imagen cargada por el usuario" class="img-fluid" 
+                                            <input type='file' id="imageUpload" name="imageUpload"
+                                            alt="Imagen cargada por el usuario" class="img-fluid"
                                             accept=".png, .jpg, .jpeg"/> 
                                     </div>
                                 </div>    
                             </div>   
                              
                             {{-- @dump($countries) --}}
-                            <div class="container-fluid align-self-end col-sm-10 px-1 h-100">
+                            <div class="container-fluid align-self-end col-sm-10">
                                 <div class="row col-12">
                                     
                                     <div class="col-sm-3">
                                         <label for="tdoc" class="form-label">Tipo Documento</label>
                                         <select class="form-select" name="tdoc" id="tdoc" aria-label=""
-                                        value="{{{ $patient->documenttype }}}"
-                                        oninvalid="this.setCustomValidity('Por favor ingrese un tipo de documento de documento valido')" 
+                                        oninvalid="this.setCustomValidity('Por favor ingrese un tipo de documento de documento valido')"
                                         oninput="setCustomValidity('')"
                                         required>
                                         {{-- LV --}}
                                             @foreach ( $typeDocs as $typeDoc )
-                                            <option value="{{ $typeDoc->id }}" {{ $typeDoc->id == '13' ? 'selected' : '-' ; }}> {{ $typeDoc->name }} </option>
+                                            <option value="{{ $typeDoc->id }}" {{ $typeDoc->id == $patient->documenttype ? 'selected' : '-' ; }}> {{ $typeDoc->name }} </option>
                                             @endforeach
                                         </Select>
                                     </div>
 
                                     <div class="col-sm-5">
                                         <label for="dni" class="form-label">Número Documento</label>
-                                        <input type="text" class="form-control" name="dni" id="dni" placeholder="Número Documento" 
+                                        <input type="text" class="form-control" name="dni" id="dni" placeholder="Número Documento"
                                         value="{{$patient->dni}}"
                                         oninvalid="this.setCustomValidity('Por favor ingrese un número de documento valido')"
                                         oninput="setCustomValidity('')"
@@ -64,28 +62,33 @@ hd-meta-description="Actualización Paciente">
                                     <div class="col-sm-4">
                                         <label for="documentplace" class="form-label">Lugar Expedición</label>
                                         <select class="form-select" name="documentplace" id="documentplace" aria-label="">
-                                            <x-locations-api to='cities'/>
+                                                <option value="{{ $patient->documentplace }}" >{{ $patient->documentplace }}</option>
+                                                <x-locations-api to="cities"/>
                                         </Select>
                                     </div>
+
                                 </div>
 
                                 <div class="row col-12">
                                     <div class="col-sm-6">
                                         <label for="name" class="form-label">Nombre</label>
-                                        <input type="text" class="form-control" name="name" id="name" placeholder="Nombres" value="{{$patient->name}}"
-                                        oninvalid="this.setCustomValidity('Por favor ingrese un nombre valido')" 
+                                        <input type="text" class="form-control" name="name" id="name" placeholder="Nombres"
+                                        value="{{$patient->name}}"
+                                        oninvalid="this.setCustomValidity('Por favor ingrese un nombre valido')"
                                         oninput="setCustomValidity('')"
                                         required>
                                     </div>
                                     <div class="col-sm-6">
                                         <label for="lastname" class="form-label">Apellido</label>
-                                        <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Apellidos" value="{{$patient->name}}"
-                                        oninvalid="this.setCustomValidity('Por favor ingrese un apellido valido')" 
+                                        <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Apellidos"
+                                        value="{{$patient->lastname}}"
+                                        oninvalid="this.setCustomValidity('Por favor ingrese un apellido valido')"
                                         oninput="setCustomValidity('')"
                                         required>
                                     </div>
                                 </div>
                             </div>
+
                             <div class="w-100 mt-2"></div>
                             <div class="col-sm-3">
                                 <label for="gender" class="form-label">Género</label>
@@ -117,80 +120,65 @@ hd-meta-description="Actualización Paciente">
                                     <option value="2" {{ $patient->academiclevel == 2 ? 'selected' : '' ; }} >Secundaria</option>
                                     <option value="3" {{ $patient->academiclevel == 3 ? 'selected' : '' ; }} >Profesional</option>
                                     <option value="4" {{ $patient->academiclevel == 4 ? 'selected' : '' ; }} >Especialización</option>
-
                                 </Select>
                             </div>
                             
                             <div class="col-sm-3">
                                 <label for="borncountry" class="form-label">Pais de nacimiento</label>
-                                @if ( auth()->check() )       
                                     <select class="form-select" name="borncountry" id="borncountry" aria-label="">
-                                        <option value='Colombia' {{ $patient->fkborncountry == 'Colombia'  ? 'selected':''; }} >Colombia</option>
-                                        <option value='Chile' {{ $patient->fkborncountry == 'Chile'  ? 'selected':''; }} >Chile</option>
-                                        <option value='Venezuela' {{ $patient->fkborncountry == 'Venezuela'  ? 'selected':''; }} >Venezuela</option>
-                                        <option value='India' {{ $patient->fkborncountry == 'India' ? 'selected':''; }} >India</option>
+                                        <option value='{{$patient->fkborncountry}}' selected >{{ $patient->fkborncountry }}</option>
+                                        <x-locations-api/>
                                     </Select>
-                                @endif
                             </div>
 
                             <div class="col-sm-3">
                                 <label for="bornstate" class="form-label">Depto de nacimiento</label>
                                 <select class="form-select" name="bornstate" id="bornstate" aria-label="">
-                                    <option value='Antioquia' {{ $patient->fkbornstate == 'Antioquia' ? 'selected':''; }} >Antioquia</option>
-                                    <option value='Santander' {{ $patient->fkbornstate == 'Santander' ? 'selected':''; }} >Santander</option>
-                                    <option value='Cundinamarca' {{ $patient->fkbornstate == 'Cundinamarca' ? 'selected':''; }} >Cundinamarca</option>
-                                    <option value='Rionegro' {{ $patient->fkbornstate == 'Rionegro' ? 'selected':''; }} >Rionegro</option>
+                                    <option value='{{$patient->fkbornstate}}' selected >{{ $patient->fkbornstate }}</option>
+                                    <x-locations-api to='states'/>
                                 </Select>
                             </div>
 
                             <div class="col-sm-3">
                                 <label for="borncity" class="form-label">Ciudad de nacimiento</label>
                                 <select class="form-select" name="borncity" id="borncity" aria-label="">
-                                    <option value='Medellin' {{ $patient->fkborncity == 'Medellin'  ? 'selected':''; }} >Medellin</option>
-                                    <option value='Bello' {{ $patient->fkborncity == 'Bello'  ? 'selected':''; }} >Bello</option>
-                                    <option value='Sabaneta' {{ $patient->fkborncity == 'Sabaneta'  ? 'selected':''; }} >Sabaneta</option>
-                                    <option value='Rionegro' {{ $patient->fkborncity == 'Rionegro' ? 'selected':''; }} >Rionegro</option>
+                                    <option value='{{$patient->fkborncity}}' selected >{{ $patient->fkborncity }}</option>
+                                    <x-locations-api to='states'/>
                                 </Select>
                             </div>
 
                             <div class="col-sm-3">
                                 <label for="job" class="form-label">Ocupación</label>
                                 <select class="form-select" name="job" id="job" aria-label="">
-                                    <option value="Obrero" {{ $patient->job == 'Obrero'  ? 'selected':''; }}>Obrero</option>
-                                    <option value="Paletero" {{ $patient->job == 'Paletero'  ? 'selected':''; }}>Paletero</option>
-                                    <option value="Gerente" {{ $patient->job == 'Gerente'  ? 'selected':''; }}>Gerente</option>
-                                    <option value="Estudiante" {{ $patient->job == 'Estudiante'  ? 'selected':''; }}>Estudiante</option>
-                                    <option value="Ninguna" {{ $patient->job == 'Ninguna'  ? 'selected':''; }}>Ninguna</option>
+                                    <option value="Obrero"      {{ $patient->job == 'Obrero'     ? 'selected':''; }}>Obrero</option>
+                                    <option value="Paletero"    {{ $patient->job == 'Paletero'   ? 'selected':''; }}>Paletero</option>
+                                    <option value="Gerente"     {{ $patient->job == 'Gerente'    ? 'selected':''; }}>Gerente</option>
+                                    <option value="Estudiante"  {{ $patient->job == 'Estudiante' ? 'selected':''; }}>Estudiante</option>
+                                    <option value="Ninguna"     {{ $patient->job == 'Ninguna'    ? 'selected':''; }}>Ninguna</option>
                                 </Select>
                             </div>
 
                             <div class="col-sm-3">
                                 <label for="livecontry" class="form-label">Pais de Residencia</label>
                                 <select class="form-select" name="livecontry" id="livecontry" aria-label="" >
-                                    <option value='Colombia' {{ $patient->fklivecountry == 'Colombia'  ? 'selected':''; }} >Colombia</option>
-                                    <option value='Chile' {{ $patient->fklivecountry == 'Chile'  ? 'selected':''; }} >Chile</option>
-                                    <option value='Venezuela' {{ $patient->fklivecountry == 'Venezuela'  ? 'selected':''; }} >Venezuela</option>
-                                    <option value='India' {{ $patient->fklivecountry == 'India' ? 'selected':''; }} >India</option> 
+                                    <option value='{{$patient->fklivecountry}}' selected >{{ $patient->fklivecountry }}</option>
+                                    <x-locations-api/> 
                                 </Select>
                             </div>
 
                             <div class="col-sm-3">
                                 <label for="livestate" class="form-label">Depto de Residencia</label>
                                 <select class="form-select" name="livestate" id="livestate" aria-label="">
-                                    <option value='Antioquia' {{ $patient->fklivestate == 'Antioquia' ? 'selected':''; }} >Antioquia</option>
-                                    <option value='Santander' {{ $patient->fklivestate == 'Santander' ? 'selected':''; }} >Santander</option>
-                                    <option value='Cundinamarca' {{ $patient->fklivestate == 'Cundinamarca' ? 'selected':''; }} >Cundinamarca</option>
-                                    <option value='Rionegro' {{ $patient->fklivestate == 'Rionegro' ? 'selected':''; }} >Rionegro</option>
+                                    <option value='{{$patient->fklivestate}}' selected >{{ $patient->fklivestate }}</option>
+                                    <x-locations-api to='states'/>
                                 </Select>
                             </div>
 
                             <div class="col-sm-3">
                                 <label for="livecity" class="form-label">Ciudad de Residencia</label>
-                                <select class="form-select" name="livecity" id="livecity" aria-label="" >
-                                    <option value='Medellin' {{ $patient->fklivecity == 'Medellin'  ? 'selected':''; }} >Medellin</option>
-                                    <option value='Bello' {{ $patient->fklivecity == 'Bello'  ? 'selected':''; }} >Bello</option>
-                                    <option value='Sabaneta' {{ $patient->fklivecity == 'Sabaneta'  ? 'selected':''; }} >Sabaneta</option>
-                                    <option value='Rionegro' {{ $patient->fklivecity == 'Rionegro' ? 'selected':''; }} >Rionegro</option>
+                                <select class="form-select" name="livestate" id="livestate" aria-label="">
+                                    <option value='{{$patient->fklivecity}}' selected >{{ $patient->fklivecity }}</option>
+                                    <x-locations-api to='states'/>
                                 </Select>
                             </div>
 
@@ -223,24 +211,220 @@ hd-meta-description="Actualización Paciente">
                             <div class="col-sm-6">
                                 <label for="cellphone" class="form-label">Celular </label>
                                 <input type="text" class="form-control" name="cellphone" id="cellphone" placeholder="Celular"
-                                value="{{ $patient->cellphone }}" 
-                                
-                                >
+                                value="{{ $patient->cellphone }}"> 
                             </div> 
 
                             <div class="col-sm-6">
                                 <label for="mail" class="form-label">Email </label>
                                 <input type="text" class="form-control" name="mail" id="mail" placeholder="Email"
-                                value="{{ $patient->email }}" 
-                                >
+                                value="{{ $patient->email }}" >
                             </div> 
 
                             <div class="col-sm-6">
                                 <label for="maileb" class="form-label">Facturación electronica </label>
                                 <input type="text" class="form-control" name="maileb" id="maileb" placeholder="Email Facturación"
-                                value="{{ $patient->emailfa }}" 
-                                >
+                                value="{{ $patient->emailfa }}" >
                             </div> 
+
+                            <div class="container-sm mt-2">
+                                <div class="col-sm-12 m-2" id="gbuttonbar">
+                                
+                                    <div class="row">
+                                        <div class="col-1">
+                                            <button type="button" class="check btn btn-{{ ( $patient->violence == 0 ? 'secondary' : 'primary' ) }}" title="Violencia"
+                                                id="violence" onclick="logic(this);">
+                                                <i class="bi bi-bandaid-fill">
+                                                    <input type="check" name="violence" value="{{ $patient->violence }}" hidden>
+                                                </i>   
+                                            </button>
+                                        </div>
+                                        <div class="col-1">
+                                            <button type="button" class="check btn btn-{{ ( $patient->abused == 0 ? 'secondary' : 'primary' ) }}" title="Código Fucsia"
+                                                id="abused" onclick="logic(this);">
+                                                <i class="bi bi-balloon-fill">
+                                                    <input type="check" name="abused" value="{{ $patient->abused }}" hidden>
+                                                </i> 
+                                            </button>
+                                        </div>
+                                        <div class="col-1">
+                                            <button type="button" class="check btn btn-{{ ( $patient->fromwork == 0 ? 'secondary' : 'primary' ) }}" title="Medicina Laboral"
+                                             id="fromwork" onclick="logic(this);">
+                                                <i class="bi bi-prescription2">
+                                                <input type="check" name="fromwork" value="{{ $patient->fromwork }}" hidden>
+                                                </i>   
+                                            </button>
+                                        </div>
+                                        <div class="col-1">
+                                            <button type="button" class="check btn btn-{{ ( $patient->guardianship == 0 ? 'secondary' : 'primary' ) }}" title="Tutela"
+                                            id="guardianship" onclick="logic(this);">
+                                                <i class="bi bi-file-earmark-zip-fill">
+                                                    <input type="check" name="guardianship" value="{{ $patient->guardianship }}" hidden>
+                                                </i>
+                                            </button>
+                                        </div>
+                                        <div class="col-1">
+                                            <button type="button" class="check btn btn-{{ ( $patient->gaoler == 0 ? 'secondary' : 'primary' ) }}" title="Privados Libertad"
+                                             id="gaoler" onclick="logic(this);">
+                                                <i class="bi bi-door-closed-fill">
+                                                <input type="check" name="gaoler" value="{{ $patient->gaoler }}" hidden>
+                                                </i>
+                                            </button>
+                                        </div>
+                                        <div class="col-1">
+                                            <button type="button" class="check btn btn-{{ ( $patient->icbf == 0 ? 'secondary' : 'primary' ) }}" title="ICBF"
+                                            id="icbf" onclick="logic(this);">                                                
+                                                <i class="bi bi-file-earmark-person-fill">
+                                                    <input type="check" name="icbf" value="{{ $patient->icbf }}" hidden>
+                                                </i>
+                                            </button>
+                                        </div>
+                                        <div class="col-1">
+                                            <button type="button" class="check btn btn-{{ ( $patient->pregnant == 0 ? 'secondary' : 'primary' ) }}" title="Gestante"
+                                            id="pregnant" onclick="logic(this);">
+                                                <i class="bi bi-flower1">
+                                                    <input type="check" name="pregnant" value="{{ $patient->pregnant }}" hidden>
+                                                </i>
+                                            </button>
+                                        </div>
+                                        <div class="col-1">
+                                            <button type="button" class="check btn btn-{{ ( $patient->suicide == 0 ? 'secondary' : 'primary' ) }}" title="Riesgo Suicida"
+                                             id="suicide" onclick="logic(this);">
+                                                <i class="bi bi-exclamation-diamond-fill">
+                                                <input type="check" name="suicide" value="{{ $patient->suicide }}" hidden>
+                                                </i>   
+                                            </button>
+                                        </div>
+                                        <div class="col-1" >
+                                            <button type="button" class="check btn btn-secondary" title="Sin asignación"
+                                             id="" >
+                                                <i class="bi bi-slash-circle-fill">
+                                                </i>   
+                                            </button>
+                                        </div>
+                                        <div class="col-1">
+                                            <button type="button" class="check btn btn-secondary" title="Sin asignación"
+                                             id="">
+                                                <i class="bi bi-slash-circle-fill">
+                                                </i>   
+                                            </button>
+                                        </div>
+                                        <div class="col-1">
+                                            <button type="button" class="check btn btn-secondary" title="Sin asignación"
+                                             id="">
+                                                <i class="bi bi-slash-circle-fill">
+                                                </i>   
+                                            </button>
+                                        </div>
+                                        <div class="col-1">
+                                            <button type="button" class="check btn btn-secondary" title="Sin asignación"
+                                             id="">
+                                                <i class="bi bi-slash-circle-fill">
+                                                </i>  
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-12 m-2" id="abuttonbar">
+                                    <div class="row">
+                                        <div class="col-1">
+                                            <button type="button" class="check btn btn-{{ ( $patient->virtualadvice == 0 ? 'secondary' : 'primary' ) }}" title="Asesoria Virtual"
+                                            id="virtualadvice" onclick="logic(this);">
+                                                <i class="bi bi-pc-display">
+                                                    <input type="check" name="virtualadvice" value="{{ $patient->virtualadvice }}" hidden>
+                                                </i>   
+                                            </button>
+                                        </div>
+                                        <div class="col-1">
+                                            <button type="button" class="check btn btn-{{ ( $patient->external == 0 ? 'secondary' : 'primary' ) }}" title="Consulta Externa"
+                                            id="external" onclick="logic(this);">
+                                                <i class="bi bi-person-video2">
+                                                    <input type="check" name="external" value="{{ $patient->external }}" hidden>
+                                                </i> 
+                                            </button>
+                                        </div>
+                                        <div class="col-1">
+                                            <button type="button" class="check btn btn-{{ ( $patient->hospitalitation == 0 ? 'secondary' : 'primary' ) }}" title="Hospitalización"
+                                            id="hospitalitation" onclick="logic(this);">                                           
+                                                <i class="bi bi-h-circle-fill">
+                                                    <input type="check" name="hospitalitation" value="{{ $patient->hospitalitation }}" hidden>
+                                                </i>   
+                                            </button>
+                                        </div>
+                                        <div class="col-1">
+                                            <button type="button" class="check btn btn-{{ ( $patient->external == 0 ? 'secondary' : 'primary' ) }}" title="Red Externa"
+                                            id="external" onclick="logic(this);">
+                                                <i class="bi bi-file-medical-fill">
+                                                    <input type="check" name="external" value="{{ $patient->external }}" hidden>
+                                                </i>
+                                            </button>
+                                        </div>
+                                        <div class="col-1">
+                                            <button type="button" class="check btn btn-{{ ( $patient->cenpi == 0 ? 'secondary' : 'primary' ) }}" title="CENPI (<14)"
+                                            id="cenpi" onclick="logic(this);">
+                                                <i class="bi bi-emoji-laughing-fill">
+                                                    <input type="check" name="cenpi" value="{{ $patient->cenpi }}" hidden>
+                                                </i>
+                                            </button>
+                                        </div>
+                                        <div class="col-1">
+                                            <button type="button" class="check btn btn-{{ ( $patient->srpa == 0 ? 'secondary' : 'primary' ) }}" title="SRPA (Adolecentes)"
+                                            id="srpa" onclick="logic(this);">
+                                                <i class="bi bi-earbuds">
+                                                    <input type="check" name="srpa" value="{{ $patient->srpa }}" hidden>
+                                                </i>
+                                            </button>
+                                        </div>
+                                        <div class="col-1">
+                                            <button type="button" class="check btn btn-{{ ( $patient->activeselection == 0 ? 'secondary' : 'primary' ) }}" title="Búsqueda Activa"
+                                            id="activeselection" onclick="logic(this);">
+                                                <i class="bi-binoculars-fill">
+                                                    <input type="check" name="activeselection" value="{{ $patient->activeselection }}" hidden>
+                                                </i>
+                                            </button>
+                                        </div>
+                                        <div class="col-1">
+                                            <button type="button" class="check btn btn-{{ ( $patient->through == 0 ? 'secondary' : 'primary' ) }}" title="Directo Prestador"
+                                            id="through" onclick="logic(this);">
+                                                <i class="bi bi-signpost-fill">
+                                                    <input type="check" name="through" value="{{ $patient->through }}" hidden>
+                                                </i>   
+                                            </button>
+                                        </div>
+                                        <div class="col-1">
+                                            <button type="button" class="check btn btn-{{ ( $patient->particular == 0 ? 'secondary' : 'primary' ) }}" title="Particular"
+                                            id="particular" onclick="logic(this);">                                            
+                                            <i class="bi bi-clipboard2-pulse-fill">
+                                                    <input type="check" name="particular" value="{{ $patient->particular }}" hidden>
+                                                </i>   
+                                            </button>
+                                        </div>
+                                        <div class="col-1">
+                                            <button type="button" class="check btn btn-{{ ( $patient->pyramid == 0 ? 'secondary' : 'primary' ) }}" title="Punta Piramide"
+                                            id="pyramid" onclick="logic(this);">
+                                                <i class="bi bi-triangle-half">
+                                                    <input type="check" name="pyramid" value="{{ $patient->pyramid }}" hidden>
+                                                </i>   
+                                            </button>
+                                        </div>
+                                        <div class="col-1">
+                                            <button type="button" class="check btn btn-secondary" title="Sin asignación"
+                                            id="">
+                                                <i class="bi bi-slash-circle-fill">
+                                                </i>   
+                                            </button>
+                                        </div>
+                                        <div class="col-1">
+                                            <button type="button" class="check btn btn-secondary" title="Sin asignación"
+                                            id="">
+                                                <i class="bi bi-slash-circle-fill">
+                                                </i>  
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
 
                             <div class="col-sm-12 mt-2 mb-2">
                                 <nav id="patientoptions">

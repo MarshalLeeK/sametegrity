@@ -10,8 +10,8 @@
     })
 
     //FOTO
-    $("#imageUpload").change(function(data){
-
+    $("#imageUpload").change(function(data)
+    {
         var imageFile = data.target.files[0];
         var reader = new FileReader();
         reader.readAsDataURL(imageFile);
@@ -23,3 +23,14 @@
         }
         
       });
+
+      //Buttons Check Inputs
+
+      function logic(button){
+          alertColors = ['secondary','primary'];
+          checkbox = '[name="'+ button.id +'"]';
+          value = $(checkbox).val();
+          updateval = value == 1 ? 0 : 1 ;
+          $(checkbox).val(updateval);
+          button.className = button.className.replace(alertColors[value],alertColors[updateval]);
+      }

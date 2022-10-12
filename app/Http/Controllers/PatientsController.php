@@ -94,6 +94,24 @@ class PatientsController extends Controller
         $patient->legalphone = $request->input('legalphone');
         $patient->legaladress = $request->input('legaladress');
         $patient->observation = $request->input('observation');
+        $patient->violence = $request->input('violence');
+        $patient->abused = $request->input('abused');
+        $patient->fromwork = $request->input('fromwork');
+        $patient->guardianship = $request->input('guardianship');
+        $patient->gaoler = $request->input('gaoler');
+        $patient->icbf = $request->input('icbf');
+        $patient->pregnant = $request->input('pregnant');
+        $patient->suicide = $request->input('suicide');
+        $patient->virtualadvice = $request->input('virtualadvice');
+        $patient->hospitalitation = $request->input('hospitalitation');
+        $patient->external = $request->input('external');
+        $patient->cenpi = $request->input('cenpi');
+        $patient->srpa = $request->input('srpa');
+        $patient->activeselection = $request->input('activeselection');
+        $patient->through = $request->input('through');
+        $patient->pyramid = $request->input('pyramid');
+        $patient->particular = $request->input('particular');
+        $patient->z_xOne = $request->input('z_xOne');
         
         if ( $request->hasFile('imageUpload') ){
             $photo = $request->file('imageUpload');
@@ -187,6 +205,24 @@ class PatientsController extends Controller
         $patient->legalphone = $request->input('legalphone');
         $patient->legaladress = $request->input('legaladress');
         $patient->observation = $request->input('observation');
+        $patient->violence = $request->input('violence');
+        $patient->abused = $request->input('abused');
+        $patient->fromwork = $request->input('fromwork');
+        $patient->guardianship = $request->input('guardianship');
+        $patient->gaoler = $request->input('gaoler');
+        $patient->icbf = $request->input('icbf');
+        $patient->pregnant = $request->input('pregnant');
+        $patient->suicide = $request->input('suicide');
+        $patient->virtualadvice = $request->input('virtualadvice');
+        $patient->hospitalitation = $request->input('hospitalitation');
+        $patient->external = $request->input('external');
+        $patient->cenpi = $request->input('cenpi');
+        $patient->srpa = $request->input('srpa');
+        $patient->activeselection = $request->input('activeselection');
+        $patient->through = $request->input('through');
+        $patient->pyramid = $request->input('pyramid');
+        $patient->particular = $request->input('particular');
+        $patient->z_xOne = $request->input('z_xOne');
         $patient->save();
 
         return redirect()->route('patientModule');

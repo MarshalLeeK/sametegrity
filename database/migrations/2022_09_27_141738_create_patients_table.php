@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use SebastianBergmann\Type\FalseType;
 
 return new class extends Migration
 {
@@ -15,7 +16,6 @@ return new class extends Migration
     {
         Schema::create('patients', function (Blueprint $table) {
             $table->id();
-            
             $table->uuid('kp_uuid');
             $table->string('dni', 14)->unique();
             $table->string('photo')->nullable();
@@ -52,10 +52,26 @@ return new class extends Migration
             $table->smallInteger('legalphone')->nullable();
             $table->smallInteger('legaladress')->nullable();
             $table->smallInteger('observation')->nullable();
-            $table->boolean('z_xOne')->default(True);
-            $table->string('createdUser',20)->nullable();
-            $table->string('updatedUser',20)->nullable();
-
+            $table->boolean('violence')->default(false)->nullable();
+            $table->boolean('abused')->default(false)->nullable();
+            $table->boolean('fromwork')->default(false)->nullable();
+            $table->boolean('guardianship')->default(false)->nullable();
+            $table->boolean('gaoler')->default(false)->nullable();
+            $table->boolean('icbf')->default(false)->nullable();
+            $table->boolean('pregnant')->default(false)->nullable();
+            $table->boolean('suicide')->default(false)->nullable();
+            $table->boolean('virtualadvice')->default(false)->nullable();
+            $table->boolean('hospitalitation')->default(false)->nullable();
+            $table->boolean('external')->default(false)->nullable();
+            $table->boolean('cenpi')->default(false)->nullable();
+            $table->boolean('srpa')->default(false)->nullable();
+            $table->boolean('activeselection')->default(false)->nullable();
+            $table->boolean('through')->default(false)->nullable();
+            $table->boolean('pyramid')->default(false)->nullable();
+            $table->boolean('particular')->default(false)->nullable();
+            $table->boolean('z_xOne')->default(True)->nullable();
+            $table->string('createdUser',20)->nullable()->nullable();
+            $table->string('updatedUser',20)->nullable()->nullable();
             $table->timestamps();
         });
     }

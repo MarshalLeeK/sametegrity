@@ -6,7 +6,7 @@ hd-meta-description="Nuevo Paciente"
     @csrf
         <div class="container bg-light">
             <main>
-                <div class="text-center" >
+                <div class="text-center">
                     <h1  class=""><span class="w-100">Creación de Paciente</span></h1>
                     <hr class="my-1">                
                 </div>
@@ -19,14 +19,14 @@ hd-meta-description="Nuevo Paciente"
 
                             <div class="row-flex col-sm-2 d-inline-flex justify-content-center">
                                 <div class="avatar-upload">
-                                    <label class="avatar-preview" for="imageUpload">
+                                    <label class="avatar-preview"for="imageUpload">
                                         <img src="{{ URL::asset('img/bluebanner.png') }}"
                                         alt="Logo Generado forma generica" title="Cick para cargar imagen"
                                         class="img-fluid" id="imagePreview">
                                     </label>
                                     <div class="avatar-edit">
                                             <input type='file' id="imageUpload" name="imageUpload"
-                                            alt="Imagen cargada por el usuario" class="img-fluid" 
+                                            alt="Imagen cargada por el usuario" class="img-fluid"
                                             accept=".png, .jpg, .jpeg"/> 
                                     </div>
                                 </div>    
@@ -50,19 +50,17 @@ hd-meta-description="Nuevo Paciente"
 
                                     <div class="col-sm-5">
                                         <label for="dni" class="form-label">Número Documento</label>
-                                        <input type="text" class="form-control" name="dni" id="dni" placeholder="Número Documento" 
+                                        <input type="text" class="form-control" name="dni" id="dni" placeholder="Número Documento"
                                         oninvalid="this.setCustomValidity('Por favor ingrese un número de documento valido')"
-                                        oninput="setCustomValidity('')" 
+                                        oninput="setCustomValidity('')"
                                         required>
                                     </div>
 
                                     <div class="col-sm-4">
-
                                         <label for="documentplace" class="form-label">Lugar Expedición</label>
                                         <select class="form-select" name="documentplace" id="documentplace" aria-label="">
                                                 <x-locations-api to="cities"/>
                                         </Select>
-
                                     </div>
 
                                 </div>
@@ -72,14 +70,14 @@ hd-meta-description="Nuevo Paciente"
                                         <label for="name" class="form-label">Nombre</label>
                                         <input type="text" class="form-control" name="name" id="name" placeholder="Nombres" value=""
                                         oninvalid="this.setCustomValidity('Por favor ingrese un nombre valido')"
-                                        oninput="setCustomValidity('')" 
+                                        oninput="setCustomValidity('')"
                                         required>
                                     </div>
                                     <div class="col-sm-6">
                                         <label for="lastname" class="form-label">Apellido</label>
                                         <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Apellidos" value=""
                                         oninvalid="this.setCustomValidity('Por favor ingrese un apellido valido')"
-                                        oninput="setCustomValidity('')" 
+                                        oninput="setCustomValidity('')"
                                         required>
                                     </div>
                                 </div>
@@ -90,7 +88,7 @@ hd-meta-description="Nuevo Paciente"
                             <div class="col-sm-3">
                                 <label for="gender" class="form-label">Género</label>
                                 <select class="form-select" name="gender" id="gender" aria-label="" value="">
-                                    <option value="" selected>Genero</option>
+                                    <option value=""selected>Género</option>
                                     <option value='0'>Mujer</option>
                                     <option value="1">Hombre</option>
                                     <option value="2">Otro</option>
@@ -103,7 +101,7 @@ hd-meta-description="Nuevo Paciente"
 
                             <div class="col-sm-3">
                                 <label for="age" class="form-label">Edad</label>
-                                <input type="number" class="form-control" name="age" id="age" placeholder="Edad" readonly>
+                                <input type="number" class="form-control" name="age" id="age" placeholder="Edad"readonly>
                             </div>
 
                             <div class="col-sm-3">
@@ -115,7 +113,6 @@ hd-meta-description="Nuevo Paciente"
                                     <option value="2">Secundaria</option>
                                     <option value="3">Profesional</option>
                                     <option value="4">Especialización</option>
-
                                 </Select>
                             </div>
                             
@@ -143,7 +140,7 @@ hd-meta-description="Nuevo Paciente"
                             <div class="col-sm-3">
                                 <label for="job" class="form-label">Ocupación</label>
                                 <select class="form-select" name="job" id="job" aria-label="">
-                                    <option value="" selected>Seleccione Ocupación</option>
+                                    <option value=""selected>Seleccione Ocupación</option>
                                     <option value='Obrero'>Obrero</option>
                                     <option value="Paletero">Paletero</option>
                                     <option value="Gerente">Gerente</option>
@@ -154,7 +151,7 @@ hd-meta-description="Nuevo Paciente"
 
                             <div class="col-sm-3">
                                 <label for="livecontry" class="form-label">Pais de Residencia</label>
-                                <select class="form-select" name="livecontry" id="livecontry" aria-label="" >
+                                <select class="form-select" name="livecontry" id="livecontry" aria-label="">
                                     <option selected value="Colombia">Colombia</option>
                                     <option value='Andorra'>Andorra</option>
                                     <option value="Afganistan">Afganistan</option>
@@ -174,7 +171,7 @@ hd-meta-description="Nuevo Paciente"
 
                             <div class="col-sm-3">
                                 <label for="livecity" class="form-label">Ciudad de Residencia</label>
-                                <select class="form-select" name="livecity" id="livecity" aria-label="" >
+                                <select class="form-select" name="livecity" id="livecity" aria-label="">
                                     <option selected value="">Seleccione ciudad</option>
                                     <option value='Bello'>Bello</option>
                                     <option value="Medellin">Medellin</option>
@@ -185,7 +182,7 @@ hd-meta-description="Nuevo Paciente"
                             
                             <div class="col-sm-3">
                                 <label for="civilsate" class="form-label">Estado Civil</label>
-                                <select class="form-select" name="civilsate" id="civilsate" aria-label="" >
+                                <select class="form-select" name="civilsate" id="civilsate" aria-label="">
                                     <option selected value="">Seleccione Estado</option>
                                     <option value='0'>Soltero</option>
                                     <option value="1">Casado</option>
@@ -201,8 +198,8 @@ hd-meta-description="Nuevo Paciente"
 
                             <div class="col-sm-6">
                                 <label for="phone" class="form-label">Teléfono </label>
-                                <input type="number" class="form-control" name="phone" id="phone" placeholder="Teléfono" 
-                                oninvalid="this.setCustomValidity('Es necesario ingresar un número de teléfono')" 
+                                <input type="number" class="form-control" name="phone" id="phone" placeholder="Teléfono"
+                                oninvalid="this.setCustomValidity('Es necesario ingresar un número de teléfono')"
                                 oninput="setCustomValidity('')"
                                 required>
                             </div> 
@@ -222,23 +219,222 @@ hd-meta-description="Nuevo Paciente"
                                 <input type="text" class="form-control" name="maileb" id="maileb" placeholder="Email Facturación">
                             </div> 
 
+                            <div class="container-sm mt-2">
+                                <div class="col-sm-12 m-2" id="gbuttonbar">
+                                
+                                    <div class="row">
+                                        <div class="col-1">
+                                            <button type="button" class="check btn btn-secondary" title="Violencia"
+                                                id="violence" onclick="logic(this);">
+                                                <i class="bi bi-bandaid-fill">
+                                                    <input type="check" name="violence" value="0" hidden>
+                                                </i>   
+                                            </button>
+                                        </div>
+                                        <div class="col-1">
+                                            <button type="button" class="btn btn-secondary" title="Código Fucsia"
+                                                id="abused" onclick="logic(this);">
+                                                <i class="bi bi-balloon-fill">
+                                                    <input type="check" name="abused" value="0" hidden>
+                                                </i> 
+                                            </button>
+                                        </div>
+                                        <div class="col-1">
+                                            <button type="button" class="btn btn-secondary" title="Medicina Laboral"
+                                             id="fromwork" onclick="logic(this);">
+                                                <i class="bi bi-prescription2">
+                                                <input type="check" name="fromwork" value="0" hidden>
+                                                </i>   
+                                            </button>
+                                        </div>
+                                        <div class="col-1">
+                                            <button type="button" class="btn btn-secondary" title="Tutela"
+                                            id="guardianship" onclick="logic(this);">
+                                                <i class="bi bi-file-earmark-zip-fill">
+                                                    <input type="check" name="guardianship" value="0" hidden>
+                                                </i>
+                                            </button>
+                                        </div>
+                                        <div class="col-1">
+                                            <button type="button" class="btn btn-secondary" title="Privados Libertad"
+                                             id="gaoler" onclick="logic(this);">
+                                                <i class="bi bi-door-closed-fill">
+                                                <input type="check" name="gaoler" value="0" hidden>
+                                                </i>
+                                            </button>
+                                        </div>
+                                        <div class="col-1">
+                                            <button type="button" class="btn btn-secondary" title="ICBF"
+                                            id="icbf" onclick="logic(this);">                                                
+                                                <i class="bi bi-file-earmark-person-fill">
+                                                    <input type="check" name="icbf" value="0" hidden>
+                                                </i>
+                                            </button>
+                                        </div>
+                                        <div class="col-1">
+                                            <button type="button" class="btn btn-secondary" title="Gestante"
+                                            id="pregnant" onclick="logic(this);">
+                                                <i class="bi bi-flower1">
+                                                    <input type="check" name="pregnant" value="0" hidden>
+                                                </i>
+                                            </button>
+                                        </div>
+                                        <div class="col-1">
+                                            <button type="button" class="btn btn-secondary" title="Riesgo Suicida"
+                                             id="suicide" onclick="logic(this);">
+                                                <i class="bi bi-exclamation-diamond-fill">
+                                                <input type="check" name="suicide" value="0" hidden>
+                                                </i>   
+                                            </button>
+                                        </div>
+                                        <div class="col-1" >
+                                            <button type="button" class="btn btn-secondary" title="Sin asignación"
+                                             id="" >
+                                                <i class="bi bi-slash-circle-fill">
+                                                </i>   
+                                            </button>
+                                        </div>
+                                        <div class="col-1">
+                                            <button type="button" class="btn btn-secondary" title="Sin asignación"
+                                             id="">
+                                                <i class="bi bi-slash-circle-fill">
+                                                </i>   
+                                            </button>
+                                        </div>
+                                        <div class="col-1">
+                                            <button type="button" class="btn btn-secondary" title="Sin asignación"
+                                             id="">
+                                                <i class="bi bi-slash-circle-fill">
+                                                </i>   
+                                            </button>
+                                        </div>
+                                        <div class="col-1">
+                                            <button type="button" class="btn btn-secondary" title="Sin asignación"
+                                             id="">
+                                                <i class="bi bi-slash-circle-fill">
+                                                </i>  
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-12 m-2" id="abuttonbar">
+                                    <div class="row">
+                                        <div class="col-1">
+                                            <button type="button" class="btn btn-secondary" title="Asesoria Virtual"
+                                            id="virtualadvice" onclick="logic(this);">
+                                                <i class="bi bi-pc-display">
+                                                    <input type="check" name="virtualadvice" value="0" hidden>
+                                                </i>   
+                                            </button>
+                                        </div>
+                                        <div class="col-1">
+                                            <button type="button" class="btn btn-secondary" title="Consulta Externa"
+                                            id="external" onclick="logic(this);">
+                                                <i class="bi bi-person-video2">
+                                                    <input type="check" name="external" value="0" hidden>
+                                                </i> 
+                                            </button>
+                                        </div>
+                                        <div class="col-1">
+                                            <button type="button" class="btn btn-secondary" title="Hospitalización"
+                                            id="hospitalitation" onclick="logic(this);">                                           
+                                                <i class="bi bi-h-circle-fill">
+                                                    <input type="check" name="hospitalitation" value="0" hidden>
+                                                </i>   
+                                            </button>
+                                        </div>
+                                        <div class="col-1">
+                                            <button type="button" class="btn btn-secondary" title="Red Externa"
+                                            id="external" onclick="logic(this);">
+                                                <i class="bi bi-file-medical-fill">
+                                                    <input type="check" name="external" value="0" hidden>
+                                                </i>
+                                            </button>
+                                        </div>
+                                        <div class="col-1">
+                                            <button type="button" class="btn btn-secondary" title="CENPI (<14)"
+                                            id="cenpi" onclick="logic(this);">
+                                                <i class="bi bi-emoji-laughing-fill">
+                                                    <input type="check" name="cenpi" value="0" hidden>
+                                                </i>
+                                            </button>
+                                        </div>
+                                        <div class="col-1">
+                                            <button type="button" class="btn btn-secondary" title="SRPA (Adolecentes)"
+                                            id="srpa" onclick="logic(this);">
+                                                <i class="bi bi-earbuds">
+                                                    <input type="check" name="srpa" value="0" hidden>
+                                                </i>
+                                            </button>
+                                        </div>
+                                        <div class="col-1">
+                                            <button type="button" class="btn btn-secondary" title="Búsqueda Activa"
+                                            id="activeselection" onclick="logic(this);">
+                                                <i class="bi-binoculars-fill">
+                                                    <input type="check" name="activeselection" value="0" hidden>
+                                                </i>
+                                            </button>
+                                        </div>
+                                        <div class="col-1">
+                                            <button type="button" class="btn btn-secondary" title="Directo Prestador"
+                                            id="through" onclick="logic(this);">
+                                                <i class="bi bi-signpost-fill">
+                                                    <input type="check" name="through" value="0" hidden>
+                                                </i>   
+                                            </button>
+                                        </div>
+                                        <div class="col-1">
+                                            <button type="button" class="btn btn-secondary" title="Particular"
+                                            id="particular" onclick="logic(this);">                                            
+                                            <i class="bi bi-clipboard2-pulse-fill">
+                                                    <input type="check" name="particular" value="0" hidden>
+                                                </i>   
+                                            </button>
+                                        </div>
+                                        <div class="col-1">
+                                            <button type="button" class="btn btn-secondary" title="Punta Piramide"
+                                            id="pyramid" onclick="logic(this);">
+                                                <i class="bi bi-triangle-half">
+                                                    <input type="check" name="pyramid" value="0" hidden>
+                                                </i>   
+                                            </button>
+                                        </div>
+                                        <div class="col-1">
+                                            <button type="button" class="btn btn-secondary" title="Sin asignación"
+                                            id="">
+                                                <i class="bi bi-slash-circle-fill">
+                                                </i>   
+                                            </button>
+                                        </div>
+                                        <div class="col-1">
+                                            <button type="button" class="btn btn-secondary" title="Sin asignación"
+                                            id="">
+                                                <i class="bi bi-slash-circle-fill">
+                                                </i>  
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="col-sm-12 mt-2 mb-2">
                                 <nav id="patientoptions">
-                                    <div class="nav nav-tabs col-12"  id="nav-tab" role="tablist">
-                                        <button class="nav-link col-sm-2 active" id="nav-medicalbond-tab" data-bs-toggle="tab" data-bs-target="#nav-medicalbond" 
-                                            type="button" role="tab" aria-controls="nav-medicalbond" aria-selected="true">Vinculación</button>
-                                        <button class="nav-link col-sm-2" id="nav-legal -tab" data-bs-toggle="tab" data-bs-target="#nav-legal" 
-                                            type="button" role="tab" aria-controls="nav-income" aria-selected="false">Responsable</button>
-                                        <button class="nav-link col-sm-2" id="nav-income-tab" data-bs-toggle="tab" data-bs-target="#nav-income" 
-                                            type="button" role="tab" aria-controls="nav-income" aria-selected="false">Ingreso</button>
-                                        <button class="nav-link col-sm-2" id="nav-files-tab" data-bs-toggle="tab" data-bs-target="#nav-files" 
-                                            type="button" role="tab" aria-controls="nav-files" aria-selected="false">Archivos</button>
-                                        <button class="nav-link col-sm-2" id="nav-presence-tab" data-bs-toggle="tab" data-bs-target="#nav-presence" 
-                                            type="button" role="tab" aria-controls="nav-presence" aria-selected="false">Asistentes</button>
+                                    <div class="nav nav-tabs col-12" id="nav-tab"role="tablist">
+                                        <button class="nav-link col-sm-2 active" id="nav-medicalbond-tab"data-bs-toggle="tab"data-bs-target="#nav-medicalbond"
+                                            type="button"role="tab"aria-controls="nav-medicalbond"aria-selected="true">Vinculación</button>
+                                        <button class="nav-link col-sm-2" id="nav-legal -tab"data-bs-toggle="tab"data-bs-target="#nav-legal"
+                                            type="button"role="tab"aria-controls="nav-income"aria-selected="false">Responsable</button>
+                                        <button class="nav-link col-sm-2" id="nav-income-tab"data-bs-toggle="tab"data-bs-target="#nav-income"
+                                            type="button"role="tab"aria-controls="nav-income"aria-selected="false">Ingreso</button>
+                                        <button class="nav-link col-sm-2" id="nav-files-tab"data-bs-toggle="tab"data-bs-target="#nav-files"
+                                            type="button"role="tab"aria-controls="nav-files"aria-selected="false">Archivos</button>
+                                        <button class="nav-link col-sm-2" id="nav-presence-tab"data-bs-toggle="tab"data-bs-target="#nav-presence"
+                                            type="button"role="tab"aria-controls="nav-presence"aria-selected="false">Asistentes</button>
                                     </div>
                                 </nav>
                                 <div class="tab-content" id="nav-tabContent">
-                                    <div class="tab-pane fade show active p-2" id="nav-medicalbond" role="tabpanel" aria-labelledby="nav-medicalbond-tab">
+                                    <div class="tab-pane fade show active p-2" id="nav-medicalbond"role="tabpanel" aria-labelledby="nav-medicalbond-tab">
                                         {{-- VINCULACION  --}}
                                         <div class="row">
                                             <div class="col-sm-6">
@@ -246,19 +442,19 @@ hd-meta-description="Nuevo Paciente"
                                                 <div class="row">
                                                 <label for="eps" class="form-label col-sm-9 col-md-8"> Entidad </label>
                                                     <div class="form-check col-sm-3 col-md-4 d-inline-flex flex-row-reverse" id="check">
-                                                        <label class="form-label" for="capitado">
+                                                        <label class="form-label"for="capitado">
                                                             Capitado 
                                                         </label>
-                                                        <input class="form-check-input" name="capitado" id="capitado" type="checkbox" size="10px" value="" id="flexCheckDefault">
+                                                        <input class="form-check-input" name="capitado" id="capitado"type="checkbox"size="10px" value="" id="flexCheckDefault">
                                                     </div>
                                                 </div>
-                                                <input type="text" class="form-control col-sm-9 align-bottom" width="" name="eps" id="eps" placeholder="Entidad">
+                                                <input type="text" class="form-control col-sm-9 align-bottom"width="" name="eps" id="eps" placeholder="Entidad">
 
                                             </div> 
                                             
                                             <div class="col-sm-3">
                                                 <label for="epstype" class="form-label"> Regimen </label>
-                                                <select class="form-select" name="epstype" id="epstype" aria-label="" >
+                                                <select class="form-select" name="epstype" id="epstype" aria-label="">
                                                     <option selected value="">Seleccione tipo</option>
                                                     <option value="C">Contribuitivo</option>
                                                     <option value="S">Subsidiado</option>
@@ -266,7 +462,7 @@ hd-meta-description="Nuevo Paciente"
                                             </div> 
                                             <div class="col-sm-3">
                                                 <label for="contract" class="form-label"> Contrato </label>
-                                                <select class="form-select" name="contract" id="contract" aria-label="" >
+                                                <select class="form-select" name="contract" id="contract" aria-label="">
                                                     <option selected value="">Seleccione contrato</option>
                                                     <option value='1'>contrato1</option>
                                                     <option value="2">contrato2</option>
@@ -298,7 +494,7 @@ hd-meta-description="Nuevo Paciente"
                                             </div> 
                                             <div class="col-sm-4">
                                                 <label for="Ips" class="form-label"> IPS </label>
-                                                <select class="form-select" name="Ips" id="Ips" aria-label="" >
+                                                <select class="form-select" name="Ips" id="Ips" aria-label="">
                                                     <option selected value="">Seleccione Ips</option>
                                                     <option value='Bello'>Hospital mental antioquia (HOMO)</option>
                                                     <option value="Medellin">Ips salud de antioquia</option>
@@ -312,7 +508,7 @@ hd-meta-description="Nuevo Paciente"
                                         </div>
                                     </div>
 
-                                    <div class="tab-pane fade p-2" id="nav-legal" role="tabpanel" aria-labelledby="nav-legal-tab">
+                                    <div class="tab-pane fade p-2" id="nav-legal"role="tabpanel" aria-labelledby="nav-legal-tab">
                                         {{-- PANEL RESPONSABLE LEGAL --}}
                                         <div class="container mb-3">
                                             <div class="row">
@@ -339,7 +535,7 @@ hd-meta-description="Nuevo Paciente"
 
                                                 <div class="col-sm-3">
                                                     <label for="kindred" class="form-label">Relación / Parentesco</label>
-                                                    <select class="form-select" name="kindred" id = "kindred" aria-label="legal document type" >
+                                                    <select class="form-select" name="kindred" id = "kindred" aria-label="legal document type">
                                                         <option value="">Seleccion</option>
                                                         <option value='0'>Conyugue</option>
                                                         <option value='1'>Madre</option>
@@ -364,17 +560,17 @@ hd-meta-description="Nuevo Paciente"
                                         </div>
                                     </div>
 
-                                    <div class="tab-pane fade" id="nav-income" role="tabpanel" aria-labelledby="nav-income-tab">
+                                    <div class="tab-pane fade" id="nav-income"role="tabpanel" aria-labelledby="nav-income-tab">
                                         {{-- PANEL INGRESO --}}
                                         INGRESO
                                     </div>
 
-                                    <div class="tab-pane fade" id="nav-presence" role="tabpanel" aria-labelledby="nav-presence-tab">
+                                    <div class="tab-pane fade" id="nav-presence"role="tabpanel" aria-labelledby="nav-presence-tab">
                                         {{-- PANEL ASISTENCIA --}}
                                         ASISTENCIA
                                     </div>
 
-                                    <div class="tab-pane fade" id="nav-files" role="tabpanel" aria-labelledby="nav-files-tab">
+                                    <div class="tab-pane fade" id="nav-files"role="tabpanel" aria-labelledby="nav-files-tab">
                                         {{-- PANEL ARCHIVOS --}}
                                         ARCHIVOS
                                     </div>
@@ -389,8 +585,8 @@ hd-meta-description="Nuevo Paciente"
                             </div>
 
                             <div class="col-sm-12 p-1 my-2" id="endbuttons">
-                                <a type="button" class="right btn btn-secondary btn-lg col-sm-2" href="{{ route('patientModule') }}">Cancelar</a>
-                                <input type="submit" class="right btn btn-success btn-lg col-sm-2 mx-1" Value="Guardar">
+                                <a type="button" class="right btn btn-secondary btn-lg col-sm-2"href="{{ route('patientModule') }}">Cancelar</a>
+                                <input type="submit" class="right btn btn-success btn-lg col-sm-2 mx-1" value="Guardar">
                             </div>
                         </div>
                     </div>  
