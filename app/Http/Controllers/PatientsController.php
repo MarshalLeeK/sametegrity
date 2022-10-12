@@ -1,12 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Http\Controllers\ApiController;
 use App\Models\Patients;
 use App\Models\TypeDocs;
 use App\View\Components\locationsApi;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
@@ -42,11 +40,9 @@ class PatientsController extends Controller
      */
     public function create()
     {
-        
         $defaults = ['defCountry' => 'Colombia','defState' => 'Antioquia',];
         $typeDocs = TypeDocs::get();
-        return view('patients.Patien_c',['defaults'=>$defaults],['typeDocs'=>$typeDocs]);
-
+        return view('patients.Patien_c', compact('defaults','typeDocs'));
     }
 
     /**
@@ -59,8 +55,9 @@ class PatientsController extends Controller
     {
         //
 
+        //Crear pacientes
         $uuid = Str::uuid();
-        //Crear usuario
+
         $patient = new Patients;
         $patient->kp_uuid =  $uuid ;
         $patient->documenttype = $request->input('tdoc');
@@ -97,6 +94,15 @@ class PatientsController extends Controller
         $patient->legalphone = $request->input('legalphone');
         $patient->legaladress = $request->input('legaladress');
         $patient->observation = $request->input('observation');
+        
+        if ( $request->hasFile('imageUpload') ){
+            $photo = $request->file('imageUpload');
+            $filename = Str::slug( $request->input('name')) . Str::slug ($request->input('lastname') ) .".". $photo->guessExtension();
+            $path = public_path('img/patients/photos');
+            $photo->move($path,$filename);
+            $patient->photo = $filename;
+        }
+
         $patient->save();
 
         // Se debe crear campo para poliza $patient->policy = $request->input('policy');

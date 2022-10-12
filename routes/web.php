@@ -1,11 +1,10 @@
 <?php
 
-use App\Http\Controllers\ApiController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterControler;
 use App\Http\Controllers\PatientsController;
-
+use App\Models\Patients;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,8 +50,12 @@ Route::resource('/patients',PatientsController::class);
 //
 
 //** Pruebas */
-Route::get('/apitest',  function () {
-    return view('patients.test');
+Route::get('/apitest',function(){
+
+  
+
+    return view( 'patients.test');
+    
 })->name('apitest');
 
 

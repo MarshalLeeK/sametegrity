@@ -1,15 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <h1>PRUEBAS</h1>
-    <x-locations-api>
-        
-    </x-locations-api>
-</body>
-</html>
+<x-header>
+@php
+    
+    
+
+@endphp
+
+
+@dump($columns)
+
+@foreach ( $rows as $row )
+    @dump($row)
+    <p>
+        {{$row['name'] }}
+    </p>
+@endforeach
+
+
+</x-header>

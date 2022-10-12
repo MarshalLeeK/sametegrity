@@ -9,7 +9,7 @@ class locationsApi extends Component
 {
 
     public 
-    $country,$lib,$state,$to,$apires,$size,$headerlib,
+    $country,$state,$to,$apires,$size,$headerlib,$lib,
     $clasification = ['country','state','city'],
     $url = "https://www.universal-tutorial.com/api/", 
     $token = "_sJrhBbZKEWeBaS4sxDRjWwaWG6oPy1CwlpwTl7YNZKjL36JWi0-FFHZj6l1icCmHYk";
@@ -62,7 +62,6 @@ class locationsApi extends Component
         if ( $default == 0 ) {
             return $this->apires;
         }
-
     }
 
     
@@ -77,4 +76,5 @@ class locationsApi extends Component
         // dd($borncountry);
         return view('components.locations-api');
     }
+
 }

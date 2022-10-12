@@ -15,24 +15,27 @@ hd-meta-description="Actualización Paciente">
                         <h4 class="mb-3">Datos básicos</h4>
                         <p class="lead">Por favor ingrese los datos relacionados al paciente</p>
                         <hr class="my-1 pb-1">
-                        <div class="row mt-g-3">
+                        <div class="row mt-g-3 p-2">
                             
-                            <div class="row-flex col-sm-2 d-inline-flex justify-content-center">
-                                <div class="avatar-upload">
+                            <div class="row-flex col-sm-2 d-inline-flex justify-content-center img-thumbnail">
+                                <div class="container-flex avatar-upload">
                                     <label class="avatar-preview" for="imageUpload">
-                                        <img src="{{ URL::asset('img/bluebanner.png') }}"
-                                        alt="Logo Generado forma generica" title="Cick para cargar imagen"
+                                        <img src="{{ is_null($patient->photo) ? URL::asset( 'img/logo.png' ) : URL::asset( 'img/patients/photos/' . $patient->photo ); }}"
+                                        alt="{{ is_null($patient->photo) ? 'Logo Generado forma generica' : 'userUpload: ' . $patient->photo ; }}"
+                                        title="Cick para cargar imagen"
                                         class="img-fluid" id="imagePreview">
                                     </label>
+                                    
                                     <div class="avatar-edit">
                                             <input type='file' id="imageUpload" 
                                             alt="Imagen cargada por el usuario" class="img-fluid" 
                                             accept=".png, .jpg, .jpeg"/> 
                                     </div>
                                 </div>    
-                            </div>    
+                            </div>   
+                             
                             {{-- @dump($countries) --}}
-                            <div class="container-fluid align-self-end col-sm-10 ">
+                            <div class="container-fluid align-self-end col-sm-10 px-1 h-100">
                                 <div class="row col-12">
                                     
                                     <div class="col-sm-3">
@@ -40,6 +43,7 @@ hd-meta-description="Actualización Paciente">
                                         <select class="form-select" name="tdoc" id="tdoc" aria-label=""
                                         value="{{{ $patient->documenttype }}}"
                                         oninvalid="this.setCustomValidity('Por favor ingrese un tipo de documento de documento valido')" 
+                                        oninput="setCustomValidity('')"
                                         required>
                                         {{-- LV --}}
                                             @foreach ( $typeDocs as $typeDoc )
@@ -52,7 +56,8 @@ hd-meta-description="Actualización Paciente">
                                         <label for="dni" class="form-label">Número Documento</label>
                                         <input type="text" class="form-control" name="dni" id="dni" placeholder="Número Documento" 
                                         value="{{$patient->dni}}"
-                                        oninvalid="this.setCustomValidity('Por favor ingrese un número de documento valido')" 
+                                        oninvalid="this.setCustomValidity('Por favor ingrese un número de documento valido')"
+                                        oninput="setCustomValidity('')"
                                         required>
                                     </div>
 
@@ -67,14 +72,16 @@ hd-meta-description="Actualización Paciente">
                                 <div class="row col-12">
                                     <div class="col-sm-6">
                                         <label for="name" class="form-label">Nombre</label>
-                                        <input type="text" class="form-control" name="name" id="name" placeholder="Nombres" value=""
+                                        <input type="text" class="form-control" name="name" id="name" placeholder="Nombres" value="{{$patient->name}}"
                                         oninvalid="this.setCustomValidity('Por favor ingrese un nombre valido')" 
+                                        oninput="setCustomValidity('')"
                                         required>
                                     </div>
                                     <div class="col-sm-6">
                                         <label for="lastname" class="form-label">Apellido</label>
-                                        <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Apellidos" value=""
+                                        <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Apellidos" value="{{$patient->name}}"
                                         oninvalid="this.setCustomValidity('Por favor ingrese un apellido valido')" 
+                                        oninput="setCustomValidity('')"
                                         required>
                                     </div>
                                 </div>

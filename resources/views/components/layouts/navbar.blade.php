@@ -4,12 +4,8 @@
         <a class="navbar-brand" href="#"><img class="imag" src="{{ URL::asset('img/logo.png') }}" alt="logo" width="100"></a>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-    
-            @php
-                  $route = Route::current()->getName();
-            @endphp
             
-            @if ( $route != 'menu')
+            @if ( Route::current()->getName() != 'menu')
             <li class="nav-item">
               <a iclass="nav-link" aria-current="page" href="{{ route('menu')}}" title="Menu principal">
                 <i class="bi-house-fill" style="font-size:40px;"></i>
@@ -29,9 +25,7 @@
             </li>
             @endif
           </ul>
-
-          
-
+          {{-- Salir --}}
           <form class="d-inline-flex mr-5" action="/">
             <button class="btn btn-secondary text-white btn-lg" type="submit"><i class="bi-escape"></i></button>
           </form>

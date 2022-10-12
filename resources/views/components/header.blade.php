@@ -25,12 +25,12 @@
 </head>
 <body>
 
-    @if ( Request::Path() != '/' )
+    @if ( Request::Path() != '/')
         <x-layouts.navbar />
     @endif
 
     {{ $slot }}
-
+    
     @if ( Request::Path() != '/' )
         <x-footer />
     @endif

@@ -2,7 +2,7 @@
 hd-title="Nuevo Paciente"
 hd-meta-description="Nuevo Paciente"
 >
-<form id="patientform" action="{{ route('patients.store') }}" method="POST" class="p-2 form h-100">
+<form id="patientform" action="{{ route('patients.store') }}" method="POST" class="p-2 form h-100" enctype="multipart/form-data">
     @csrf
         <div class="container bg-light">
             <main>
@@ -15,23 +15,20 @@ hd-meta-description="Nuevo Paciente"
                         <h4 class="mb-3">Datos básicos</h4>
                         <p class="lead">Por favor ingrese los datos relacionados al paciente</p>
                         <hr class="my-1 pb-1">
-                        <div class="row mt-g-3">
+                        <div class="row mt-g-3  p-2">
 
                             <div class="row-flex col-sm-2 d-inline-flex justify-content-center">
                                 <div class="avatar-upload">
-
                                     <label class="avatar-preview" for="imageUpload">
                                         <img src="{{ URL::asset('img/bluebanner.png') }}"
                                         alt="Logo Generado forma generica" title="Cick para cargar imagen"
                                         class="img-fluid" id="imagePreview">
                                     </label>
-
                                     <div class="avatar-edit">
-                                            <input type='file' id="imageUpload" 
+                                            <input type='file' id="imageUpload" name="imageUpload"
                                             alt="Imagen cargada por el usuario" class="img-fluid" 
                                             accept=".png, .jpg, .jpeg"/> 
                                     </div>
-
                                 </div>    
                             </div>    
                             {{-- @dump($countries) --}}
@@ -41,7 +38,8 @@ hd-meta-description="Nuevo Paciente"
                                     <div class="col-sm-3">
                                         <label for="tdoc" class="form-label">Tipo Documento</label>
                                         <select class="form-select" name="tdoc" id="tdoc" aria-label=""
-                                        oninvalid="this.setCustomValidity('Por favor ingrese un tipo de documento de documento valido')" 
+                                        oninvalid="this.setCustomValidity('Por favor ingrese un tipo de documento de documento valido')"
+                                        oninput="setCustomValidity('')"
                                         required>
                                         {{-- LV --}}
                                             @foreach ( $typeDocs as $typeDoc )
@@ -53,29 +51,35 @@ hd-meta-description="Nuevo Paciente"
                                     <div class="col-sm-5">
                                         <label for="dni" class="form-label">Número Documento</label>
                                         <input type="text" class="form-control" name="dni" id="dni" placeholder="Número Documento" 
-                                        oninvalid="this.setCustomValidity('Por favor ingrese un número de documento valido')" 
+                                        oninvalid="this.setCustomValidity('Por favor ingrese un número de documento valido')"
+                                        oninput="setCustomValidity('')" 
                                         required>
                                     </div>
 
                                     <div class="col-sm-4">
+
                                         <label for="documentplace" class="form-label">Lugar Expedición</label>
                                         <select class="form-select" name="documentplace" id="documentplace" aria-label="">
-                                            <x-locations-api to='cities'/>
+                                                <x-locations-api to="cities"/>
                                         </Select>
+
                                     </div>
+
                                 </div>
 
                                 <div class="row col-12">
                                     <div class="col-sm-6">
                                         <label for="name" class="form-label">Nombre</label>
                                         <input type="text" class="form-control" name="name" id="name" placeholder="Nombres" value=""
-                                        oninvalid="this.setCustomValidity('Por favor ingrese un nombre valido')" 
+                                        oninvalid="this.setCustomValidity('Por favor ingrese un nombre valido')"
+                                        oninput="setCustomValidity('')" 
                                         required>
                                     </div>
                                     <div class="col-sm-6">
                                         <label for="lastname" class="form-label">Apellido</label>
                                         <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Apellidos" value=""
-                                        oninvalid="this.setCustomValidity('Por favor ingrese un apellido valido')" 
+                                        oninvalid="this.setCustomValidity('Por favor ingrese un apellido valido')"
+                                        oninput="setCustomValidity('')" 
                                         required>
                                     </div>
                                 </div>
@@ -106,20 +110,20 @@ hd-meta-description="Nuevo Paciente"
                                 <label for="academiclevel" class="form-label">Escolaridad</label>
                                 <select class="form-select" name="academiclevel" id="academiclevel" aria-label="">
                                     <option selected value="">Seleccione Nivel</option>
-                                    <option value='Bello'>Primaria</option>
-                                    <option value="Medellin">Bachillerato</option>
-                                    <option value="Manizales">Secundaria</option>
-                                    <option value="Manizales">Profesional</option>
-                                    <option value="Manizales">Especialización</option>
+                                    <option value='0'>Primaria</option>
+                                    <option value="1">Bachillerato</option>
+                                    <option value="2">Secundaria</option>
+                                    <option value="3">Profesional</option>
+                                    <option value="4">Especialización</option>
 
                                 </Select>
                             </div>
                             
                             <div class="col-sm-3">
                                 <label for="borncountry" class="form-label">Pais de nacimiento</label>
-                                <select class="form-select" name="borncountry" id="borncountry" aria-label="">
-                                    <x-locations-api />
-                                </Select>
+                                    <select class="form-select" name="borncountry" id="borncountry" aria-label="">
+                                        <x-locations-api />
+                                    </Select>
                             </div>
 
                             <div class="col-sm-3">
@@ -183,9 +187,9 @@ hd-meta-description="Nuevo Paciente"
                                 <label for="civilsate" class="form-label">Estado Civil</label>
                                 <select class="form-select" name="civilsate" id="civilsate" aria-label="" >
                                     <option selected value="">Seleccione Estado</option>
-                                    <option value='Bello'>Soltero</option>
-                                    <option value="Medellin">Casado</option>
-                                    <option value="Manizales">Viudo</option>
+                                    <option value='0'>Soltero</option>
+                                    <option value="1">Casado</option>
+                                    <option value="2">Viudo</option>
                                 </Select>
                             </div>
 
@@ -199,6 +203,7 @@ hd-meta-description="Nuevo Paciente"
                                 <label for="phone" class="form-label">Teléfono </label>
                                 <input type="number" class="form-control" name="phone" id="phone" placeholder="Teléfono" 
                                 oninvalid="this.setCustomValidity('Es necesario ingresar un número de teléfono')" 
+                                oninput="setCustomValidity('')"
                                 required>
                             </div> 
 

@@ -103,6 +103,7 @@ thead {
 
 .avatar-upload {
     justify-content: center;
+    align-self: center;
     max-width: 150px;
     margin: 1px;
 }
