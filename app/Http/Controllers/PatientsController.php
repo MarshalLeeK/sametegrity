@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 use App\Models\Patients;
 use App\Models\TypeDocs;
-use App\View\Components\locationsApi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -139,9 +138,12 @@ class PatientsController extends Controller
      * @param  \App\Models\Patients  $patients
      * @return \Illuminate\Http\Response
      */
-    public function show(Patients $patients)
+    public function show($id)
     {
         //
+        $patient = Patients::findOrFail($id);
+        $typeDocs = TypeDocs::get();
+        return view('patients.Patient_',compact('patient','typeDocs'));
     }
 
     /**

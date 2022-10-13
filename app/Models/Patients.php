@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Carbon\Carbon;
+use Illuminate\Support\Str;
+
 
 class Patients extends Model
 {
@@ -74,6 +76,20 @@ class Patients extends Model
         'particular',
         'z_xOne'
     ];
+
+
+    public function name(): Attribute
+    {
+        return new Attribute(
+            get: fn($value) => strtoupper($value),
+            set: fn($value) => strtolower($value)
+        );
+    }
+
+    // public function setPasswordAttribute ($value) {
+    //     $this->attributes['password']=bcrypt($value);
+    // }}
+
 }
 
             

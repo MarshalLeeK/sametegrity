@@ -44,6 +44,7 @@ Route::resource('/sametegrity',RegisterControler::class);
 Route::controller(PatientsController::class)->group(function(){
     Route::get('/patients_L','index')->name('patientModule');
     Route::get('/patient_C','create')->name('patientCreate');
+    Route::get('/patient_/{id}','show')->name('patientShow');
     Route::get('/patient_M/{id}','edit')->name('patientEdit');
 });
 Route::resource('/patients',PatientsController::class);
@@ -51,11 +52,7 @@ Route::resource('/patients',PatientsController::class);
 
 //** Pruebas */
 Route::get('/apitest',function(){
-
-  
-
     return view( 'patients.test');
-    
 })->name('apitest');
 
 

@@ -19,11 +19,14 @@
 
             <td>
                 <div class="row col-sm-12 justify-content-around">
-                    <button class="btn btn-warning btn-md col-sm-5 text-white" onclick="location.href = '{{ route( $module.'Edit', $row->id )}}';">
-                        Modificar
+                    <button class="btn btn-primary btn-md col-sm-3 text-white" onclick="location.href = '{{ route( $module.'Show', $row->id )}}';">
+                        <i class="bi bi-textarea-resize"></i>
                     </button>
-                    <button class="btn btn-danger btn-md col-sm-5" data-bs-toggle="modal" data-bs-target="#modal-delete-{{$row->id}}" type="button">
-                        Eliminar
+                    <button class="btn btn-warning btn-md col-sm-3 text-white" onclick="location.href = '{{ route( $module.'Edit', $row->id )}}';">
+                        <i class="bi bi-pen-fill"></i>
+                    </button>
+                    <button class="btn btn-danger btn-md col-sm-3" data-bs-toggle="modal" data-bs-target="#modal-delete-{{$row->id}}" type="button">
+                        <i class="bi bi-trash3-fill"></i>
                     </button>
                 </div>
             </td>   

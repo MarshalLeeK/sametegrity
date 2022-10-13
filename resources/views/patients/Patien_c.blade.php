@@ -59,8 +59,12 @@ hd-meta-description="Nuevo Paciente"
                                     <div class="col-sm-4">
                                         <label for="documentplace" class="form-label">Lugar Expedición</label>
                                         <select class="form-select" name="documentplace" id="documentplace" aria-label="">
-                                                <x-locations-api to="cities"/>
+                                                <x-locations-api/>
                                         </Select>
+                                        {{-- <pre>
+                                            <x-locations-api/>
+                                        </pre> --}}
+
                                     </div>
 
                                 </div>

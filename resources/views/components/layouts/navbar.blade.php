@@ -5,14 +5,23 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             
-            @if ( Route::current()->getName() != 'menu')
+            @php
+              $route = Route::current()->getName()
+            @endphp
+
+            @if ( $route != 'menu')
             <li class="nav-item">
-              <a iclass="nav-link" aria-current="page" href="{{ route('menu')}}" title="Menu principal">
-                <i class="bi-house-fill" style="font-size:40px;"></i>
+              <a class="nav-link" aria-current="page" href="{{ route('menu')}}" title="Menu principal">
+                <i class="bi bi-house-fill"></i>
               </a>
             </li>
+
             <li class="nav-item">
-              <a class="nav-link" href="#"></a>
+              @if ( Str::contains($route, 'Show')  )
+                <a class="nav-link" aria-current="page" href="{{ route('patientModule')}}" title="Volver al listado">
+                  <i class="bi bi-box-arrow-left"></i>
+                </a>
+              @endif
             </li>
             <li class="nav-item">
               <a class="nav-link disabled"></a>

@@ -2,14 +2,14 @@
 
 namespace App\View\Components;
 
-use Illuminate\Support\Facades\Http;
+use Illuminate\Http\Request;
 use Illuminate\View\Component;
 
 class locationsApi extends Component
 {
 
     public 
-    $country,$state,$to,$apires,$size,$headerlib,$lib,
+    $country,$state,$to,$apires,$size,$headerlib,$lib,$body,
     $clasification = ['country','state','city'],
     $url = "https://www.universal-tutorial.com/api/", 
     $token = "_sJrhBbZKEWeBaS4sxDRjWwaWG6oPy1CwlpwTl7YNZKjL36JWi0-FFHZj6l1icCmHYk";
@@ -20,48 +20,54 @@ class locationsApi extends Component
      * @return void
      */
 
-     public function __construct( $to='countries', $country = 'colombia', $state= 'Antioquia' , $default = '0' )
+     public function __construct( Request $request , $to='countries', $country = 'colombia', $state= 'Antioquia' , $default = '0' )
     {
-        $this->to = $to;
-        $this->country = $country;
-        $this->state = $state;
-
-        if ( $to == 'cities' ){
-            $headerlib = $this->clasification[2];
-            $lib = $to."/".$state;
-        };
-        if ( $to == 'states' ){
-            $lib = $to."/".$country;
-            $headerlib = $this->clasification[1];
-
-        };
-        if ( $to == 'countries'){
-            $lib = $to;
-            $headerlib = $this->clasification[0];
-        }
-
-        $this->lib = $lib;
-        $this->headerlib = $headerlib;
-
-        $getAuthToken = Http::withHeaders([
-            "Accept" => "application/json",
-            "api-token"=> $this->token,
-            "user-email"=> "julianrodriguez19961@gmail.com"
-        ])->get( $this->url.'getaccesstoken');
-
-        $token = $getAuthToken->json('auth_token');
-
-        $items = Http::withHeaders([
-            "Authorization"=> "Bearer ". $token,
-            "Accept"=> "application/json"
-        ])->get( $this->url . $lib );
-
-        // $result = $items->json();
-        $this->apires = $items->json();
         
-        if ( $default == 0 ) {
-            return $this->apires;
-        }
+        $body = $request;
+        // var_dump($request);
+
+        return $body;
+
+        // $this->to = $to;
+        // $this->country = $country;
+        // $this->state = $state;
+
+        // if ( $to == 'cities' ){
+        //     $headerlib = $this->clasification[2];
+        //     $lib = $to."/".$state;
+        // };
+        // if ( $to == 'states' ){
+        //     $lib = $to."/".$country;
+        //     $headerlib = $this->clasification[1];
+
+        // };
+        // if ( $to == 'countries'){
+        //     $lib = $to;
+        //     $headerlib = $this->clasification[0];
+        // }
+
+        // $this->lib = $lib;
+        // $this->headerlib = $headerlib;
+
+        // $getAuthToken = Http::withHeaders([
+        //     "Accept" => "application/json",
+        //     "api-token"=> $this->token,
+        //     "user-email"=> "julianrodriguez19961@gmail.com"
+        // ])->get( $this->url.'getaccesstoken');
+
+        // $token = $getAuthToken->json('auth_token');
+
+        // $items = Http::withHeaders([
+        //     "Authorization"=> "Bearer ". $token,
+        //     "Accept"=> "application/json"
+        // ])->get( $this->url . $lib );
+
+        // // $result = $items->json();
+        // $this->apires = $items->json();
+        
+        // if ( $default == 0 ) {
+        //     return $this->apires;
+        // }
     }
 
     
