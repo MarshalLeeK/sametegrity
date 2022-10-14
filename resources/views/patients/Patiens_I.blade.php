@@ -1,7 +1,6 @@
 <x-header 
 hd-title="Pacientes"
-hd-description="Módulo de pacientes"
->
+hd-description="Módulo de pacientes">
     <x-layouts.titleBanner 
     title-Module="PACIENTES"
     />

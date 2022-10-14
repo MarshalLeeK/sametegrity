@@ -1,11 +1,11 @@
 <x-header>
-    <body>
-    <form action="{{ route('sametegrity.store') }}" method="POST" class="p-2 form h-100">
+    <form action="{{ route('sametegrity.update',$user->id) }}" method="POST" class="p-2 form h-100">
     @csrf
+    @method('PUT')
         <div class="container bg-light h-100">
-            <main>
-                <div class="text-center" >
-                    <h1  class="">Registro de usuarios</h1>
+            <main class="my-4">
+                <div class="py-5 text-center" >
+                    <h1  class="text-success">Actualización de usuarios</h1>
                     <hr class="my-1">
                 </div>
                 <div class="row g-12 h-100">
@@ -14,21 +14,9 @@
                         <p class="lead">Por favor ingrese los datos relacionados al usuario</p>
                         <hr class="my-1">
                         <div class="row mt-g-3">
-                            <div class="col-sm-2">
-                                <label for="tdoc" class="form-label">Tipo Documento</label>
-                                <select class="form-select" name="tdoc" id="tdoc" aria-label=""
-                                oninvalid="this.setCustomValidity('Por favor ingrese un tipo de documento de documento valido')" 
-                                oninput="setCustomValidity('')"
-                                required >
-                                {{-- LV --}}
-                                    @foreach ( $typeDocs as $typeDoc )
-                                    <option value="{{ $typeDoc->id }}" {{ $typeDoc->id == 13 ? "selected" : '' ; }} > {{ $typeDoc->name }} </option>
-                                    @endforeach
-                                </Select>
-                            </div>
-                            <div class="col-sm-4">
+                            <div class="col-sm-6">
                                 <label for="dni" class="form-label">Número Documento</label>
-                                <input type="text" class="form-control" name="dni" placeholder="" value="" required="" 
+                                <input type="text" class="form-control" name="dni" placeholder="" value="{{$user->dni}}" required="" 
                                 oninvalid="this.setCustomValidity('Por favor ingrese un número de documento valido')" oninput="setCustomValidity('')">
                             </div>
                             <div class="col-sm-6">
@@ -39,35 +27,33 @@
                                     </div>
                                     <select type="text" class="form-control" name="privilegeSet" placeholder="" value="" required="" 
                                     oninvalid="this.setCustomValidity('Por favor ingrese un cargo valido')" oninput="setCustomValidity('')">
-                                        <option class="text-muted" value=""> -- Asignar</option>
-                                        <option value="0">Root</option>
-                                        <option value="1">Médico</option>
-                                        <option value="2">Enfermero</option>
-                                        <option value="3">Aux Contable</option>
-                                        <option value="4">Facturacion</option>
+                                        <option value="0">Médico</option>
+                                        <option value="1">Enfermero</option>
+                                        <option value="2">Aux Contable</option>
+                                        <option value="3">Facturacion</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <label for="firstName" class="form-label">Nombre</label>
-                                <input type="text" class="form-control" name="name" placeholder="" value="" required="" 
+                                <input type="text" class="form-control" name="name" placeholder="" value="{{$user->name}}" required="" 
                                 oninvalid="this.setCustomValidity('Por favor ingrese un nombre valido')" oninput="setCustomValidity('')">
                             </div>
                             <div class="col-sm-6">
                                 <label for="lastname" class="form-label">Apellido</label>
-                                <input type="text" class="form-control" name="lastname" placeholder="" value="" required="" 
+                                <input type="text" class="form-control" name="lastname" placeholder="" value="{{$user->lastname}}" required="" 
                                 oninvalid="this.setCustomValidity('Por favor ingrese un apellido valido')" oninput="setCustomValidity('')">
                             </div>
                             <div class="col-sm-6">
                                 <label for="email" class="form-label">Correo Electronico</label>
-                                <input type="text" class="form-control" name="email" placeholder="" value="" required="" 
+                                <input type="text" class="form-control" name="email" placeholder="" value="{{$user->email}}" required="" 
                                 oninvalid="this.setCustomValidity('Por favor ingrese un correo valido')" oninput="setCustomValidity('')">
                             </div>
                             <div class="col-6">
                                 <label for="username" class="form-label">Nombre de usuario</label>
                                 <div class="input-group has-validation">
                                     <span class="input-group-text">@</span>
-                                    <input type="text" class="form-control" name="username" placeholder="Username" required=""
+                                    <input type="text" class="form-control" name="username" placeholder="Username" value="{{$user->username}}" required=""
                                         oninvalid="this.setCustomValidity('Por favor ingrese un Nombre de usuario valido')" oninput="setCustomValidity('')">
                                 </div>
                             </div>
@@ -82,10 +68,7 @@
                             <hr class="my-4">
                             <div class="py-1 text-Left col-6">
                                 <h4>Modulos asignados</h4>
-                                <p class="lead">Por favor ingrese los datos relacionados al los privilegios del usuario</p>
-                            </div>
-                            <div class="py-1 col-6">
-                                <button class="btn btn-success btn-lg float-end" type="submit"><i class="fa fa-folder mx-1"></i> Agregar</button>
+                                <p class="lead">Listado Privilegios Asignados</p>
                             </div>
                             <div class="table-responsive g-12">
                                 <table class="table g-12">
@@ -171,11 +154,7 @@
                                     </tbody>          
                                 </table>
                             </div>
-                            <hr >
-                            <div class="row d-flex flex-row-reverse">
-                                <input type="submit" class="btn btn-primary btn-lg col-2 mx-1" Value="Guardar">
-                                <a type="button" class="btn btn-default btn-lg col-2 mx-1" href="{{ route('accountModule') }}">Cancelar</a>
-                            </div>
+                            <hr class="my-2">
                         </div>
                     </div>  
                 </div>

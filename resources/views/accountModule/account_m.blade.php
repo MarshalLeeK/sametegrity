@@ -2,7 +2,7 @@
     <form action="{{ route('sametegrity.update',$user->id) }}" method="POST" class="p-2 form h-100">
     @csrf
     @method('PUT')
-        <div class="container bg-light">
+        <div class="container bg-light h-100">
             <main class="my-4">
                 <div class="py-5 text-center" >
                     <h1  class="text-success">Actualización de usuarios</h1>

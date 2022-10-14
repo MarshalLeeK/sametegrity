@@ -4,7 +4,6 @@ use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterControler;
 use App\Http\Controllers\PatientsController;
-use App\Models\Patients;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,8 +22,11 @@ use App\Models\Patients;
 
 
 //Login
-Route::get('/',[LoginController::class,'index'])->name('login');
-Route::post('/login',[LoginController::class,'login'])->name('signIn');
+Route::controller(LoginController::class)->group(function(){
+    Route::get('/','index')->name('login');
+    Route::post('/login','login')->name('signIn');
+    Route::get('/login/out','logout')->name('signOut');
+});
 
 // menu
 Route::view('/index', 'index')->name('menu');
@@ -34,6 +36,7 @@ Route::controller(RegisterControler::class)->group(function(){
 
     Route::get('/accounts_L','index')->name('accountModule');
     Route::get('/account_C','create')->name('accountCreate');
+    Route::get('/account_/{id}','show')->name('accountShow');
     Route::get('/account_M/{id}','edit')->name('accountEdit');
 
 });
@@ -44,8 +47,11 @@ Route::resource('/sametegrity',RegisterControler::class);
 Route::controller(PatientsController::class)->group(function(){
     Route::get('/patients_L','index')->name('patientModule');
     Route::get('/patient_C','create')->name('patientCreate');
-    Route::get('/patient_/{id}','show')->name('patientShow');
-    Route::get('/patient_M/{id}','edit')->name('patientEdit');
+    Route::post('/patient_C/Save','store')->name('patientSave');
+    Route::get('/patient_/{patient}','show')->name('patientShow');
+    Route::get('/patient_M/{patient}','edit')->name('patientEdit');
+    Route::put('/patient_M/Update','udapte')->name('patientUpdate');
+
 });
 Route::resource('/patients',PatientsController::class);
 //

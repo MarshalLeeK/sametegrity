@@ -16,19 +16,22 @@ html, body {
         overflow-y: auto;
         overflow-x: hidden;
         background-color: white;
-        position: relative;
     }
 
+body {
+    zoom: 80%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 footer {
-        position: fixed;
+        position: absolute;
         left: 0;
         bottom: 0;
-        height: 20;
         width: 100%;
         background-color: #0a4275;
     }  
 
-#navbar {   
+#navbar {
         width: 100%;
         background-color: var(--NavBackGround);
         }
@@ -148,7 +151,17 @@ thead {
     color: var(--NavBackGround);
     }
 
-Button .bi {   
-        font-size: 1.2rem;
+#buttonGrid .bi {
+        font-size: 80px;
         color: var(--Iwhite);
         }
+#buttonGrid .btn {
+    background-color: var(--IDarLigthkBlue);
+    }
+
+
+.modal-backdrop{
+    
+    height: 100%;
+    width: 100%;   
+}

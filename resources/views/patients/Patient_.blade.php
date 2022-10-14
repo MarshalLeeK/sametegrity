@@ -1,7 +1,6 @@
 <x-header
 hd-title="Actualización Paciente"
-hd-meta-description="Actualización Paciente"
->
+hd-meta-description="Actualización Paciente">
 <form class="p-2 form h-100">
         <div class="container bg-light">
             <main>

@@ -1,26 +1,22 @@
 <x-header
 hd-title="Nuevo Paciente"
-hd-meta-description="Nuevo Paciente"
->
-<form id="patientform" action="{{ route('patients.store') }}" method="POST" class="p-2 form h-100" enctype="multipart/form-data">
+hd-meta-description="Nuevo Paciente">
+<form id="patientform" action="{{ route('patientSave') }}" method="POST" class="p-2 form h-100" enctype="multipart/form-data">
     @csrf
         <div class="container bg-light">
             <main>
                 <div class="text-center">
-                    <h1  class=""><span class="w-100">Creación de Paciente</span></h1>
+                    <h1  class=""><span class="w-100">NUEVO PACIENTE</span></h1>
                     <hr class="my-1">                
                 </div>
                 <div class="row g-12">
                     <div class="col-md-12 col-lg-12">
-                        <h4 class="mb-3">Datos básicos</h4>
-                        <p class="lead">Por favor ingrese los datos relacionados al paciente</p>
-                        <hr class="my-1 pb-1">
                         <div class="row mt-g-3  p-2">
 
                             <div class="row-flex col-sm-2 d-inline-flex justify-content-center">
                                 <div class="avatar-upload">
                                     <label class="avatar-preview"for="imageUpload">
-                                        <img src="{{ URL::asset('img/bluebanner.png') }}"
+                                        <img src="{{ URL::asset('img/DefaultPhoto.png')}}"
                                         alt="Logo Generado forma generica" title="Cick para cargar imagen"
                                         class="img-fluid" id="imagePreview">
                                     </label>

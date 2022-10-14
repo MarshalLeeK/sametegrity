@@ -28,8 +28,7 @@ class PatientsRequest extends FormRequest
             'dni'=>'required',
             'name'=>'required|min:3',
             'lastname'=>'required|min:3',
-            'borndate'=>'required',
-            'z_xOne'=>'required'
+            'borndate.required'=>'La fecha de nacimiento es requerida'
         ];
     }
 }

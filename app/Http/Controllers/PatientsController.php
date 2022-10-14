@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Models\Patients;
 use App\Models\TypeDocs;
 use Illuminate\Http\Request;
+use App\Http\Requests\PatientsRequest;
+
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
@@ -50,10 +52,17 @@ class PatientsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PatientsRequest $request)
     {
         //
 
+        $request->validate([
+                'dni'=>'required',
+                'name'=>'required|min:3',
+                'lastname'=>'required|min:3',
+                'borndate.required'=>'La fecha de nacimiento es requerida'
+            ]);
+        // $row = $request->validate();
         //Crear pacientes
         $uuid = Str::uuid();
 
@@ -138,10 +147,11 @@ class PatientsController extends Controller
      * @param  \App\Models\Patients  $patients
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show( Patients $patient)
     {
-        //
-        $patient = Patients::findOrFail($id);
+        //cosulta a paciente [Metodo anterior]
+        // $patient = Patients::findOrFail($id);
+        //consulta tipos documento
         $typeDocs = TypeDocs::get();
         return view('patients.Patient_',compact('patient','typeDocs'));
     }
@@ -152,10 +162,10 @@ class PatientsController extends Controller
      * @param  \App\Models\Patients  $patients
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Patients $patient)
     {
-        //cosulta a pacientes
-        $patient = Patients::findOrFail($id);
+        //cosulta a paciente [Metodo anterior]
+        // $patient = Patients::findOrFail($id);
         //consulta tipos documento
         $typeDocs = TypeDocs::get();
 
@@ -172,6 +182,7 @@ class PatientsController extends Controller
     public function update(Request $request, $id)
     {
         //
+        
         $patient = Patients::findOrFail($id);
         $patient->documenttype = $request->input('tdoc');
         $patient->dni = $request->input('dni');

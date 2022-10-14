@@ -19,20 +19,25 @@
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="http://momentjs.com/downloads/moment.min.js"></script>
-
+    <link rel="icon" href="{{ URL::asset('img/bluebanner.png') }}">
     <title>SAMEIN - {{ $hdTitle ?? 'ND' }}</title>
     
 </head>
 <body>
 
-    @if ( Request::Path() != '/')
-        <x-layouts.navbar />
+    @php
+        $route = Str::upper( Str::substr( Route::current()->uri ,-1 ) )
+    @endphp
+
+    @if ( $route != '/')
+        <x-layouts.navbar :route="$route"/>
     @endif
 
     {{ $slot }}
     
     @if ( Request::Path() != '/' )
-        <x-footer />
+    <br>
+        <x-footer/>
     @endif
     
 </body>

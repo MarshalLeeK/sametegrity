@@ -20,7 +20,7 @@ class RegisterControler extends Controller
         $columns=['Documento','Nombre','Apellidos','Email','Nombre Usuario'];
         $searchbox = trim($request->get('userseach'));
         $accounts = DB::table('users')
-                        ->select('id','name','lastname','email','username','dni')
+                        ->select('id','dni','name','lastname','email','username')
                         ->where( 'name','LIKE','%'.$searchbox.'%')
                         ->orWhere( 'lastname','LIKE','%'.$searchbox.'%')
                         ->orderBy( 'dni','asc')
@@ -72,9 +72,10 @@ class RegisterControler extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show($id)
     {
-        return view('login');
+        $user=User::findOrFail($id);
+        return view('accountModule.account_',compact('user'));
     }
 
 
