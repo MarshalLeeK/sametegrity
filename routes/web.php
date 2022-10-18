@@ -4,6 +4,7 @@ use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterControler;
 use App\Http\Controllers\PatientsController;
+use App\Http\Controllers\DiagnosisController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,9 +55,20 @@ Route::controller(PatientsController::class)->group(function(){
 
 });
 Route::resource('/patients',PatientsController::class);
-//
 
-//** Pruebas */
+//Diagnosis Module
+Route::controller(Diagnosiscontroller::class)->group(function(){
+    Route::get('/diagnosticos_L','index')->name('diagnosisModule');
+    Route::get('/diagnostico_C','create')->name('diagnosisCreate');
+    Route::post('/diagnostico_C/Save','store')->name('diagnosisSave');
+    Route::get('/diagnostico_/{diagnostic}','show')->name('diagnosisShow');
+    Route::get('/diagnostico_M/{diagnostic}','edit')->name('diagnosisEdit');
+    Route::put('/diagnostico_M/Update','')->name('diagnosisUpdate');
+
+});
+// Route::resource('/diagnostico',Diagnosiscontroller::class);
+
+// Pruebas 
 Route::get('/apitest',function(){
     return view( 'patients.test');
 })->name('apitest');

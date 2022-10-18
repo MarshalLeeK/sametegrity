@@ -35,8 +35,6 @@ class loginrequest extends FormRequest
         $username = $this->get('username');
         $password = bcrypt($this->get('password'));
 
-        // return dd([ 'username' => $username ,'password'=> $password]);
-
         if( $this->isMail($username) ){             
             return['email'=> $username,'password' => $password];
          }
@@ -45,7 +43,7 @@ class loginrequest extends FormRequest
 
     public function isMail($value){
 
-        $factory = $this->container->make(ValidationFactory::class);
+        $factory = $this->container->make(ValidationFactory::class );
         return !$factory->make(['username'=>$value],['username'=>'email'])->fails();
         
     } 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Patients;
 use App\Models\TypeDocs;
+
 use Illuminate\Http\Request;
 use App\Http\Requests\PatientsRequest;
 

@@ -7,6 +7,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Database\Seeders\PatientsSeeder;
 use Database\Seeders\UsersSeeder;
+use Database\Seeders\DiagnosisSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -20,5 +21,6 @@ class DatabaseSeeder extends Seeder
         $this->call(PatientsSeeder::class);
         $this->call(UsersSeeder::class);
         $this->call(TypeDocsSeeder::class);
+        $this->call(DiagnosisSeeder::class);
     }
 }

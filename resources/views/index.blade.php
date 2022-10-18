@@ -107,9 +107,9 @@ hd-description="MENU"
                         </div>
                         <div class="grid col-2 align-content-center justify-content-center">
                             <div class="btn btn-primary border-secondary shadow">
-                                <a href="{{ route('accountModule')}}" class="text-white" title="Administración">
+                                <a href="{{ route('diagnosisModule')}}" class="text-white" title="Diagnósticos">
                                     <i class="bi bi-x-diamond-fill"></i>
-                                    <label class="custom-control-label text-white" ><b>Administración</b></label>
+                                    <label class="custom-control-label text-white" ><b>Diagnósticos</b></label>
                                 </a>
     
                             </div>

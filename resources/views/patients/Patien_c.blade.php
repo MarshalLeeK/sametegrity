@@ -5,10 +5,9 @@ hd-meta-description="Nuevo Paciente">
     @csrf
         <div class="container bg-light">
             <main>
-                <div class="text-center">
-                    <h1  class=""><span class="w-100">NUEVO PACIENTE</span></h1>
-                    <hr class="my-1">                
-                </div>
+                <x-layouts.tittlebar
+                class="row h-100 text-center text-white"
+                alias="PACIENTE"/>
                 <div class="row g-12">
                     <div class="col-md-12 col-lg-12">
                         <div class="row mt-g-3  p-2">

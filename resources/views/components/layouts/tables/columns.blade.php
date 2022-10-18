@@ -1,4 +1,4 @@
 @foreach ($columns as $column )
-    <th> {{ $column }}</th>
+    <th> {{ Str::upper($column) }}</th>
 @endforeach
-<th class="text-center">Opciones</th>
+<th class="text-center">OPCIONES</th>

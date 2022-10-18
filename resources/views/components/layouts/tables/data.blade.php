@@ -11,10 +11,13 @@
                 @if ( $key == 'id')
                     <td hidden> {{ $column }} </td>
                 @elseif ($key == 'gender')   
-                    <td class="align-middle"> <strong>{{ $column == '0' ? "Mujer" : "Hombre" }}</strong> </td>
+                    <td class="align-middle"> <strong>{{ $column == '0' ? "MUJER" : "HOMBRE" }}</strong> </td>
+                @elseif ($key == 'z_xOne')   
+                    <td class="align-middle"> <strong>{{ $column == '0' ? "INACTIVO" : "ACTIVO" }}</strong> </td>
                 @else
-                    <td class="align-middle"> <strong>{{ $column }} </strong></td>
+                    <td class="align-middle"> <strong>{{ Str::upper($column) }} </strong></td>
                 @endif
+                
             @endforeach
 
             <td>

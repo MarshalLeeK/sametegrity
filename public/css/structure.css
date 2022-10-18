@@ -20,7 +20,7 @@ html, body {
 
 body {
     zoom: 80%;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: system-ui,Arial, Helvetica, sans-serif;
 }
 
 footer {
@@ -30,6 +30,11 @@ footer {
         width: 100%;
         background-color: #0a4275;
     }  
+
+#HForm {
+        background-color: var(--NavBackGround);
+        
+    }
 
 #navbar {
         width: 100%;
