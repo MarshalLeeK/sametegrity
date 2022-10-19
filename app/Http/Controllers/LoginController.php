@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 use App\Http\Requests\loginrequest;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\User;
 
 class LoginController extends Controller
 {
@@ -21,14 +23,19 @@ class LoginController extends Controller
         }
 
         $user = Auth::getProvider()->retrieveByCredentials($credentiales);
+        $module='menu';
+
 
         Auth::login($user);
 
-        return $this->authenticated($request,$user);
+        return $this->authenticated($request,$user,$module);
     }
 
-    public function authenticated (Request $request,$user){
-        return redirect()->to('index');
+    public function authenticated (Request $request,$user,$module){
+        
+        // return redirect()->route('profile', ['id' => 1]);
+        return redirect()->route('menu');
+
     }
 
     public function logout (Request $request){

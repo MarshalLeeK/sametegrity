@@ -12,26 +12,28 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 
 class DiagnosisController extends Controller
+
 {
+
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response 
      */
     public function index( Request $request )
     {
 
-        $columns = ['Código','Nombre','Descripción','','estado'];
+        $module = 'diagnosis';
+        $columns = ['Código','Nombre','Descripción','Observación','estado'];
         $searchbox = trim($request->get('searchbox'));
         $diagnosis = DB::table('diagnoses')
                     ->select('id','code','name','description','observation','z_xOne')
                     ->where('code','LIKE','%'. $searchbox .'%')
                     ->orWhere('name','LIKE','%'. $searchbox .'%')
                     ->orWhere('description','LIKE','%'. $searchbox .'%')
-                    ->orWhere('observation','LIKE','%'. $searchbox .'%')
                     ->orderBy('code')
                     ->paginate(18);
-        return view('diagnosis.diagnosis_l',compact('columns','searchbox','diagnosis'));
+        return view('diagnosis.diagnosis_l',compact('columns','searchbox','diagnosis','module'));
 
     }
 
@@ -43,8 +45,8 @@ class DiagnosisController extends Controller
     public function create()
     {
         //
-
-        return view('diagnosis.diagnosis_c');
+        $module = 'diagnosis';
+        return view('diagnosis.diagnosis_c',compact('module'));
     }
 
     /**
@@ -55,6 +57,8 @@ class DiagnosisController extends Controller
      */
     public function store(StorediagnosisRequest $request)
     {
+        $module = 'diagnosis';
+        $_SESSION['module'] = 'diagnosis';
      
         $uuid = Str::uuid();
         $diagnosis = new diagnosis();
@@ -65,7 +69,8 @@ class DiagnosisController extends Controller
         $diagnosis->observation = $request->input('observation');
         $diagnosis->save();
 
-        return redirect()->route('diagnosisModule');
+        return view('diagnosis.diagnosis_',compact('diagnosis','module'));
+
     }
 
     /**
@@ -74,9 +79,11 @@ class DiagnosisController extends Controller
      * @param  \App\Models\diagnosis  $diagnosis
      * @return \Illuminate\Http\Response
      */
-    public function show(diagnosis $diagnosis)
+    public function show($id)
     {
-        //
+        $module = 'diagnosis';
+        $diagnosis = diagnosis::findOrFail($id);
+        return view('diagnosis.diagnosis_',compact('diagnosis','module'));
     }
 
     /**
@@ -85,9 +92,11 @@ class DiagnosisController extends Controller
      * @param  \App\Models\diagnosis  $diagnosis
      * @return \Illuminate\Http\Response
      */
-    public function edit(diagnosis $diagnosis)
+    public function edit( diagnosis $diagnosis )
     {
-        //
+        // return redirect()->route('accountEdit')
+        return view('diagnosis.diagnosis_',compact('diagnosis'));
+
     }
 
     /**

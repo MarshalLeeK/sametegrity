@@ -19,11 +19,25 @@ class StorediagnosisRequest extends FormRequest{
      *
      * @return array<string, mixed>
      */
-    public function rules()
+    public function rules(){
+        return [
+                'code'=>'required|unique:diagnoses,code|min:4',
+                'description'=>'required|min:4'
+            ];
+    }
+
+    //Modificación de atributos.
+    public function attributes()
     {
         return [
-            'code'=>'required|unique:diagnoses,code',
-            'description'=>'required|min:4'
-        ];
+            'code'=>'Código del diagnóstico'  
+            ];
+    }
+
+    //Modificación mensajes de error.
+    public function messages()
+    {
+     return[
+        ];   
     }
 }

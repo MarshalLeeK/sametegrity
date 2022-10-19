@@ -1,5 +1,5 @@
-<div class="row">
-    <form action="{{route($module.'Module')}}" method="GET">
+<div class="row m-1">
+    <form action="{{route($module)}}" method="GET">
     @csrf
         <div class="d-inline-flex flex-row col-12 mt-2">
             <div class="col-sm-4">

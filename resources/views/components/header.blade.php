@@ -22,21 +22,25 @@
     <link rel="icon" href="{{ URL::asset('img/bluebanner.png') }}">
     <title>SAMEIN - {{ $hdTitle ?? 'ND' }}</title>
     
-</head>
+</head> 
 <body>
 
     @php
-        $route = Str::upper( Str::substr( Route::current()->uri ,-1 ) )
+        // $route = Str::upper( Str::substr( Route::current()->uri ,-1 ) )    
+        $route = Route::current()->uri    
     @endphp
+{{-- {{ $route }} --}}
 
-    @if ( $route != '/')
-        <x-layouts.navbar :route="$route"/>
+    @if ( Route::current()->uri != '/')
+        <x-layouts.navbar 
+        :route="Route::current()->uri"
+        />
     @endif
-
-    {{ $slot }}
     
-    @if ( Request::Path() != '/' )
-    <br>
+    {{ $slot }}
+
+    @if ( Route::current()->uri != '/' )
+        <br>
         <x-footer/>
     @endif
     

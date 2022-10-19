@@ -8,16 +8,18 @@
         <tr>
             @foreach ( $row as $key => $column )
 
-                @if ( $key == 'id')
-                    <td hidden> {{ $column }} </td>
-                @elseif ($key == 'gender')   
-                    <td class="align-middle"> <strong>{{ $column == '0' ? "MUJER" : "HOMBRE" }}</strong> </td>
-                @elseif ($key == 'z_xOne')   
-                    <td class="align-middle"> <strong>{{ $column == '0' ? "INACTIVO" : "ACTIVO" }}</strong> </td>
-                @else
-                    <td class="align-middle"> <strong>{{ Str::upper($column) }} </strong></td>
-                @endif
-                
+            <td {{ $key == 'id' ? 'hidden' : 'class="align-middle text-muted"'; }} > 
+                <strong>
+                    @if ( $key == 'gender')
+                        {{ $column == '0' ? "MUJER" : "HOMBRE" }}
+                    @elseif ($key == 'z_xOne')   
+                        {{ $column == '0' ? "INACTIVO" : "ACTIVO" }}
+                    @else
+                        {{ Str::upper($column) }} 
+                    @endif
+                </strong>
+            </td>
+
             @endforeach
 
             <td>

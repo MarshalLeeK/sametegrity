@@ -90,7 +90,12 @@ tbody {
         /*Bootsrap var*/
         --bs-table-striped-bg: #0a42750d ;
         }
-      
+
+tbody , .table-striped>tbody>tr:nth-of-type(odd)>* {
+             color: #0c1360c4;
+        }        
+
+
 thead {
         background-color: var(--IDarkBlue);
         }

@@ -12,9 +12,8 @@ class diagnosis extends Model
     use HasFactory;
 
     protected $primaryKey = "id";
-
+   
     protected $fillable = [
-
         'code',
         'name',
         'description',
@@ -28,6 +27,12 @@ class diagnosis extends Model
             get: fn($value) => strtoupper(trim($value)),
             set: fn($value) => strtoupper(trim($value))
         );}
+        
+    // public function code(): Attribute{
+    //     return new Attribute(
+    //         get: fn($value) => strtoupper(trim($value)),
+    //         set: fn($value) => strtoupper(trim($value))
+    //     );}
     
     public function description(): Attribute{
         return new Attribute(

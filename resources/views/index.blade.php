@@ -1,15 +1,11 @@
 <x-header
 hd-title="MENU"
 hd-description="MENU"
+{{-- :module="$module" --}}
 />
-
-
-{{-- @extends('components.footer') --}}
-
-    <head>
+<head>
     <!-- Fonts -->
         <link rel="stylesheet" href="{{URL::asset('css/indexLv.css')}}">
-        {{-- @include('components.navbar') --}}
     </head>
 <body>   
     <div class="container-fluid adjust-content-center mt-3">
@@ -107,7 +103,7 @@ hd-description="MENU"
                         </div>
                         <div class="grid col-2 align-content-center justify-content-center">
                             <div class="btn btn-primary border-secondary shadow">
-                                <a href="{{ route('diagnosisModule')}}" class="text-white" title="Diagnósticos">
+                                <a href="{{ route('diagnosis')}}" class="text-white" title="Diagnósticos">
                                     <i class="bi bi-x-diamond-fill"></i>
                                     <label class="custom-control-label text-white" ><b>Diagnósticos</b></label>
                                 </a>

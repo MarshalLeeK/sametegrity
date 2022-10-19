@@ -30,11 +30,12 @@ Route::controller(LoginController::class)->group(function(){
 });
 
 // menu
-Route::view('/index', 'index')->name('menu');
+Route::get('/index',function(){
+    return view('index');
+})->name('menu');
 
 //Account Module
 Route::controller(RegisterControler::class)->group(function(){
-
     Route::get('/accounts_L','index')->name('accountModule');
     Route::get('/account_C','create')->name('accountCreate');
     Route::get('/account_/{id}','show')->name('accountShow');
@@ -57,15 +58,20 @@ Route::controller(PatientsController::class)->group(function(){
 Route::resource('/patients',PatientsController::class);
 
 //Diagnosis Module
+
+
 Route::controller(Diagnosiscontroller::class)->group(function(){
-    Route::get('/diagnosticos_L','index')->name('diagnosisModule');
+    Route::get('/diagnosticos_L','index')->name('diagnosis');
     Route::get('/diagnostico_C','create')->name('diagnosisCreate');
     Route::post('/diagnostico_C/Save','store')->name('diagnosisSave');
-    Route::get('/diagnostico_/{diagnostic}','show')->name('diagnosisShow');
-    Route::get('/diagnostico_M/{diagnostic}','edit')->name('diagnosisEdit');
+    Route::get('/diagnostico_/{diagnosis}','show')->name('diagnosisShow');
+    Route::get('/diagnostico_M/{diagnosis}','edit')->name('diagnosisEdit');
     Route::put('/diagnostico_M/Update','')->name('diagnosisUpdate');
 
 });
+
+
+
 // Route::resource('/diagnostico',Diagnosiscontroller::class);
 
 // Pruebas 
