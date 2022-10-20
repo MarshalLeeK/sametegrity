@@ -1,74 +1,86 @@
-<x-header>
-    <form action="{{ route('sametegrity.update',$user->id) }}" method="POST" class="p-2 form h-100">
+<x-header
+hd-title="Usuario"
+hd-meta-description="Usuario"
+:module="$module"
+:view="$view"
+:row="$user"
+>
+    <body>
+    <div action="{{ route($module.'Save') }}" method="POST" class="p-2 form h-100">
     @csrf
-    @method('PUT')
-        <div class="container bg-light h-100">
-            <main class="my-4">
-                <div class="py-5 text-center" >
-                    <h1  class="text-success">Actualización de usuarios</h1>
-                    <hr class="my-1">
-                </div>
+        <div class="container bg-light border">
+                <x-layouts.tittlebar
+                class="row h-100 text-center text-white"
+                alias="USUARIO"
+                action='DATOS'/>
                 <div class="row g-12 h-100">
                     <div class="col-md-12 col-lg-12">
-                        <h4 class="mb-3">Datos básicos</h4>
-                        <p class="lead">Por favor ingrese los datos relacionados al usuario</p>
-                        <hr class="my-1">
                         <div class="row mt-g-3">
-                            <div class="col-sm-6">
-                                <label for="dni" class="form-label">Número Documento</label>
-                                <input type="text" class="form-control" name="dni" placeholder="" value="{{$user->dni}}" required="" 
-                                oninvalid="this.setCustomValidity('Por favor ingrese un número de documento valido')" oninput="setCustomValidity('')">
+                            <div class="col-sm-2">
+                                <label for="tdoc" class="form-label">Tipo Documento</label>
+                                <select class="form-select" name="tdoc" id="tdoc" disabled>
+                                    @foreach ( $typeDocs as $typeDoc )
+                                        <option value="{{ $user->documenttype }}" {{ $typeDoc->id == $user->documenttype ? "selected" : '' ; }} > {{ $typeDoc->name }} </option>
+                                    @endforeach
+                                </Select>
                             </div>
+
+                            <div class="col-sm-4">
+                                <label for="dni" class="form-label">Número Documento</label>
+                                <input type="number" class="form-control" name="dni" id="dni" placeholder="Documento" value="{{ $user->dni }}" disabled>
+                            </div>
+
                             <div class="col-sm-6">
                                 <label for="privilegeSet" class="form-label">Privilegio Asignado</label>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <label class="input-group-text" for="inputGroupSelect01">Rol</label>
                                     </div>
-                                    <select type="text" class="form-control" name="privilegeSet" placeholder="" value="" required="" 
-                                    oninvalid="this.setCustomValidity('Por favor ingrese un cargo valido')" oninput="setCustomValidity('')">
-                                        <option value="0">Médico</option>
-                                        <option value="1">Enfermero</option>
-                                        <option value="2">Aux Contable</option>
-                                        <option value="3">Facturacion</option>
+                                    <select type="text" class="form-control" name="privilegeSet" id="privilegeSet" disabled>
+                                        <option value="0" {{ $user->privilegeSet == 0  ? 'selected' : '' ; }}>Estandar</option>
+                                        <option value="22"{{ $user->privilegeSet == 22 ? 'selected' : '' ; }}>Root</option>
+                                        <option value="1" {{ $user->privilegeSet == 1  ? 'selected' : '' ; }}>Médico</option>
+                                        <option value="2" {{ $user->privilegeSet == 2  ? 'selected' : '' ; }}>Enfermero</option>
+                                        <option value="3" {{ $user->privilegeSet == 3  ? 'selected' : '' ; }}>Aux Contable</option>
+                                        <option value="4" {{ $user->privilegeSet == 4  ? 'selected' : '' ; }}>Facturacion</option>
                                     </select>
+                                    @error('privilegeSet')
+                                        <small class="text-danger"><strong>*{{ $message }}</strong></small>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <label for="firstName" class="form-label">Nombre</label>
-                                <input type="text" class="form-control" name="name" placeholder="" value="{{$user->name}}" required="" 
-                                oninvalid="this.setCustomValidity('Por favor ingrese un nombre valido')" oninput="setCustomValidity('')">
+                                <input type="text" class="form-control" name="name" id="name" placeholder="" value="{{ $user->name }}" disabled>
                             </div>
                             <div class="col-sm-6">
                                 <label for="lastname" class="form-label">Apellido</label>
-                                <input type="text" class="form-control" name="lastname" placeholder="" value="{{$user->lastname}}" required="" 
-                                oninvalid="this.setCustomValidity('Por favor ingrese un apellido valido')" oninput="setCustomValidity('')">
+                                <input type="text" class="form-control" name="lastname" id="lastname" placeholder="" value="{{ $user->lastname }}" disabled>
                             </div>
                             <div class="col-sm-6">
                                 <label for="email" class="form-label">Correo Electronico</label>
-                                <input type="text" class="form-control" name="email" placeholder="" value="{{$user->email}}" required="" 
-                                oninvalid="this.setCustomValidity('Por favor ingrese un correo valido')" oninput="setCustomValidity('')">
+                                <input type="text" class="form-control" name="email" id="email" placeholder="Correo Electronico" value="{{ $user->email }}" disabled>
+                                @error('email')
+                                    <small class="text-danger"><strong>*{{ $message }}</strong></small>
+                                @enderror
                             </div>
                             <div class="col-6">
                                 <label for="username" class="form-label">Nombre de usuario</label>
                                 <div class="input-group has-validation">
                                     <span class="input-group-text">@</span>
-                                    <input type="text" class="form-control" name="username" placeholder="Username" value="{{$user->username}}" required=""
-                                        oninvalid="this.setCustomValidity('Por favor ingrese un Nombre de usuario valido')" oninput="setCustomValidity('')">
+                                    <input type="text" class="form-control" name="username" id="username" placeholder="Usuario" value="{{ $user->dni }}" disabled>
                                 </div>
                             </div>
                             <div class="col-6">
-                                <label for="address2" class="form-label">Contraseña <span class="text-muted"></span></label>
-                                <input type="password" class="form-control" name="password" placeholder="Contraseña">
+                                <label for="password" class="form-label">Contraseña <span class="text-muted"></span></label>
+                                <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña" value="{{ $user->password }}" disabled>
+                                @error('password')
+                                    <small class="text-danger"><strong>*{{ $message }}</strong></small>
+                                @enderror
                             </div> 
-                            <div class="col-6">
-                                <label for="address2" class="form-label">Confirmación Contraseña <span class="text-muted"></span></label>
-                                <input type="password" class="form-control" name="password_confirmation" placeholder="Confirmación Contraseña">
-                            </div>  
                             <hr class="my-4">
                             <div class="py-1 text-Left col-6">
                                 <h4>Modulos asignados</h4>
-                                <p class="lead">Listado Privilegios Asignados</p>
                             </div>
                             <div class="table-responsive g-12">
                                 <table class="table g-12">
@@ -153,17 +165,15 @@
                                     </tr>
                                     </tbody>          
                                 </table>
-                            </div>
-                            <hr class="my-2">
+                            </div>                           
                         </div>
                     </div>  
                 </div>
-            </main>
         </div>
-    </form>
+    </div>
 
     <script src="/docs/5.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
-    <script src="form-validation.js"></script>
+
 </x-header>
 <x-footer/>
 

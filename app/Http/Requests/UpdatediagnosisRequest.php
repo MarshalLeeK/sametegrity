@@ -13,7 +13,7 @@ class UpdatediagnosisRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,10 +21,24 @@ class UpdatediagnosisRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules()
+    public function rules(){
+        return [
+                'description'=>'required|min:4'
+            ];
+    }
+
+    //Modificación de atributos.
+    public function attributes()
     {
         return [
-            //
-        ];
+            'code'=>'Código del diagnóstico'  
+            ];
+    }
+
+    //Modificación mensajes de error.
+    public function messages()
+    {
+     return[
+        ];   
     }
 }

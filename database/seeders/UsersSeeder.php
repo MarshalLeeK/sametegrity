@@ -19,6 +19,7 @@ class UsersSeeder extends Seeder
         $user->id = '11';
         $user->dni = '000000000';
         $user->name = 'root';
+        $user->privilegeSet = '22';
         $user->documenttype = '13';
         $user->gender = 1 ;
         $user->lastname = 'samein';

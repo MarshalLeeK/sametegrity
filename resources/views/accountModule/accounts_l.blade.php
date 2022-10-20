@@ -1,4 +1,9 @@
-<x-header>
+<x-header
+hd-title="Usuarios"
+hd-description="Módulo de Usuarios"
+:module="$module"
+:view="$view"
+>
     <x-layouts.titleBanner 
     title-module="USUARIOS"
     />
@@ -6,7 +11,8 @@
     <div class="container-fluid">
         <x-layouts.upBar 
          :rows="$accounts"
-         module="account"
+         :searchbox="$searchbox"
+         :module="$module"
         />
             <div class="col-xl-12 mt-1 mb-2">
                 <div class="table-responsive">

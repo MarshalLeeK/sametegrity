@@ -21,25 +21,26 @@
     <script src="http://momentjs.com/downloads/moment.min.js"></script>
     <link rel="icon" href="{{ URL::asset('img/bluebanner.png') }}">
     <title>SAMEIN - {{ $hdTitle ?? 'ND' }}</title>
-    
-</head> 
-<body>
-
-    @php
-        // $route = Str::upper( Str::substr( Route::current()->uri ,-1 ) )    
+   
+   @php
         $route = Route::current()->uri    
     @endphp
-{{-- {{ $route }} --}}
 
-    @if ( Route::current()->uri != '/')
+</head> 
+<body>
+    
+    @if ( $route != '/')
         <x-layouts.navbar 
-        :route="Route::current()->uri"
+        :route="$route ?? 'menu'"
+        :view="$view ?? 'L'"
+        :module="$module ?? 'MDL-ND'"
+        :row="$row ?? 'ROW-ND'"
         />
     @endif
     
     {{ $slot }}
 
-    @if ( Route::current()->uri != '/' )
+    @if ( $route != '/' )
         <br>
         <x-footer/>
     @endif

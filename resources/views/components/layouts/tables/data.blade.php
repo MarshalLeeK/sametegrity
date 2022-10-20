@@ -15,17 +15,19 @@
                     @elseif ($key == 'z_xOne')   
                         {{ $column == '0' ? "INACTIVO" : "ACTIVO" }}
                     @else
-                        {{ Str::upper($column) }} 
+                        {{ Str::upper(trim($column)) }}
+
                     @endif
                 </strong>
             </td>
 
             @endforeach
 
+
             <td>
                 <div class="row col-sm-12 justify-content-around">
                     <button class="btn btn-primary btn-md col-sm-4 text-white" onclick="location.href = '{{ route( $module.'Show', $row->id )}}';">
-                        <i class="bi bi-textarea-resize" title="Ver"></i>
+                        <i class="bi bi-eye"></i>
                     </button>
                     <button class="btn btn-warning btn-md col-sm-4 text-white" onclick="location.href = '{{ route( $module.'Edit', $row->id )}}';">
                         <i class="bi bi-pen-fill" title="modificar"></i>
@@ -39,6 +41,7 @@
 
         <x-layouts.commitdelete 
             :row="$row"
+            :module="$module"
         />
     @endforeach
 @endif

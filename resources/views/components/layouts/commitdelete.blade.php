@@ -1,6 +1,6 @@
 <div class="modal fade" id="modal-delete-{{$row->id}}" tabindex="-1" aria-labelledby="" aria-hidden="true" >
     <div class="modal-dialog">
-      <form action="{{route('patients.destroy', $row->id)}}" method="POST">
+      <form action="{{route( $module.'.destroy', $row->id)}}" method="POST">
           @csrf
           @method('DELETE')
           <div class="modal-content">
@@ -9,7 +9,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                ¡Está seguro de eliminar al registro: {{$row->name." ". isset($row->lastname)?$row->lastname:''; }
+                ¡Está seguro de eliminar al registro: {{$row->name}}
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>

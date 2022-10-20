@@ -18,6 +18,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('dni');
+            $table->string('privilegeSet')->default(0);
             $table->string('gender')->nullable();
             $table->string('documenttype');
             $table->string('lastname');

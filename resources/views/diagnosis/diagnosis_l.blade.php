@@ -1,7 +1,9 @@
 <x-header 
 hd-title="Diagnósticos"
 hd-description="Módulo de diagnósticos"
-:module="$module">
+:module="$module"
+:view="$view" 
+>
 
     <x-layouts.titleBanner 
     title-Module="DIAGNÓSTICOS"

@@ -104,9 +104,10 @@ thead {
         float: right;
       }
 
-#tittleModule{        
-        background-color:var(--NavBackGround);
-        color: white;
+#tittleModule{
+        /* background-color:var(--NavBackGround); */
+        color: var(--NavBackGround);
+        border-color: forestgreen;
         }
 
 .avatar {

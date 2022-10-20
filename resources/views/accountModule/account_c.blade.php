@@ -1,83 +1,93 @@
-<x-header>
+<x-header
+hd-title="Nuevo Usuario"
+hd-meta-description="Nuevo Usuario"
+:module="$module"
+:view="$view"
+>
     <body>
-    <form action="{{ route('sametegrity.store') }}" method="POST" class="p-2 form h-100">
+    <form action="{{ route($module.'Save') }}" method="POST" class="p-2 form h-100">
     @csrf
-        <div class="container bg-light h-100">
+        <div class="container bg-light border">
             <main>
-                <div class="text-center" >
-                    <h1  class="">Registro de usuarios</h1>
-                    <hr class="my-1">
-                </div>
+                <x-layouts.tittlebar
+                class="row h-100 text-center text-white"
+                alias="USUARIO"
+                action='NUEVO'/>
                 <div class="row g-12 h-100">
                     <div class="col-md-12 col-lg-12">
-                        <h4 class="mb-3">Datos básicos</h4>
-                        <p class="lead">Por favor ingrese los datos relacionados al usuario</p>
-                        <hr class="my-1">
                         <div class="row mt-g-3">
                             <div class="col-sm-2">
                                 <label for="tdoc" class="form-label">Tipo Documento</label>
-                                <select class="form-select" name="tdoc" id="tdoc" aria-label=""
-                                oninvalid="this.setCustomValidity('Por favor ingrese un tipo de documento de documento valido')" 
-                                oninput="setCustomValidity('')"
-                                required >
-                                {{-- LV --}}
+                                <select class="form-select" name="tdoc" id="tdoc" value="{{ old('tdoc') }}" required >
                                     @foreach ( $typeDocs as $typeDoc )
-                                    <option value="{{ $typeDoc->id }}" {{ $typeDoc->id == 13 ? "selected" : '' ; }} > {{ $typeDoc->name }} </option>
+                                        <option value="{{ $typeDoc->id }}" {{ $typeDoc->id == old('privilegeSet') ? "selected" : '' ; }} > {{ $typeDoc->name }} </option>
                                     @endforeach
                                 </Select>
                             </div>
+
                             <div class="col-sm-4">
                                 <label for="dni" class="form-label">Número Documento</label>
-                                <input type="text" class="form-control" name="dni" placeholder="" value="" required="" 
-                                oninvalid="this.setCustomValidity('Por favor ingrese un número de documento valido')" oninput="setCustomValidity('')">
+                                <input type="number" class="form-control" name="dni" id="dni" placeholder="Documento"  
+                                value="{{ old('dni') }}">
+                                @error('dni')
+                                    <small class="text-danger"><strong>*{{ $message }}</strong></small>
+                                @enderror
                             </div>
+
                             <div class="col-sm-6">
                                 <label for="privilegeSet" class="form-label">Privilegio Asignado</label>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <label class="input-group-text" for="inputGroupSelect01">Rol</label>
                                     </div>
-                                    <select type="text" class="form-control" name="privilegeSet" placeholder="" value="" required="" 
-                                    oninvalid="this.setCustomValidity('Por favor ingrese un cargo valido')" oninput="setCustomValidity('')">
-                                        <option class="text-muted" value=""> -- Asignar</option>
-                                        <option value="0">Root</option>
-                                        <option value="1">Médico</option>
-                                        <option value="2">Enfermero</option>
-                                        <option value="3">Aux Contable</option>
-                                        <option value="4">Facturacion</option>
+                                    <select type="text" class="form-control" name="privilegeSet" id="privilegeSet">
+                                        <option value="0" {{ old('privilegeSet') == 0  ? 'selected' : '' ; }}>Estandar</option>
+                                        <option value="22" {{ old('privilegeSet') == '22'  ? 'selected' : '' ; }}>Root</option>
+                                        <option value="1" {{ old('privilegeSet') == 1  ? 'selected' : '' ; }}>Médico</option>
+                                        <option value="2" {{ old('privilegeSet') == 2  ? 'selected' : '' ; }}>Enfermero</option>
+                                        <option value="3" {{ old('privilegeSet') == 3  ? 'selected' : '' ; }}>Aux Contable</option>
+                                        <option value="4" {{ old('privilegeSet') == 4  ? 'selected' : '' ; }}>Facturacion</option>
                                     </select>
+                                    @error('privilegeSet')
+                                        <small class="text-danger"><strong>*{{ $message }}</strong></small>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <label for="firstName" class="form-label">Nombre</label>
-                                <input type="text" class="form-control" name="name" placeholder="" value="" required="" 
-                                oninvalid="this.setCustomValidity('Por favor ingrese un nombre valido')" oninput="setCustomValidity('')">
+                                <input type="text" class="form-control" name="name" id="name" placeholder="" value="{{ old('name') }}" >
                             </div>
                             <div class="col-sm-6">
                                 <label for="lastname" class="form-label">Apellido</label>
-                                <input type="text" class="form-control" name="lastname" placeholder="" value="" required="" 
-                                oninvalid="this.setCustomValidity('Por favor ingrese un apellido valido')" oninput="setCustomValidity('')">
+                                <input type="text" class="form-control" name="lastname" id="lastname" placeholder="" value="{{ old('lastname') }}">
                             </div>
                             <div class="col-sm-6">
                                 <label for="email" class="form-label">Correo Electronico</label>
-                                <input type="text" class="form-control" name="email" placeholder="" value="" required="" 
-                                oninvalid="this.setCustomValidity('Por favor ingrese un correo valido')" oninput="setCustomValidity('')">
+                                <input type="text" class="form-control" name="email" id="email" placeholder="Correo Electronico" value="{{ old('email') }}">
+                                @error('email')
+                                    <small class="text-danger"><strong>*{{ $message }}</strong></small>
+                                @enderror
                             </div>
                             <div class="col-6">
                                 <label for="username" class="form-label">Nombre de usuario</label>
                                 <div class="input-group has-validation">
                                     <span class="input-group-text">@</span>
-                                    <input type="text" class="form-control" name="username" placeholder="Username" required=""
-                                        oninvalid="this.setCustomValidity('Por favor ingrese un Nombre de usuario valido')" oninput="setCustomValidity('')">
+                                    <input type="text" class="form-control" name="username" id="username" placeholder="Usuario" value="{{ old('dni') }}" readonly>
                                 </div>
                             </div>
                             <div class="col-6">
-                                <label for="address2" class="form-label">Contraseña <span class="text-muted"></span></label>
-                                <input type="password" class="form-control" name="password" placeholder="Contraseña">
+                                <label for="password" class="form-label">Contraseña <span class="text-muted"></span></label>
+                                <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña" value="{{ old('password') }}">
+                                @error('password')
+                                    <small class="text-danger"><strong>*{{ $message }}</strong></small>
+                                @enderror
                             </div> 
                             <div class="col-6">
-                                <label for="address2" class="form-label">Confirmación Contraseña <span class="text-muted"></span></label>
-                                <input type="password" class="form-control" name="password_confirmation" placeholder="Confirmación Contraseña">
+                                <label for="password_confirmation" class="form-label">Confirmación Contraseña <span class="text-muted"></span></label>
+                                <input type="password" class="form-control" name="password_confirmation" id="password_confirmation" placeholder="Confirmación Contraseña">
+                                @error('password_confirmation')
+                                    <small class="text-danger"><strong>*{{ $message }}</strong></small>
+                                @enderror
                             </div>  
                             <hr class="my-4">
                             <div class="py-1 text-Left col-6">
@@ -174,7 +184,7 @@
                             <hr >
                             <div class="row d-flex flex-row-reverse">
                                 <input type="submit" class="btn btn-primary btn-lg col-2 mx-1" Value="Guardar">
-                                <a type="button" class="btn btn-default btn-lg col-2 mx-1" href="{{ route('accountModule') }}">Cancelar</a>
+                                <a type="button" class="btn btn-default btn-lg col-2 mx-1" href="{{ route( $module ) }}">Cancelar</a>
                             </div>
                         </div>
                     </div>  
@@ -184,7 +194,8 @@
     </form>
 
     <script src="/docs/5.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
-    <script src="form-validation.js"></script>
+    <script src="{{asset('js/accountCrud.js')}}"></script>
+
 </x-header>
 <x-footer/>
 

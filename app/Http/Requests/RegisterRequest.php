@@ -24,12 +24,22 @@ class RegisterRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'required',
-            'lastname'=>'required',
+            'name'=>'required|min:3',
+            'lastname'=>'required|min:3',
+            'dni'=>'required|unique:users,dni',
+            'privilegeSet'=>'required',
             'email'=>'unique:users,email',
             'username'=>'required|unique:users,username',
-            'password'=>'required|min:8',
+            'password'=>'required|min:6',
             'password_confirmation'=>'required|same:password',
+        ];
+    }
+
+    public function attributes()
+    {
+        return[
+            'password'=>'Contraseña',
+            'password_confirmation'=>'Confirmación Contraseña'
         ];
     }
 }

@@ -23,17 +23,15 @@ class LoginController extends Controller
         }
 
         $user = Auth::getProvider()->retrieveByCredentials($credentiales);
-        $module='menu';
-
 
         Auth::login($user);
 
-        return $this->authenticated($request,$user,$module);
+        return $this->authenticated($request,$user);
+        
     }
 
-    public function authenticated (Request $request,$user,$module){
+    public function authenticated (Request $request,$user){
         
-        // return redirect()->route('profile', ['id' => 1]);
         return redirect()->route('menu');
 
     }

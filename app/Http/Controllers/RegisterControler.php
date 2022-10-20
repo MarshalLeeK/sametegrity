@@ -2,13 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+
 use App\Models\User;
 use App\Models\TypeDocs;
+use App\Http\Requests\RegisterRequest;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RegisterControler extends Controller
 {
+
+    private  $module='account';
+
     /**
      * Display a listing of the resource.
      *
@@ -16,17 +22,20 @@ class RegisterControler extends Controller
      */
     public function index( Request $request)
     {
-        
+     
+        $module = $this->module;
+        $view = 'L';
         $columns=['Documento','Nombre','Apellidos','Email','Nombre Usuario'];
+        
         $searchbox = trim($request->get('userseach'));
         $accounts = DB::table('users')
                         ->select('id','dni','name','lastname','email','username')
                         ->where( 'name','LIKE','%'.$searchbox.'%')
                         ->orWhere( 'lastname','LIKE','%'.$searchbox.'%')
                         ->orderBy( 'dni','asc')
-                        ->paginate(10);                        ;
+                        ->paginate(18);                        ;
 
-        return view('accountModule.accounts_l', compact('accounts','searchbox','columns'));
+        return view('accountModule.accounts_l', compact('accounts','searchbox','columns','module','view'));
     }
 
     /**
@@ -36,8 +45,10 @@ class RegisterControler extends Controller
      */
     public function create()
     {
+        $module = $this->module;
+        $view = 'C';
         $typeDocs = TypeDocs::get();
-        return view('accountModule.account_c',compact('typeDocs'));
+        return view('accountModule.account_c',compact('typeDocs','module','view'));
     }
 
     /**
@@ -46,23 +57,22 @@ class RegisterControler extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RegisterRequest $request)
     {
-        //Crear usuario
+
         $user = new User;
-        //establecer campos con el contenido del request
         $user->dni = $request->input('dni');
         $user->name = $request->input('name');
+        $user->privilegeSet = $request->input('privilegeSet');
         $user->documenttype = $request->input('tdoc');
         $user->gender = $request->input('gender');
         $user->lastname = $request->input('lastname');
         $user->email = $request->input('email');
         $user->username = $request->input('username');
         $user->password = $request->input('password');
-        //comando de guardado.
         $user->save();
-        //retonar vista
-        return redirect()->route('accountModule')->with('successs','Registro guardado satisfactoriamente');
+
+        return $this->saveRecord($user);
     }
 
     /**
@@ -72,17 +82,23 @@ class RegisterControler extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        $user=User::findOrFail($id);
-        return view('accountModule.account_',compact('user'));
+        // $user=User::findOrFail($id);
+        $typeDocs = TypeDocs::get();
+        $module = $this->module;
+        $view = '_';
+        return view('accountModule.account_',compact('user','module','view','typeDocs'));
     }
 
 
-    public function edit($id)
+    public function edit(User $user)
     {
-        $user=User::findOrFail($id);
-        return view('accountModule.account_m',compact('user'));
+        $module = $this->module;
+        $view = 'M';
+        return view('accountModule.account_m',compact('user','module','view'));
+        // $user=User::findOrFail($id);
+        // return view('accountModule.account_m',compact('user'));
     }
 
 
@@ -118,7 +134,11 @@ class RegisterControler extends Controller
     {
         $user= User::findOrFail($id);
         $user->delete();
-        return redirect()->route('accountModule');
+        return redirect()->route( $this->module);
+    }
+
+    public function saveRecord ($user){
+        return redirect()->route('accountShow',compact('user'));
     }
 
 }

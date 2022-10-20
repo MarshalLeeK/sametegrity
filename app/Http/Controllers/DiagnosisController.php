@@ -4,9 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\diagnosis;
 
-use Illuminate\Http\Request;
 use App\Http\Requests\StorediagnosisRequest;
-use App\Http\Requests\UpdatediagnosisRequest;
+use Illuminate\Http\Request;
 
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
@@ -14,6 +13,8 @@ use Illuminate\Support\Facades\DB;
 class DiagnosisController extends Controller
 
 {
+
+     private  $module='diagnosis';
 
     /**
      * Display a listing of the resource.
@@ -23,8 +24,10 @@ class DiagnosisController extends Controller
     public function index( Request $request )
     {
 
-        $module = 'diagnosis';
+        $module = $this->module;
+        $view = 'L';
         $columns = ['Código','Nombre','Descripción','Observación','estado'];
+
         $searchbox = trim($request->get('searchbox'));
         $diagnosis = DB::table('diagnoses')
                     ->select('id','code','name','description','observation','z_xOne')
@@ -33,8 +36,8 @@ class DiagnosisController extends Controller
                     ->orWhere('description','LIKE','%'. $searchbox .'%')
                     ->orderBy('code')
                     ->paginate(18);
-        return view('diagnosis.diagnosis_l',compact('columns','searchbox','diagnosis','module'));
 
+        return view('diagnosis.diagnosis_l',compact('columns','searchbox','diagnosis','module','view'));
     }
 
     /**
@@ -45,8 +48,9 @@ class DiagnosisController extends Controller
     public function create()
     {
         //
-        $module = 'diagnosis';
-        return view('diagnosis.diagnosis_c',compact('module'));
+        $module = $this->module;
+        $view = 'C';
+        return view('diagnosis.diagnosis_c',compact('module','view'));
     }
 
     /**
@@ -57,9 +61,6 @@ class DiagnosisController extends Controller
      */
     public function store(StorediagnosisRequest $request)
     {
-        $module = 'diagnosis';
-        $_SESSION['module'] = 'diagnosis';
-     
         $uuid = Str::uuid();
         $diagnosis = new diagnosis();
         $diagnosis->kp_uuid = $uuid;
@@ -68,8 +69,7 @@ class DiagnosisController extends Controller
         $diagnosis->description = $request->input('description');
         $diagnosis->observation = $request->input('observation');
         $diagnosis->save();
-
-        return view('diagnosis.diagnosis_',compact('diagnosis','module'));
+        return $this->saveRecord($diagnosis);
 
     }
 
@@ -79,11 +79,11 @@ class DiagnosisController extends Controller
      * @param  \App\Models\diagnosis  $diagnosis
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(diagnosis $diagnosis)
     {
-        $module = 'diagnosis';
-        $diagnosis = diagnosis::findOrFail($id);
-        return view('diagnosis.diagnosis_',compact('diagnosis','module'));
+        $module = $this->module;
+        $view = '_';
+        return view('diagnosis.diagnosis_',compact('diagnosis','module','view'));
     }
 
     /**
@@ -94,21 +94,30 @@ class DiagnosisController extends Controller
      */
     public function edit( diagnosis $diagnosis )
     {
-        // return redirect()->route('accountEdit')
-        return view('diagnosis.diagnosis_',compact('diagnosis'));
+        $module = $this->module;
+        $view = 'M';
+        return view('diagnosis.diagnosis_m',compact('diagnosis','module','view'));
 
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdatediagnosisRequest  $request
+     * @param  \App\Http\Requests\Request  $request
      * @param  \App\Models\diagnosis  $diagnosis
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatediagnosisRequest $request, diagnosis $diagnosis)
+    public function update(Request $request)
     {
-        //
+        $id = $request->id;
+        $diagnosis = diagnosis::findOrFail($id);
+        $diagnosis->code = $request->input('code');
+        $diagnosis->name = $request->input('name');
+        $diagnosis->description = $request->input('description');
+        $diagnosis->observation = $request->input('observation');
+        $diagnosis->save();
+        return $this->saveRecord($diagnosis);
+
     }
 
     /**
@@ -117,8 +126,16 @@ class DiagnosisController extends Controller
      * @param  \App\Models\diagnosis  $diagnosis
      * @return \Illuminate\Http\Response
      */
-    public function destroy(diagnosis $diagnosis)
+    public function destroy($id)
     {
-        //
+        $patients= diagnosis::findOrFail($id);
+        $patients->delete();
+        return redirect()->route( $this->module );
     }
+
+
+    public function saveRecord ($diagnosis){
+        return redirect()->route('diagnosisShow',compact('diagnosis'));
+    }
+    
 }

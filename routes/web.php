@@ -36,13 +36,14 @@ Route::get('/index',function(){
 
 //Account Module
 Route::controller(RegisterControler::class)->group(function(){
-    Route::get('/accounts_L','index')->name('accountModule');
+    Route::get('/accounts_L','index')->name('account');
     Route::get('/account_C','create')->name('accountCreate');
-    Route::get('/account_/{id}','show')->name('accountShow');
-    Route::get('/account_M/{id}','edit')->name('accountEdit');
-
+    Route::post('/account_C/Save','store')->name('accountSave');
+    Route::get('/account_/{user}','show')->name('accountShow');
+    Route::get('/account_M','edit')->name('accountEdit');
 });
-Route::resource('/sametegrity',RegisterControler::class);
+
+Route::resource('/account',RegisterControler::class);
 //
 
 //Account Module
@@ -52,7 +53,7 @@ Route::controller(PatientsController::class)->group(function(){
     Route::post('/patient_C/Save','store')->name('patientSave');
     Route::get('/patient_/{patient}','show')->name('patientShow');
     Route::get('/patient_M/{patient}','edit')->name('patientEdit');
-    Route::put('/patient_M/Update','udapte')->name('patientUpdate');
+    Route::put('/patient_M/Update','update')->name('patientUpdate');
 
 });
 Route::resource('/patients',PatientsController::class);
@@ -66,9 +67,10 @@ Route::controller(Diagnosiscontroller::class)->group(function(){
     Route::post('/diagnostico_C/Save','store')->name('diagnosisSave');
     Route::get('/diagnostico_/{diagnosis}','show')->name('diagnosisShow');
     Route::get('/diagnostico_M/{diagnosis}','edit')->name('diagnosisEdit');
-    Route::put('/diagnostico_M/Update','')->name('diagnosisUpdate');
+    Route::put('/diagnostico_M/Update/{id}','update')->name('diagnosisUpdate');
 
 });
+Route::resource('/diagnosis',Diagnosiscontroller::class);
 
 
 

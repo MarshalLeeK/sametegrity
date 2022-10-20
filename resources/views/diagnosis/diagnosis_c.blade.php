@@ -2,18 +2,18 @@
 hd-title="Nuevo Diagnóstico"
 hd-meta-description="Nuevo Diagnóstico"
 :module="$module"
+:view="$view"
 >
-
-    <form action="{{ route('diagnosisSave') }}" method="POST" class="p-2 form h-100" enctype="multipart/form-data">
+    <form action="{{ route( $module.'Save') }}" method="POST" class="p-2 form h-100" enctype="multipart/form-data">
     @csrf
         <div class="container bg-light border">
-            
             <x-layouts.tittlebar
                 class="row h-100 text-center text-white"
                 alias="DIAGNÓSTICO"
                 action='NUEVO'/>
 
             <div class="row">
+                
                 <div class="form-group col-6">
                     <label for="code">Código</label>
                     <input type="text" class="form-control" id="code" name="code" placeholder="Código" value="{{ old('code') }}">
@@ -41,12 +41,6 @@ hd-meta-description="Nuevo Diagnóstico"
             </div>
 
             <x-layouts.formSave :module="$module" />
-            {{-- <div class="row d-flex flex-row-reverse my-1">
-                <input type="submit" class="btn btn-primary btn-lg col-2 mx-1" Value="Guardar">
-                <a type="button" class="btn btn-secondary btn-lg col-2 mx-1" href="{{ route( $module.'Module') }}">Cancelar</a>
-            </div> --}}
         </div>  
-
     </form>   
-
 </x-header>

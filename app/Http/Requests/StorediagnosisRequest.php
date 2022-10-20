@@ -21,7 +21,7 @@ class StorediagnosisRequest extends FormRequest{
      */
     public function rules(){
         return [
-                'code'=>'required|unique:diagnoses,code|min:4',
+                'code'=>'required|unique:diagnoses,code|min:4|max:6',
                 'description'=>'required|min:4'
             ];
     }
