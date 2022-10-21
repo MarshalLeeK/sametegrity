@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Requests;
+
 use Illuminate\Foundation\Http\FormRequest;
 
-class PatientsRequest extends FormRequest
+class StorehistoriesRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -12,7 +13,7 @@ class PatientsRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return false;
     }
 
     /**
@@ -23,11 +24,7 @@ class PatientsRequest extends FormRequest
     public function rules()
     {
         return [
-            'dni'=>'required|unique:patients,dni',
-            'name'=>'required|min:3',
-            'lastname'=>'required|min:3',
-            'borndate'=>'required'
+            //
         ];
-
     }
 }

@@ -33,7 +33,7 @@ return new class extends Migration
             $table->string('fklivecountry',170)->nullable();
             $table->string('fklivestate',170)->nullable();
             $table->string('fklivecity',170)->nullable();
-            $table->smallInteger('civilsate')->nullable();
+            $table->smallInteger('civilstate')->nullable();
             $table->string('job')->nullable();
             $table->string('address')->nullable();
             $table->string('phone')->nullable();

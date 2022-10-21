@@ -1,6 +1,6 @@
 <div class="modal fade" id="modal-delete-{{$row->id}}" tabindex="-1" aria-labelledby="" aria-hidden="true" >
     <div class="modal-dialog">
-      <form action="{{route( $module.'.destroy', $row->id)}}" method="POST">
+      <form action="{{route( $module.'Destroy', $row->id )}}" method="POST">
           @csrf
           @method('DELETE')
           <div class="modal-content">

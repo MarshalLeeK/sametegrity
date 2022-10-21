@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\TypeDocs;
 use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\UpdateUserRequest;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -13,7 +14,7 @@ use Illuminate\Support\Facades\DB;
 class RegisterControler extends Controller
 {
 
-    private  $module='account';
+    private  $module='user';
 
     /**
      * Display a listing of the resource.
@@ -27,7 +28,7 @@ class RegisterControler extends Controller
         $view = 'L';
         $columns=['Documento','Nombre','Apellidos','Email','Nombre Usuario'];
         
-        $searchbox = trim($request->get('userseach'));
+        $searchbox = trim($request->get('searchbox'));
         $accounts = DB::table('users')
                         ->select('id','dni','name','lastname','email','username')
                         ->where( 'name','LIKE','%'.$searchbox.'%')
@@ -36,6 +37,7 @@ class RegisterControler extends Controller
                         ->paginate(18);                        ;
 
         return view('accountModule.accounts_l', compact('accounts','searchbox','columns','module','view'));
+        
     }
 
     /**
@@ -95,10 +97,9 @@ class RegisterControler extends Controller
     public function edit(User $user)
     {
         $module = $this->module;
+        $typeDocs = TypeDocs::get();
         $view = 'M';
-        return view('accountModule.account_m',compact('user','module','view'));
-        // $user=User::findOrFail($id);
-        // return view('accountModule.account_m',compact('user'));
+        return view('accountModule.account_m',compact('user','module','view','typeDocs'));
     }
 
 
@@ -109,7 +110,7 @@ class RegisterControler extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateUserRequest $request, $id)
     {
         $user= User::findOrFail($id);
         $user->dni = $request->input('dni');
@@ -119,7 +120,8 @@ class RegisterControler extends Controller
         $user->username = $request->input('username');
         $user->password = $request->input('password');
         $user->save();
-        return redirect()->route('accountModule');
+        return $this->saveRecord($user);
+        // return redirect()->route('accountModule');
 
     }
 
@@ -138,7 +140,7 @@ class RegisterControler extends Controller
     }
 
     public function saveRecord ($user){
-        return redirect()->route('accountShow',compact('user'));
+        return redirect()->route($this->module,compact('user'));
     }
 
 }

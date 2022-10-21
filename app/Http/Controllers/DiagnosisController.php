@@ -128,8 +128,8 @@ class DiagnosisController extends Controller
      */
     public function destroy($id)
     {
-        $patients= diagnosis::findOrFail($id);
-        $patients->delete();
+        $diagnosis= diagnosis::findOrFail($id);
+        $diagnosis->delete();
         return redirect()->route( $this->module );
     }
 

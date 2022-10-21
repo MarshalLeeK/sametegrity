@@ -31,6 +31,7 @@
                   </a>
                 </li>
               @endif
+
               @if ( $view == '_' )
                 <li class="nav-item">
                   <a class="nav-link" aria-current="page" href="{{ route( $module .'Edit', [$module => $row]) }}" title="Modificar Registro">

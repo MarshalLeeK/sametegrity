@@ -6,9 +6,9 @@ hd-meta-description="Actualizar Diagnóstico"
 >
     <form action="{{ route( $module.'Update', $diagnosis->id ) }}" method="POST" class="p-2 form h-100" enctype="multipart/form-data">
     @csrf
-    <input hidden name='id' id='id' value="{{$diagnosis->id}}">
     @method('PUT')
-        <div class="container bg-light border">
+    <input hidden name='id' id='id' value="{{$diagnosis->id}}">
+    <div class="container bg-light border">
             <x-layouts.tittlebar
                 class="row h-100 text-center text-white"
                 alias="DIAGNÓSTICO"

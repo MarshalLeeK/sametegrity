@@ -1,13 +1,17 @@
 <x-header
 hd-title="Nuevo Paciente"
-hd-meta-description="Nuevo Paciente">
-<form id="patientform" action="{{ route('patientSave') }}" method="POST" class="p-2 form h-100" enctype="multipart/form-data">
+hd-meta-description="Nuevo Paciente"
+:module="$module"
+:view="$view"
+>
+<form id="patientform" action="{{ route( $module.'Save') }}" method="POST" class="p-2 form h-100" enctype="multipart/form-data">
     @csrf
-        <div class="container bg-light">
-            <main>
-                <x-layouts.tittlebar
-                class="row h-100 text-center text-white"
-                alias="PACIENTE"/>
+        <div class="container bg-light border">
+            <x-layouts.tittlebar
+            class="row h-100 text-center text-white"
+            alias="PACIENTE"
+            action='NUEVO'/>
+
                 <div class="row g-12">
                     <div class="col-md-12 col-lg-12">
                         <div class="row mt-g-3  p-2">
@@ -32,10 +36,7 @@ hd-meta-description="Nuevo Paciente">
                                     
                                     <div class="col-sm-3">
                                         <label for="tdoc" class="form-label">Tipo Documento</label>
-                                        <select class="form-select" name="tdoc" id="tdoc" aria-label=""
-                                        oninvalid="this.setCustomValidity('Por favor ingrese un tipo de documento de documento valido')"
-                                        oninput="setCustomValidity('')"
-                                        required>
+                                        <select class="form-select" name="tdoc" id="tdoc" aria-label="">
                                         {{-- LV --}}
                                             @foreach ( $typeDocs as $typeDoc )
                                             <option value="{{ $typeDoc->id }}" {{ $typeDoc->id == '13' ? 'selected' : '-' ; }}> {{ $typeDoc->name }} </option>
@@ -45,10 +46,8 @@ hd-meta-description="Nuevo Paciente">
 
                                     <div class="col-sm-5">
                                         <label for="dni" class="form-label">Número Documento</label>
-                                        <input type="text" class="form-control" name="dni" id="dni" placeholder="Número Documento"
-                                        oninvalid="this.setCustomValidity('Por favor ingrese un número de documento valido')"
-                                        oninput="setCustomValidity('')"
-                                        required>
+                                        <input type="text" class="form-control" name="dni" id="dni" placeholder="Número Documento" value="{{ old('dni') }}">
+                                        <x-layouts.dialoges.inputerror input='dni'/>
                                     </div>
 
                                     <div class="col-sm-4">
@@ -56,10 +55,6 @@ hd-meta-description="Nuevo Paciente">
                                         <select class="form-select" name="documentplace" id="documentplace" aria-label="">
                                                 <x-locations-api/>
                                         </Select>
-                                        {{-- <pre>
-                                            <x-locations-api/>
-                                        </pre> --}}
-
                                     </div>
 
                                 </div>
@@ -67,17 +62,14 @@ hd-meta-description="Nuevo Paciente">
                                 <div class="row col-12">
                                     <div class="col-sm-6">
                                         <label for="name" class="form-label">Nombre</label>
-                                        <input type="text" class="form-control" name="name" id="name" placeholder="Nombres" value=""
-                                        oninvalid="this.setCustomValidity('Por favor ingrese un nombre valido')"
-                                        oninput="setCustomValidity('')"
-                                        required>
+                                        <input type="text" class="form-control" name="name" id="name" placeholder="Nombres" value="{{ old('name') }}">
+                                        <x-layouts.dialoges.inputerror input='name'/>
                                     </div>
+                                    
                                     <div class="col-sm-6">
                                         <label for="lastname" class="form-label">Apellido</label>
-                                        <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Apellidos" value=""
-                                        oninvalid="this.setCustomValidity('Por favor ingrese un apellido valido')"
-                                        oninput="setCustomValidity('')"
-                                        required>
+                                        <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Apellidos" value="{{ old('lastname') }}">
+                                        <x-layouts.dialoges.inputerror input='lastname'/>
                                     </div>
                                 </div>
                             </div>
@@ -86,32 +78,33 @@ hd-meta-description="Nuevo Paciente">
                             <div class="w-100 mt-2"></div>
                             <div class="col-sm-3">
                                 <label for="gender" class="form-label">Género</label>
-                                <select class="form-select" name="gender" id="gender" aria-label="" value="">
-                                    <option value=""selected>Género</option>
-                                    <option value='0'>Mujer</option>
-                                    <option value="1">Hombre</option>
-                                    <option value="2">Otro</option>
+                                <select class="form-select" name="gender" id="gender" aria-label="">
+                                    <option value="" {{ old('gender') == '' ? 'selected' : '';}}>Género</option>
+                                    <option value="0" {{ old('gender') == 0 ? 'selected' : '';}}>Mujer</option>
+                                    <option value="1" {{ old('gender') == 1 ? 'selected' : '';}}>Hombre</option>
+                                    <option value="2" {{ old('gender') == 2 ? 'selected' : '';}}>Otro</option>
                                 </Select>
                             </div>
                             <div class="col-sm-3">
                                 <label for="borndate" class="form-label">Fecha Nacimiento</label>
-                                <input type="date" class="form-control" name="borndate" id="borndate" placeholder="" value="">
+                                <input type="date" class="form-control" name="borndate" id="borndate" placeholder="" value="{{ old('borndate') }}">
+                                <x-layouts.dialoges.inputerror input='borndate'/>
                             </div>
 
                             <div class="col-sm-3">
                                 <label for="age" class="form-label">Edad</label>
-                                <input type="number" class="form-control" name="age" id="age" placeholder="Edad"readonly>
+                                <input type="number" class="form-control" name="age" id="age" placeholder="Edad" value="{{ old('age') }}" readonly>
                             </div>
 
                             <div class="col-sm-3">
                                 <label for="academiclevel" class="form-label">Escolaridad</label>
                                 <select class="form-select" name="academiclevel" id="academiclevel" aria-label="">
-                                    <option selected value="">Seleccione Nivel</option>
-                                    <option value='0'>Primaria</option>
-                                    <option value="1">Bachillerato</option>
-                                    <option value="2">Secundaria</option>
-                                    <option value="3">Profesional</option>
-                                    <option value="4">Especialización</option>
+                                    <option value="" {{ old('academiclevel') == "" ? 'selected' : '';}}>Seleccione Nivel</option>
+                                    <option value="0" {{ old('academiclevel') == 0 ? 'selected' : '';}}>Primaria</option>
+                                    <option value="1" {{ old('academiclevel') == 1 ? 'selected' : '';}}>Bachillerato</option>
+                                    <option value="2" {{ old('academiclevel') == 2 ? 'selected' : '';}}>Secundaria</option>
+                                    <option value="3" {{ old('academiclevel') == 3 ? 'selected' : '';}}>Profesional</option>
+                                    <option value="4" {{ old('academiclevel') == 4 ? 'selected' : '';}}>Especialización</option>
                                 </Select>
                             </div>
                             
@@ -139,12 +132,12 @@ hd-meta-description="Nuevo Paciente">
                             <div class="col-sm-3">
                                 <label for="job" class="form-label">Ocupación</label>
                                 <select class="form-select" name="job" id="job" aria-label="">
-                                    <option value=""selected>Seleccione Ocupación</option>
-                                    <option value='Obrero'>Obrero</option>
-                                    <option value="Paletero">Paletero</option>
-                                    <option value="Gerente">Gerente</option>
-                                    <option value="Estudiante">Estudiante</option>
-                                    <option value="Ninguna">Ninguna</option>
+                                    <option value="" {{ old('job') == "" ? 'selected' : '';}}>Seleccione Ocupación</option>
+                                    <option value="Obrero" {{ old('job') == "Obrero" ? 'selected' : '';}}>Obrero</option>
+                                    <option value="Paletero" {{ old('job') == "Paletero" ? 'selected' : '';}}>Paletero</option>
+                                    <option value="Gerente" {{ old('job') == "Gerente" ? 'selected' : '';}}>Gerente</option>
+                                    <option value="Estudiante" {{ old('job') == "Estudiante" ? 'selected' : '';}}>Estudiante</option>
+                                    <option value="Ninguna" {{ old('job') == "Ninguna" ? 'selected' : '';}}>Ninguna</option>
                                 </Select>
                             </div>
 
@@ -171,7 +164,7 @@ hd-meta-description="Nuevo Paciente">
                             <div class="col-sm-3">
                                 <label for="livecity" class="form-label">Ciudad de Residencia</label>
                                 <select class="form-select" name="livecity" id="livecity" aria-label="">
-                                    <option selected value="">Seleccione ciudad</option>
+                                    <option selected value="{{ old('dni') }}">Seleccione ciudad</option>
                                     <option value='Bello'>Bello</option>
                                     <option value="Medellin">Medellin</option>
                                     <option value="Manizales">Manizales</option>
@@ -180,42 +173,39 @@ hd-meta-description="Nuevo Paciente">
 
                             
                             <div class="col-sm-3">
-                                <label for="civilsate" class="form-label">Estado Civil</label>
-                                <select class="form-select" name="civilsate" id="civilsate" aria-label="">
-                                    <option selected value="">Seleccione Estado</option>
-                                    <option value='0'>Soltero</option>
-                                    <option value="1">Casado</option>
-                                    <option value="2">Viudo</option>
+                                <label for="civilstate" class="form-label">Estado Civil</label>
+                                <select class="form-select" name="civilstate" id="civilstate" aria-label="">
+                                    <option value="" {{ old('civilstate') == "" ? 'selected' : '';}}>Seleccione Estado</option>
+                                    <option value="0" {{ old('civilstate') == 0 ? 'selected' : '';}}>Soltero</option>
+                                    <option value="1" {{ old('civilstate') == 1 ? 'selected' : '';}}>Casado</option>
+                                    <option value="2" {{ old('civilstate') == 2 ? 'selected' : '';}}>Viudo</option>
                                 </Select>
                             </div>
 
 
                             <div class="col-sm-12">
                                 <label for="address" class="form-label">Dirección </label>
-                                <input type="text" class="form-control" name="address" id="address" placeholder="Dirección">
+                                <input type="text" class="form-control" name="address" id="address" placeholder="Dirección" value="{{ old('address') }}">
                             </div> 
 
                             <div class="col-sm-6">
                                 <label for="phone" class="form-label">Teléfono </label>
-                                <input type="number" class="form-control" name="phone" id="phone" placeholder="Teléfono"
-                                oninvalid="this.setCustomValidity('Es necesario ingresar un número de teléfono')"
-                                oninput="setCustomValidity('')"
-                                required>
+                                <input type="number" class="form-control" name="phone" id="phone" placeholder="Teléfono" value="{{ old('phone') }}">
                             </div> 
 
                             <div class="col-sm-6">
                                 <label for="cellphone" class="form-label">Celular </label>
-                                <input type="text" class="form-control" name="cellphone" id="cellphone" placeholder="Celular">
+                                <input type="text" class="form-control" name="cellphone" id="cellphone" placeholder="Celular" value="{{ old('cellphone') }}">
                             </div> 
 
                             <div class="col-sm-6">
                                 <label for="mail" class="form-label">Email </label>
-                                <input type="text" class="form-control" name="mail" id="mail" placeholder="Email">
+                                <input type="text" class="form-control" name="mail" id="mail" placeholder="Email" value="{{ old('mail') }}">
                             </div> 
 
                             <div class="col-sm-6">
                                 <label for="maileb" class="form-label">Facturación electronica </label>
-                                <input type="text" class="form-control" name="maileb" id="maileb" placeholder="Email Facturación">
+                                <input type="text" class="form-control" name="maileb" id="maileb" placeholder="Email Facturación"   value="{{ old('maileb') }}">
                             </div> 
 
                             <div class="container-sm mt-2">
@@ -226,7 +216,7 @@ hd-meta-description="Nuevo Paciente">
                                             <button type="button" class="check btn btn-secondary" title="Violencia"
                                                 id="violence" onclick="logic(this);">
                                                 <i class="bi bi-bandaid-fill">
-                                                    <input type="check" name="violence" value="0" hidden>
+                                                    <input type="check" name="violence" value="{{ old('violence') == 1 ? 1 : 0 ; }}" hidden>
                                                 </i>   
                                             </button>
                                         </div>
@@ -234,7 +224,7 @@ hd-meta-description="Nuevo Paciente">
                                             <button type="button" class="btn btn-secondary" title="Código Fucsia"
                                                 id="abused" onclick="logic(this);">
                                                 <i class="bi bi-balloon-fill">
-                                                    <input type="check" name="abused" value="0" hidden>
+                                                    <input type="check" name="abused" value="{{ old('abused') == 1 ? 1 : 0; }}" hidden>
                                                 </i> 
                                             </button>
                                         </div>
@@ -242,7 +232,7 @@ hd-meta-description="Nuevo Paciente">
                                             <button type="button" class="btn btn-secondary" title="Medicina Laboral"
                                              id="fromwork" onclick="logic(this);">
                                                 <i class="bi bi-prescription2">
-                                                <input type="check" name="fromwork" value="0" hidden>
+                                                <input type="check" name="fromwork" value="{{ old('fromwork') == 1 ? 1 : 0; }}" hidden>
                                                 </i>   
                                             </button>
                                         </div>
@@ -250,7 +240,7 @@ hd-meta-description="Nuevo Paciente">
                                             <button type="button" class="btn btn-secondary" title="Tutela"
                                             id="guardianship" onclick="logic(this);">
                                                 <i class="bi bi-file-earmark-zip-fill">
-                                                    <input type="check" name="guardianship" value="0" hidden>
+                                                    <input type="check" name="guardianship" value="{{ old('guardianship') == 1 ? 1 : 0; }}" hidden>
                                                 </i>
                                             </button>
                                         </div>
@@ -258,7 +248,7 @@ hd-meta-description="Nuevo Paciente">
                                             <button type="button" class="btn btn-secondary" title="Privados Libertad"
                                              id="gaoler" onclick="logic(this);">
                                                 <i class="bi bi-door-closed-fill">
-                                                <input type="check" name="gaoler" value="0" hidden>
+                                                <input type="check" name="gaoler" value="{{ old('gaoler') == 1 ? 1 : 0; }}" hidden>
                                                 </i>
                                             </button>
                                         </div>
@@ -266,7 +256,7 @@ hd-meta-description="Nuevo Paciente">
                                             <button type="button" class="btn btn-secondary" title="ICBF"
                                             id="icbf" onclick="logic(this);">                                                
                                                 <i class="bi bi-file-earmark-person-fill">
-                                                    <input type="check" name="icbf" value="0" hidden>
+                                                    <input type="check" name="icbf" value="{{ old('icbf') == 1 ? 1 : 0; }}" hidden>
                                                 </i>
                                             </button>
                                         </div>
@@ -274,7 +264,7 @@ hd-meta-description="Nuevo Paciente">
                                             <button type="button" class="btn btn-secondary" title="Gestante"
                                             id="pregnant" onclick="logic(this);">
                                                 <i class="bi bi-flower1">
-                                                    <input type="check" name="pregnant" value="0" hidden>
+                                                    <input type="check" name="pregnant" value="{{ old('pregnant') == 1 ? 1 : 0; }}" hidden>
                                                 </i>
                                             </button>
                                         </div>
@@ -282,7 +272,7 @@ hd-meta-description="Nuevo Paciente">
                                             <button type="button" class="btn btn-secondary" title="Riesgo Suicida"
                                              id="suicide" onclick="logic(this);">
                                                 <i class="bi bi-exclamation-diamond-fill">
-                                                <input type="check" name="suicide" value="0" hidden>
+                                                <input type="check" name="suicide" value="{{ old('suicide') == 1 ? 1 : 0; }}" hidden>
                                                 </i>   
                                             </button>
                                         </div>
@@ -323,7 +313,7 @@ hd-meta-description="Nuevo Paciente">
                                             <button type="button" class="btn btn-secondary" title="Asesoria Virtual"
                                             id="virtualadvice" onclick="logic(this);">
                                                 <i class="bi bi-pc-display">
-                                                    <input type="check" name="virtualadvice" value="0" hidden>
+                                                    <input type="check" name="virtualadvice" value="{{ old('virtualadvice') == 1 ? 1 : 0; }}" hidden>
                                                 </i>   
                                             </button>
                                         </div>
@@ -331,7 +321,7 @@ hd-meta-description="Nuevo Paciente">
                                             <button type="button" class="btn btn-secondary" title="Consulta Externa"
                                             id="external" onclick="logic(this);">
                                                 <i class="bi bi-person-video2">
-                                                    <input type="check" name="external" value="0" hidden>
+                                                    <input type="check" name="external" value="{{ old('external') == 1 ? 1 : 0; }}" hidden>
                                                 </i> 
                                             </button>
                                         </div>
@@ -339,7 +329,7 @@ hd-meta-description="Nuevo Paciente">
                                             <button type="button" class="btn btn-secondary" title="Hospitalización"
                                             id="hospitalitation" onclick="logic(this);">                                           
                                                 <i class="bi bi-h-circle-fill">
-                                                    <input type="check" name="hospitalitation" value="0" hidden>
+                                                    <input type="check" name="hospitalitation" value="{{ old('hospitalitation') == 1 ? 1 : 0; }}" hidden>
                                                 </i>   
                                             </button>
                                         </div>
@@ -347,7 +337,7 @@ hd-meta-description="Nuevo Paciente">
                                             <button type="button" class="btn btn-secondary" title="Red Externa"
                                             id="external" onclick="logic(this);">
                                                 <i class="bi bi-file-medical-fill">
-                                                    <input type="check" name="external" value="0" hidden>
+                                                    <input type="check" name="external" value="{{ old('external') == 1 ? 1 : 0; }}" hidden>
                                                 </i>
                                             </button>
                                         </div>
@@ -355,7 +345,7 @@ hd-meta-description="Nuevo Paciente">
                                             <button type="button" class="btn btn-secondary" title="CENPI (<14)"
                                             id="cenpi" onclick="logic(this);">
                                                 <i class="bi bi-emoji-laughing-fill">
-                                                    <input type="check" name="cenpi" value="0" hidden>
+                                                    <input type="check" name="cenpi" value="{{ old('cenpi') == 1 ? 1 : 0; }}" hidden>
                                                 </i>
                                             </button>
                                         </div>
@@ -363,7 +353,7 @@ hd-meta-description="Nuevo Paciente">
                                             <button type="button" class="btn btn-secondary" title="SRPA (Adolecentes)"
                                             id="srpa" onclick="logic(this);">
                                                 <i class="bi bi-earbuds">
-                                                    <input type="check" name="srpa" value="0" hidden>
+                                                    <input type="check" name="srpa" value="{{ old('srpa') == 1 ? 1 : 0; }}" hidden>
                                                 </i>
                                             </button>
                                         </div>
@@ -371,7 +361,7 @@ hd-meta-description="Nuevo Paciente">
                                             <button type="button" class="btn btn-secondary" title="Búsqueda Activa"
                                             id="activeselection" onclick="logic(this);">
                                                 <i class="bi-binoculars-fill">
-                                                    <input type="check" name="activeselection" value="0" hidden>
+                                                    <input type="check" name="activeselection" value="{{ old('activeselection') == 1 ? 1 : 0; }}" hidden>
                                                 </i>
                                             </button>
                                         </div>
@@ -379,7 +369,7 @@ hd-meta-description="Nuevo Paciente">
                                             <button type="button" class="btn btn-secondary" title="Directo Prestador"
                                             id="through" onclick="logic(this);">
                                                 <i class="bi bi-signpost-fill">
-                                                    <input type="check" name="through" value="0" hidden>
+                                                    <input type="check" name="through" value="{{ old('through') == 1 ? 1 : 0; }}" hidden>
                                                 </i>   
                                             </button>
                                         </div>
@@ -387,7 +377,7 @@ hd-meta-description="Nuevo Paciente">
                                             <button type="button" class="btn btn-secondary" title="Particular"
                                             id="particular" onclick="logic(this);">                                            
                                             <i class="bi bi-clipboard2-pulse-fill">
-                                                    <input type="check" name="particular" value="0" hidden>
+                                                    <input type="check" name="particular" value="{{ old('particular') == 1 ? 1 : 0; }}" hidden>
                                                 </i>   
                                             </button>
                                         </div>
@@ -395,7 +385,7 @@ hd-meta-description="Nuevo Paciente">
                                             <button type="button" class="btn btn-secondary" title="Punta Piramide"
                                             id="pyramid" onclick="logic(this);">
                                                 <i class="bi bi-triangle-half">
-                                                    <input type="check" name="pyramid" value="0" hidden>
+                                                    <input type="check" name="pyramid" value="{{ old('pyramid') == 1 ? 1 : 0; }}" hidden>
                                                 </i>   
                                             </button>
                                         </div>
@@ -444,7 +434,7 @@ hd-meta-description="Nuevo Paciente">
                                                         <label class="form-label"for="capitado">
                                                             Capitado 
                                                         </label>
-                                                        <input class="form-check-input" name="capitado" id="capitado"type="checkbox"size="10px" value="" id="flexCheckDefault">
+                                                        <input class="form-check-input" name="capitado" id="capitado"type="checkbox"size="10px" value="{{ old('dni') }}" id="flexCheckDefault">
                                                     </div>
                                                 </div>
                                                 <input type="text" class="form-control col-sm-9 align-bottom"width="" name="eps" id="eps" placeholder="Entidad">
@@ -454,7 +444,7 @@ hd-meta-description="Nuevo Paciente">
                                             <div class="col-sm-3">
                                                 <label for="epstype" class="form-label"> Regimen </label>
                                                 <select class="form-select" name="epstype" id="epstype" aria-label="">
-                                                    <option selected value="">Seleccione tipo</option>
+                                                    <option selected value="{{ old('dni') }}">Seleccione tipo</option>
                                                     <option value="C">Contribuitivo</option>
                                                     <option value="S">Subsidiado</option>
                                                 </Select>
@@ -462,7 +452,7 @@ hd-meta-description="Nuevo Paciente">
                                             <div class="col-sm-3">
                                                 <label for="contract" class="form-label"> Contrato </label>
                                                 <select class="form-select" name="contract" id="contract" aria-label="">
-                                                    <option selected value="">Seleccione contrato</option>
+                                                    <option selected value="{{ old('dni') }}">Seleccione contrato</option>
                                                     <option value='1'>contrato1</option>
                                                     <option value="2">contrato2</option>
                                                 </Select>
@@ -494,7 +484,7 @@ hd-meta-description="Nuevo Paciente">
                                             <div class="col-sm-4">
                                                 <label for="Ips" class="form-label"> IPS </label>
                                                 <select class="form-select" name="Ips" id="Ips" aria-label="">
-                                                    <option selected value="">Seleccione Ips</option>
+                                                    <option selected value="{{ old('dni') }}">Seleccione Ips</option>
                                                     <option value='Bello'>Hospital mental antioquia (HOMO)</option>
                                                     <option value="Medellin">Ips salud de antioquia</option>
                                                     <option value="Manizales">Ips medellin</option>
@@ -583,14 +573,11 @@ hd-meta-description="Nuevo Paciente">
                                 <textarea rows="3" class="form-control" name="observation" id="observation" placeholder="Observación"></textarea>
                             </div>
 
-                            <div class="col-sm-12 p-1 my-2" id="endbuttons">
-                                <a type="button" class="right btn btn-secondary btn-lg col-sm-2"href="{{ route('patientModule') }}">Cancelar</a>
-                                <input type="submit" class="right btn btn-success btn-lg col-sm-2 mx-1" value="Guardar">
-                            </div>
+                            <x-layouts.formSave :module="$module" />
+                            
                         </div>
                     </div>  
                 </div>
-            </main>
         </div>
     </form>
      <script src="{{asset('js/patiencrud.js')}}"></script>

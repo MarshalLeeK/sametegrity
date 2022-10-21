@@ -148,11 +148,13 @@ return [
 
     'attributes' => [
         'name' => 'Nombre',
+        'lastname'=>'Apellido', 
         'code' => 'Código',
         'dni' => 'Número Documento',
         'description' => 'Descripción',
         'observation' => 'Observation',
         'z_xOne' => 'Estado',
+        'borndate' => 'Fecha Cumpleaños',
     ],
 
 ];

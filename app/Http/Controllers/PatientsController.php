@@ -1,17 +1,21 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Patients;
 use App\Models\TypeDocs;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\PatientsRequest;
 
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 
 class PatientsController extends Controller
 {
+
+    private  $module='patient';
+
     /**
      * Display a listing of the resource.
      *
@@ -20,6 +24,8 @@ class PatientsController extends Controller
     public function index( Request $request )
     {   
 
+        $module = $this->module;
+        $view = 'L';
         $columns=['Documento','Nombre','Apellidos','Edad','Género','Teléfono','Email'];
         
         $searchbox = trim($request->get('searchbox'));
@@ -31,7 +37,7 @@ class PatientsController extends Controller
                         ->orWhere( 'age','LIKE','%'.$searchbox.'%')
                         ->orderBy( 'dni','asc')
                         ->paginate(18);      
-        return view('patients.Patiens_I',compact('patients','searchbox','columns'));
+        return view('patients.Patiens_I',compact('patients','searchbox','columns','module','view'));
     }
 
 
@@ -42,31 +48,23 @@ class PatientsController extends Controller
      */
     public function create()
     {
+        $module = $this->module;
+        $view = 'C';
         $defaults = ['defCountry' => 'Colombia','defState' => 'Antioquia',];
         $typeDocs = TypeDocs::get();
-        return view('patients.Patien_c', compact('defaults','typeDocs'));
+        return view('patients.Patien_c', compact('defaults','typeDocs','module','view'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\PatientsRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(PatientsRequest $request)
     {
-        //
 
-        $request->validate([
-                'dni'=>'required',
-                'name'=>'required|min:3',
-                'lastname'=>'required|min:3',
-                'borndate.required'=>'La fecha de nacimiento es requerida'
-            ]);
-        // $row = $request->validate();
-        //Crear pacientes
         $uuid = Str::uuid();
-
         $patient = new Patients;
         $patient->kp_uuid =  $uuid ;
         $patient->documenttype = $request->input('tdoc');
@@ -86,7 +84,7 @@ class PatientsController extends Controller
         $patient->fklivecountry = $request->input('livecontry');
         $patient->fklivestate = $request->input('livestate');
         $patient->fklivecity = $request->input('livecity');
-        $patient->civilsate = $request->input('civilsate');
+        $patient->civilstate = $request->input('civilstate');
         $patient->job = $request->input('job');
         $patient->address = $request->input('address');
         $patient->cellphone = $request->input('cellphone');
@@ -132,14 +130,15 @@ class PatientsController extends Controller
 
         $patient->save();
 
-        // Se debe crear campo para poliza $patient->policy = $request->input('policy');
+       
+
+        //retonar vista
+        return $this->saveRecord($patient);
+        // return redirect()->route('patientModule');
+     // Se debe crear campo para poliza $patient->policy = $request->input('policy');
         // Se debe crear campo para poliza $patient->membertype = $request->input('membertype');
         // Se debe crear campo para poliza $patient->membertype = $request->input('contributor');
         // Se debe crear campo para poliza $patient->membertype = $request->input('Ips');
-
-        //retonar vista
-        return redirect()->route('patientModule');
-    
     }
 
     /**
@@ -148,13 +147,15 @@ class PatientsController extends Controller
      * @param  \App\Models\Patients  $patients
      * @return \Illuminate\Http\Response
      */
-    public function show( Patients $patient)
+    public function show(Patients $patient)
     {
         //cosulta a paciente [Metodo anterior]
         // $patient = Patients::findOrFail($id);
         //consulta tipos documento
         $typeDocs = TypeDocs::get();
-        return view('patients.Patient_',compact('patient','typeDocs'));
+        $module = $this->module;
+        $view = '_';
+        return view('patients.Patient_',compact('patient','typeDocs','module','view'));
     }
 
     /**
@@ -168,6 +169,8 @@ class PatientsController extends Controller
         //cosulta a paciente [Metodo anterior]
         // $patient = Patients::findOrFail($id);
         //consulta tipos documento
+        $module = $this->module;
+        $view = 'M';
         $typeDocs = TypeDocs::get();
 
         return view('patients.Patien_m',compact('patient','typeDocs'));
@@ -202,7 +205,7 @@ class PatientsController extends Controller
         $patient->fklivecountry = $request->input('livecontry');
         $patient->fklivestate = $request->input('livestate');
         $patient->fklivecity = $request->input('livecity');
-        $patient->civilsate = $request->input('civilsate');
+        $patient->civilstate = $request->input('civilstate');
         $patient->job = $request->input('job');
         $patient->address = $request->input('address');
         $patient->cellphone = $request->input('cellphone');
@@ -239,7 +242,9 @@ class PatientsController extends Controller
         $patient->z_xOne = $request->input('z_xOne');
         $patient->save();
 
-        return redirect()->route('patientModule');
+        return $this->saveRecord($patient);
+
+        // return redirect()->route('patientModule');
 
     }
 
@@ -257,9 +262,8 @@ class PatientsController extends Controller
         return redirect()->route('patientModule');
     }
 
-    // public function test(){
-    //     return dd('hola desde test');
-    // }
-
+    public function saveRecord ($patient){
+        return redirect()->route( $this->module.'Show',compact('patient'));
+    }
 
 }

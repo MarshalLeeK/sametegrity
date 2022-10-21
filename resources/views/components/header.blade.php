@@ -29,6 +29,7 @@
 </head> 
 <body>
     
+   
     @if ( $route != '/')
         <x-layouts.navbar 
         :route="$route ?? 'menu'"

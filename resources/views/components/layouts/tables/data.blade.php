@@ -20,28 +20,34 @@
                     @endif
                 </strong>
             </td>
-
             @endforeach
 
-
-            <td>
-                <div class="row col-sm-12 justify-content-around">
-                    <button class="btn btn-primary btn-md col-sm-4 text-white" onclick="location.href = '{{ route( $module.'Show', $row->id )}}';">
-                        <i class="bi bi-eye"></i>
-                    </button>
-                    <button class="btn btn-warning btn-md col-sm-4 text-white" onclick="location.href = '{{ route( $module.'Edit', $row->id )}}';">
-                        <i class="bi bi-pen-fill" title="modificar"></i>
-                    </button>
-                    <button class="btn btn-danger btn-md col-sm-3" data-bs-toggle="modal" data-bs-target="#modal-delete-{{$row->id}}" type="button">
-                        <i class="bi bi-trash3-fill" title="Eliminar"></i>
-                    </button>
-                </div>
-            </td>   
+            @if ( $HiddenButtons = "")
+                <td>
+                    <div class="row col-sm-12 justify-content-around">
+                        <button class="btn btn-primary btn-md col-sm-4 text-white" onclick="location.href = '{{ route( $module.'Show', $row->id )}}';">
+                            <i class="bi bi-eye"></i>
+                        </button>
+                        <button class="btn btn-warning btn-md col-sm-4 text-white" onclick="location.href = '{{ route( $module.'Edit', $row->id )}}';">
+                            <i class="bi bi-pen-fill" title="modificar"></i>
+                        </button>
+                        <button class="btn btn-danger btn-md col-sm-3" data-bs-toggle="modal" data-bs-target="#modal-delete-{{$row->id}}" type="button">
+                            <i class="bi bi-trash3-fill" title="Eliminar"></i>
+                        </button>
+                    </div>
+                </td>
+            @endif
+               
         </tr>
+        {{-- ( $module.'.destroy', $row->id) --}}
+        @if ( $HiddenButtons = "")
 
-        <x-layouts.commitdelete 
-            :row="$row"
-            :module="$module"
-        />
+            <x-layouts.commitdelete 
+                :row="$row"
+                :module="$module"
+            />
+        
+        @endif
     @endforeach
+
 @endif

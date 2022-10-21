@@ -17,7 +17,7 @@ hd-description="MENU"
                     <div class="row justify-content-around ">
                         <div class="grid col-2 align-content-center justify-content-center">
                             <div class="btn btn-primary border-secondary shadow">
-                                <a href="{{ route('patientModule')}}" class="text-white" title="Pacientes">
+                                <a href="{{ route('patient')}}" class="text-white" title="Pacientes">
                                     <i class="bi bi-person-circle"></i>
                                     <label class="custom-control-label text-white" ><b>Pacientes</b></label>
                                 </a>
@@ -35,35 +35,32 @@ hd-description="MENU"
                         </div>
                         <div class="grid col-2 align-content-center justify-content-center">
                             <div class="btn btn-primary border-secondary shadow">
-                                <a href="http://192.168.1.22/asist-top" class="text-white" title="Asistop">
+                                <a href="{{ route('histories') }}" class="text-white" title="Historia">
                                     <i class="bi bi-ui-checks"></i>
-                                    <label class="custom-control-label text-white" ><b>Asistop</b></label>
+                                    <label class="custom-control-label text-white" ><b>Historia</b></label>
                                 </a>
     
                             </div>
                         </div>
                         <div class="grid col-2 align-content-center justify-content-center">
                             <div class="btn btn-primary border-secondary shadow">
-                                <a href="{{ route('account')}}" class="text-white" title="Usuarios">
+                                <a href="{{ route('user')}}" class="text-white" title="Usuarios">
                                     <i class="bi bi-people-fill"></i>
                                     <label class="custom-control-label text-white" ><b>Usuarios</b></label>
                                 </a>
-    
                             </div>
                         </div>
                         <div class="grid col-2 align-content-center justify-content-center">
                             <div class="btn btn-primary border-secondary shadow">
-                                <a href="{{ route('account')}}" class="text-white" title="Agenda">
+                                <a href="{{ route('histories') }}" class="text-white " title="Agenda">
                                     <i class="bi bi-hospital"></i>
                                     <label class="custom-control-label text-white" ><b>Agenda</b></label>
                                 </a>
-    
                             </div>
                         </div>
-                        
-                       
-
                     </div>
+                    <x-layouts.dialoges.alert/>
+
                     <div class="w-100"> <br></div>
                     <div class="row justify-content-around ">
                         <div class="grid col-2 align-content-center justify-content-center">
@@ -76,7 +73,7 @@ hd-description="MENU"
                         </div>
                         <div class="grid col-2 align-content-center justify-content-center">
                             <div class="btn btn-primary border-secondary shadow">
-                                <a href="{{ route('account')}}" class="text-white" title="Farmacia">
+                                <a href="{{ route('user')}}" class="text-white" title="Farmacia">
                                     <i class="bi bi-capsule"></i>
                                     <label class="custom-control-label text-white" ><b>Farmacia</b></label>
                                 </a>
@@ -94,7 +91,7 @@ hd-description="MENU"
                         </div>
                         <div class="grid col-2 align-content-center justify-content-center">
                             <div class="btn btn-primary border-secondary shadow">
-                                <a href="{{ route('account')}}" class="text-white" title="Tesoreria">
+                                <a href="{{ route('user')}}" class="text-white" title="Tesoreria">
                                     <i class="bi bi-coin"></i>
                                     <label class="custom-control-label text-white" ><b>Tesoreria</b></label>
                                 </a>

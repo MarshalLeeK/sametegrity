@@ -1,6 +1,10 @@
 <x-header 
 hd-title="Pacientes"
-hd-description="Módulo de pacientes">
+hd-description="Pacientes"
+:module="$module"
+:view="$view" 
+>
+
     <x-layouts.titleBanner 
     title-Module="PACIENTES"
     />
