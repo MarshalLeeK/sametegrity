@@ -59,6 +59,7 @@ class ApiController extends Controller
 
         $result = $items->json();
         dd($result);
+
         // $this->items = $items->json();
         
         // return $this->items;

@@ -162,6 +162,11 @@ thead {
     color: var(--NavBackGround);
     }
 
+
+.histonav.bi {   
+        color: #030A8C;
+        }
+
 #buttonGrid .bi {
         font-size: 80px;
         color: var(--Iwhite);
@@ -175,4 +180,8 @@ thead {
     
     height: 100%;
     width: 100%;   
+}
+
+#histo_valida{
+ /* text-align-last:right; */
 }

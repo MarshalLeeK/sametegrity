@@ -173,7 +173,7 @@ class PatientsController extends Controller
         $view = 'M';
         $typeDocs = TypeDocs::get();
 
-        return view('patients.Patien_m',compact('patient','typeDocs'));
+        return view('patients.Patien_m',compact('patient','typeDocs','module','view'));
     }
 
     /**
@@ -259,7 +259,7 @@ class PatientsController extends Controller
         //
         $patients= Patients::findOrFail($id);
         $patients->delete();
-        return redirect()->route('patientModule');
+        return redirect()->route($this->module);
     }
 
     public function saveRecord ($patient){

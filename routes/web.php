@@ -55,7 +55,7 @@ Route::controller(PatientsController::class)->group(function(){
     Route::get('/paciente_/{patient}','show')->name('patientShow');
     Route::get('/paciente_M/{patient}','edit')->name('patientEdit');
     Route::put('/paciente_M/Update','update')->name('patientUpdate');
-    Route::put('/paciente/{patient}','update')->name('patientDestroy');
+    Route::delete('/paciente/{patient}','destroy')->name('patientDestroy');
 });
 Route::resource('/patients',PatientsController::class);
 
@@ -67,23 +67,23 @@ Route::controller(Diagnosiscontroller::class)->group(function(){
     Route::get('/diagnostico_/{diagnosis}','show')->name('diagnosisShow');
     Route::get('/diagnostico_M/{diagnosis}','edit')->name('diagnosisEdit');
     Route::put('/diagnostico_M/{diagnosis}','update')->name('diagnosisUpdate');
-    Route::put('/diagnostico/{diagnosis}','destroy')->name('diagnosisDestroy');
+    Route::delete('/diagnostico/{diagnosis}','destroy')->name('diagnosisDestroy');
 
 });
-Route::resource('/Historias',Diagnosiscontroller::class);
+Route::resource('/Diagnostico',Diagnosiscontroller::class);
 
 
 Route::controller(HistoriesController::class)->group(function(){
     Route::get('/Historias_L','index')->name('histories');
-    Route::get('/Historias_C','create')->name('historiesCreate');
-    Route::post('/diagnostico_C/Save','store')->name('historiesSave');
-    // Route::get('/diagnostico_/{diagnosis}','show')->name('diagnosisShow');
-    // Route::get('/diagnostico_M/{diagnosis}','edit')->name('diagnosisEdit');
-    // Route::put('/diagnostico_M/{diagnosis}','update')->name('diagnosisUpdate');
-    // Route::put('/diagnostico/{diagnosis}','destroy')->name('diagnosisDestroy');
+    Route::get('/Historia_C','create')->name('historiesCreate');
+    Route::post('/Historia_C/Save','store')->name('historiesSave');
+    Route::get('/Historia_/{historia}','show')->name('historiesShow');
+    Route::get('/Historia_M/{historia}','edit')->name('historiesEdit');
+    Route::put('/Historia_M/{Historia}','update')->name('historiesUpdate');
+    Route::put('/Historia/{Historia}','destroy')->name('historiesDestroy');
 
 });
-Route::resource('/diagnostico',HistoriesController::class);
+Route::resource('/Historias',HistoriesController::class);
 
 
 

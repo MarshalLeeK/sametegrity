@@ -15,14 +15,14 @@ return new class extends Migration
     {
         Schema::create('histories', function (Blueprint $table) {
             $table->id();
-            $table->uuid('fk_patient');
-            $table->uuid('fk_eps');
-            $table->uuid('fk_epstype');
-            $table->uuid('fk_user');
-            $table->uuid('fk_useraplication');
-            $table->uuid('participate')->default(0);
-            $table->uuid('presential')->default(0);
-            $table->uuid('fk_auxuser');
+            $table->uuid('fk_patient'); /*Paciente*/
+            $table->uuid('fk_eps'); 
+            $table->uuid('fk_epstype'); //Regimen
+            $table->uuid('fk_user'); //Medico
+            $table->uuid('fk_useraplication'); // Especialidad del medico
+            $table->uuid('participate')->default(0); //Aistencia
+            $table->boolean('presential')->default(0); //VirtualPresencial
+            $table->boolean('fk_auxuser'); //Medico Auxiliar
             $table->timestamps();
         });
     }

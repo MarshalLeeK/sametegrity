@@ -11,6 +11,7 @@ hd-description="Pacientes"
     <div class="container-fluid">
         <x-layouts.upBar 
          :rows="$patients"
+         :searchbox="$searchbox"
          module="patient"
         />
             <div class="col-xl-12 mt-1 mb-2">
@@ -27,7 +28,7 @@ hd-description="Pacientes"
                             <x-layouts.tables.data 
                                 :rows="$patients"
                                 :countcol="$columns"
-                                module="patient"
+                                :module="$module"
                             />
                         </tbody>
                     </table>

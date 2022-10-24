@@ -563,10 +563,8 @@ hd-meta-description="Nuevo Paciente"
                                         {{-- PANEL ARCHIVOS --}}
                                         ARCHIVOS
                                     </div>
-
-                                    
-
                                 </div>
+                                
 
                             <div class="form-group col-sm-12">
                                 <label for="observation" class="form-label">Observacion </label>
