@@ -22,7 +22,7 @@
             </td>
             @endforeach
 
-            @if ( $HiddenButtons = "")
+            @if ( isset($HiddenButtons) )
                 <td>
                     <div class="row col-sm-12 justify-content-around">
                         <button class="btn btn-primary btn-md col-sm-4 text-white" onclick="location.href = '{{ route( $module.'Show', $row->id )}}';">
@@ -40,13 +40,11 @@
                
         </tr>
         {{-- ( $module.'.destroy', $row->id) --}}
-        @if ( $HiddenButtons = "")
-
+        @if ( isset($HiddenButtons) )
             <x-layouts.commitdelete 
                 :row="$row"
                 :module="$module"
             />
-        
         @endif
     @endforeach
 

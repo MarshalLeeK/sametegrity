@@ -33,11 +33,11 @@
               @endif
 
               @if ( $view == '_' )
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                   <a class="nav-link" aria-current="page" href="{{ route( $module .'Edit', [$module => $row]) }}" title="Modificar Registro">
                     <i class="bi bi-pencil-fill"></i>
                   </a>
-                </li>
+                </li> --}}
               @endif
               <li class="nav-item">
                 <a class="nav-link disabled"></a>
