@@ -72,12 +72,18 @@ class User extends Authenticatable
     //     );
     // }
 
-
     public function password(): Attribute 
     {
         return new Attribute(
             set: fn ($value) => bcrypt($value)
         );
     } 
+    
+    // public function slug(): Attribute 
+    // {
+    //     return new Attribute(
+    //         set: fn ($value) => $value
+    //     );
+    // } 
 }
 

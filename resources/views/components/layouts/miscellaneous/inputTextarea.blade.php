@@ -1,0 +1,1 @@
+<textarea class="form-control {{ $class ?? '' }}" name="{{ $name ?? 'ND' }}" id="{{ $name ?? 'ND'}}" rows="{{ $rows ?? '3' }}" {{ isset($enable ) ? 'readonly' : ''; }}>{{old($name ?? 'ND')}}</textarea>

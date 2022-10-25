@@ -75,8 +75,7 @@ footer {
         --bs-nav-link-color: #ffffff;
         --bs-nav-link-hover-color:#ffffff;
         --bs-nav-tabs-border-radius: 0;
-
-        background-color: #0a4275bf ;
+        background-color: #0a4275bf;
         border-top-left-radius: 4px;
         border-top-right-radius: 4px;
     }
@@ -85,6 +84,14 @@ footer {
         overflow: auto;
       }
       
+.table-responsive{
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+thead {
+        background-color: #0a4275bf;
+        }
 
 tbody {
         /*Bootsrap var*/
@@ -96,9 +103,6 @@ tbody , .table-striped>tbody>tr:nth-of-type(odd)>* {
         }        
 
 
-thead {
-        background-color: var(--IDarkBlue);
-        }
 
 .right {
         float: right;
@@ -162,22 +166,21 @@ thead {
     color: var(--NavBackGround);
     }
 
-
-.histonav.bi {   
-        color: #030A8C;
+.histonav {
+        /* color: #030A8C; */
+        font-size: large;
         }
 
 #buttonGrid .bi {
         font-size: 80px;
         color: var(--Iwhite);
         }
+
 #buttonGrid .btn {
     background-color: var(--IDarLigthkBlue);
     }
 
-
 .modal-backdrop{
-    
     height: 100%;
     width: 100%;   
 }

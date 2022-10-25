@@ -10,13 +10,13 @@ hd-meta-description="Nueva Historia"
         <div class="container bg-light border">
             <x-layouts.tittlebar
             class="row h-100 text-center text-white"
-            alias="HISTORIA"
-            action='NUEVA'/>
+            alias="HISTORIA CLINICA"
+            action=''/>
             <div class="container">
 
                 <main>
 
-                <div class="row col-12">
+                <div class="row g-4">
 
                     <x-layouts.miscellaneous.inputdiv 
                     div-class="form-group col-2"
@@ -46,7 +46,7 @@ hd-meta-description="Nueva Historia"
                     <x-layouts.miscellaneous.inputdiv 
                     div-class="form-group col-2"
                     fieldname='fk_epstype'
-                    showname='Regimen'
+                    showname='Régimen'
                     />
 
                     {{-- PROX VERSIÓN --}}
@@ -69,7 +69,7 @@ hd-meta-description="Nueva Historia"
                                                 <button type="button" class="btn btn-primary" title="Código Fucsia"
                                                     id="abused" onclick="logic(this);">
                                                     <i class="bi bi-balloon-fill">
-                                                        <input type="check" name="abused" value="" hidden>
+                                                        
                                                     </i> 
                                                 </button>
                                             </div>
@@ -228,7 +228,7 @@ hd-meta-description="Nueva Historia"
 
                 </div>    
                 <div class="row g-5 mt-auto">
-                    <div class="container-fluid col-md-5 col-lg-4 order-md-end p-2">
+                    <div class="container-fluid col-md-4 col-lg-4 order-md-end p-2">
                         <div class="table-responsive">
                             <table class="table table-striped mb-1">
                                 <thead>
@@ -249,288 +249,353 @@ hd-meta-description="Nueva Historia"
                                     />
                                 </tbody>
                             </table>
-            
-                      {{-- <form class="card p-2">
-                        <div class="input-group">
-                          <input type="text" class="form-control" placeholder="Promo code">
-                          <button type="submit" class="btn btn-primary">Redeem</button>
-                        </div>
-                      </form> --}}
                         </div>
                         {{$patients->withQueryString()->links()}}
                     </div>
 
-                    <div class="container-fluid col-md-7 col-lg-8">
+                    <div class="container-fluid col-md-8 col-lg-8">
                       
                         <div class="row">
                             
-
-                            <div class="col-sm-12 mt-2 mb-2">
+                            <div class="col-sm-12 m-2">
                                 <nav id="patientoptions">
                                     <div class="nav nav-tabs" id="nav-tab"role="tablist">
-                                        <button class="nav-link active" id="nav-medicalbond-tab"data-bs-toggle="tab"data-bs-target="#nav-medicalbond"
-                                            type="button"role="tab"aria-controls="nav-medicalbond"aria-selected="true" title="Consulta">
-                                            <i class="bi-ui-radios"><input type="check" name="abused" value="" hidden></i> 
-                                        </button>
+
+
+                                        <li class="nav-link" data-bs-toggle="tab" data-bs-target="#nav-consulta" type="button" 
+                                            role="tab" aria-selected="false" title="Consulta">
+                                            <i class="histonav bi-ui-radios"></i>
+                                        </li>
                                         
-                                        <button class="nav-link" id="nav-legal-tab" data-bs-toggle="tab" data-bs-target="#nav-legal"
-                                            type="button" role="tab" aria-controls="nav-income" aria-selected="false" title="Antecedentes">
-                                            <i class="histonav bi-shield-shaded">
-                                                <input type="check" name="abused" value="" hidden>
-                                            </i> </button>
+                                        <li class="nav-link" data-bs-toggle="tab" data-bs-target="#nav-antecedentes" type="button" 
+                                            role="tab" aria-selected="false" title="Antecedentes">
+                                            <i class="histonav bi-shield-lock-fill"></i>
+                                        </li>
 
-                                        <button class="nav-link" id="nav-income-tab" data-bs-toggle="tab" data-bs-target="#nav-income"
-                                            type="button" role="tab" aria-controls="nav-income" aria-selected="false" title="diagnóstico">
-                                            <i class="histonav bi-journal-medical">
-                                                <input type="check" name="abused" value="" hidden>
-                                            </i> </button>
-                                            
-                                        <button class="nav-link" id="nav-files-tab" data-bs-toggle="tab" data-bs-target="#nav-files"
-                                            type="button" role="tab" aria-controls="nav-files" aria-selected="false" title="tratamiento">
-                                            <i class="histonav bi-capsule">
-                                                <input type="check" name="abused" value="" hidden>
-                                            </i> </button>
+                                        <li class="nav-link" data-bs-toggle="tab" data-bs-target="#nav-diagnostico" type="button" 
+                                            role="tab" aria-selected="false" title="Diagnóstico">
+                                            <i class="histonav bi-file-post"></i> 
 
-                                        <button class="nav-link" id="nav-presence-tab" data-bs-toggle="tab" data-bs-target="#nav-presence"
-                                            type="button" role="tab" aria-controls="nav-presence" aria-selected="false" title="ayudas Dx">
-                                            <i class="histonav bi-heart-pulse-fill">
-                                                <input type="check" name="abused" value="" hidden>
-                                            </i></button>
+                                        </li>
 
-                                        <button class="nav-link" id="nav-presence-tab" data-bs-toggle="tab" data-bs-target="#nav-presence"
-                                            type="button"role="tab"aria-controls="nav-presence"aria-selected="false" title="remisión">
-                                            <i class="histonav bi-file-earmark-richtext-fill">
-                                                <input type="check" name="abused" value="" hidden>
-                                            </i></button>
+                                        <li class="nav-link" data-bs-toggle="tab" data-bs-target="#nav-tratamiento" type="button" 
+                                            role="tab" aria-selected="false" title="Tratamiento">
+                                            <i class="histonav bi-heart-pulse-fill"></i> 
+                                        </li>
+                                        
+                                        <li class="nav-link" data-bs-toggle="tab" data-bs-target="#nav-ayudadx" type="button" 
+                                            role="tab" aria-selected="false" title="Ayuda Dx. Procedimientos y Drogodependencia">
+                                            <i class="histonav bi-file-earmark-medical-fill"></i> 
+                                        </li>
+                                        
+                                        <li class="nav-link" data-bs-toggle="tab" data-bs-target="#nav-remision" type="button" 
+                                            role="tab" aria-selected="false" title="Remisión">
+                                            <i class="histonav bi-file-text"></i> 
+                                        </li>
 
-                                        <button class="nav-link" id="nav-presence-tab" data-bs-toggle="tab" data-bs-target="#nav-presence"
-                                            type="button"role="tab"aria-controls="nav-presence"aria-selected="false" title="notas aclaratorias">
-                                            <i class="histonav bi-chat-dots-fill">
-                                                <input type="check" name="abused" value="" hidden>
-                                            </i> </button>
+                                        <li class="nav-link" data-bs-toggle="tab" data-bs-target="#nav-notas" type="button" 
+                                            role="tab" aria-selected="false" title="Notas Aclaratorias">
+                                            <i class="histonav bi-chat-dots-fill"></i> 
+                                        </li>
+                                        
+                                        <li class="nav-link" data-bs-toggle="tab" data-bs-target="#nav-" type="button" 
+                                            role="tab" aria-selected="false" title="Autorización">
+                                            <i class="histonav bi-postage-fill"></i> 
+                                        </li>
+                                        
+                                        <li class="nav-link" data-bs-toggle="tab" data-bs-target="#nav-" type="button" 
+                                            role="tab" aria-selected="false" title="Solicitúd Autorización Servicios Salud">
+                                            <i class="histonav bi-hospital"></i> 
+                                        </li>
+                                        
+                                        <li class="nav-link" data-bs-toggle="tab" data-bs-target="#nav-" type="button" 
+                                            role="tab" aria-selected="false" title="Archivos">
+                                            <i class="histonav bi-file-earmark-zip-fill"></i> 
+                                        </li>
 
-                                        <button class="nav-link" id="nav-presence-tab" data-bs-toggle="tab" data-bs-target="#nav-presence"
-                                            type="button"role="tab"aria-controls="nav-presence"aria-selected="false" title="autorización">
-                                            <i class="histonav bi-postage-fill">
-                                                <input type="check" name="abused" value="" hidden>
-                                            </i></button>
-                                            
-                                        <button class="nav-link" id="nav-presence-tab" data-bs-toggle="tab" data-bs-target="#nav-presence"
-                                            type="button"role="tab"aria-controls="nav-presence"aria-selected="false" title="solicitúd autorización servicios salud">
-                                            <i class="histonav bi-hospital">
-                                                <input type="check" name="abused" value="" hidden>
-                                            </i> </button>
-
-                                        <button class="nav-link" id="nav-presence-tab"data-bs-toggle="tab"data-bs-target="#nav-presence"
-                                            type="button"role="tab"aria-controls="nav-presence"aria-selected="false" title="archivos">
-                                            <i class="histonav bi-file-earmark-zip-fill">
-                                                <input type="check" name="abused" value="" hidden>
-                                            </i></button>
                                     </div>
                                 </nav>
                                 <div class="tab-content" id="nav-tabContent">
-                                    <div class="tab-pane fade show active p-2" id="nav-medicalbond"role="tabpanel" aria-labelledby="nav-medicalbond-tab">
-                                        {{-- VINCULACION  --}}
-                                        <div class="row">
-                                            <div class="col-sm-6">
+                                    <div class="tab-pane fade" id="nav-consulta" role="tabpanel" aria-labelledby="nav-consulta">
+                                        <div class="container">
+                                            <div class="row bg-liht">
+                                                <div class="row p-2">
+                                                    <x-layouts.miscellaneous.inputdiv
+                                                    div-class="form-group col-5"
+                                                    fieldname="dniaccompanist"
+                                                    showname="Documento"
+                                                    type="numb"
+                                                    />
 
-                                                <div class="row">
-                                                <label for="eps" class="form-label col-sm-9 col-md-8"> Entidad </label>
-                                                    <div class="form-check col-sm-3 col-md-4 d-inline-flex flex-row-reverse" id="check">
-                                                        <label class="form-label"for="capitado">
-                                                            Capitado 
-                                                        </label>
-                                                        <input class="form-check-input" name="capitado" id="capitado"type="checkbox"size="10px" value="{{ old('dni') }}" id="flexCheckDefault">
-                                                    </div>
+                                                    <x-layouts.miscellaneous.inputdiv 
+                                                            div-class="form-group col-7"
+                                                            fieldname="accompanist"
+                                                            showname="Acompañante"
+                                                    />
+                                                    
+                                                    <x-layouts.miscellaneous.inputdiv 
+                                                            div-class="form-group col-7"
+                                                            fieldname="kinred"
+                                                            showname="Parentesco"
+                                                    />
+                                                    <x-layouts.miscellaneous.inputdiv 
+                                                            div-class="form-group col-5"
+                                                            fieldname="phoneaccompanist"
+                                                            showname="Teléfono"
+                                                            type="numb"
+                                                    />
+                                                
                                                 </div>
-                                                <input type="text" class="form-control col-sm-9 align-bottom"width="" name="eps" id="eps" placeholder="Entidad">
-
-                                            </div> 
-                                            
-                                            <div class="col-sm-3">
-                                                <label for="epstype" class="form-label"> Regimen </label>
-                                                <select class="form-select" name="epstype" id="epstype" aria-label="">
-                                                    <option selected value="{{ old('dni') }}">Seleccione tipo</option>
-                                                    <option value="C">Contribuitivo</option>
-                                                    <option value="S">Subsidiado</option>
-                                                </Select>
-                                            </div> 
-                                            <div class="col-sm-3">
-                                                <label for="contract" class="form-label"> Contrato </label>
-                                                <select class="form-select" name="contract" id="contract" aria-label="">
-                                                    <option selected value="{{ old('dni') }}">Seleccione contrato</option>
-                                                    <option value='1'>contrato1</option>
-                                                    <option value="2">contrato2</option>
-                                                </Select>
-                                            </div>
-                                            
-                                             
-                                        </div>
-                                        
-                                        <div class="row">
-                                            <div class="col-sm-4">
-                                                <label for="epslevel" class="form-label"> Nivel </label>
-                                                <input type="text" class="form-control" name="epslevel" id="epslevel" placeholder="">
-                                            </div> 
-                                            <div class="col-sm-4">
-                                                <label for="policy" class="form-label"> Poliza </label>
-                                                <input type="text" class="form-control" name="policy" id="policy" placeholder="">
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <label for="membertype" class="form-label"> Tipo Afiliado </label>
-                                                <input type="text" class="form-control" name="membertype" id="membertype" placeholder="">
-                                            </div> 
-                                        </div>
-                                        <div class="row">
-
-                                            <div class="col-sm-4">
-                                                <label for="contributor" class="form-label"> Cotizante </label>
-                                                <input type="text" class="form-control" name="contributor" id="contributor" placeholder="">
-                                            </div> 
-                                            <div class="col-sm-4">
-                                                <label for="Ips" class="form-label"> IPS </label>
-                                                <select class="form-select" name="Ips" id="Ips" aria-label="">
-                                                    <option selected value="{{ old('dni') }}">Seleccione Ips</option>
-                                                    <option value='Bello'>Hospital mental antioquia (HOMO)</option>
-                                                    <option value="Medellin">Ips salud de antioquia</option>
-                                                    <option value="Manizales">Ips medellin</option>
-                                                </Select>
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <label for="alert" class="form-label"> Alerta </label>
-                                                <input type="text" class="form-control" name="alert" id="alert" placeholder="">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="tab-pane fade p-2" id="nav-legal"role="tabpanel" aria-labelledby="nav-legal-tab">
-                                        {{-- PANEL RESPONSABLE LEGAL --}}
-                                        <div class="container mb-3">
-                                            <div class="row">
-
-                                                <div class="col-sm-2">
-                                                    <label for="legaldocumenttype" class="form-label">Tipo Documento</label>
-                                                    <select class="form-select" name="legaldocumenttype" id = "legaldocumenttype" aria-label="legal document type">
-                                                    {{-- lv --}}
-                                                    @foreach ( $typeDocs as $typeDoc )
-                                                    <option value="{{ $typeDoc->id }}"> {{ $typeDoc->name }} </option>
-                                                    @endforeach
-
-                                                    </Select>
+                                                <div class="row p-2">
+                                                    <x-layouts.miscellaneous.textareaDiv 
+                                                            div-class="form-group"
+                                                            fieldname="motive"
+                                                            showname="Motivo Consulta"
+                                                            type="numb"
+                                                    />
+                                                </div> 
+                                                
+                                                <div class="row p-2">
+                                                    <x-layouts.miscellaneous.textareaDiv 
+                                                            div-class="form-group"
+                                                            fieldname="sthink"
+                                                            showname="Enfermedad Actual"
+                                                            type="numb"
+                                                    />
                                                 </div>
-                                                <div class="col-sm-3">
-                                                    <label for="legaldni" class="form-label"> Numero Identificación </label>
-                                                    <input type="text" class="form-control" name="legaldni" id="legaldni" placeholder="No identificación">
+                                                
+                                                <div class="row p-2">
+                                                    <x-layouts.miscellaneous.textareaDiv 
+                                                            div-class="form-group"
+                                                            fieldname="motive"
+                                                            showname="Exámen Mental"
+                                                            type="numb"
+                                                    />
                                                 </div> 
-
-                                                <div class="col-sm-4">
-                                                    <label for="legalname" class="form-label"> Nombre Completo </label>
-                                                    <input type="text" class="form-control" name="legalname" id="legalname" placeholder="Nombre responsable">
-                                                </div> 
-
-                                                <div class="col-sm-3">
-                                                    <label for="kindred" class="form-label">Relación / Parentesco</label>
-                                                    <select class="form-select" name="kindred" id = "kindred" aria-label="legal document type">
-                                                        <option value="">Seleccion</option>
-                                                        <option value='0'>Conyugue</option>
-                                                        <option value='1'>Madre</option>
-                                                        <option value="2">Padre</option>
-                                                        <option value="3">Hija/o</option>
-                                                        <option value="4">Hermana/o</option>
-                                                        <option value="5">Abuela/o</option>
-                                                        <option value="6">Otro</option>
-                                                    </Select>
+                                                
+                                                <div class="row p-2">
+                                                    <x-layouts.miscellaneous.textareaDiv 
+                                                            div-class="form-group"
+                                                            fieldname="sthink"
+                                                            showname="Plan Analisis"
+                                                            type="numb"
+                                                    />
                                                 </div>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-sm-5">
-                                                    <label for="legalphone" class="form-label"> Teléfono </label>
-                                                    <input type="text" class="form-control" name="legalphone" id="legalphone" placeholder="Teléfono">
-                                                </div> 
-                                                <div class="col-sm-7">
-                                                    <label for="legaladress" class="form-label"> Teléfono </label>
-                                                    <input type="text" class="form-control" name="legaladress" id="legalphone" placeholder="Dirección">
-                                                </div> 
-                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="tab-pane fade" id="nav-antecedentes" role="tabpanel" aria-labelledby="nav-antecedentes">
+                                        <div class="table-responsive">
+                                            <table class="table caption-top">
+                                                <caption>Listado de antecedentes</caption>
+                                                <thead>
+                                                  <tr class="text-white">
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">Nombre</th>
+                                                    <th scope="col">Personal</th>
+                                                    <th scope="col">Familiar</th>
+                                                    <th scope="col">Observación</th>
+                                                  </tr>
+                                                </thead>
+                                                <tbody>
+                                                  <tr> 
+                                                    <th scope="row">1</th> 
+                                                    <td>Socio-Laborales</td> 
+                                                    <td> <button class="btn btn-secondary btn-md" type="button"> <i class="bi bi-check-circle-fill" title="Personal"></i> </button></td>
+                                                    <td> <button class="btn btn-secondary btn-md" type="button"> <i class="bi bi-check-circle-fill" title="Familiar"></i> </button></td>
+                                                    {{-- <td> <x-layouts.miscellaneous.inputtextarea rows=1 /> </td> --}}
+                                                    <td> <x-layouts.miscellaneous.inputTextarea rows=1 /> </td> 
+                                                  </tr>
+                                                  <tr> 
+                                                    <th scope="row">2</th> 
+                                                    <td>Hipertensivos</td> 
+                                                    <td> <button class="btn btn-secondary btn-md" type="button"> <i class="bi bi-check-circle-fill" title="Personal"></i> </button></td>
+                                                    <td> <button class="btn btn-secondary btn-md" type="button"> <i class="bi bi-check-circle-fill" title="Familiar"></i> </button></td>
+                                                    <td> <x-layouts.miscellaneous.inputtextarea rows=1 /> </td>
+                                                  </tr> 
+                                                  <tr> 
+                                                    <th scope="row">3</th> 
+                                                    <td>Tóxicos</td> 
+                                                    <td> <button class="btn btn-secondary btn-md" type="button"> <i class="bi bi-check-circle-fill" title="Personal"></i> </button></td>
+                                                    <td> <button class="btn btn-secondary btn-md" type="button"> <i class="bi bi-check-circle-fill" title="Familiar"></i> </button></td>
+                                                    <td> <x-layouts.miscellaneous.inputtextarea rows=1 /> </td>
+                                                  </tr>
+                                                  <tr> 
+                                                    <th scope="row">4</th> 
+                                                    <td>Transtornos Mentales</td> 
+                                                    <td> <button class="btn btn-secondary btn-md" type="button"> <i class="bi bi-check-circle-fill" title="Personal"></i> </button></td>
+                                                    <td> <button class="btn btn-secondary btn-md" type="button"> <i class="bi bi-check-circle-fill" title="Familiar"></i> </button></td>
+                                                    <td> <x-layouts.miscellaneous.inputtextarea rows=1 /> </td>
+                                                  </tr> 
+                                                  <tr> 
+                                                    <th scope="row">5</th> 
+                                                    <td>Cancer</td> 
+                                                    <td> <button class="btn btn-secondary btn-md" type="button"> <i class="bi bi-check-circle-fill" title="Personal"></i> </button></td>
+                                                    <td> <button class="btn btn-secondary btn-md" type="button"> <i class="bi bi-check-circle-fill" title="Familiar"></i> </button></td>
+                                                    <td> <x-layouts.miscellaneous.inputtextarea rows=1 /> </td>
+                                                  </tr>
+                                                  <tr> 
+                                                    <th scope="row">6</th> 
+                                                    <td>Venereas</td> 
+                                                    <td> <button class="btn btn-secondary btn-md" type="button"> <i class="bi bi-check-circle-fill" title="Personal"></i> </button></td>
+                                                    <td> <button class="btn btn-secondary btn-md" type="button"> <i class="bi bi-check-circle-fill" title="Familiar"></i> </button></td>
+                                                    <td> <x-layouts.miscellaneous.inputtextarea rows=1 /> </td>
+                                                  </tr> 
+                                                  <tr> 
+                                                    <th scope="row">7</th> 
+                                                    <td>Diabetes</td> 
+                                                    <td> <button class="btn btn-secondary btn-md" type="button"> <i class="bi bi-check-circle-fill" title="Personal"></i> </button></td>
+                                                    <td> <button class="btn btn-secondary btn-md" type="button"> <i class="bi bi-check-circle-fill" title="Familiar"></i> </button></td>
+                                                    <td> <x-layouts.miscellaneous.inputtextarea rows=1 /> </td>
+                                                  </tr>
+                                                  <tr> 
+                                                    <th scope="row">8</th> 
+                                                    <td>Quirurgicos</td> 
+                                                    <td> <button class="btn btn-secondary btn-md" type="button"> <i class="bi bi-check-circle-fill" title="Personal"></i> </button></td>
+                                                    <td> <button class="btn btn-secondary btn-md" type="button"> <i class="bi bi-check-circle-fill" title="Familiar"></i> </button></td>
+                                                    <td> <x-layouts.miscellaneous.inputtextarea rows=1 /> </td>
+                                                  </tr> 
+                                                  <tr> 
+                                                    <th scope="row">9</th> 
+                                                    <td>Alergicos</td> 
+                                                    <td> <button class="btn btn-secondary btn-md" type="button"> <i class="bi bi-check-circle-fill" title="Personal"></i> </button></td>
+                                                    <td> <button class="btn btn-secondary btn-md" type="button"> <i class="bi bi-check-circle-fill" title="Familiar"></i> </button></td>
+                                                    <td> <x-layouts.miscellaneous.inputtextarea rows=1 /> </td>
+                                                  </tr>
+                                                  <tr> 
+                                                    <th scope="row">10</th> 
+                                                    <td>Defecto visual</td> 
+                                                    <td> <button class="btn btn-secondary btn-md" type="button"> <i class="bi bi-check-circle-fill" title="Personal"></i> </button></td>
+                                                    <td> <button class="btn btn-secondary btn-md" type="button"> <i class="bi bi-check-circle-fill" title="Familiar"></i> </button></td>
+                                                    <td> <x-layouts.miscellaneous.inputtextarea rows=1 /> </td>
+                                                  </tr> 
+                                                  <tr> 
+                                                    <th scope="row">11</th> 
+                                                    <td>Farmacologicos</td> 
+                                                    <td> <button class="btn btn-secondary btn-md" type="button"> <i class="bi bi-check-circle-fill" title="Personal"></i> </button></td>
+                                                    <td> <button class="btn btn-secondary btn-md" type="button"> <i class="bi bi-check-circle-fill" title="Familiar"></i> </button></td>
+                                                    <td> <x-layouts.miscellaneous.inputtextarea rows=1 /> </td>
+                                                  </tr>
+                                                  <tr> 
+                                                    <th scope="row">12</th> 
+                                                    <td>Endocrinos</td> 
+                                                    <td> <button class="btn btn-secondary btn-md" type="button"> <i class="bi bi-check-circle-fill" title="Personal"></i> </button></td>
+                                                    <td> <button class="btn btn-secondary btn-md" type="button"> <i class="bi bi-check-circle-fill" title="Familiar"></i> </button></td>
+                                                    <td> <x-layouts.miscellaneous.inputtextarea rows=1 /> </td>
+                                                  </tr><tr> 
+                                                    <th scope="row">13</th> 
+                                                    <td>Infeccionsos</td> 
+                                                    <td> <button class="btn btn-secondary btn-md" type="button"> <i class="bi bi-check-circle-fill" title="Personal"></i> </button></td>
+                                                    <td> <button class="btn btn-secondary btn-md" type="button"> <i class="bi bi-check-circle-fill" title="Familiar"></i> </button></td>
+                                                    <td> <x-layouts.miscellaneous.inputtextarea rows=1 /> </td>
+                                                  </tr> 
+                                                  <tr> 
+                                                    <th scope="row">14</th> 
+                                                    <td>GastroIntestinales</td> 
+                                                    <td> <button class="btn btn-secondary btn-md" type="button"> <i class="bi bi-check-circle-fill" title="Personal"></i> </button></td>
+                                                    <td> <button class="btn btn-secondary btn-md" type="button"> <i class="bi bi-check-circle-fill" title="Familiar"></i> </button></td>
+                                                    <td> <x-layouts.miscellaneous.inputtextarea rows=1 /> </td>
+                                                  </tr>
+                                                  <tr> 
+                                                    <th scope="row">15</th> 
+                                                    <td>Patologicos</td> 
+                                                    <td> <button class="btn btn-secondary btn-md" type="button"> <i class="bi bi-check-circle-fill" title="Personal"></i> </button></td>
+                                                    <td> <button class="btn btn-secondary btn-md" type="button"> <i class="bi bi-check-circle-fill" title="Familiar"></i> </button></td>
+                                                    <td> <x-layouts.miscellaneous.inputtextarea rows=1 /> </td>
+                                                  </tr> 
+                                                  <tr> 
+                                                    <th scope="row">16</th> 
+                                                    <td>Traumaticos</td> 
+                                                    <td> <button class="btn btn-secondary btn-md" type="button"> <i class="bi bi-check-circle-fill" title="Personal"></i> </button></td>
+                                                    <td> <button class="btn btn-secondary btn-md" type="button"> <i class="bi bi-check-circle-fill" title="Familiar"></i> </button></td>
+                                                    <td> <x-layouts.miscellaneous.inputtextarea rows=1 /> </td>
+                                                  </tr>
+                                                  <tr> 
+                                                    <th scope="row">17</th> 
+                                                    <td>Neurologicos</td> 
+                                                    <td> <button class="btn btn-secondary btn-md" type="button"> <i class="bi bi-check-circle-fill" title="Personal"></i> </button></td>
+                                                    <td> <button class="btn btn-secondary btn-md" type="button"> <i class="bi bi-check-circle-fill" title="Familiar"></i> </button></td>
+                                                    <td> <x-layouts.miscellaneous.inputtextarea rows=1 /> </td>
+                                                  </tr>                                                  
+                                                </tbody>
+                                              </table>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="tab-pane fade show active" id="nav-diagnostico" role="tabpanel" aria-labelledby="nav-diagnostico">
+                                        <div class="row p-2">
+                                                <x-layouts.miscellaneous.inputdiv
+                                                div-class="form-group col-3"
+                                                fieldname="type"
+                                                showname="Tipo"
+                                                />
+                                                
+                                                <x-layouts.miscellaneous.inputdiv
+                                                div-class="form-group col-3"
+                                                fieldname="typediagnosys"
+                                                showname="Tipo Diagnóstico"
+                                                />                                                
+                                                <x-layouts.miscellaneous.inputdiv
+                                                div-class="form-group col-4"
+                                                fieldname="external"
+                                                showname="Causa externa"
+                                                />
+                                                
+                                                <x-layouts.miscellaneous.inputdiv
+                                                div-class="form-group col-2"
+                                                fieldname="risk"
+                                                showname="Nivel Riesgo"
+                                                />
+                                                
+                                                <x-layouts.miscellaneous.inputdiv
+                                                div-class="form-group col-12"
+                                                fieldname="type_session"
+                                                showname="Tipo Consulta"
+                                                />
+
+                                                <x-layouts.miscellaneous.textareaDiv 
+                                                div-class="form-group"
+                                                fieldname="diagnosisimp"
+                                                showname="Impresión Diagnóstica"
+                                                />
+                                                
                                         </div>
                                     </div>
 
-                                    <div class="tab-pane fade" id="nav-income"role="tabpanel" aria-labelledby="nav-income-tab">
-                                        {{-- PANEL INGRESO --}}
-                                        INGRESO
+                                    <div class="tab-pane fade" id="nav-tratamiento" role="tabpanel" aria-labelledby="nav-antecedentes">
+                                        Tratamiento
                                     </div>
 
-                                    <div class="tab-pane fade" id="nav-presence"role="tabpanel" aria-labelledby="nav-presence-tab">
-                                        {{-- PANEL ASISTENCIA --}}
-                                        ASISTENCIA
+                                    <div class="tab-pane fade" id="nav-ayudadx" role="tabpanel" aria-labelledby="nav-antecedentes">
+                                        Ayuda Dx. Procedimientos y Drogodependencia
                                     </div>
 
-                                    <div class="tab-pane fade" id="nav-files"role="tabpanel" aria-labelledby="nav-files-tab">
-                                        {{-- PANEL ARCHIVOS --}}
-                                        ARCHIVOS
+                                    <div class="tab-pane fade" id="nav-remision" role="tabpanel" aria-labelledby="nav-antecedentes">
+                                        Remisión
                                     </div>
+
+                                    <div class="tab-pane fade" id="nav-notas" role="tabpanel" aria-labelledby="nav-antecedentes">
+                                        Notas Aclaratorias
+                                    </div>
+
+                                    <div class="tab-pane fade" id="nav-notas" role="tabpanel" aria-labelledby="nav-antecedentes">
+                                        Notas Aclaratorias
+                                    </div>
+
                                 </div>
                             </div>
-
-
-                            {{-- <x-layouts.miscellaneous.inputdiv 
-                            div-class="form-group col-3"
-                            fieldname="date_assigned"
-                            showname="Fecha"
-                            type="date"
-                            />
-                            
-                            <x-layouts.miscellaneous.inputdiv 
-                            div-class="form-group col-5"
-                            fieldname="fk_user"
-                            showname="Profesional"
-                            type="text"
-                            enable="0"
-                            />
-                            
-                            <x-layouts.miscellaneous.inputdiv 
-                            div-class="form-group col-4"
-                            fieldname="fk_useraplication"
-                            showname="Especialidad"
-                            type="text"
-                            />
-                            
-                            <x-layouts.miscellaneous.inputdiv 
-                            div-class="form-group col-8"
-                            fieldname="fk_auxuser"
-                            showname="Asistidio por"
-                            type="text"
-                            />
-                            
-
-                            <div class="form-group col-6">
-                                <label for="code">Código</label>
-                                <input type="text" class="form-control" id="code" name="code" placeholder="Código" value="{{ old('code') }}">
-                                @error('code')
-                                    <small class="text-danger"><strong>*{{ $message }}</strong></small>
-                                @enderror
-                            </div>            
-
-                            <div class="form-group col-6">
-                                <label for="name">Nombre</label>
-                                <input type="text" class="form-control" id="name" name="name" placeholder="Nombre" value="{{ old('name') }}">
-                            </div> --}}
                         </div>
                         
-                        <div class="form-group">
-                            <label for="description">Descripción</label>
-                            <textarea class="form-control" id="description" name="description" rows="10" placeholder="Descripción">{{ Empty(old('description')) ? '' :  old('description') ; }}</textarea>
-                            @error('description')
-                                <small class="text-danger"><strong>*{{ $message }}</strong></small>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="observation">Observación</label>
-                            <textarea class="form-control" id="observation" name="observation" rows="15" placeholder="Observación">{{ Empty(old('observation')) ? '' :  old('observation') ; }}</textarea>
-                        </div>
 
                     </div>
-                  </div>
+                    <div class="form-group mt-0">
+                        <label for="observation">Observación</label>
+                        <textarea class="form-control" id="observation" name="observation" rows="15" placeholder="Observación">{{ Empty(old('observation')) ? '' :  old('observation') ; }}</textarea>
+                    </div>
+                </div>
+                
+                
                 </main>
 
                             <x-layouts.formSave :module="$module" />

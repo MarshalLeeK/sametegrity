@@ -58,9 +58,10 @@ class HistoriesController extends Controller
         $patients = DB::table('patients')
                         ->select('id','created_at','z_xOne')
                         ->orderBy( 'created_at')
-                        ->paginate(18);      
+                        ->paginate(15);      
+        $columnsAntecedentes = ['Nombre','Categoria','Observación'];
         $columns=['Fecha','Especialidad'];
-        return view('Medichalhistory.histories_c',compact('module','view','typeDocs','patients','columns'));
+        return view('Medichalhistory.histories_c',compact('module','view','typeDocs','patients','columns','columnsAntecedentes'));
     }
 
     /**

@@ -1,9 +1,9 @@
-<div class="{{ $divClass ?? "form-group col-6" }}">
-
+<div class="{{ $divClass ?? "form-group col-6"}}">
+    
     {{-- Label --}}
     <x-layouts.miscellaneous.inputLabel
-        :fieldname="$fieldname"
-        :showname="$showname"
+    :fieldname="$fieldname"
+    :showname="$showname"
     />
     
     {{-- field --}}
