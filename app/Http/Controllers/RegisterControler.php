@@ -10,6 +10,7 @@ use App\Http\Requests\UpdateUserRequest;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class RegisterControler extends Controller
 {
@@ -34,7 +35,7 @@ class RegisterControler extends Controller
                         ->where( 'name','LIKE','%'.$searchbox.'%')
                         ->orWhere( 'lastname','LIKE','%'.$searchbox.'%')
                         ->orderBy( 'dni','asc')
-                        ->paginate(18);                        ;
+                        ->paginate(18);
 
         return view('accountModule.accounts_l', compact('accounts','searchbox','columns','module','view'));
         
@@ -65,10 +66,11 @@ class RegisterControler extends Controller
         $user = new User;
         $user->dni = $request->input('dni');
         $user->name = $request->input('name');
-        $user->privilegeSet = $request->input('privilegeSet');
-        $user->documenttype = $request->input('tdoc');
-        $user->gender = $request->input('gender');
         $user->lastname = $request->input('lastname');
+        $user->slug = Str::slug($user->name.' '.$user->lastname);
+        $user->documenttype = $request->input('tdoc');
+        $user->privilegeSet = $request->input('privilegeSet');
+        $user->gender = $request->input('gender');
         $user->email = $request->input('email');
         $user->username = $request->input('username');
         $user->password = $request->input('password');
@@ -116,6 +118,7 @@ class RegisterControler extends Controller
         $user->dni = $request->input('dni');
         $user->name = $request->input('name');
         $user->lastname = $request->input('lastname');
+        $user->slug = Str::slug($user->name.' '.$user->lastname);
         $user->email = $request->input('email');
         $user->username = $request->input('username');
         $user->password = $request->input('password');
@@ -132,10 +135,10 @@ class RegisterControler extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function destroy($id)
+    public function destroy($user)
     {
-        $user= User::findOrFail($id);
-        $user->delete();
+        // $user= User::findOrFail($id);
+        User::destroy($user);
         return redirect()->route( $this->module);
     }
 

@@ -227,7 +227,7 @@ hd-meta-description="Nueva Historia"
                                 </div>
 
                 </div>    
-                <div class="row g-5 mt-auto">
+                <div class="d-inline-flex g-6 mt-auto">
                     <div class="container-fluid col-md-4 col-lg-4 order-md-end p-2">
                         <div class="table-responsive">
                             <table class="table table-striped mb-1">
@@ -255,11 +255,11 @@ hd-meta-description="Nueva Historia"
 
                     <div class="container-fluid col-md-8 col-lg-8">
                       
-                        <div class="row">
+  
                             
                             <div class="col-sm-12 m-2">
                                 <nav id="patientoptions">
-                                    <div class="nav nav-tabs" id="nav-tab"role="tablist">
+                                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
 
 
                                         <li class="nav-link" data-bs-toggle="tab" data-bs-target="#nav-consulta" type="button" 
@@ -278,11 +278,18 @@ hd-meta-description="Nueva Historia"
 
                                         </li>
 
-                                        <li class="nav-link" data-bs-toggle="tab" data-bs-target="#nav-tratamiento" type="button" 
-                                            role="tab" aria-selected="false" title="Tratamiento">
-                                            <i class="histonav bi-heart-pulse-fill"></i> 
-                                        </li>
-                                        
+
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="histonav bi-heart-pulse-fill"></i></a>
+                                            <ul class="dropdown-menu">
+                                              <sub class="dropdown-header">Tratamiento</sub>
+                                              <li><hr class="dropdown-divider"></li>
+                                              <li><a class="dropdown-item" href="#nav-medicamento" data-bs-toggle="tab" data-bs-toggle="#nav-medicamento" aria-selected="false"><i class="histonav bi-capsule"></i> Médicamentos </a></li>
+                                              <li><a class="dropdown-item" href="#nav-suministros" data-bs-toggle="tab" data-bs-toggle="#nav-medicamento" aria-selected="false"><i class="histonav bi-box-seam-fill"></i> Suministros</a></li>
+                                              <li><a class="dropdown-item" href="#nav-recomendaciones" data-bs-toggle="tab" data-bs-toggle="#nav-medicamento" aria-selected="false"><i class="histonav bi-chat-left-text-fill"></i> Recomendaciones</a></li>
+                                              <li><a class="dropdown-item" href="#nav-Incapacidad" data-bs-toggle="tab" data-bs-toggle="#nav-medicamento" aria-selected="false"><i class="histonav bi-virus"></i> Incapacidad</a></li>
+                                            </ul>
+                                        </li>                                        
                                         <li class="nav-link" data-bs-toggle="tab" data-bs-target="#nav-ayudadx" type="button" 
                                             role="tab" aria-selected="false" title="Ayuda Dx. Procedimientos y Drogodependencia">
                                             <i class="histonav bi-file-earmark-medical-fill"></i> 
@@ -321,25 +328,26 @@ hd-meta-description="Nueva Historia"
                                             <div class="row bg-liht">
                                                 <div class="row p-2">
                                                     <x-layouts.miscellaneous.inputdiv
-                                                    div-class="form-group col-5"
+                                                    div-class="form-group col-3"
                                                     fieldname="dniaccompanist"
                                                     showname="Documento"
                                                     type="numb"
                                                     />
 
                                                     <x-layouts.miscellaneous.inputdiv 
-                                                            div-class="form-group col-7"
+                                                            div-class="form-group col-4"
                                                             fieldname="accompanist"
                                                             showname="Acompañante"
                                                     />
                                                     
                                                     <x-layouts.miscellaneous.inputdiv 
-                                                            div-class="form-group col-7"
+                                                            div-class="form-group col-3"
                                                             fieldname="kinred"
                                                             showname="Parentesco"
                                                     />
+
                                                     <x-layouts.miscellaneous.inputdiv 
-                                                            div-class="form-group col-5"
+                                                            div-class="form-group col-2"
                                                             fieldname="phoneaccompanist"
                                                             showname="Teléfono"
                                                             type="numb"
@@ -403,7 +411,6 @@ hd-meta-description="Nueva Historia"
                                                     <th scope="row">1</th> 
                                                     <td>Socio-Laborales</td> 
                                                     <td> <button class="btn btn-secondary btn-md" type="button"> <i class="bi bi-check-circle-fill" title="Personal"></i> </button></td>
-                                                    <td> <button class="btn btn-secondary btn-md" type="button"> <i class="bi bi-check-circle-fill" title="Familiar"></i> </button></td>
                                                     {{-- <td> <x-layouts.miscellaneous.inputtextarea rows=1 /> </td> --}}
                                                     <td> <x-layouts.miscellaneous.inputTextarea rows=1 /> </td> 
                                                   </tr>
@@ -411,111 +418,95 @@ hd-meta-description="Nueva Historia"
                                                     <th scope="row">2</th> 
                                                     <td>Hipertensivos</td> 
                                                     <td> <button class="btn btn-secondary btn-md" type="button"> <i class="bi bi-check-circle-fill" title="Personal"></i> </button></td>
-                                                    <td> <button class="btn btn-secondary btn-md" type="button"> <i class="bi bi-check-circle-fill" title="Familiar"></i> </button></td>
                                                     <td> <x-layouts.miscellaneous.inputtextarea rows=1 /> </td>
                                                   </tr> 
                                                   <tr> 
                                                     <th scope="row">3</th> 
                                                     <td>Tóxicos</td> 
                                                     <td> <button class="btn btn-secondary btn-md" type="button"> <i class="bi bi-check-circle-fill" title="Personal"></i> </button></td>
-                                                    <td> <button class="btn btn-secondary btn-md" type="button"> <i class="bi bi-check-circle-fill" title="Familiar"></i> </button></td>
                                                     <td> <x-layouts.miscellaneous.inputtextarea rows=1 /> </td>
                                                   </tr>
                                                   <tr> 
                                                     <th scope="row">4</th> 
                                                     <td>Transtornos Mentales</td> 
                                                     <td> <button class="btn btn-secondary btn-md" type="button"> <i class="bi bi-check-circle-fill" title="Personal"></i> </button></td>
-                                                    <td> <button class="btn btn-secondary btn-md" type="button"> <i class="bi bi-check-circle-fill" title="Familiar"></i> </button></td>
                                                     <td> <x-layouts.miscellaneous.inputtextarea rows=1 /> </td>
                                                   </tr> 
                                                   <tr> 
                                                     <th scope="row">5</th> 
                                                     <td>Cancer</td> 
                                                     <td> <button class="btn btn-secondary btn-md" type="button"> <i class="bi bi-check-circle-fill" title="Personal"></i> </button></td>
-                                                    <td> <button class="btn btn-secondary btn-md" type="button"> <i class="bi bi-check-circle-fill" title="Familiar"></i> </button></td>
                                                     <td> <x-layouts.miscellaneous.inputtextarea rows=1 /> </td>
                                                   </tr>
                                                   <tr> 
                                                     <th scope="row">6</th> 
                                                     <td>Venereas</td> 
                                                     <td> <button class="btn btn-secondary btn-md" type="button"> <i class="bi bi-check-circle-fill" title="Personal"></i> </button></td>
-                                                    <td> <button class="btn btn-secondary btn-md" type="button"> <i class="bi bi-check-circle-fill" title="Familiar"></i> </button></td>
                                                     <td> <x-layouts.miscellaneous.inputtextarea rows=1 /> </td>
                                                   </tr> 
                                                   <tr> 
                                                     <th scope="row">7</th> 
                                                     <td>Diabetes</td> 
                                                     <td> <button class="btn btn-secondary btn-md" type="button"> <i class="bi bi-check-circle-fill" title="Personal"></i> </button></td>
-                                                    <td> <button class="btn btn-secondary btn-md" type="button"> <i class="bi bi-check-circle-fill" title="Familiar"></i> </button></td>
                                                     <td> <x-layouts.miscellaneous.inputtextarea rows=1 /> </td>
                                                   </tr>
                                                   <tr> 
                                                     <th scope="row">8</th> 
                                                     <td>Quirurgicos</td> 
                                                     <td> <button class="btn btn-secondary btn-md" type="button"> <i class="bi bi-check-circle-fill" title="Personal"></i> </button></td>
-                                                    <td> <button class="btn btn-secondary btn-md" type="button"> <i class="bi bi-check-circle-fill" title="Familiar"></i> </button></td>
                                                     <td> <x-layouts.miscellaneous.inputtextarea rows=1 /> </td>
                                                   </tr> 
                                                   <tr> 
                                                     <th scope="row">9</th> 
                                                     <td>Alergicos</td> 
                                                     <td> <button class="btn btn-secondary btn-md" type="button"> <i class="bi bi-check-circle-fill" title="Personal"></i> </button></td>
-                                                    <td> <button class="btn btn-secondary btn-md" type="button"> <i class="bi bi-check-circle-fill" title="Familiar"></i> </button></td>
                                                     <td> <x-layouts.miscellaneous.inputtextarea rows=1 /> </td>
                                                   </tr>
                                                   <tr> 
                                                     <th scope="row">10</th> 
                                                     <td>Defecto visual</td> 
                                                     <td> <button class="btn btn-secondary btn-md" type="button"> <i class="bi bi-check-circle-fill" title="Personal"></i> </button></td>
-                                                    <td> <button class="btn btn-secondary btn-md" type="button"> <i class="bi bi-check-circle-fill" title="Familiar"></i> </button></td>
                                                     <td> <x-layouts.miscellaneous.inputtextarea rows=1 /> </td>
                                                   </tr> 
                                                   <tr> 
                                                     <th scope="row">11</th> 
                                                     <td>Farmacologicos</td> 
                                                     <td> <button class="btn btn-secondary btn-md" type="button"> <i class="bi bi-check-circle-fill" title="Personal"></i> </button></td>
-                                                    <td> <button class="btn btn-secondary btn-md" type="button"> <i class="bi bi-check-circle-fill" title="Familiar"></i> </button></td>
                                                     <td> <x-layouts.miscellaneous.inputtextarea rows=1 /> </td>
                                                   </tr>
                                                   <tr> 
                                                     <th scope="row">12</th> 
                                                     <td>Endocrinos</td> 
                                                     <td> <button class="btn btn-secondary btn-md" type="button"> <i class="bi bi-check-circle-fill" title="Personal"></i> </button></td>
-                                                    <td> <button class="btn btn-secondary btn-md" type="button"> <i class="bi bi-check-circle-fill" title="Familiar"></i> </button></td>
                                                     <td> <x-layouts.miscellaneous.inputtextarea rows=1 /> </td>
                                                   </tr><tr> 
                                                     <th scope="row">13</th> 
                                                     <td>Infeccionsos</td> 
                                                     <td> <button class="btn btn-secondary btn-md" type="button"> <i class="bi bi-check-circle-fill" title="Personal"></i> </button></td>
-                                                    <td> <button class="btn btn-secondary btn-md" type="button"> <i class="bi bi-check-circle-fill" title="Familiar"></i> </button></td>
                                                     <td> <x-layouts.miscellaneous.inputtextarea rows=1 /> </td>
                                                   </tr> 
                                                   <tr> 
                                                     <th scope="row">14</th> 
                                                     <td>GastroIntestinales</td> 
                                                     <td> <button class="btn btn-secondary btn-md" type="button"> <i class="bi bi-check-circle-fill" title="Personal"></i> </button></td>
-                                                    <td> <button class="btn btn-secondary btn-md" type="button"> <i class="bi bi-check-circle-fill" title="Familiar"></i> </button></td>
                                                     <td> <x-layouts.miscellaneous.inputtextarea rows=1 /> </td>
                                                   </tr>
                                                   <tr> 
                                                     <th scope="row">15</th> 
                                                     <td>Patologicos</td> 
                                                     <td> <button class="btn btn-secondary btn-md" type="button"> <i class="bi bi-check-circle-fill" title="Personal"></i> </button></td>
-                                                    <td> <button class="btn btn-secondary btn-md" type="button"> <i class="bi bi-check-circle-fill" title="Familiar"></i> </button></td>
                                                     <td> <x-layouts.miscellaneous.inputtextarea rows=1 /> </td>
                                                   </tr> 
                                                   <tr> 
                                                     <th scope="row">16</th> 
                                                     <td>Traumaticos</td> 
                                                     <td> <button class="btn btn-secondary btn-md" type="button"> <i class="bi bi-check-circle-fill" title="Personal"></i> </button></td>
-                                                    <td> <button class="btn btn-secondary btn-md" type="button"> <i class="bi bi-check-circle-fill" title="Familiar"></i> </button></td>
                                                     <td> <x-layouts.miscellaneous.inputtextarea rows=1 /> </td>
                                                   </tr>
                                                   <tr> 
                                                     <th scope="row">17</th> 
                                                     <td>Neurologicos</td> 
                                                     <td> <button class="btn btn-secondary btn-md" type="button"> <i class="bi bi-check-circle-fill" title="Personal"></i> </button></td>
-                                                    <td> <button class="btn btn-secondary btn-md" type="button"> <i class="bi bi-check-circle-fill" title="Familiar"></i> </button></td>
                                                     <td> <x-layouts.miscellaneous.inputtextarea rows=1 /> </td>
                                                   </tr>                                                  
                                                 </tbody>
@@ -523,7 +514,7 @@ hd-meta-description="Nueva Historia"
                                         </div>
                                     </div>
                                     
-                                    <div class="tab-pane fade show active" id="nav-diagnostico" role="tabpanel" aria-labelledby="nav-diagnostico">
+                                    <div class="tab-pane fade" id="nav-diagnostico" role="tabpanel" aria-labelledby="nav-diagnostico">
                                         <div class="row p-2">
                                                 <x-layouts.miscellaneous.inputdiv
                                                 div-class="form-group col-3"
@@ -559,14 +550,148 @@ hd-meta-description="Nueva Historia"
                                                 fieldname="diagnosisimp"
                                                 showname="Impresión Diagnóstica"
                                                 />
-                                                
+                                        </div>
+                                        <hr class="h-100 m-1">
+                                        <div class="row p-2">
+                                            <x-layouts.miscellaneous.inputdiv
+                                            div-class="form-group col-12"
+                                            fieldname="diagnosis"
+                                            showname="Diágnostico Principal"
+                                            />
+                                            <x-layouts.miscellaneous.textareaDiv 
+                                                div-class="form-group"
+                                                fieldname="diagnosisobservation"
+                                                showname="Observación"
+                                                />
+                                        </div>
+                                        <div class="row p-2">
+                                            <div class="table-responsive">
+                                                <table class="table caption-top">
+                                                    <caption>Diágnosticos asociados</caption>
+                                                    <thead>
+                                                      <tr class="text-white">
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">Código</th>
+                                                        <th scope="col">Diágnostico</th>
+                                                        <th scope="col">Observación</th>
+                                                      </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                      <tr> 
+                                                        <th scope="row">1</th> 
+                                                        <td>F-399</td> 
+
+                                                        <td> Trastorno recurrente no especificado </button></td>
+                                                        {{-- <td> <x-layouts.miscellaneous.inputtextarea rows=1 /> </td> --}}
+                                                        <td> <x-layouts.miscellaneous.inputTextarea rows=1 /> </td> 
+                                                      </tr>
+                                                      <tr> 
+                                                        <th scope="row">2</th> 
+                                                        <td>F-318</td> 
+                                                        <td> Otros trastornos afectivos bipolares</td>
+                                                        <td> <x-layouts.miscellaneous.inputtextarea rows=1 /> </td>
+                                                      </tr> 
+                                                      <tr> 
+                                                        <th scope="row">2</th> 
+                                                        <td>F-322</td> 
+                                                        <td> Episodio depresivo grave sin sintomas psicoticos</td>
+                                                        <td> <x-layouts.miscellaneous.inputtextarea rows=1 /> </td>
+                                                      </tr>                                                
+                                                    </tbody>
+                                                  </table>
+                                            </div>
+                                        </div>
+                                        <sub>
+                                            <div class="row p-2">
+                                            <x-layouts.miscellaneous.inputdiv
+                                            div-class="form-group col-3"
+                                            fieldname="checkout"
+                                            showname="Salida"
+                                            type="date"
+                                            />
+                                            
+                                            <x-layouts.miscellaneous.inputdiv
+                                            div-class="form-group col-3"
+                                            fieldname="redirect"
+                                            showname="Destino"
+                                            />
+                                            </div>
+                                        </sub>
+                                    </div>
+
+                                    {{-- Tratamiento --}}
+                                    <div class="tab-pane fade show active" id="nav-medicamento" role="tabpanel" aria-labelledby="nav-medicamento">
+                                        <div class="row-inline m-1">
+                                            <div class="table-responsive">
+                                                <table class="table caption-top">
+                                                    <caption>Medicamentos</caption>
+                                                    <thead>
+                                                      <tr class="text-white">
+                                                        <th>Imp</th>
+                                                        <th>Medicamento</th>
+                                                        <th>Comercial</th>
+                                                        <th>Cont</th>
+                                                        <th>M</th>
+                                                        <th>T</th>
+                                                        <th>N</th>
+                                                        <th>Cantidad</th>
+                                                        <th>Aplicación</th>
+                                                        <th>Suspendido</th>
+                                                        <th>Via</th>
+                                                        <th>Prescripción</th>
+                                                      </tr>
+                                                    </thead>
+                                                    <tbody class="align-middle">
+                                                      <tr> 
+                                                        <td>
+                                                            <button type="button" class="btn btn-secondary" title="Teléconsulta"id="virtual" onclick="logic(this);">
+                                                                <i class="bi  bi-check-circle-fill"></i>   
+                                                            </button> 
+                                                        </td> 
+                                                        <td> Birideno 2mg tableta </button></td>
+                                                        <td> <x-layouts.miscellaneous.inputTextarea cols=1 rows=2 /> </td> 
+                                                        <td>
+                                                            <button type="button" class="btn btn-secondary" title="Teléconsulta"id="virtual" onclick="logic(this);">
+                                                            <i class="bi  bi-check-circle-fill"></i>   
+                                                            </button> 
+                                                        </td>
+                                                        <td>1</td>
+                                                        <td>0</td>
+                                                        <td>0</td>
+                                                      </tr>
+                                                      <tr> 
+                                                        <td>
+                                                            <button type="button" class="btn btn-secondary" title="Teléconsulta"id="virtual" onclick="logic(this);">
+                                                            <i class="bi  bi-check-circle-fill"></i>   
+                                                            </button> 
+                                                        </td> 
+                                                        <td> Otros trastornos afectivos bipolares</td>
+                                                        <td> <x-layouts.miscellaneous.inputtextarea cols=1 rows=2 /> </td>
+                                                        <td>
+                                                            <button type="button" class="btn btn-secondary" title="Teléconsulta"id="virtual" onclick="logic(this);">
+                                                            <i class="bi  bi-check-circle-fill"></i>   
+                                                            </button> 
+                                                        </td>
+                                                        <td>0</td>
+                                                        <td>1</td>
+                                                        <td>0</td>
+                                                      </tr>                                               
+                                                    </tbody>
+                                                  </table>
+                                            </div>
                                         </div>
                                     </div>
-
-                                    <div class="tab-pane fade" id="nav-tratamiento" role="tabpanel" aria-labelledby="nav-antecedentes">
-                                        Tratamiento
+                                    
+                                    <div class="tab-pane fade" id="nav-suministros" role="tabpanel" aria-labelledby="nav-antecedentes">
+                                        Suministros
                                     </div>
-
+                                    <div class="tab-pane fade" id="nav-recomendaciones" role="tabpanel" aria-labelledby="nav-antecedentes">
+                                        Recomendaciones
+                                    </div>
+                                    <div class="tab-pane fade" id="nav-Incapacidad" role="tabpanel" aria-labelledby="nav-antecedentes">
+                                        Incapacidad
+                                    </div>
+                                    {{-- END --}}
                                     <div class="tab-pane fade" id="nav-ayudadx" role="tabpanel" aria-labelledby="nav-antecedentes">
                                         Ayuda Dx. Procedimientos y Drogodependencia
                                     </div>
@@ -585,17 +710,16 @@ hd-meta-description="Nueva Historia"
 
                                 </div>
                             </div>
-                        </div>
                         
 
                     </div>
-                    <div class="form-group mt-0">
-                        <label for="observation">Observación</label>
-                        <textarea class="form-control" id="observation" name="observation" rows="15" placeholder="Observación">{{ Empty(old('observation')) ? '' :  old('observation') ; }}</textarea>
-                    </div>
+                    
                 </div>
                 
-                
+                <div class="form-group mt-0">
+                    <label for="observation">Observación</label>
+                    <textarea class="form-control" id="observation" name="observation" rows="15" placeholder="Observación">{{ Empty(old('observation')) ? '' :  old('observation') ; }}</textarea>
+                </div>
                 </main>
 
                             <x-layouts.formSave :module="$module" />

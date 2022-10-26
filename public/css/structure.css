@@ -10,7 +10,6 @@
     --PaddingCols: calc(var(--bs-gutter-x) * .1);
 }    
     
-    
 html, body {
         height: 100%;
         overflow-y: auto;

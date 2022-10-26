@@ -23,7 +23,7 @@ hd-description="Módulo de Usuarios"
                                 />
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody>                            
                             <x-layouts.tables.data 
                                 :rows="$accounts"
                                 :countcol="$columns"

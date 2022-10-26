@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class UsersSeeder extends Seeder
 {
@@ -12,17 +13,23 @@ class UsersSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    
+
+     public function run()
     {
+    
+        $name='root';
+        $lastname='samein';
 
         $user = new User();
         $user->id = '11';
         $user->dni = '000000000';
-        $user->name = 'root';
+        $user->name = $name;
+        $user->lastname = $lastname;
+        $user->slug = Str::slug($name.' '.$lastname);
         $user->privilegeSet = '22';
         $user->documenttype = '13';
         $user->gender = 1 ;
-        $user->lastname = 'samein';
         $user->email = 'julianrodriguez19961@gmail.com';
         $user->username = 'sroot';
         $user->password = 'Toors';
@@ -30,6 +37,3 @@ class UsersSeeder extends Seeder
 
     }
 }
-
-
-    
