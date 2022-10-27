@@ -271,25 +271,40 @@ hd-meta-description="Nueva Historia"
                                             role="tab" aria-selected="false" title="Antecedentes">
                                             <i class="histonav bi-shield-lock-fill"></i>
                                         </li>
-
                                         <li class="nav-link" data-bs-toggle="tab" data-bs-target="#nav-diagnostico" type="button" 
                                             role="tab" aria-selected="false" title="Diagnóstico">
                                             <i class="histonav bi-file-post"></i> 
-
                                         </li>
-
-
                                         <li class="nav-item dropdown">
-                                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="histonav bi-heart-pulse-fill"></i></a>
+                                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="histonav bi-heart-pulse-fill"></i></a>
                                             <ul class="dropdown-menu">
                                               <sub class="dropdown-header">Tratamiento</sub>
                                               <li><hr class="dropdown-divider"></li>
-                                              <li><a class="dropdown-item" href="#nav-medicamento" data-bs-toggle="tab" data-bs-toggle="#nav-medicamento" aria-selected="false"><i class="histonav bi-capsule"></i> Médicamentos </a></li>
-                                              <li><a class="dropdown-item" href="#nav-suministros" data-bs-toggle="tab" data-bs-toggle="#nav-medicamento" aria-selected="false"><i class="histonav bi-box-seam-fill"></i> Suministros</a></li>
-                                              <li><a class="dropdown-item" href="#nav-recomendaciones" data-bs-toggle="tab" data-bs-toggle="#nav-medicamento" aria-selected="false"><i class="histonav bi-chat-left-text-fill"></i> Recomendaciones</a></li>
-                                              <li><a class="dropdown-item" href="#nav-Incapacidad" data-bs-toggle="tab" data-bs-toggle="#nav-medicamento" aria-selected="false"><i class="histonav bi-virus"></i> Incapacidad</a></li>
+                                              <li class="dropdown-item" href="#nav-medicamento" data-bs-toggle="tab" data-bs-toggle="#nav-medicamento" aria-selected="false">
+                                                <i class="histonav bi-capsule"></i> Médicamentos 
+                                            </li>
+                                              <li class="dropdown-item" href="#nav-suministros" data-bs-toggle="tab" data-bs-toggle="#nav-suministros" aria-selected="false"><i class="histonav bi-box-seam-fill"></i> Suministros
+                                            </li>
+                                            <li class="dropdown-item" href="#nav-recomendaciones" data-bs-toggle="tab" data-bs-toggle="#nav-recomendaciones" aria-selected="false"><i class="histonav bi-chat-left-text-fill"></i> Recomendaciones
+                                            </li>
+
+                                            <li class="dropdown-item" href="#nav-Incapacidad" data-bs-toggle="tab" data-bs-toggle="#nav-Incapacidad" aria-selected="false"><i class="histonav bi-virus"></i> Incapacidad</li>
                                             </ul>
-                                        </li>                                        
+                                        </li>
+                                        
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle"  data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <i class="histonav bi-file-text"></i> </a>
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                              <sub class="dropdown-header">Remisiones</sub>
+                                                <a class="dropdown-item" href="#nav-remsion" data-bs-toggle="tab">Remision#1</a>
+                                                <a class="dropdown-item" href="#nav-remsion" data-bs-toggle="tab">Remision#2</a>
+                                                <a class="dropdown-item" href="#nav-remsion" data-bs-toggle="tab">Remision#3</a>
+                                                <a class="dropdown-item" href="#nav-remsion" data-bs-toggle="tab">Remision#4</a>
+                                            </ul>
+                                        </li>
+
                                         <li class="nav-link" data-bs-toggle="tab" data-bs-target="#nav-ayudadx" type="button" 
                                             role="tab" aria-selected="false" title="Ayuda Dx. Procedimientos y Drogodependencia">
                                             <i class="histonav bi-file-earmark-medical-fill"></i> 
@@ -408,9 +423,9 @@ hd-meta-description="Nueva Historia"
                                                 </thead>
                                                 <tbody>
                                                   <tr> 
-                                                    <th scope="row">1</th> 
-                                                    <td>Socio-Laborales</td> 
-                                                    <td> <button class="btn btn-secondary btn-md" type="button"> <i class="bi bi-check-circle-fill" title="Personal"></i> </button></td>
+                                                    <th scope="row">1</th>2
+                                                    <th scope="row">1</th>3
+                                                    <th scope="row">1</th>4
                                                     {{-- <td> <x-layouts.miscellaneous.inputtextarea rows=1 /> </td> --}}
                                                     <td> <x-layouts.miscellaneous.inputTextarea rows=1 /> </td> 
                                                   </tr>
@@ -615,15 +630,17 @@ hd-meta-description="Nueva Historia"
                                             fieldname="redirect"
                                             showname="Destino"
                                             />
+
+                                            
                                             </div>
                                         </sub>
                                     </div>
 
-                                    {{-- Tratamiento --}}
-                                    <div class="tab-pane fade show active" id="nav-medicamento" role="tabpanel" aria-labelledby="nav-medicamento">
+                                    {{-- T-BEG --}}
+                                    <div class="tab-pane fade" id="nav-medicamento" role="tabpanel" aria-labelledby="nav-medicamento">
                                         <div class="row-inline m-1">
-                                            <div class="table-responsive">
-                                                <table class="table caption-top">
+                                            <div class="table-responsive border-top">
+                                                <table class="table">
                                                     <caption>Medicamentos</caption>
                                                     <thead>
                                                       <tr class="text-white">
@@ -635,7 +652,7 @@ hd-meta-description="Nueva Historia"
                                                         <th>T</th>
                                                         <th>N</th>
                                                         <th>Cantidad</th>
-                                                        <th>Aplicación</th>
+                                                        <th>Aplicar-días</th>
                                                         <th>Suspendido</th>
                                                         <th>Via</th>
                                                         <th>Prescripción</th>
@@ -658,6 +675,11 @@ hd-meta-description="Nueva Historia"
                                                         <td>1</td>
                                                         <td>0</td>
                                                         <td>0</td>
+                                                        <td>180</td>
+                                                        <td>2</td>
+                                                        <td>25/Oct/2022</td>
+                                                        <td>VO</td>
+                                                        <td>1 tableta diaria por 7 días</td>
                                                       </tr>
                                                       <tr> 
                                                         <td>
@@ -675,25 +697,224 @@ hd-meta-description="Nueva Historia"
                                                         <td>0</td>
                                                         <td>1</td>
                                                         <td>0</td>
+                                                        <td>250</td>
+                                                        <td>4</td>
+                                                        <td> </td>
+                                                        <td>VO</td>
+                                                        <td>2 tabletas cada 3 dias por 15 días</td>
+                                                      </tr>                                               
+                                                    </tbody>
+                                                  </table>
+                                            </div>
+                                        </div>
+                                    </div>    
+                                    <div class="tab-pane fade show" id="nav-suministros" role="tabpanel" aria-labelledby="nav-antecedentes">
+                                        <div class="row-inline m-1">
+                                            <div class="table-responsive">
+                                                <table class="table caption-top">
+                                                    <caption>Suministros</caption>
+                                                    <thead>
+                                                      <tr class="text-white">
+                                                        <th>Imp</th>
+                                                        <th>Medicamento</th>
+                                                        <th>Comercial</th>
+                                                        <th>Cantidad</th>
+                                                        <th>Aplicar-días</th>
+                                                        <th>Suspendido</th>
+                                                        <th>Prescripción</th>
+                                                        <th>NO POS</th>
+                                                      </tr>
+                                                    </thead>
+                                                    <tbody class="align-middle">
+                                                      <tr> 
+                                                        <td>
+                                                            <button type="button" class="btn btn-secondary" title="Teléconsulta"id="virtual" onclick="logic(this);">
+                                                                <i class="bi  bi-check-circle-fill"></i>   
+                                                            </button> 
+                                                        </td> 
+                                                        <td> Birideno 2mg tableta </button></td>
+                                                        <td> <x-layouts.miscellaneous.inputTextarea cols=1 rows=2 /> </td> 
+                                                        <td>180</td>
+                                                        <td>2</td>
+                                                        <td>25/Oct/2022</td>
+                                                        <td>1 tableta diaria por 7 días</td>
+                                                        <td>
+                                                            <button type="button" class="btn btn-secondary" title="Teléconsulta"id="virtual" onclick="logic(this);">
+                                                            <i class="bi  bi-check-circle-fill"></i>   
+                                                            </button> 
+                                                        </td>
+                                                      </tr>
+                                                      <tr> 
+                                                        <td>
+                                                            <button type="button" class="btn btn-secondary" title="Teléconsulta"id="virtual" onclick="logic(this);">
+                                                                <i class="bi  bi-check-circle-fill"></i>   
+                                                            </button> 
+                                                        </td> 
+                                                        <td> Birideno 2mg tableta </button></td>
+                                                        <td> <x-layouts.miscellaneous.inputTextarea cols=1 rows=2 /> </td> 
+                                                        <td>180</td>
+                                                        <td>2</td>
+                                                        <td>25/Oct/2022</td>
+                                                        <td>1 tableta diaria por 7 días</td>
+                                                        <td>
+                                                            <button type="button" class="btn btn-secondary" title="Teléconsulta"id="virtual" onclick="logic(this);">
+                                                            <i class="bi  bi-check-circle-fill"></i>   
+                                                            </button> 
+                                                        </td>
                                                       </tr>                                               
                                                     </tbody>
                                                   </table>
                                             </div>
                                         </div>
                                     </div>
-                                    
-                                    <div class="tab-pane fade" id="nav-suministros" role="tabpanel" aria-labelledby="nav-antecedentes">
-                                        Suministros
-                                    </div>
                                     <div class="tab-pane fade" id="nav-recomendaciones" role="tabpanel" aria-labelledby="nav-antecedentes">
-                                        Recomendaciones
+                                       <div class="row p-2">
+                                        <x-layouts.miscellaneous.textareaDiv 
+                                        div-class="form-group"
+                                        fieldname="recomended"
+                                        rows="24"
+                                        showname="Recomendaciones"
+                                        />
+                                       </div>
                                     </div>
-                                    <div class="tab-pane fade" id="nav-Incapacidad" role="tabpanel" aria-labelledby="nav-antecedentes">
-                                        Incapacidad
+                                    <div class="tab-pane fade show active" id="nav-Incapacidad" role="tabpanel" aria-labelledby="nav-antecedentes">
+                                        <div class="row m-2 p-1">
+                                            
+                                            <x-layouts.miscellaneous.inputDiv 
+                                            div-class="form-group col-3"
+                                            fieldname="disability"
+                                            showname="Desde"
+                                            type="date"
+                                            />
+                                            
+                                            <x-layouts.miscellaneous.inputDiv 
+                                            div-class="form-group col-2"
+                                            fieldname="disabilitydays"
+                                            showname="Días"
+                                            type="number"
+                                            />
+                                            
+                                            <x-layouts.miscellaneous.inputDiv 
+                                            div-class="form-group col-7"
+                                            fieldname="disabilitytype"
+                                            showname="Tipo"
+                                            />
+
+                                            <x-layouts.miscellaneous.textareaDiv 
+                                                div-class="form-group"
+                                                fieldname="disabilityrazon"
+                                                showname="Motivo - Justificación"
+                                                rows="20"
+                                                />
+                                                
+                                        </div>
                                     </div>
-                                    {{-- END --}}
+                                    {{-- T-END --}}
+
+
+                                    {{-- RM-BEG --}}
+                                    <div class="tab-pane fade" id="nav-remsion" role="tabpanel" aria-labelledby="nav-remision">
+                                        <div class="row-inline m-1">
+                                            <x-layouts.miscellaneous.inputdiv
+                                                    div-class="form-group col-3"
+                                                    fieldname="remisionto"
+                                                    showname="Remitido A"
+                                                    />
+                                        </div>
+                                    </div> 
+                                    {{-- RM-END --}}
+
                                     <div class="tab-pane fade" id="nav-ayudadx" role="tabpanel" aria-labelledby="nav-antecedentes">
-                                        Ayuda Dx. Procedimientos y Drogodependencia
+                                        <div class="row p-2">
+                                            <div class="table-responsive">
+                                                <table class="table caption-top">
+                                                    <caption>Ayudas Dx procedimientos y drogodependencia</caption>
+                                                    <thead>
+                                                      <tr class="text-white">
+                                                        <th scope="col">Imp</th>
+                                                        <th scope="col">Código</th>
+                                                        <th scope="col">Exámen / Diagnóstico</th>
+                                                        <th scope="col">Cantidad</th>
+                                                        <th scope="col">Observación</th>
+                                                        <th scope="col">NO POS</th>
+                                                      </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                      <tr> 
+                                                        <td scope="row">
+                                                            <button type="button" class="btn btn-secondary" title="Teléconsulta"id="virtual" onclick="logic(this);">
+                                                            <i class="bi  bi-check-circle-fill"></i>   
+                                                            </button>
+                                                        </td> 
+                                                        <td>903703</td> 
+                                                        <td> Vitamina B12[CIANOBLAMINA]</button></td>
+                                                        <td> <x-layouts.miscellaneous.inputField input-class="form-control text-end" type="number"/> </td> 
+                                                        <td> <x-layouts.miscellaneous.inputTextarea rows=1 /> </td> 
+                                                        <td> 
+                                                            <button type="button" class="btn btn-secondary" title="Teléconsulta"id="virtual" onclick="logic(this);">
+                                                                <i class="bi  bi-check-circle-fill"></i>   
+                                                            </button>
+                                                        </td>
+                                                         
+                                                      </tr>
+                                                      <tr> 
+                                                        <td scope="row">
+                                                            <button type="button" class="btn btn-secondary" title="Teléconsulta"id="virtual" onclick="logic(this);">
+                                                            <i class="bi  bi-check-circle-fill"></i>   
+                                                            </button>    
+                                                        </td> 
+                                                        <td>904902</td> 
+                                                        <td> HORMONA ESTIMULANTE DE LA TIROIDES</td>
+                                                        <td> <x-layouts.miscellaneous.inputField input-class="form-control text-end" type="number"/></td> 
+                                                        <td> <x-layouts.miscellaneous.inputtextarea rows=1 /> </td>
+                                                        <td> 
+                                                            <button type="button" class="btn btn-secondary" title="Teléconsulta"id="virtual" onclick="logic(this);">
+                                                                <i class="bi  bi-check-circle-fill"></i>   
+                                                            </button>
+                                                        </td>
+                                                      </tr> 
+                                                      <tr> 
+                                                        <td scope="row">
+                                                            <button type="button" class="btn btn-secondary" title="Teléconsulta"id="virtual" onclick="logic(this);">
+                                                                <i class="bi  bi-check-circle-fill"></i>   
+                                                            </button>    
+                                                        </td> 
+                                                        <td>903105</td> 
+                                                        <td> ACIDO FOLICO [FOLATOS] EN SUERO</td>
+                                                        <td> <x-layouts.miscellaneous.inputField input-class="form-control text-end" type="number"/></td> 
+                                                        <td> <x-layouts.miscellaneous.inputtextarea rows=1 /> </td>
+                                                        <td>
+                                                            <button type="button" class="btn btn-secondary" title="Teléconsulta"id="virtual" onclick="logic(this);">
+                                                                <i class="bi  bi-check-circle-fill"></i>   
+                                                                </button>
+                                                        </td>
+                                                      </tr> 
+                                                      <tr> 
+                                                        <td scope="row">
+                                                            <button type="button" class="btn btn-secondary" title="Teléconsulta"id="virtual" onclick="logic(this);">
+                                                                <i class="bi  bi-check-circle-fill"></i>   
+                                                            </button>    
+                                                        </td> 
+                                                        <td>906916</td> 
+                                                        <td> SEROLOGIA [FOLATOS] EN SUERO</td>
+                                                        <td> <x-layouts.miscellaneous.inputField input-class="form-control text-end" type="number"/></td> 
+                                                        <td> <x-layouts.miscellaneous.inputtextarea rows=1 /> </td>
+                                                        <td>
+                                                            <button type="button" class="btn btn-secondary" title="Teléconsulta"id="virtual" onclick="logic(this);">
+                                                                <i class="bi  bi-check-circle-fill"></i>   
+                                                                </button>
+                                                        </td>
+                                                      </tr>                                              
+                                                    </tbody>
+                                                  </table>
+                                            </div>
+                                            <x-layouts.miscellaneous.textareaDiv 
+                                                            div-class="form-group"
+                                                            fieldname="observationHelp"
+                                                            showname="Observación"
+                                                            rows="8"
+                                                    />
+                                        </div>
                                     </div>
 
                                     <div class="tab-pane fade" id="nav-remision" role="tabpanel" aria-labelledby="nav-antecedentes">

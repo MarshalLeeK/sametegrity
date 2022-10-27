@@ -5,8 +5,8 @@ class="{{ $inputClass ?? 'form-control'}}"
 id="{{ $fieldname ?? 'FN-ND'}}" 
 name="{{ $fieldname ?? 'FN-ND'}}" 
 value="{{ old( $fieldname ?? 'FN-ND' ) }}" 
-placeholder="{{ $showname ?? 'SN-NF'}}" 
-{{ $enable != NULL ? 'readonly' : ''; }} 
+placeholder="{{ $showname ?? ''}}" 
+{{ isset($enable) ?? 'readonly' }}
 >
 
 {{-- Error por validación  --}}
