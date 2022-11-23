@@ -1188,7 +1188,7 @@
                                                             <tr class="text-white rounded-top">
                                                                 <th>Código</th>
                                                                 <th>Servicio</th>
-                                                                <th colspan="1">Cantidad</th>
+                                                                <th class="col-1">Cantidad</th>
                                                                 <th colspan="2">Observaciones</th>
                                                             </tr>
                                                         </thead>
@@ -1199,7 +1199,7 @@
                                                                 <td colspan="1" class="text-center">
                                                                     <x-layouts.miscellaneous.inputField
                                                                         input-class="form-control text-end"
-                                                                        type="number" />
+                                                                    />
                                                                 </td>
                                                                 <td colspan="2">
                                                                     <x-layouts.miscellaneous.inputField

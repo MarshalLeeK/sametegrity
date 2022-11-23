@@ -58,10 +58,6 @@ class ApiController extends Controller
         ])->get( $this->url . $lib );
 
         $result = $items->json();
-        dd($result);
-
-        // $this->items = $items->json();
-        
-        // return $this->items;
+        return $result;
     }
 }

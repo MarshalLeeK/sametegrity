@@ -17,12 +17,12 @@ return new class extends Migration
         Schema::create('patients', function (Blueprint $table) {
             $table->id();
             $table->uuid('kp_uuid');
+            $table->char('name', 50);
+            $table->char('lastname', 50);
             $table->string('dni', 14)->unique();
             $table->string('photo')->nullable();
             $table->smallInteger('documenttype')->nullable();
             $table->string('documentplace',170)->nullable();
-            $table->char('name', 50);
-            $table->char('lastname', 50);
             $table->boolean('gender')->default(1)->nullable();
             $table->date('borndate')->nullable();
             $table->smallInteger('age')->nullable();

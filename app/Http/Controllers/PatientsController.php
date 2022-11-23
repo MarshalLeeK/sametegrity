@@ -14,30 +14,30 @@ use Illuminate\Support\Facades\DB;
 class PatientsController extends Controller
 {
 
-    private  $module='patient';
+    private  $module = 'patient';
 
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index( Request $request )
-    {   
+    public function index(Request $request)
+    {
 
         $module = $this->module;
         $view = 'L';
-        $columns=['Documento','Nombre','Apellidos','Edad','Género','Teléfono','Email'];
-        
+        $columns = ['Documento', 'Nombre', 'Apellidos', 'Edad', 'Género', 'Teléfono', 'Email'];
+
         $searchbox = trim($request->get('searchbox'));
         $patients = DB::table('patients')
-                        ->select('id','dni','name','lastname','age','gender','phone','email')
-                        ->where( 'name','LIKE','%'.$searchbox.'%')
-                        ->orWhere( 'lastname','LIKE','%'.$searchbox.'%')
-                        ->orWhere( 'dni','LIKE','%'.$searchbox.'%')
-                        ->orWhere( 'age','LIKE','%'.$searchbox.'%')
-                        ->orderBy( 'dni','asc')
-                        ->paginate(18);      
-        return view('patients.Patiens_I',compact('patients','searchbox','columns','module','view'));
+            ->select('id', 'dni', 'name', 'lastname', 'age', 'gender', 'phone', 'email')
+            ->where('name', 'LIKE', '%' . $searchbox . '%')
+            ->orWhere('lastname', 'LIKE', '%' . $searchbox . '%')
+            ->orWhere('dni', 'LIKE', '%' . $searchbox . '%')
+            ->orWhere('age', 'LIKE', '%' . $searchbox . '%')
+            ->orderBy('dni', 'asc')
+            ->paginate(18);
+        return view('patients.Patiens_I', compact('patients', 'searchbox', 'columns', 'module', 'view'));
     }
 
 
@@ -50,9 +50,9 @@ class PatientsController extends Controller
     {
         $module = $this->module;
         $view = 'C';
-        $defaults = ['defCountry' => 'Colombia','defState' => 'Antioquia',];
+        $defaults = ['defCountry' => 'Colombia', 'defState' => 'Antioquia',];
         $typeDocs = TypeDocs::get();
-        return view('patients.Patien_c', compact('defaults','typeDocs','module','view'));
+        return view('patients.Patien_c', compact('defaults', 'typeDocs', 'module', 'view'));
     }
 
     /**
@@ -66,7 +66,7 @@ class PatientsController extends Controller
 
         $uuid = Str::uuid();
         $patient = new Patients;
-        $patient->kp_uuid =  $uuid ;
+        $patient->kp_uuid =  $uuid;
         $patient->documenttype = $request->input('tdoc');
         $patient->dni = $request->input('dni');
         $patient->documentplace = $request->input('documentplace');
@@ -119,23 +119,23 @@ class PatientsController extends Controller
         $patient->pyramid = $request->input('pyramid');
         $patient->particular = $request->input('particular');
         $patient->z_xOne = $request->input('z_xOne');
-        
-        if ( $request->hasFile('imageUpload') ){
+
+        if ($request->hasFile('imageUpload')) {
             $photo = $request->file('imageUpload');
-            $filename = Str::slug( $request->input('name')) . Str::slug ($request->input('lastname') ) .".". $photo->guessExtension();
+            $filename = Str::slug($request->input('name')) . Str::slug($request->input('lastname')) . "." . $photo->guessExtension();
             $path = public_path('img/patients/photos');
-            $photo->move($path,$filename);
+            $photo->move($path, $filename);
             $patient->photo = $filename;
         }
 
         $patient->save();
 
-       
+
 
         //retonar vista
         return $this->saveRecord($patient);
         // return redirect()->route('patientModule');
-     // Se debe crear campo para poliza $patient->policy = $request->input('policy');
+        // Se debe crear campo para poliza $patient->policy = $request->input('policy');
         // Se debe crear campo para poliza $patient->membertype = $request->input('membertype');
         // Se debe crear campo para poliza $patient->membertype = $request->input('contributor');
         // Se debe crear campo para poliza $patient->membertype = $request->input('Ips');
@@ -155,7 +155,7 @@ class PatientsController extends Controller
         $typeDocs = TypeDocs::get();
         $module = $this->module;
         $view = '_';
-        return view('patients.Patient_',compact('patient','typeDocs','module','view'));
+        return view('patients.Patient_', compact('patient', 'typeDocs', 'module', 'view'));
     }
 
     /**
@@ -173,7 +173,7 @@ class PatientsController extends Controller
         $view = 'M';
         $typeDocs = TypeDocs::get();
 
-        return view('patients.Patien_m',compact('patient','typeDocs','module','view'));
+        return view('patients.Patien_m', compact('patient', 'typeDocs', 'module', 'view'));
     }
 
     /**
@@ -186,7 +186,7 @@ class PatientsController extends Controller
     public function update(Request $request, $id)
     {
         //
-        
+
         $patient = Patients::findOrFail($id);
         $patient->documenttype = $request->input('tdoc');
         $patient->dni = $request->input('dni');
@@ -257,13 +257,13 @@ class PatientsController extends Controller
     public function destroy($id)
     {
         //
-        $patients= Patients::findOrFail($id);
+        $patients = Patients::findOrFail($id);
         $patients->delete();
         return redirect()->route($this->module);
     }
 
-    public function saveRecord ($patient){
-        return redirect()->route( $this->module.'Show',compact('patient'));
+    public function saveRecord($patient)
+    {
+        return redirect()->route($this->module . 'Show', compact('patient'));
     }
-
 }
