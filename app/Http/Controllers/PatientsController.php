@@ -10,6 +10,8 @@ use App\Http\Requests\PatientsRequest;
 
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
+
 
 class PatientsController extends Controller
 {
@@ -52,7 +54,17 @@ class PatientsController extends Controller
         $view = 'C';
         $defaults = ['defCountry' => 'Colombia', 'defState' => 'Antioquia',];
         $typeDocs = TypeDocs::get();
-        return view('patients.Patien_c', compact('defaults', 'typeDocs', 'module', 'view'));
+
+        session()->put('to', 'countries');
+        $countries = $this->getDataApi();
+
+        // session()->put('country', 'colombia');
+        // $states = $this->getDataApi();
+
+        // session()->put('to', 'cities');
+        // $cities = $this->getDataApi();
+
+        return view('patients.Patien_c', compact('defaults', 'typeDocs', 'module', 'view', 'countries'));
     }
 
     /**
@@ -243,9 +255,6 @@ class PatientsController extends Controller
         $patient->save();
 
         return $this->saveRecord($patient);
-
-        // return redirect()->route('patientModule');
-
     }
 
     /**
@@ -265,5 +274,47 @@ class PatientsController extends Controller
     public function saveRecord($patient)
     {
         return redirect()->route($this->module . 'Show', compact('patient'));
+    }
+
+
+    public function getDataApi()
+    {
+
+        $to = session()->get('to');
+        $country = session()->get('country');
+        $state = session()->get('state');
+        $clasification = ['country', 'state', 'city'];
+        $url = "https://www.universal-tutorial.com/api/";
+        $token = "_sJrhBbZKEWeBaS4sxDRjWwaWG6oPy1CwlpwTl7YNZKjL36JWi0-FFHZj6l1icCmHYk";
+        $lib = "";
+
+        if ($to == 'cities') {
+            $headerlib = $clasification[2];
+            $lib = $to . "/" . $state;
+        };
+        if ($to == 'states') {
+            $lib = $to . "/" . $country;
+            $headerlib = $clasification[1];
+        };
+        if ($to == 'countries') {
+            $lib = $to;
+            $headerlib = $clasification[0];
+        }
+
+        $getAuthToken = Http::withHeaders([
+            "Accept" => "application/json",
+            "api-token" => $token,
+            "user-email" => "julianrodriguez19961@gmail.com"
+        ])->get($url . 'getaccesstoken');
+
+        $token = $getAuthToken->json('auth_token');
+
+        $items = Http::withHeaders([
+            "Authorization" => "Bearer " . $token,
+            "Accept" => "application/json"
+        ])->get($url . $lib);
+
+        $result = $items->json();
+        return $result;
     }
 }

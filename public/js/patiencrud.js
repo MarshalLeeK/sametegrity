@@ -1,21 +1,30 @@
 
 
-var borncountry = document.getElementById('borncountry');
-var bornstate = document.getElementById('bornstate');
-var borncity = document.getElementById('borncity');
+// var borncountry = document.getElementById('borncountry');
+// var bornstate = document.getElementById('bornstate');
+// var borncity = document.getElementById('borncity');
 
-document.addEventListener('change', (e) => {
+// const { isSet } = require("lodash");
+
+document.addEventListener('click', (e) => {
   const clickedElement = e.target;
 
-  if (!clickedElement.matches('select')) {
+  if (!clickedElement.matches('select') && !clickedElement.matches('.patientAlert') && !clickedElement.parentNode.matches('.patientAlert')) {
     return false;
-  } 
-  
-  // if (clickedElement.)
-  console.log(clickedElement.id);
-  
+  }
 
+  elementId = clickedElement.id == '' ? clickedElement.parentNode.id : clickedElement.id;
+  if (elementId == '') {
+    return false;
+  }
 
+  elementType = clickedElement.matches('select') ? 'Listado' : 'Boton';
+
+  if (elementType == 'Boton') {
+    logic(elementId)
+  } else {
+    console.log('API')
+  }
 
 });
 
@@ -47,9 +56,15 @@ $("#imageUpload").change(function (data) {
 
 function logic(button) {
   alertColors = ['secondary', 'primary'];
-  checkbox = '[name="' + button.id + '"]';
-  value = $(checkbox).val();
-  updateval = value == 1 ? 0 : 1;
-  $(checkbox).val(updateval);
-  button.className = button.className.replace(alertColors[value], alertColors[updateval]);
+  z_xOne = document.getElementsByName(button);
+  updateVal = z_xOne[0].value == 0 ? 1 : 0;
+  document.getElementById(button).classList.toggle('btn-'+alertColors[z_xOne[0].value]);
+  document.getElementById(button).classList.toggle('btn-'+alertColors[updateVal]);
+
+  // z_xOne[0].value = updateVal;
+  // document.getElementById(button).classList.toggle(alertColors[updateVal]);
+
+  // updateval = value == 1 ? 0 : 1;
+  // $(checkbox).val(updateval);
+  // button.className = button.className.replace(alertColors[value], alertColors[updateval]);
 }

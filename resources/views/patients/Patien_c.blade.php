@@ -3,7 +3,7 @@
         enctype="multipart/form-data">
         @csrf
         <div class="container bg-light border">
-            <x-layouts.tittlebar class="row h-100 text-center text-white" alias="PACIENTE" action='NUEVO' />
+            <x-layouts.tittlebar class="row h-100 text-center text-white" action='NUEVO' alias='PACIENTE' />
 
             <div class="row g-12">
                 <div class="col-md-12 col-lg-12">
@@ -23,14 +23,13 @@
                                 </div>
                             </div>
                         </div>
-                        {{-- @dump($countries) --}}
+
                         <div class="container-fluid align-self-end col-sm-10">
                             <div class="row col-12">
 
                                 <div class="col-sm-3">
                                     <label for="tdoc" class="form-label">Tipo Documento</label>
                                     <select class="form-select" name="tdoc" id="tdoc" aria-label="">
-                                        {{-- LV --}}
                                         @foreach ($typeDocs as $typeDoc)
                                             <option value="{{ $typeDoc->id }}"
                                                 {{ $typeDoc->id == '13' ? 'selected' : '-' }}> {{ $typeDoc->name }}
@@ -39,17 +38,36 @@
                                     </Select>
                                 </div>
 
-                                <div class="col-sm-5">
+                                <div class="col-sm-3">
                                     <label for="dni" class="form-label">Número Documento</label>
                                     <input type="text" class="form-control" name="dni" id="dni"
                                         placeholder="Número Documento" value="{{ old('dni') }}">
                                     <x-layouts.dialoges.inputerror input='dni' />
                                 </div>
 
-                                <div class="col-sm-4">
-                                    <label for="documentplace" class="form-label">Lugar Expedición</label>
+                                <div class="col-sm-3">
+                                    <label for="documentplace-state" class="form-label">Dpto Expedición</label>
+                                    <select class="form-select" name="documentplace" id="documentplace-state"
+                                        aria-label="">
+                                        <option value="">Seleccionar opción</option>
+                                        {{-- @foreach ($countries as $country)
+                                            <option value="{{ $country['country_name'] }}"
+                                                {{ $country['country_name'] == 'Colombia' ? 'selected' : '_' }}>
+                                                {{ $country['country_name'] }}
+                                            </option>
+                                        @endforeach --}}
+                                    </Select>
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <label for="documentplace-state" class="form-label">Ciudad Expedición</label>
                                     <select class="form-select" name="documentplace" id="documentplace" aria-label="">
-                                        {{-- <x-locations-api /> --}}
+                                        @foreach ($countries as $country)
+                                            {{-- <option value="{{ $country['country_name'] }}"
+                                                {{ $country['country_name'] == 'Colombia' ? 'selected' : '_' }}>
+                                                {{ $country['country_name'] }}
+                                            </option> --}}
+                                        @endforeach
                                     </Select>
                                 </div>
 
@@ -233,8 +251,8 @@
 
                                 <div class="row">
                                     <div class="col-1">
-                                        <button type="button" class="check btn btn-secondary" title="Violencia"
-                                            id="violence" onclick="logic(this);">
+                                        <button type="button" class="patientAlert btn btn-secondary"
+                                            title="Violencia" id="violence">
                                             <i class="bi bi-bandaid-fill">
                                                 <input type="check" name="violence"
                                                     value="{{ old('violence') == 1 ? 1 : 0 }}" hidden>
@@ -242,8 +260,8 @@
                                         </button>
                                     </div>
                                     <div class="col-1">
-                                        <button type="button" class="btn btn-secondary" title="Código Fucsia"
-                                            id="abused" onclick="logic(this);">
+                                        <button type="button" class="patientAlert btn btn-secondary"
+                                            title="Código Fucsia" id="abused">
                                             <i class="bi bi-balloon-fill">
                                                 <input type="check" name="abused"
                                                     value="{{ old('abused') == 1 ? 1 : 0 }}" hidden>
@@ -251,8 +269,8 @@
                                         </button>
                                     </div>
                                     <div class="col-1">
-                                        <button type="button" class="btn btn-secondary" title="Medicina Laboral"
-                                            id="fromwork" onclick="logic(this);">
+                                        <button type="button" class="patientAlert btn btn-secondary"
+                                            title="Medicina Laboral" id="fromwork">
                                             <i class="bi bi-prescription2">
                                                 <input type="check" name="fromwork"
                                                     value="{{ old('fromwork') == 1 ? 1 : 0 }}" hidden>
@@ -260,8 +278,8 @@
                                         </button>
                                     </div>
                                     <div class="col-1">
-                                        <button type="button" class="btn btn-secondary" title="Tutela"
-                                            id="guardianship" onclick="logic(this);">
+                                        <button type="button" class="patientAlert btn btn-secondary" title="Tutela"
+                                            id="guardianship">
                                             <i class="bi bi-file-earmark-zip-fill">
                                                 <input type="check" name="guardianship"
                                                     value="{{ old('guardianship') == 1 ? 1 : 0 }}" hidden>
@@ -269,8 +287,8 @@
                                         </button>
                                     </div>
                                     <div class="col-1">
-                                        <button type="button" class="btn btn-secondary" title="Privados Libertad"
-                                            id="gaoler" onclick="logic(this);">
+                                        <button type="button" class="patientAlert btn btn-secondary"
+                                            title="Privados Libertad" id="gaoler">
                                             <i class="bi bi-door-closed-fill">
                                                 <input type="check" name="gaoler"
                                                     value="{{ old('gaoler') == 1 ? 1 : 0 }}" hidden>
@@ -278,8 +296,8 @@
                                         </button>
                                     </div>
                                     <div class="col-1">
-                                        <button type="button" class="btn btn-secondary" title="ICBF"
-                                            id="icbf" onclick="logic(this);">
+                                        <button type="button" class="patientAlert btn btn-secondary" title="ICBF"
+                                            id="icbf">
                                             <i class="bi bi-file-earmark-person-fill">
                                                 <input type="check" name="icbf"
                                                     value="{{ old('icbf') == 1 ? 1 : 0 }}" hidden>
@@ -287,8 +305,8 @@
                                         </button>
                                     </div>
                                     <div class="col-1">
-                                        <button type="button" class="btn btn-secondary" title="Gestante"
-                                            id="pregnant" onclick="logic(this);">
+                                        <button type="button" class="patientAlert btn btn-secondary"
+                                            title="Gestante" id="pregnant">
                                             <i class="bi bi-flower1">
                                                 <input type="check" name="pregnant"
                                                     value="{{ old('pregnant') == 1 ? 1 : 0 }}" hidden>
@@ -296,8 +314,8 @@
                                         </button>
                                     </div>
                                     <div class="col-1">
-                                        <button type="button" class="btn btn-secondary" title="Riesgo Suicida"
-                                            id="suicide" onclick="logic(this);">
+                                        <button type="button" class="patientAlert btn btn-secondary"
+                                            title="Riesgo Suicida" id="suicide">
                                             <i class="bi bi-exclamation-diamond-fill">
                                                 <input type="check" name="suicide"
                                                     value="{{ old('suicide') == 1 ? 1 : 0 }}" hidden>
@@ -305,29 +323,30 @@
                                         </button>
                                     </div>
                                     <div class="col-1">
-                                        <button type="button" class="btn btn-secondary" title="Sin asignación"
-                                            id="">
+                                        <button type="button" class="patientAlert btn btn-secondary"
+                                            title="Paciente VIP" id="vip">
+                                            <i class="bi bi-star-fill"></i>
+                                            <input type="check" name="vip"
+                                                value="{{ old('vip') == 1 ? 1 : 0 }}" hidden>
+                                        </button>
+                                    </div>
+                                    <div class="col-1">
+                                        <button type="button" class="patientAlert btn btn-secondary"
+                                            title="Sin asignación" id="">
                                             <i class="bi bi-slash-circle-fill">
                                             </i>
                                         </button>
                                     </div>
                                     <div class="col-1">
-                                        <button type="button" class="btn btn-secondary" title="Sin asignación"
-                                            id="">
+                                        <button type="button" class="patientAlert btn btn-secondary"
+                                            title="Sin asignación" id="">
                                             <i class="bi bi-slash-circle-fill">
                                             </i>
                                         </button>
                                     </div>
                                     <div class="col-1">
-                                        <button type="button" class="btn btn-secondary" title="Sin asignación"
-                                            id="">
-                                            <i class="bi bi-slash-circle-fill">
-                                            </i>
-                                        </button>
-                                    </div>
-                                    <div class="col-1">
-                                        <button type="button" class="btn btn-secondary" title="Sin asignación"
-                                            id="">
+                                        <button type="button" class="patientAlert btn btn-secondary"
+                                            title="Sin asignación" id="">
                                             <i class="bi bi-slash-circle-fill">
                                             </i>
                                         </button>
@@ -338,8 +357,8 @@
                             <div class="col-sm-12 m-2" id="abuttonbar">
                                 <div class="row">
                                     <div class="col-1">
-                                        <button type="button" class="btn btn-secondary" title="Asesoria Virtual"
-                                            id="virtualadvice" onclick="logic(this);">
+                                        <button type="button" class="patientAlert btn btn-secondary"
+                                            title="Asesoria Virtual" id="virtualadvice">
                                             <i class="bi bi-pc-display">
                                                 <input type="check" name="virtualadvice"
                                                     value="{{ old('virtualadvice') == 1 ? 1 : 0 }}" hidden>
@@ -347,8 +366,8 @@
                                         </button>
                                     </div>
                                     <div class="col-1">
-                                        <button type="button" class="btn btn-secondary" title="Consulta Externa"
-                                            id="external" onclick="logic(this);">
+                                        <button type="button" class="patientAlert btn btn-secondary"
+                                            title="Consulta Externa" id="external">
                                             <i class="bi bi-person-video2">
                                                 <input type="check" name="external"
                                                     value="{{ old('external') == 1 ? 1 : 0 }}" hidden>
@@ -356,8 +375,8 @@
                                         </button>
                                     </div>
                                     <div class="col-1">
-                                        <button type="button" class="btn btn-secondary" title="Hospitalización"
-                                            id="hospitalitation" onclick="logic(this);">
+                                        <button type="button" class="patientAlert btn btn-secondary"
+                                            title="Hospitalización" id="hospitalitation">
                                             <i class="bi bi-h-circle-fill">
                                                 <input type="check" name="hospitalitation"
                                                     value="{{ old('hospitalitation') == 1 ? 1 : 0 }}" hidden>
@@ -365,17 +384,17 @@
                                         </button>
                                     </div>
                                     <div class="col-1">
-                                        <button type="button" class="btn btn-secondary" title="Red Externa"
-                                            id="external" onclick="logic(this);">
+                                        <button type="button" class="patientAlert btn btn-secondary"
+                                            title="Red Externa" id="externalTeam">
                                             <i class="bi bi-file-medical-fill">
-                                                <input type="check" name="external"
-                                                    value="{{ old('external') == 1 ? 1 : 0 }}" hidden>
+                                                <input type="check" name="externalTeam"
+                                                    value="{{ old('externalTeam') == 1 ? 1 : 0 }}" hidden>
                                             </i>
                                         </button>
                                     </div>
                                     <div class="col-1">
-                                        <button type="button" class="btn btn-secondary" title="CENPI (<14)"
-                                            id="cenpi" onclick="logic(this);">
+                                        <button type="button" class="patientAlert btn btn-secondary"
+                                            title="CENPI (<14)" id="cenpi">
                                             <i class="bi bi-emoji-laughing-fill">
                                                 <input type="check" name="cenpi"
                                                     value="{{ old('cenpi') == 1 ? 1 : 0 }}" hidden>
@@ -383,8 +402,8 @@
                                         </button>
                                     </div>
                                     <div class="col-1">
-                                        <button type="button" class="btn btn-secondary" title="SRPA (Adolecentes)"
-                                            id="srpa" onclick="logic(this);">
+                                        <button type="button" class="patientAlert btn btn-secondary"
+                                            title="SRPA (Adolecentes)" id="srpa">
                                             <i class="bi bi-earbuds">
                                                 <input type="check" name="srpa"
                                                     value="{{ old('srpa') == 1 ? 1 : 0 }}" hidden>
@@ -392,8 +411,8 @@
                                         </button>
                                     </div>
                                     <div class="col-1">
-                                        <button type="button" class="btn btn-secondary" title="Búsqueda Activa"
-                                            id="activeselection" onclick="logic(this);">
+                                        <button type="button" class="patientAlert btn btn-secondary"
+                                            title="Búsqueda Activa" id="activeselection">
                                             <i class="bi-binoculars-fill">
                                                 <input type="check" name="activeselection"
                                                     value="{{ old('activeselection') == 1 ? 1 : 0 }}" hidden>
@@ -401,8 +420,8 @@
                                         </button>
                                     </div>
                                     <div class="col-1">
-                                        <button type="button" class="btn btn-secondary" title="Directo Prestador"
-                                            id="through" onclick="logic(this);">
+                                        <button type="button" class="patientAlert btn btn-secondary"
+                                            title="Directo Prestador" id="through">
                                             <i class="bi bi-signpost-fill">
                                                 <input type="check" name="through"
                                                     value="{{ old('through') == 1 ? 1 : 0 }}" hidden>
@@ -410,8 +429,8 @@
                                         </button>
                                     </div>
                                     <div class="col-1">
-                                        <button type="button" class="btn btn-secondary" title="Particular"
-                                            id="particular" onclick="logic(this);">
+                                        <button type="button" class="patientAlert btn btn-secondary"
+                                            title="Particular" id="particular">
                                             <i class="bi bi-clipboard2-pulse-fill">
                                                 <input type="check" name="particular"
                                                     value="{{ old('particular') == 1 ? 1 : 0 }}" hidden>
@@ -419,8 +438,8 @@
                                         </button>
                                     </div>
                                     <div class="col-1">
-                                        <button type="button" class="btn btn-secondary" title="Punta Piramide"
-                                            id="pyramid" onclick="logic(this);">
+                                        <button type="button" class="patientAlert btn btn-secondary"
+                                            title="Punta Piramide" id="pyramid">
                                             <i class="bi bi-triangle-half">
                                                 <input type="check" name="pyramid"
                                                     value="{{ old('pyramid') == 1 ? 1 : 0 }}" hidden>
@@ -428,16 +447,20 @@
                                         </button>
                                     </div>
                                     <div class="col-1">
-                                        <button type="button" class="btn btn-secondary" title="Sin asignación"
-                                            id="">
-                                            <i class="bi bi-slash-circle-fill">
+                                        <button type="button" class="patientAlert btn btn-secondary"
+                                            title="Autoriza Llamadas" id="phoneAutorized">
+                                            <i class="bi bi-telephone-outbound-fill">
+                                                <input type="check" name="phoneAutorized"
+                                                    value="{{ old('phoneAutorized') == 1 ? 1 : 0 }}" hidden>
                                             </i>
                                         </button>
                                     </div>
                                     <div class="col-1">
-                                        <button type="button" class="btn btn-secondary" title="Sin asignación"
-                                            id="">
-                                            <i class="bi bi-slash-circle-fill">
+                                        <button type="button" class="patientAlert btn btn-secondary"
+                                            title="Autoriza Correos" id="mailAutorized">
+                                            <i class="bi bi-envelope-check-fill">
+                                                <input type="check" name="mailAutorized"
+                                                    value="{{ old('mailAutorized') == 1 ? 1 : 0 }}" hidden>
                                             </i>
                                         </button>
                                     </div>
