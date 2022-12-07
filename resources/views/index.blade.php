@@ -81,9 +81,9 @@
                         </div>
                         <div class="grid col-2 align-content-center justify-content-center">
                             <div class="btn btn-primary border-secondary shadow">
-                                <a href="http://192.168.1.22/asist-top" class="text-white" title="Reportes">
+                                <a href="{{ route('drugscategories') }}" class="text-white" title="Reportes">
                                     <i class="bi bi-body-text"></i>
-                                    <label class="custom-control-label text-white"><b>Reportes</b></label>
+                                    <label class="custom-control-label text-white"><b>Categoria Drogas</b></label>
                                 </a>
 
                             </div>

@@ -633,7 +633,7 @@
                                                     id="legalphone" placeholder="Teléfono">
                                             </div>
                                             <div class="col-sm-7">
-                                                <label for="legaladress" class="form-label"> Teléfono </label>
+                                                <label for="legaladress" class="form-label"> Dirección </label>
                                                 <input type="text" class="form-control" name="legaladress"
                                                     id="legalphone" placeholder="Dirección">
                                             </div>
@@ -672,6 +672,7 @@
                     </div>
                 </div>
             </div>
+        </div>
     </form>
     <script src="{{ asset('js/patiencrud.js') }}"></script>
 </x-header>

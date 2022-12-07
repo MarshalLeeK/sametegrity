@@ -12,7 +12,7 @@ class diagnosis extends Model
     use HasFactory;
 
     protected $primaryKey = "id";
-   
+
     protected $fillable = [
         'code',
         'name',
@@ -22,28 +22,26 @@ class diagnosis extends Model
 
     ];
 
-    public function name(): Attribute{
+    public function name(): Attribute
+    {
         return new Attribute(
-            get: fn($value) => strtoupper(trim($value)),
-            set: fn($value) => strtoupper(trim($value))
-        );}
-        
-    // public function code(): Attribute{
-    //     return new Attribute(
-    //         get: fn($value) => strtoupper(trim($value)),
-    //         set: fn($value) => strtoupper(trim($value))
-    //     );}
-    
-    public function description(): Attribute{
+            get: fn ($value) => strtoupper(trim($value)),
+            set: fn ($value) => strtoupper(trim($value))
+        );
+    }
+    public function description(): Attribute
+    {
         return new Attribute(
-            get: fn($value) => strtoupper(trim($value)),
-            set: fn($value) => strtolower(trim($value))
-        );}
-    
-    public function observation(): Attribute{
-        return new Attribute(
-            get: fn($value) => strtolower(trim($value)),
-            set: fn($value) => strtolower(trim($value))
-        );}
+            get: fn ($value) => strtoupper(trim($value)),
+            set: fn ($value) => strtolower(trim($value))
+        );
+    }
 
+    public function observation(): Attribute
+    {
+        return new Attribute(
+            get: fn ($value) => strtolower(trim($value)),
+            set: fn ($value) => strtolower(trim($value))
+        );
+    }
 }

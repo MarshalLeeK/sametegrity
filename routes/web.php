@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryDrugsController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterControler;
@@ -91,8 +92,19 @@ Route::controller(HistoriesController::class)->group(function () {
     Route::put('/Historia_M/{Historia}', 'update')->name('historiesUpdate');
     Route::put('/Historia/{Historia}', 'destroy')->name('historiesDestroy');
 });
+
 Route::resource('/Historias', HistoriesController::class);
 
+
+Route::controller(CategoryDrugsController::class)->group(function () {
+    Route::get('/CategoriaDrogas_L', 'index')->name('drugscategories');
+    Route::get('/CategoriaDrogas_C', 'create')->name('drugscategoriesCreate');
+    Route::post('/CategoriaDrogas_C/Save', 'store')->name('drugscategoriesSave');
+    Route::get('/CategoriaDrogas_/{category}', 'show')->name('drugscategoriesShow');
+    Route::get('/CategoriaDrogas_M/{category}', 'edit')->name('drugscategoriesEdit');
+    Route::put('/CategoriaDrogas_M/{category}', 'update')->name('drugscategoriesUpdate');
+    Route::put('/CategoriaDrogas_/{category}', 'destroy')->name('drugscategoriesDestroy');
+});
 
 
 // Pruebas 
