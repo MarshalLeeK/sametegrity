@@ -14,30 +14,30 @@ class DiagnosisController extends Controller
 
 {
 
-     private  $module='diagnosis';
+    private  $module = 'diagnosis';
 
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response 
      */
-    public function index( Request $request )
+    public function index(Request $request)
     {
 
         $module = $this->module;
         $view = 'L';
-        $columns = ['Código','Nombre','Descripción','Observación','estado'];
+        $columns = ['Código', 'Nombre', 'Descripción', 'Observación', 'estado'];
 
         $searchbox = trim($request->get('searchbox'));
         $diagnosis = DB::table('diagnoses')
-                    ->select('id','code','name','description','observation','z_xOne')
-                    ->where('code','LIKE','%'. $searchbox .'%')
-                    ->orWhere('name','LIKE','%'. $searchbox .'%')
-                    ->orWhere('description','LIKE','%'. $searchbox .'%')
-                    ->orderBy('code')
-                    ->paginate(18);
+            ->select('id', 'code', 'name', 'description', 'observation', 'z_xOne')
+            ->where('code', 'LIKE', '%' . $searchbox . '%')
+            ->orWhere('name', 'LIKE', '%' . $searchbox . '%')
+            ->orWhere('description', 'LIKE', '%' . $searchbox . '%')
+            ->orderBy('code')
+            ->paginate(18);
 
-        return view('diagnosis.diagnosis_l',compact('columns','searchbox','diagnosis','module','view'));
+        return view('diagnosis.diagnosis_l', compact('columns', 'searchbox', 'diagnosis', 'module', 'view'));
     }
 
     /**
@@ -50,7 +50,7 @@ class DiagnosisController extends Controller
         //
         $module = $this->module;
         $view = 'C';
-        return view('diagnosis.diagnosis_c',compact('module','view'));
+        return view('diagnosis.diagnosis_c', compact('module', 'view'));
     }
 
     /**
@@ -70,7 +70,6 @@ class DiagnosisController extends Controller
         $diagnosis->observation = $request->input('observation');
         $diagnosis->save();
         return $this->saveRecord($diagnosis);
-
     }
 
     /**
@@ -83,7 +82,7 @@ class DiagnosisController extends Controller
     {
         $module = $this->module;
         $view = '_';
-        return view('diagnosis.diagnosis_',compact('diagnosis','module','view'));
+        return view('diagnosis.diagnosis_', compact('diagnosis', 'module', 'view'));
     }
 
     /**
@@ -92,12 +91,11 @@ class DiagnosisController extends Controller
      * @param  \App\Models\diagnosis  $diagnosis
      * @return \Illuminate\Http\Response
      */
-    public function edit( diagnosis $diagnosis )
+    public function edit(diagnosis $diagnosis)
     {
         $module = $this->module;
         $view = 'M';
-        return view('diagnosis.diagnosis_m',compact('diagnosis','module','view'));
-
+        return view('diagnosis.diagnosis_m', compact('diagnosis', 'module', 'view'));
     }
 
     /**
@@ -117,7 +115,6 @@ class DiagnosisController extends Controller
         $diagnosis->observation = $request->input('observation');
         $diagnosis->save();
         return $this->saveRecord($diagnosis);
-
     }
 
     /**
@@ -128,14 +125,14 @@ class DiagnosisController extends Controller
      */
     public function destroy($id)
     {
-        $diagnosis= diagnosis::findOrFail($id);
+        $diagnosis = diagnosis::findOrFail($id);
         $diagnosis->delete();
-        return redirect()->route( $this->module );
+        return redirect()->route($this->module);
     }
 
 
-    public function saveRecord ($diagnosis){
-        return redirect()->route('diagnosisShow',compact('diagnosis'));
+    public function saveRecord($diagnosis)
+    {
+        return redirect()->route('diagnosisShow', compact('diagnosis'));
     }
-    
 }

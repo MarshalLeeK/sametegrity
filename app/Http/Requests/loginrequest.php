@@ -26,26 +26,26 @@ class loginrequest extends FormRequest
     {
         return [
             //
-            'username'=>'required',
-            'password'=>'required'
+            'username' => 'required',
+            'password' => 'required'
         ];
     }
 
-    public function getCredentials(){
+    public function getCredentials()
+    {
         $username = $this->get('username');
         $password = bcrypt($this->get('password'));
 
-        if( $this->isMail($username) ){             
-            return['email'=> $username,'password' => $password];
-         }
-         return ['username' => $username ,'password'=> $password];
+        if ($this->isMail($username)) {
+            return array('email' => $username, 'password' => $password);
+        }
+        return array('username' => $username, 'password' => $password);
     }
 
-    public function isMail($value){
+    public function isMail($username)
+    {
 
-        $factory = $this->container->make(ValidationFactory::class );
-        return !$factory->make(['username'=>$value],['username'=>'email'])->fails();
-        
-    } 
-
+        $factory = $this->container->make(ValidationFactory::class);
+        return !$factory->make(['username' => $username], ['username' => 'email'])->fails();
+    }
 }

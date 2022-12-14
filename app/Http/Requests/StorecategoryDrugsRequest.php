@@ -13,7 +13,7 @@ class StorecategoryDrugsRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,15 @@ class StorecategoryDrugsRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required|min:4'
+        ];
+    }
+
+    //Modificación de atributos.
+    public function attributes()
+    {
+        return [
+            // 'code'=>'Código del diagnóstico'  
         ];
     }
 }

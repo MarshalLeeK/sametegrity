@@ -11,6 +11,8 @@ class categoryDrugs extends Model
 {
     use HasFactory;
 
+    protected $table = 'categoriesDrugs';
+
     protected $primaryKey = "id";
 
     protected $fillable = [
@@ -25,6 +27,13 @@ class categoryDrugs extends Model
     {
         return new Attribute(
             set: fn ($value) => strtoupper(trim($value))
+        );
+    }
+
+    public function code(): Attribute
+    {
+        return new Attribute(
+            set: fn ($value) => strtoupper($value)
         );
     }
 }

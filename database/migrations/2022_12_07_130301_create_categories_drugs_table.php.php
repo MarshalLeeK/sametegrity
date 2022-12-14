@@ -3,6 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 return new class extends Migration
 {
@@ -16,9 +18,12 @@ return new class extends Migration
         //
         Schema::create('categoriesDrugs', function (Blueprint $table) {
             $table->id();
+            $table->uuid('PK_UUID');
             $table->string('code', 10)->unique();
             $table->string('name', 255)->nullable();
-            $table->string('observation', 255)->nullable();
+            #Update to text on nextversión = error when insert because entry will be to long
+            // $table->string('observation', 255)->nullable();
+            $table->text('observation')->nullable();
             $table->boolean('z_xOne')->default(1);
             $table->string('create_us', 60)->nullable();
             $table->string('update_us', 60)->nullable();

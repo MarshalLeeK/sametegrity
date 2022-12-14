@@ -1,30 +1,26 @@
-<x-header hd-title="Nueva categoria" hd-meta-description="Nueva categoria" :module="$module" :view="$view">
-    <form action="{{ route($module . 'Save') }}" method="POST" class="p-2 form h-100" enctype="multipart/form-data">
-        @csrf
+<x-header hd-title="Nueva categoria" hd-meta-description="DATOS CATEGORIA" :module="$module" :view="$view">
+    <div class="p-2 form h-100">
         <div class="container bg-light border">
-            <x-layouts.tittlebar class="row h-100 text-center text-white" action='NUEVA' alias="CATEGORÍA" />
+            <x-layouts.tittlebar class="row h-100 text-center text-white" action='DATOS' alias="CATEGORÍA" />
 
             <div class="row">
 
                 <div class="form-group col-6">
                     <label for="code">Código</label>
                     <input type="text" class="form-control" id="code" name="code" placeholder="Código"
-                        disabled>
+                        value="{{ $categoryDrugs->code }}" readonly>
                 </div>
 
                 <div class="form-group col-6">
                     <label for="name">Nombre</label>
                     <input type="text" class="form-control" id="name" name="name" placeholder="Nombre"
-                        value="{{ old('name') }}">
+                        value="{{ $categoryDrugs->name }}" readonly>
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="description">Descripción</label>
-                <textarea class="form-control" id="description" name="description" rows="10" placeholder="Descripción">{{ empty(old('description')) ? '' : old('description') }}</textarea>
-                @error('description')
-                    <small class="text-danger"><strong>*{{ $message }}</strong></small>
-                @enderror
+                <textarea class="form-control" id="description" name="description" rows="10" placeholder="Descripción" readonly>{{ $categoryDrugs->observation }}</textarea>
             </div>
             <hr class="hr" />
             <table class="table table-wrap table-bordered" id="drugsList">
@@ -46,7 +42,6 @@
                 </tfoot>
             </table>
 
-            <x-layouts.formSave :module="$module" />
         </div>
-    </form>
+    </div>
 </x-header>

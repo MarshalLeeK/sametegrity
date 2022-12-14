@@ -15,15 +15,22 @@
                                 <label class="form-label" for="username">Usuario</label>
                                 <div class="input-group">
                                     <input type="text" id="username" name="username"
-                                        class="form-control form-control-lg" placeholder="Usuario" />
+                                        class="form-control form-control-lg" placeholder="Usuario"
+                                        value="{{ old('username') }}" />
                                     <i class="input-icon uil uil-at"></i>
                                 </div>
+                                @error('username')
+                                    <small class="text-danger"><strong>*{{ $message }}</strong></small>
+                                @enderror
                             </div>
                             <!-- Password input -->
                             <div class="form-outline mb-3">
                                 <label class="form-label" for="password">Contraseña</label>
-                                <input type="password" id="password" name="password"
+                                <input type="password" id="password" name="password" value=""
                                     class="form-control form-control-lg" placeholder="Contraseña" />
+                                @error('password')
+                                    <small class="text-danger"><strong>*{{ $message }}</strong></small>
+                                @enderror
                             </div>
 
                             <div class="text-rigth text-lg-between mt-4 pt-2">

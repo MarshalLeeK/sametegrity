@@ -30,7 +30,7 @@ class CategoryDrugsController extends Controller
             ->where('code', 'LIKE', '%' . $searchbox . '%')
             ->orWhere('name', 'LIKE', '%' . $searchbox . '%')
             ->orWhere('observation', 'LIKE', '%' . $searchbox . '%')
-            ->orderBy('code')
+            ->orderBy('id')
             ->paginate(18);
 
         return view('drugsCategories.drugsCategories_l', compact('columns', 'searchbox', 'categories', 'module', 'view'));
@@ -58,6 +58,19 @@ class CategoryDrugsController extends Controller
     public function store(StorecategoryDrugsRequest $request)
     {
         //
+        $ceros = '000'; // Si se necesita es posible aumentar la cantidad de 0 -> categorias disponibles hasta el fallo 999
+        $name = $request->input('name');
+        $lastId = categoryDrugs::all()->count();
+        $uuid = Str::uuid();
+        $newCode = substr_replace($ceros, $lastId += 1, -strlen($lastId));
+
+        $drugCategory = new categoryDrugs();
+        $drugCategory->PK_UUID = $uuid;
+        $drugCategory->code = substr($name, 0, 3) . '-' . $newCode;
+        $drugCategory->name = $name;
+        $drugCategory->observation = $request->input('description');
+        $drugCategory->save();
+        return $this->saveRecord($drugCategory);
     }
 
     /**
@@ -69,6 +82,9 @@ class CategoryDrugsController extends Controller
     public function show(categoryDrugs $categoryDrugs)
     {
         //
+        $module = $this->module;
+        $view = '_';
+        return view('drugsCategories.drugsCategories_', compact('categoryDrugs', 'module', 'view'));
     }
 
     /**
@@ -103,5 +119,10 @@ class CategoryDrugsController extends Controller
     public function destroy(categoryDrugs $categoryDrugs)
     {
         //
+    }
+
+    public function saveRecord()
+    {
+        return redirect()->route('drugscategories');
     }
 }

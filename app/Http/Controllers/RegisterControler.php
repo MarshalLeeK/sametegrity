@@ -15,30 +15,29 @@ use Illuminate\Support\Str;
 class RegisterControler extends Controller
 {
 
-    private  $module='user';
+    private  $module = 'user';
 
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index( Request $request)
+    public function index(Request $request)
     {
-     
+
         $module = $this->module;
         $view = 'L';
-        $columns=['Documento','Nombre','Apellidos','Email','Nombre Usuario'];
-        
+        $columns = ['Documento', 'Nombre', 'Apellidos', 'Email', 'Nombre Usuario'];
+
         $searchbox = trim($request->get('searchbox'));
         $accounts = DB::table('users')
-                        ->select('id','dni','name','lastname','email','username')
-                        ->where( 'name','LIKE','%'.$searchbox.'%')
-                        ->orWhere( 'lastname','LIKE','%'.$searchbox.'%')
-                        ->orderBy( 'dni','asc')
-                        ->paginate(18);
+            ->select('id', 'dni', 'name', 'lastname', 'email', 'username')
+            ->where('name', 'LIKE', '%' . $searchbox . '%')
+            ->orWhere('lastname', 'LIKE', '%' . $searchbox . '%')
+            ->orderBy('dni', 'asc')
+            ->paginate(18);
 
-        return view('accountModule.accounts_l', compact('accounts','searchbox','columns','module','view'));
-        
+        return view('accountModule.accounts_l', compact('accounts', 'searchbox', 'columns', 'module', 'view'));
     }
 
     /**
@@ -51,7 +50,7 @@ class RegisterControler extends Controller
         $module = $this->module;
         $view = 'C';
         $typeDocs = TypeDocs::get();
-        return view('accountModule.account_c',compact('typeDocs','module','view'));
+        return view('accountModule.account_c', compact('typeDocs', 'module', 'view'));
     }
 
     /**
@@ -67,7 +66,7 @@ class RegisterControler extends Controller
         $user->dni = $request->input('dni');
         $user->name = $request->input('name');
         $user->lastname = $request->input('lastname');
-        $user->slug = Str::slug($user->name.' '.$user->lastname);
+        $user->slug = Str::slug($user->name . ' ' . $user->lastname);
         $user->documenttype = $request->input('tdoc');
         $user->privilegeSet = $request->input('privilegeSet');
         $user->gender = $request->input('gender');
@@ -88,11 +87,10 @@ class RegisterControler extends Controller
      */
     public function show(User $user)
     {
-        // $user=User::findOrFail($id);
         $typeDocs = TypeDocs::get();
         $module = $this->module;
         $view = '_';
-        return view('accountModule.account_',compact('user','module','view','typeDocs'));
+        return view('accountModule.account_', compact('user', 'module', 'view', 'typeDocs'));
     }
 
 
@@ -101,7 +99,7 @@ class RegisterControler extends Controller
         $module = $this->module;
         $typeDocs = TypeDocs::get();
         $view = 'M';
-        return view('accountModule.account_m',compact('user','module','view','typeDocs'));
+        return view('accountModule.account_m', compact('user', 'module', 'view', 'typeDocs'));
     }
 
 
@@ -114,11 +112,11 @@ class RegisterControler extends Controller
      */
     public function update(UpdateUserRequest $request, $id)
     {
-        $user= User::findOrFail($id);
+        $user = User::findOrFail($id);
         $user->dni = $request->input('dni');
         $user->name = $request->input('name');
         $user->lastname = $request->input('lastname');
-        $user->slug = Str::slug($user->name.' '.$user->lastname);
+        $user->slug = Str::slug($user->name . ' ' . $user->lastname);
         $user->email = $request->input('email');
         $user->username = $request->input('username');
         $user->password = $request->input('password');
@@ -137,13 +135,12 @@ class RegisterControler extends Controller
 
     public function destroy($user)
     {
-        // $user= User::findOrFail($id);
         User::destroy($user);
-        return redirect()->route( $this->module);
+        return redirect()->route($this->module);
     }
 
-    public function saveRecord ($user){
-        return redirect()->route($this->module,compact('user'));
+    public function saveRecord($user)
+    {
+        return redirect()->route($this->module, compact('user'));
     }
-
 }
