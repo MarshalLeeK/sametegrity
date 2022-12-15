@@ -15,7 +15,6 @@
                             {{ $column == '0' ? 'INACTIVO' : 'ACTIVO' }}
                         @else
                             {{ strlen($column) <= 100 ? strtoupper(trim($column)) : ucfirst(trim($column)) }}
-                            {{-- {{ isset($) ? 'A' : 'B'; }} --}}
                         @endif
                     </strong>
                 </td>
@@ -23,7 +22,7 @@
             @if (!isset($hiddenButtons))
                 <td class="align-middle">
                     <div class="row">
-                        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                        <div class="btn-group" role="group" aria-label="Estilo basico">
                             <button class="btn btn-primary btn-md col-sm"
                                 onclick="location.href = '{{ route($module . 'Show', $row->id) }}';">
                                 <i class="bi bi-eye" title="Ver detalles del registro"></i>

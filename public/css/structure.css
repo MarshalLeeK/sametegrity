@@ -103,6 +103,24 @@
       border-top-right-radius: 4px;
   }
 
+  .table {
+      position: relative;
+  }
+
+  .resizer {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 5px;
+      cursor: col-resize;
+      /* user-select: none; */
+  }
+
+
+  .resizer:hover {
+      border-right: 2px solid blue;
+  }
+
   #endbuttons {
       overflow: auto;
   }
@@ -210,6 +228,11 @@
       width: 100%;
   }
 
-  #histo_valida {
-      /* text-align-last:right; */
+
+  tr td:last-child {
+      width: 1%;
+      white-space: nowrap;
   }
+
+  /* #histo_valida {
+text-align-last:right; }*/

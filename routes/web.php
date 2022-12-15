@@ -101,13 +101,17 @@ Route::controller(CategoryDrugsController::class)->group(function () {
     Route::get('/CategoriaDrogas_C', 'create')->name('drugscategoriesCreate');
     Route::post('/CategoriaDrogas_C/Save', 'store')->name('drugscategoriesSave');
     Route::get('/CategoriaDrogas_/{categoryDrugs}', 'show')->name('drugscategoriesShow');
-    Route::get('/CategoriaDrogas_M/{category}', 'edit')->name('drugscategoriesEdit');
-    Route::put('/CategoriaDrogas_M/{category}', 'update')->name('drugscategoriesUpdate');
-    Route::put('/CategoriaDrogas_/{category}', 'destroy')->name('drugscategoriesDestroy');
+    Route::get('/CategoriaDrogas_M/{categoryDrugs}', 'edit')->name('drugscategoriesEdit');
+    Route::put('/CategoriaDrogas_M/{categoryDrugs}', 'update')->name('drugscategoriesUpdate');
+    Route::delete('/CategoriaDrogas_/{categoryDrugs}', 'destroy')->name('drugscategoriesDestroy');
 });
 
 
+Route::get('/apitest_', function () {
+    return view('forms.Assist');
+})->name('AssistCreate');
+
 // Pruebas 
 Route::get('/apitest', function () {
-    return view('patients.test');
-})->name('apitest');
+    return view('forms.Assist');
+})->name('Assist');

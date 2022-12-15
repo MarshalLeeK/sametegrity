@@ -64,13 +64,13 @@ class CategoryDrugsController extends Controller
         $uuid = Str::uuid();
         $newCode = substr_replace($ceros, $lastId += 1, -strlen($lastId));
 
-        $drugCategory = new categoryDrugs();
-        $drugCategory->PK_UUID = $uuid;
-        $drugCategory->code = substr($name, 0, 3) . '-' . $newCode;
-        $drugCategory->name = $name;
-        $drugCategory->observation = $request->input('description');
-        $drugCategory->save();
-        return $this->saveRecord($drugCategory);
+        $categoryDrugs = new categoryDrugs();
+        $categoryDrugs->PK_UUID = $uuid;
+        $categoryDrugs->code = substr($name, 0, 3) . '-' . $newCode;
+        $categoryDrugs->name = $name;
+        $categoryDrugs->observation = $request->input('description');
+        $categoryDrugs->save();
+        return $this->saveRecord($categoryDrugs);
     }
 
     /**
@@ -96,6 +96,9 @@ class CategoryDrugsController extends Controller
     public function edit(categoryDrugs $categoryDrugs)
     {
         //
+        $module = $this->module;
+        $view = '_M';
+        return view('drugsCategories.drugsCategories_m', compact('categoryDrugs', 'module', 'view'));
     }
 
     /**
@@ -107,7 +110,12 @@ class CategoryDrugsController extends Controller
      */
     public function update(UpdatecategoryDrugsRequest $request, categoryDrugs $categoryDrugs)
     {
-        //
+        //$ceros = '000'; // Si se necesita es posible aumentar la cantidad de 0 -> categorias disponibles hasta el fallo 999
+
+        $categoryDrugs->name = $request->input('name');
+        $categoryDrugs->observation = $request->input('description');
+        $categoryDrugs->save();
+        return $this->saveRecord($categoryDrugs);
     }
 
     /**
@@ -119,6 +127,8 @@ class CategoryDrugsController extends Controller
     public function destroy(categoryDrugs $categoryDrugs)
     {
         //
+        $categoryDrugs->delete();
+        return $this->saveRecord();
     }
 
     public function saveRecord()
