@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\questions;
 use Illuminate\Database\Seeder;
 use Database\Seeders\PatientsSeeder;
 use Database\Seeders\UsersSeeder;
@@ -18,9 +19,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(PatientsSeeder::class);
-        $this->call(UsersSeeder::class);
-        $this->call(TypeDocsSeeder::class);
-        $this->call(DiagnosisSeeder::class);
+        // $this->call(PatientsSeeder::class);
+        // $this->call(UsersSeeder::class);
+        // $this->call(TypeDocsSeeder::class);
+        // $this->call(DiagnosisSeeder::class);
+        $this->call(questionSeeder::class);
+        // questions::factory(10)->create();
     }
 }

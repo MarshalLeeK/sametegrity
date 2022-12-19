@@ -8,6 +8,7 @@ use App\Http\Controllers\PatientsController;
 use App\Http\Controllers\DiagnosisController;
 use App\Http\Controllers\HistoriesController;
 use App\Mail\PacienteMailable;
+use App\Models\categoryDrugs;
 use Illuminate\Support\Facades\Mail;
 
 
@@ -107,11 +108,12 @@ Route::controller(CategoryDrugsController::class)->group(function () {
 });
 
 
-Route::get('/apitest_', function () {
+Route::get('/formatos_', function () {
     return view('forms.Assist');
 })->name('AssistCreate');
 
 // Pruebas 
-Route::get('/apitest', function () {
+Route::get('/formatos', function () {
+    $categoriesDrugs = categoryDrugs::all()->where('z_xOne');
     return view('forms.Assist');
 })->name('Assist');

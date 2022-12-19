@@ -67,12 +67,17 @@
                             Algunas de las sustancias incluidas pueden haber sido recetadas por un médico
                             P.E(Pastillas adelgazantes,antidepresivos, entre otros)
                         </p>
+                        <p class="text-danger">
+                            Si luego hace seguimiento, compare las respuestas del consultante con las que les
+                            dio en los cuestionario anteriores. Cualquier difrencia a esta pregunta debe ser explorada.
+                        </p>
                     </div>
                 </section>
             </section>
         </section>
         <hr />
         <section>
+
             <div class="d-flex align-items-start">
                 <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                     <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill"
@@ -100,9 +105,36 @@
                         data-bs-target="#v-pills-settings" type="button" role="tab"
                         aria-controls="v-pills-settings" aria-selected="false">Pregunta N° 8</button>
                 </div>
-                <div class="tab-content" id="v-pills-tabContent">
+                <div class="tab-content bg-secondary w-100" id="v-pills-tabContent">
                     <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
-                        aria-labelledby="v-pills-home-tab">A</div>
+                        aria-labelledby="v-pills-home-tab">
+
+                        <div class="container-sm">
+                            <h5>Pregunta N°1</h5>
+                            <section>
+                                <title>IMPORTANTE</title>
+                                <p>
+                                    Si luego hace seguimiento, compare las respuestas del consultante con las que les
+                                    dio la P1 del/los cuestionarios inicial/anteriores.<br>
+                                    Cualquier difrencia a esta pregunta debe ser explorada.
+                                </p>
+                                <section class="table-responsive">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped mb-1 table-bordered" id='drugsCategories'>
+                                            <thead>
+                                                <tr class="table text-light">
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </section>
+                            </section>
+                        </div>
+
+                    </div>
                     <div class="tab-pane fade" id="v-pills-profile" role="tabpanel"
                         aria-labelledby="v-pills-profile-tab">B</div>
                     <div class="tab-pane fade" id="v-pills-messages" role="tabpanel"
