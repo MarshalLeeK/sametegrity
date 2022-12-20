@@ -17,6 +17,7 @@ class RegisterControler extends Controller
 
     private  $module = 'user';
 
+
     /**
      * Display a listing of the resource.
      *

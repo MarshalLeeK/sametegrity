@@ -7,6 +7,7 @@ use App\Http\Controllers\RegisterControler;
 use App\Http\Controllers\PatientsController;
 use App\Http\Controllers\DiagnosisController;
 use App\Http\Controllers\HistoriesController;
+use App\Http\Controllers\QuestionsController;
 use App\Mail\PacienteMailable;
 use App\Models\categoryDrugs;
 use Illuminate\Support\Facades\Mail;
@@ -105,6 +106,17 @@ Route::controller(CategoryDrugsController::class)->group(function () {
     Route::get('/CategoriaDrogas_M/{categoryDrugs}', 'edit')->name('drugscategoriesEdit');
     Route::put('/CategoriaDrogas_M/{categoryDrugs}', 'update')->name('drugscategoriesUpdate');
     Route::delete('/CategoriaDrogas_/{categoryDrugs}', 'destroy')->name('drugscategoriesDestroy');
+});
+
+
+Route::controller(QuestionsController::class)->group(function () {
+    Route::get('/PreguntasMaestra_L', 'index')->name('questions');
+    Route::get('/PreguntasMaestra_C', 'create')->name('questionsCreate');
+    Route::post('/PreguntasMaestra_C/Save', 'index')->name('questionsSave');
+    Route::get('/PreguntasMaestra_/{questions}', 'show')->name('questionsShow');
+    Route::get('/PreguntasMaestra_M/1', 'index')->name('questionsEdit');
+    Route::put('/PreguntasMaestra_M/1', 'index')->name('questionsUpdate');
+    Route::delete('/PreguntasMaestra_/1', 'index')->name('questionsDestroy');
 });
 
 

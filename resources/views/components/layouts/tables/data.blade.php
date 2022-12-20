@@ -12,7 +12,9 @@
                         @if ($key == 'gender')
                             {{ $column == '0' ? 'MUJER' : 'HOMBRE' }}
                         @elseif ($key == 'z_xOne')
-                            {{ $column == '0' ? 'INACTIVO' : 'ACTIVO' }}
+                            {{ $column === true ? 'INACTIVO' : 'ACTIVO' }}
+                        @elseif ($column == 1 or $column == 0)
+                            {{ $column === 1 ? 'SI' : 'NO' }}
                         @else
                             {{ strlen($column) <= 100 ? strtoupper(trim($column)) : ucfirst(trim($column)) }}
                         @endif

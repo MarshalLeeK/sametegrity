@@ -18,11 +18,12 @@ return new class extends Migration
             $table->charset = 'utf8';
             $table->collation = 'utf8_spanish2_ci';
             $table->uuid('id')->primary()->unique();
-            $table->string('question_name', 20)->nullable();
+            $table->string('name', 20)->nullable();
             $table->text('description');
             $table->text('notes')->nullable();
-            $table->boolean('open')->default(1);
+            $table->boolean('open')->default(0);
             $table->boolean('unique_answer')->default(1);
+            $table->boolean('z_xOne')->default(1);
             $table->timestamps();
         });
     }

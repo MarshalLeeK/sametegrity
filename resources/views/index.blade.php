@@ -14,7 +14,7 @@
                     <!-- botones -->
                     <div class="row justify-content-around ">
                         <div class="grid col-2 align-content-center justify-content-center">
-                            <div class="btn btn-primary border-secondary shadow">
+                            <div class="btn btn-md btn-primary border-secondary shadow">
                                 <a href="{{ route('patient') }}" class="text-white" title="Pacientes">
                                     <i class="bi bi-person-circle"></i>
                                     <label class="custom-control-label text-white"><b>Pacientes</b></label>
@@ -23,7 +23,7 @@
                             </div>
                         </div>
                         <div class="grid col-2 align-content-center justify-content-center">
-                            <div class="btn btn-primary border-secondary shadow">
+                            <div class="btn btn-md btn-primary border-secondary shadow">
                                 <a href="http://192.168.1.22/samebit" target="_blank" class="text-white"
                                     title="Prioritaria">
                                     <i class="bi bi-clipboard2-pulse"></i>
@@ -33,7 +33,7 @@
                             </div>
                         </div>
                         <div class="grid col-2 align-content-center justify-content-center">
-                            <div class="btn btn-primary border-secondary shadow">
+                            <div class="btn btn-md btn-primary border-secondary shadow">
                                 <a href="{{ route('histories') }}" class="text-white" title="Historia">
                                     <i class="bi bi-ui-checks"></i>
                                     <label class="custom-control-label text-white"><b>Historia</b></label>
@@ -42,7 +42,7 @@
                             </div>
                         </div>
                         <div class="grid col-2 align-content-center justify-content-center">
-                            <div class="btn btn-primary border-secondary shadow">
+                            <div class="btn btn-md btn-primary border-secondary shadow">
                                 <a href="{{ route('user') }}" class="text-white" title="Usuarios">
                                     <i class="bi bi-people-fill"></i>
                                     <label class="custom-control-label text-white"><b>Usuarios</b></label>
@@ -50,7 +50,7 @@
                             </div>
                         </div>
                         <div class="grid col-2 align-content-center justify-content-center">
-                            <div class="btn btn-primary border-secondary shadow">
+                            <div class="btn btn-md btn-primary border-secondary shadow">
                                 <a href="{{ route('histories') }}" class="text-white " title="Agenda">
                                     <i class="bi bi-hospital"></i>
                                     <label class="custom-control-label text-white"><b>Agenda</b></label>
@@ -63,7 +63,7 @@
                     <div class="w-100"> <br></div>
                     <div class="row justify-content-around ">
                         <div class="grid col-2 align-content-center justify-content-center">
-                            <div class="btn btn-primary border-secondary shadow">
+                            <div class="btn btn-md btn-primary border-secondary shadow">
                                 <a href="http://192.168.1.22/samebit" target="_blank" class="text-white" title="C-A-D">
                                     <i class="bi bi-file-earmark-person-fill"></i>
                                     <label class="custom-control-label text-white"><b>C-A-D</b></label>
@@ -71,7 +71,7 @@
                             </div>
                         </div>
                         <div class="grid col-2 align-content-center justify-content-center">
-                            <div class="btn btn-primary border-secondary shadow">
+                            <div class="btn btn-md btn-primary border-secondary shadow">
                                 <a href="{{ route('user') }}" class="text-white" title="Farmacia">
                                     <i class="bi bi-capsule"></i>
                                     <label class="custom-control-label text-white"><b>Farmacia</b></label>
@@ -80,34 +80,80 @@
                             </div>
                         </div>
                         <div class="grid col-2 align-content-center justify-content-center">
-                            <div class="btn btn-primary border-secondary shadow">
+                            <div class="btn btn-md btn-primary border-secondary shadow">
                                 <a href="{{ route('drugscategories') }}" class="text-white" title="Reportes">
                                     <i class="bi bi-body-text"></i>
-                                    <label class="custom-control-label text-white"><b>Categoria Drogas</b></label>
+                                    <label class="custom-control-label text-white"><b>Categorias</b></label>
                                 </a>
 
                             </div>
                         </div>
                         <div class="grid col-2 align-content-center justify-content-center">
-                            <div class="btn btn-primary border-secondary shadow">
-                                <a href="{{ route('user') }}" class="text-white" title="Tesoreria">
+                            <div class="btn btn-md btn-primary border-secondary shadow">
+                                <a href="{{ route('diagnosis') }}" class="text-white" title="Tesoreria">
                                     <i class="bi bi-coin"></i>
-                                    <label class="custom-control-label text-white"><b>Tesoreria</b></label>
-                                </a>
-
-                            </div>
-                        </div>
-                        <div class="grid col-2 align-content-center justify-content-center">
-                            <div class="btn btn-primary border-secondary shadow">
-                                <a href="{{ route('diagnosis') }}" class="text-white" title="Diagnósticos">
-                                    <i class="bi bi-x-diamond-fill"></i>
                                     <label class="custom-control-label text-white"><b>Diagnósticos</b></label>
                                 </a>
 
                             </div>
                         </div>
+                        <div class="grid col-2 align-content-center justify-content-center">
+                            <div class="btn btn-md btn-primary border-secondary shadow" data-toggle="modal"
+                                data-target="#BaseMdodal">
+                                <a href="{{ route('questions') }}" class="text-white" title="Diagnósticos">
+                                    <i class="bi bi-x-diamond-fill"></i>
+                                    <label class="custom-control-label text-white"><b>Preguntas</b></label>
+                                </a>
+                            </div>
+                        </div>
 
                     </div>
+                    <div class="w-100"> <br></div>
+                    <div class="row justify-content-around ">
+                        <div>
+                            a
+                        </div>
+                    </div>
+                    {{-- 
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-md btn-primary btn-lg">
+                        Launch
+                    </button> --}}
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="BaseMdodal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+                        aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Modal title</h5>
+                                    <button type="button" class="close" data-dimdiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="container-fluid">
+                                        Add rows here
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-dimdiss="modal">Close</button>
+                                    <button type="button" class="btn btn-md btn-primary">Save</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <script>
+                        $('#exampleModal').on('show.bs.modal', event => {
+                            var button = $(event.relatedTarget);
+                            var modal = $(this);
+                            // Use above variables to manipulate the DOM
+
+                        });
+                    </script>
+
                 </div>
                 <hr>
                 <div class="row">
@@ -180,7 +226,7 @@
                 </div>
                 <div class="row mb-2">
                     <div class="col-md-6">
-                        <div class="card flex-md-row mb-3 shadow-sm h-md-250">
+                        <div class="card flex-md-row mb-3 shadow-md h-md-250">
                             <div class="card-body d-flex flex-column align-items-start">
                                 <strong class="d-inline-block mb-2 text-primary">Cursos</strong>
                                 <h3 class="mb-0">
@@ -197,7 +243,7 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="card flex-md-row mb-3 shadow-sm h-md-250">
+                        <div class="card flex-md-row mb-3 shadow-md h-md-250">
                             <div class="card-body d-flex flex-column align-items-start">
                                 <strong class="d-inline-block mb-2 text-success">Laboral</strong>
                                 <h3 class="mb-0">
@@ -217,7 +263,7 @@
                 </div>
                 <div class="row mb-2">
                     <div class="col-md-6">
-                        <div class="card flex-md-row mb-3 shadow-sm h-md-250">
+                        <div class="card flex-md-row mb-3 shadow-md h-md-250">
                             <div class="card-body d-flex flex-column align-items-start">
                                 <strong class="d-inline-block mb-2 text-primary">Manejo de pacientes [presentado
                                     por:]</strong>
@@ -236,7 +282,7 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="card flex-md-row mb-3 shadow-sm h-md-250">
+                        <div class="card flex-md-row mb-3 shadow-md h-md-250">
                             <div class="card-body d-flex flex-column align-items-start">
                                 <strong class="d-inline-block mb-2 text-success">Policial</strong>
                                 <h3 class="mb-0">
@@ -256,7 +302,7 @@
                 </div>
                 <div class="row mb-2">
                     <div class="col-md-6">
-                        <div class="card flex-md-row mb-3 shadow-sm h-md-250">
+                        <div class="card flex-md-row mb-3 shadow-md h-md-250">
                             <div class="card-body d-flex flex-column align-items-start">
                                 <strong class="d-inline-block mb-2 text-primary">Cronologpia</strong>
                                 <h3 class="mb-0">
@@ -274,7 +320,7 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="card flex-md-row mb-3 shadow-sm h-md-250">
+                        <div class="card flex-md-row mb-3 shadow-md h-md-250">
                             <div class="card-body d-flex flex-column align-items-start">
                                 <strong class="d-inline-block mb-2 text-success">Proximos eventos</strong>
                                 <h3 class="mb-0">
