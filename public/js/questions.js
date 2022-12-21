@@ -1,18 +1,49 @@
-document.addEventListener('change', (e) => {
+document.addEventListener('DOMContentLoaded', (e) => {
+
+    checkButtons = document.getElementsByClassName('logic');
+    for (let i = 0; i < 2; i++) {
+        logic(checkButtons[i], 0);
+    }
+});
+
+
+// Acciones botones
+document.addEventListener('click', (e) => {
     const clickedElement = e.target;
+    if (clickedElement.matches('.logic')) {
+        logic(clickedElement);
 
-    if (clickedElement.matches('select')) {
+    }
+    if (clickedElement.parentNode.matches('.logic')) {
+        logic(clickedElement.parentNode);
+    }
+});
 
-        logic(clickedElement.id);
+function logic(button, update = 1) {
+
+    let input = document.getElementsByName(button.id)[0], inputValue = input.value;
+    const alertColors = ['secondary', 'success'],
+        ClassButton = button.classList;
+    let ClassbyInput = 'btn-' + alertColors[inputValue];
+
+    if (update == 1) {
+
+        inputValue = 1 - inputValue,
+            ClassbyInput = 'btn-' + alertColors[inputValue];
+        input.value = inputValue;
 
     }
 
-});
+    if (ClassbyInput != ClassButton[3]) {
+        ClassButton.replace(ClassButton[3], ClassbyInput);
+    }
 
-function logic(input) {
-    alertColors = ['secondary', 'success'];
-    input = document.getElementsByName(input);
-    updateVal = input[0].value == 0 ? 1 : 0;
-    input[0].classList.toggle('bg-' + alertColors[input[0].value]);
-    input[0].classList.toggle('bg-' + alertColors[updateVal]);
+    if (document.getElementsByName('unique_answer')[0].value == 0 && document.getElementsByName('open')[0].value == 1) {
+
+        let buttonDefaultChanges = document.getElementById('unique_answer');
+
+        document.getElementsByName('unique_answer').value == 1;
+        buttonDefaultChanges.classList.replace(buttonDefaultChanges.classList[3], 'btn-' + alertColors[1]);
+    }
+    return false;
 }

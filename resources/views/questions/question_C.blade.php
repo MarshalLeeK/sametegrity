@@ -1,57 +1,63 @@
 <x-header hd-title="Preguntas" hd-description="Datos generales sobre preguntas creadas" :module="$module"
     :view="$view">
     <x-layouts.titleBanner title-Module="PREGUNTAS" />
-    <form class="container p-2 form h-100">
+    <form class="container p-2 form h-100 bg-light" action="{{ route($module . 'Save') }}" method="POST">
         @csrf
         <div class="row">
-            <div class="form-group col-6">
-                <label for="name">Nombre</label>
-                <input type="text" class="form-control" id="name" name="name" placeholder="Nombre de la pregunta"
-                    value="{{ Str::upper(old('name')) }}" style="--bs-bg-opacity: .6;" readonly>
-            </div>
+
+            <x-layouts.miscellaneous.inputdiv fieldname='name' showname='Nombre' placeholder='Nombre de la pregunta'
+                div-Class='form-group col-8' />
 
             <div class="form-group col-2">
-                <label for="open">Abierta</label>
-                <select type="text" class="form-select text-right bg-secondary" id="open" name="open"
-                    placeholder="Nombre" value="{{ Str::upper(old('open')) }}" style="--bs-bg-opacity: .6;" readonly>
-                    <option value="0" selected>NO</option>
-                    <option value="1">SI</option>
-                </select>
-            </div>
+                {{-- <label for="status">Estado</label> --}}
+                <x-layouts.miscellaneous.inputLabel fieldname="unique_answer" showname="Estado" />
 
-            <div class="form-group col-2">
-                <label for="unique_answer">Respuesta Unica</label>
-                <select type="text" class="form-select text-right bg-success" id="unique_answer" name="unique_answer"
-                    placeholder="Nombre" value="{{ Str::upper(old('unique_answer')) }}" style="--bs-bg-opacity: .6;"
-                    readonly>
-                    <option value="0">NO</option>
-                    <option value="1" selected>SI</option>
-                </select>
-            </div>
-
-            <div class="form-group col-2">
-                <label for="status">Estado</label>
-                <select type="text"
-                    class="form-select text-white {{ old('unique_answer') === 0 ? 'bg-secondary' : 'bg-success' }}"
-                    id="status" name="status" placeholder="Nombre" style="--bs-bg-opacity: .6;" readonly>
+                <select type="text" class="form-select" id="status" name="status" placeholder="Estado">
                     <option value="0">INACTIVO</option>
                     <option value="1" selected>ACTIVO</option>
                 </select>
             </div>
+
+            <div class="row-col col-2 text-end">
+
+                <div class="form-group pb-1">
+                    <x-layouts.miscellaneous.inputLabel fieldname="open" showname="Pregunta Abierta" />
+                    <button type="button" class="logic btn btn-sm btn-secondary"
+                        title="¿Es una pregunta de respuesta abierta, es decir, el usuario debe escribir su opinión en un campo?"
+                        id="open">
+                        <i class="bi bi-check-circle-fill">
+                            <input tittle="Pregunta Abierta" type="check" name="open"
+                                value="{{ old('open') ?? 0 }}" placeholder="vacio" hidden>
+                        </i>
+                    </button>
+                </div>
+                <div class="form-group">
+                    <label for="unique_answer">Respuesta Única</label>
+                    <button type="button" class="logic btn btn-sm btn-secondary"
+                        title="¿La pregunta cuenta con más de una respuesta?" id="unique_answer">
+                        <i class="bi bi-check-circle-fill">
+                            <input tittle="Multiple respuesta" type="check" name="unique_answer" placeholder="vacio"
+                                value="{{ old('unique_answer') ?? 1 }}" hidden>
+                        </i>
+                    </button>
+                </div>
+            </div>
         </div>
 
-        <div class="form-group">
-            <label for="description">Pregunta</label>
-            <textarea class="form-control" id="description" name="description" rows="10" placeholder="Descripción" readonly>{{ Str::upper(old('description')) }}</textarea>
-            @error('description')
-                <small class="text-danger"><strong>*{{ $message }}</strong></small>
-            @enderror
+        <div class="row">
+            <div class="col-sm-6">
+                <label for="description">Pregunta</label>
+                <textarea class="form-control" id="description" name="description" rows="20" placeholder="Descripción">{{ Str::upper(old('description')) }}</textarea>
+                @error('description')
+                    <small class="text-danger"><strong>*{{ $message }}</strong></small>
+                @enderror
+            </div>
+            <div class="col-sm-6">
+                <label for="notes">Notas</label>
+                <textarea class="form-control" id="notes" name="notes" rows="20" placeholder="Observación">{{ Str::upper(str_replace('.', ".\n", old('notes'))) }}</textarea>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="notes">Notas</label>
-            <textarea class="form-control" id="notes" name="notes" rows="24" placeholder="Observación" readonly>{{ Str::upper(str_replace('.', ".\n", old('notes'))) }}</textarea>
-        </div>
-
+        <hr class="w.100">
         <x-layouts.formSave :module="$module" />
     </form>
 

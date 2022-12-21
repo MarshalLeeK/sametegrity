@@ -53,6 +53,21 @@ class QuestionsController extends Controller
     public function store(Request $request)
     {
         //
+
+        $validated = $request->validate([
+            'name' => 'required|unique:questions|max:120',
+            'description' => 'required|unique:questions',
+        ]);
+
+        $question = new questions;
+        $question->name = $request->input('name');
+        $question->description = $request->input('description');
+        $question->notes = $request->input('notes');
+        $question->open = $request->input('open');
+        $question->unique_answer = $request->input('unique_answer');
+        $question->z_xOne = $request->input('status');
+        $question->z_xOne = $request->input('status');
+        $question->save();
     }
 
     /**
@@ -100,5 +115,10 @@ class QuestionsController extends Controller
     public function destroy(questions $questions)
     {
         //
+    }
+
+    public function saveRecord()
+    {
+        return redirect()->route($this->module . 'Show', compact('patient'));
     }
 }

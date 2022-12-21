@@ -112,7 +112,7 @@ Route::controller(CategoryDrugsController::class)->group(function () {
 Route::controller(QuestionsController::class)->group(function () {
     Route::get('/PreguntasMaestra_L', 'index')->name('questions');
     Route::get('/PreguntasMaestra_C', 'create')->name('questionsCreate');
-    Route::post('/PreguntasMaestra_C/Save', 'index')->name('questionsSave');
+    Route::post('/PreguntasMaestra_C/Guardando', 'store')->name('questionsSave');
     Route::get('/PreguntasMaestra_/{questions}', 'show')->name('questionsShow');
     Route::get('/PreguntasMaestra_M/1', 'index')->name('questionsEdit');
     Route::put('/PreguntasMaestra_M/1', 'index')->name('questionsUpdate');
