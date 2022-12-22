@@ -4,7 +4,6 @@
     <form class="container p-2 form h-100 bg-light" action="{{ route($module . 'Save') }}" method="POST">
         @csrf
         <div class="row">
-
             <x-layouts.miscellaneous.inputdiv fieldname='name' showname='Nombre' placeholder='Nombre de la pregunta'
                 div-Class='form-group col-8' />
 
@@ -46,14 +45,14 @@
 
         <div class="row">
             <div class="col-sm-6">
-                <label for="description">Pregunta</label>
+                <x-layouts.miscellaneous.inputLabel fieldname="description" showname="Pregunta" />
                 <textarea class="form-control" id="description" name="description" rows="20" placeholder="Descripción">{{ Str::upper(old('description')) }}</textarea>
                 @error('description')
                     <small class="text-danger"><strong>*{{ $message }}</strong></small>
                 @enderror
             </div>
             <div class="col-sm-6">
-                <label for="notes">Notas</label>
+                <x-layouts.miscellaneous.inputLabel fieldname="notes" showname="Notas" />
                 <textarea class="form-control" id="notes" name="notes" rows="20" placeholder="Observación">{{ Str::upper(str_replace('.', ".\n", old('notes'))) }}</textarea>
             </div>
         </div>

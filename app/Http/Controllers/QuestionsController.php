@@ -68,6 +68,8 @@ class QuestionsController extends Controller
         $question->z_xOne = $request->input('status');
         $question->z_xOne = $request->input('status');
         $question->save();
+
+        return $this->saveRecord($question);
     }
 
     /**
@@ -92,6 +94,9 @@ class QuestionsController extends Controller
     public function edit(questions $questions)
     {
         //
+        $module = $this->module;
+        $view = 'M';
+        return view($module . '.question_M', compact('questions', 'module', 'view'));
     }
 
     /**
@@ -117,8 +122,8 @@ class QuestionsController extends Controller
         //
     }
 
-    public function saveRecord()
+    public function saveRecord($questions = '')
     {
-        return redirect()->route($this->module . 'Show', compact('patient'));
+        return redirect()->route($this->module . 'Show', compact('questions'));
     }
 }

@@ -47,3 +47,5 @@ function logic(button, update = 1) {
     }
     return false;
 }
+
+document.getElementById

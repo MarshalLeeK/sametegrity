@@ -114,8 +114,8 @@ Route::controller(QuestionsController::class)->group(function () {
     Route::get('/PreguntasMaestra_C', 'create')->name('questionsCreate');
     Route::post('/PreguntasMaestra_C/Guardando', 'store')->name('questionsSave');
     Route::get('/PreguntasMaestra_/{questions}', 'show')->name('questionsShow');
-    Route::get('/PreguntasMaestra_M/1', 'index')->name('questionsEdit');
-    Route::put('/PreguntasMaestra_M/1', 'index')->name('questionsUpdate');
+    Route::get('/PreguntasMaestra_M/{questions}', 'edit')->name('questionsEdit');
+    Route::put('/PreguntasMaestra_M/{questions}', 'update')->name('questionsUpdate');
     Route::delete('/PreguntasMaestra_/1', 'index')->name('questionsDestroy');
 });
 

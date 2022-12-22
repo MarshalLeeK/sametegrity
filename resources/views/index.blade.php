@@ -2,28 +2,34 @@
 
 <head>
     <!-- Fonts -->
+    <style>
+        .btn {
+            display: table-caption;
+            margin: 5px;
+            width: 100%;
+        }
+    </style>
     <link rel="stylesheet" href="{{ URL::asset('css/indexLv.css') }}">
 </head>
 
 <body>
     <div class="container-fluid adjust-content-center mt-3">
         <div class="row">
-            <div class="col-6 bg-light pt-5 p-3 mb-5 bg-white rounded">
+            <div class="col-1 col-sm-7 bg-light pt-5 p-3 mb-5 bg-white rounded">
                 <!-- menu -->
                 <div class="row justify-content-center bg-white py-2 p-5 mb-4  rounded" id="buttonGrid">
                     <!-- botones -->
-                    <div class="row justify-content-around ">
-                        <div class="grid col-2 align-content-center justify-content-center">
-                            <div class="btn btn-md btn-primary border-secondary shadow">
+                    <div class="btnMenuArea row justify-content-arround ">
+                        <div class="col-3">
+                            <div class="btn btn-sm btn-primary border-secondary shadow">
                                 <a href="{{ route('patient') }}" class="text-white" title="Pacientes">
                                     <i class="bi bi-person-circle"></i>
                                     <label class="custom-control-label text-white"><b>Pacientes</b></label>
                                 </a>
-
                             </div>
                         </div>
-                        <div class="grid col-2 align-content-center justify-content-center">
-                            <div class="btn btn-md btn-primary border-secondary shadow">
+                        <div class="col-3">
+                            <div class="btn btn-sm btn-primary border-secondary shadow">
                                 <a href="http://192.168.1.22/samebit" target="_blank" class="text-white"
                                     title="Prioritaria">
                                     <i class="bi bi-clipboard2-pulse"></i>
@@ -32,8 +38,8 @@
 
                             </div>
                         </div>
-                        <div class="grid col-2 align-content-center justify-content-center">
-                            <div class="btn btn-md btn-primary border-secondary shadow">
+                        <div class="col-3">
+                            <div class="btn btn-sm btn-primary border-secondary shadow">
                                 <a href="{{ route('histories') }}" class="text-white" title="Historia">
                                     <i class="bi bi-ui-checks"></i>
                                     <label class="custom-control-label text-white"><b>Historia</b></label>
@@ -41,37 +47,35 @@
 
                             </div>
                         </div>
-                        <div class="grid col-2 align-content-center justify-content-center">
-                            <div class="btn btn-md btn-primary border-secondary shadow">
+                        <div class="col-3">
+                            <div class="btn btn-sm btn-primary border-secondary shadow">
                                 <a href="{{ route('user') }}" class="text-white" title="Usuarios">
                                     <i class="bi bi-people-fill"></i>
                                     <label class="custom-control-label text-white"><b>Usuarios</b></label>
                                 </a>
                             </div>
                         </div>
-                        <div class="grid col-2 align-content-center justify-content-center">
-                            <div class="btn btn-md btn-primary border-secondary shadow">
+                        <div class="col-3">
+                            <div class="btn btn-sm btn-primary border-secondary shadow">
                                 <a href="{{ route('histories') }}" class="text-white " title="Agenda">
                                     <i class="bi bi-hospital"></i>
                                     <label class="custom-control-label text-white"><b>Agenda</b></label>
                                 </a>
                             </div>
                         </div>
-                    </div>
-                    <x-layouts.dialoges.alert />
+                        {{-- </div>
 
-                    <div class="w-100"> <br></div>
-                    <div class="row justify-content-around ">
-                        <div class="grid col-2 align-content-center justify-content-center">
-                            <div class="btn btn-md btn-primary border-secondary shadow">
+                    <div class="btnMenuArea row justify-content-between "> --}}
+                        <div class="col-3">
+                            <div class="btn btn-sm btn-primary border-secondary shadow">
                                 <a href="http://192.168.1.22/samebit" target="_blank" class="text-white" title="C-A-D">
                                     <i class="bi bi-file-earmark-person-fill"></i>
                                     <label class="custom-control-label text-white"><b>C-A-D</b></label>
                                 </a>
                             </div>
                         </div>
-                        <div class="grid col-2 align-content-center justify-content-center">
-                            <div class="btn btn-md btn-primary border-secondary shadow">
+                        <div class="col-3">
+                            <div class="btn btn-sm btn-primary border-secondary shadow">
                                 <a href="{{ route('user') }}" class="text-white" title="Farmacia">
                                     <i class="bi bi-capsule"></i>
                                     <label class="custom-control-label text-white"><b>Farmacia</b></label>
@@ -79,8 +83,8 @@
 
                             </div>
                         </div>
-                        <div class="grid col-2 align-content-center justify-content-center">
-                            <div class="btn btn-md btn-primary border-secondary shadow">
+                        <div class="col-3">
+                            <div class="btn btn-sm btn-primary border-secondary shadow">
                                 <a href="{{ route('drugscategories') }}" class="text-white" title="Reportes">
                                     <i class="bi bi-body-text"></i>
                                     <label class="custom-control-label text-white"><b>Categorias</b></label>
@@ -88,8 +92,8 @@
 
                             </div>
                         </div>
-                        <div class="grid col-2 align-content-center justify-content-center">
-                            <div class="btn btn-md btn-primary border-secondary shadow">
+                        <div class="col-3">
+                            <div class="btn btn-sm btn-primary border-secondary shadow">
                                 <a href="{{ route('diagnosis') }}" class="text-white" title="Tesoreria">
                                     <i class="bi bi-coin"></i>
                                     <label class="custom-control-label text-white"><b>Diagnósticos</b></label>
@@ -97,8 +101,8 @@
 
                             </div>
                         </div>
-                        <div class="grid col-2 align-content-center justify-content-center">
-                            <div class="btn btn-md btn-primary border-secondary shadow" data-toggle="modal"
+                        <div class="col-3">
+                            <div class="btn btn-sm btn-primary border-secondary shadow" data-toggle="modal"
                                 data-target="#BaseMdodal">
                                 <a href="{{ route('questions') }}" class="text-white" title="Diagnósticos">
                                     <i class="bi bi-x-diamond-fill"></i>
@@ -109,50 +113,12 @@
 
                     </div>
                     <div class="w-100"> <br></div>
-                    <div class="row justify-content-around ">
-                        <div>
-                            a
-                        </div>
-                    </div>
+
                     {{-- 
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-md btn-primary btn-lg">
+                    <button type="button" class="btn btn-sm btn-primary btn-lg">
                         Launch
                     </button> --}}
-
-                    <!-- Modal -->
-                    <div class="modal fade" id="BaseMdodal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
-                        aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title">Modal title</h5>
-                                    <button type="button" class="close" data-dimdiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="container-fluid">
-                                        Add rows here
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                        data-dimdiss="modal">Close</button>
-                                    <button type="button" class="btn btn-md btn-primary">Save</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <script>
-                        $('#exampleModal').on('show.bs.modal', event => {
-                            var button = $(event.relatedTarget);
-                            var modal = $(this);
-                            // Use above variables to manipulate the DOM
-
-                        });
-                    </script>
 
                 </div>
                 <hr>
@@ -220,88 +186,102 @@
                 </div>
             </div>
 
-            <div class="col-6 border-5 text-dark">
-                <div class="col-12 text-center">
+            <div class="col-1 col-sm-5 border-5 text-dark">
+                <div class="col-1 col-sm-12 text-center">
                     <h1 class="text-white" style="background-color:#0a4275">SAMEIN NOVEDADES</h1>
                 </div>
-                <div class="row mb-2">
-                    <div class="col-md-6">
-                        <div class="card flex-md-row mb-3 shadow-md h-md-250">
-                            <div class="card-body d-flex flex-column align-items-start">
-                                <strong class="d-inline-block mb-2 text-primary">Cursos</strong>
-                                <h3 class="mb-0">
-                                    <a class="text-dark" href="#">Informativo</a>
-                                </h3>
-                                <div class="mb-1 text-muted">Sep 26 2022</div>
-                                <p class="card-text mb-auto">Sí aún no ha realizado el curso de reinducción puede ir a
-                                    la página dando clic al enlace</p>
-                                <a href="http://colegiosvirtuales.arlsura.com" target='_blank'>Ir a sura</a>
+                <div class="row">
+                    <div class="col mb-2">
+                        <div class="col">
+                            <div class="card flex-md-row mb-3 shadow-md h-md-250">
+                                <div class="card-body d-flex flex-column align-items-start">
+                                    <strong class="d-inline-block mb-2 text-primary">Manejo de pacientes [presentado
+                                        por:]</strong>
+                                    <h3 class="mb-0">
+                                        <a class="text-dark" href="#">Cultural</a>
+                                    </h3>
+                                    <div class="mb-1 text-muted">Nov 12</div>
+                                    <p class="card-text mb-auto">Aquí va el contenido que se desee ingresar como una
+                                        noticia,blog,avance,recordatorio,etc</p>
+                                    <a href="#">Clic para ver más</a>
+
+                                    <img class="card-img-right flex-auto d-none d-lg-block mt-2 mx-2"
+                                        data-src="{{ URL::asset('img/bluebanner.png') }}" alt="Thumbnail [160*160]"
+                                        src="{{ URL::asset('img/bluebanner.png') }}"style="width: 180px; height: 180Px;"
+                                        src="{{ URL::asset('img/bluebanner.png') }}" data-holder-rendered="true" />
+                                </div>
                             </div>
-                            <img class="card-img-right flex-auto d-none d-lg-block mt-4 mx-2"
-                                alt="Thumbnail [160*160]" style="width: 200px; height: 200Px;"
-                                src="{{ URL::asset('img/bluebanner.png') }}" data-holder-rendered="true">
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="card flex-md-row mb-3 shadow-md h-md-250">
-                            <div class="card-body d-flex flex-column align-items-start">
-                                <strong class="d-inline-block mb-2 text-success">Laboral</strong>
-                                <h3 class="mb-0">
-                                    <a class="text-dark" href="#">Post title</a>
-                                </h3>
-                                <div class="mb-1 text-muted">Nov 11</div>
-                                <p class="card-text mb-auto">Aquí va el contenido que se desee ingresar como una
-                                    noticia,blog,avance,recordatorio,etc</p>
-                                <a href="#">Clic para ver más</a>
+                    <div class="col mb-2">
+                        <div class="col">
+                            <div class="card flex-md-row mb-3 shadow-md h-md-250">
+                                <div class="card-body d-flex flex-column align-items-start">
+                                    <strong class="d-inline-block mb-2 text-primary">Manejo de pacientes [presentado
+                                        por:]</strong>
+                                    <h3 class="mb-0">
+                                        <a class="text-dark" href="#">Cultural</a>
+                                    </h3>
+                                    <div class="mb-1 text-muted">Nov 12</div>
+                                    <p class="card-text mb-auto">Aquí va el contenido que se desee ingresar como una
+                                        noticia,blog,avance,recordatorio,etc</p>
+                                    <a href="#">Clic para ver más</a>
+
+                                    <img class="card-img-right flex-auto d-none d-lg-block mt-2 mx-2"
+                                        data-src="{{ URL::asset('img/bluebanner.png') }}" alt="Thumbnail [160*160]"
+                                        src="{{ URL::asset('img/bluebanner.png') }}"style="width: 180px; height: 180Px;"
+                                        src="{{ URL::asset('img/bluebanner.png') }}" data-holder-rendered="true" />
+                                </div>
                             </div>
-                            <img class="card-img-right flex-auto d-none d-lg-block mt-4 mx-2"
-                                data-src="{{ URL::asset('img/bluebanner.png') }}" alt="Thumbnail [160*160]"
-                                src="{{ URL::asset('img/bluebanner.png') }}"style="width: 180px; height: 180Px;"
-                                src="{{ URL::asset('img/bluebanner.png') }}" data-holder-rendered="true">
+                        </div>
+                    </div>
+                    <div class="col mb-2">
+                        <div class="col">
+                            <div class="card flex-md-row mb-3 shadow-md h-md-250">
+                                <div class="card-body d-flex flex-column align-items-start">
+                                    <strong class="d-inline-block mb-2 text-primary">Manejo de pacientes [presentado
+                                        por:]</strong>
+                                    <h3 class="mb-0">
+                                        <a class="text-dark" href="#">Cultural</a>
+                                    </h3>
+                                    <div class="mb-1 text-muted">Nov 12</div>
+                                    <p class="card-text mb-auto">Aquí va el contenido que se desee ingresar como una
+                                        noticia,blog,avance,recordatorio,etc</p>
+                                    <a href="#">Clic para ver más</a>
+
+                                    <img class="card-img-right flex-auto d-none d-lg-block mt-2 mx-2"
+                                        data-src="{{ URL::asset('img/bluebanner.png') }}" alt="Thumbnail [160*160]"
+                                        src="{{ URL::asset('img/bluebanner.png') }}"style="width: 180px; height: 180Px;"
+                                        src="{{ URL::asset('img/bluebanner.png') }}" data-holder-rendered="true" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col mb-2">
+                        <div class="col">
+                            <div class="card flex-md-row mb-3 shadow-md h-md-250">
+                                <div class="card-body d-flex flex-column align-items-start">
+                                    <strong class="d-inline-block mb-2 text-primary">Manejo de pacientes [presentado
+                                        por:]</strong>
+                                    <h3 class="mb-0">
+                                        <a class="text-dark" href="#">Cultural</a>
+                                    </h3>
+                                    <div class="mb-1 text-muted">Nov 12</div>
+                                    <p class="card-text mb-auto">Aquí va el contenido que se desee ingresar como una
+                                        noticia,blog,avance,recordatorio,etc</p>
+                                    <a href="#">Clic para ver más</a>
+
+                                    <img class="card-img-right flex-auto d-none d-lg-block mt-2 mx-2"
+                                        data-src="{{ URL::asset('img/bluebanner.png') }}" alt="Thumbnail [160*160]"
+                                        src="{{ URL::asset('img/bluebanner.png') }}"style="width: 180px; height: 180Px;"
+                                        src="{{ URL::asset('img/bluebanner.png') }}" data-holder-rendered="true" />
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="row mb-2">
-                    <div class="col-md-6">
-                        <div class="card flex-md-row mb-3 shadow-md h-md-250">
-                            <div class="card-body d-flex flex-column align-items-start">
-                                <strong class="d-inline-block mb-2 text-primary">Manejo de pacientes [presentado
-                                    por:]</strong>
-                                <h3 class="mb-0">
-                                    <a class="text-dark" href="#">Cultural</a>
-                                </h3>
-                                <div class="mb-1 text-muted">Nov 12</div>
-                                <p class="card-text mb-auto">Aquí va el contenido que se desee ingresar como una
-                                    noticia,blog,avance,recordatorio,etc</p>
-                                <a href="#">Clic para ver más</a>
-                            </div>
-                            <img class="card-img-right flex-auto d-none d-lg-block mt-4 mx-2"
-                                data-src="{{ URL::asset('img/bluebanner.png') }}" alt="Thumbnail [160*160]"
-                                src="{{ URL::asset('img/bluebanner.png') }}"style="width: 180px; height: 180Px;"
-                                src="{{ URL::asset('img/bluebanner.png') }}" data-holder-rendered="true">
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card flex-md-row mb-3 shadow-md h-md-250">
-                            <div class="card-body d-flex flex-column align-items-start">
-                                <strong class="d-inline-block mb-2 text-success">Policial</strong>
-                                <h3 class="mb-0">
-                                    <a class="text-dark" href="#">Post title</a>
-                                </h3>
-                                <div class="mb-1 text-muted">Nov 11</div>
-                                <p class="card-text mb-auto">Aquí va el contenido que se desee ingresar como una
-                                    noticia,blog,avance,recordatorio,etc</p>
-                                <a href="#">Clic para ver más</a>
-                            </div>
-                            <img class="card-img-right flex-auto d-none d-lg-block mt-4 mx-2"
-                                data-src="{{ URL::asset('img/bluebanner.png') }}" alt="Thumbnail [160*160]"
-                                src="{{ URL::asset('img/bluebanner.png') }}"style="width: 180px; height: 180Px;"
-                                src="{{ URL::asset('img/bluebanner.png') }}" data-holder-rendered="true">
-                        </div>
-                    </div>
-                </div>
-                <div class="row mb-2">
-                    <div class="col-md-6">
+                {{-- <div class="row mb-2">
+                    <div class="col-1 col-sm-md-6">
                         <div class="card flex-md-row mb-3 shadow-md h-md-250">
                             <div class="card-body d-flex flex-column align-items-start">
                                 <strong class="d-inline-block mb-2 text-primary">Cronologpia</strong>
@@ -319,7 +299,7 @@
                                 src="{{ URL::asset('img/bluebanner.png') }}" data-holder-rendered="true">
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-1 col-sm-md-6">
                         <div class="card flex-md-row mb-3 shadow-md h-md-250">
                             <div class="card-body d-flex flex-column align-items-start">
                                 <strong class="d-inline-block mb-2 text-success">Proximos eventos</strong>
@@ -337,7 +317,7 @@
                                 src="{{ URL::asset('img/bluebanner.png') }}" data-holder-rendered="true">
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
 
         </div>
