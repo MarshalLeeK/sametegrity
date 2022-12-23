@@ -15,7 +15,7 @@ document.addEventListener('click', (e) => {
   if (elementType == 'Boton') {
     logic(elementId)
   } else {
-    console.log('API')
+    // console.log('API')
   }
 
 });

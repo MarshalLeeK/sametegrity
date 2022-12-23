@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\questions;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+
 
 class QuestionsController extends Controller
 {
@@ -61,11 +63,11 @@ class QuestionsController extends Controller
 
         $question = new questions;
         $question->name = $request->input('name');
+        $question->slug = str::slug($request->input('name'));
         $question->description = $request->input('description');
         $question->notes = $request->input('notes');
         $question->open = $request->input('open');
         $question->unique_answer = $request->input('unique_answer');
-        $question->z_xOne = $request->input('status');
         $question->z_xOne = $request->input('status');
         $question->save();
 
@@ -109,6 +111,21 @@ class QuestionsController extends Controller
     public function update(Request $request, questions $questions)
     {
         //
+
+        $validated = $request->validate([
+            'name' => 'required|max:120',
+            'description' => 'required',
+        ]);
+
+        $questions->name = $request->input('name');
+        $questions->description = $request->input('description');
+        $questions->notes = $request->input('notes');
+        $questions->open = $request->input('open');
+        $questions->slug = str::slug($request->input('name'));
+        $questions->unique_answer = $request->input('unique_answer');
+        $questions->z_xOne = $request->input('status');
+        $questions->save();
+        return $this->saveRecord($questions);
     }
 
     /**
@@ -120,6 +137,7 @@ class QuestionsController extends Controller
     public function destroy(questions $questions)
     {
         //
+        $questions->delete();
     }
 
     public function saveRecord($questions = '')

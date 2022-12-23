@@ -1,6 +1,8 @@
-@foreach ($columns as $column )
-    <th> {{ Str::upper($column) }}</th>
+@foreach ($columns as $key => $column)
+    @if ($key != 'slug')
+        <th> {{ Str::upper($column) }}</th>
+    @endif
 @endforeach
-@if ( !isset($hiddenButtons) )
-    <th class="text-center">OPCIONES</th>    
+@if (!isset($hiddenButtons))
+    <th class="text-center">OPCIONES</th>
 @endif

@@ -1,5 +1,5 @@
-<x-header hd-title="Preguntas" hd-description="preguntas creadas" :module="$module" :view="$view">
-    <x-layouts.titleBanner title-Module="PREGUNTAS" />
+<x-header hd-title="RESPUESTAS" hd-description="respuestas creadas" :module="$module" :view="$view">
+    <x-layouts.titleBanner title-Module="RESPUESTAS" />
     <div class="container-fluid">
         <x-layouts.upBar :rows="$rows" :searchbox="$searchbox" :module="$module" />
         <div class="col-xl-12 mt-1 mb-2">

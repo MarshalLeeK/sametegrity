@@ -1,9 +1,21 @@
 document.addEventListener('DOMContentLoaded', (e) => {
 
+    let questions = document.getElementById('questionsList');
+    // console.log(questions.rows.length>0);
+
+    if (questions.rows.length) {
+        questions.style.overflow = 'hidden';
+        questions.rows[0].firstChild.nextSibling.classList.toggle('col-2');
+        return false;
+    }
+
     checkButtons = document.getElementsByClassName('logic');
     for (let i = 0; i < 2; i++) {
         logic(checkButtons[i], 0);
     }
+
+
+
 });
 
 

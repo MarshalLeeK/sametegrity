@@ -116,7 +116,7 @@ Route::controller(QuestionsController::class)->group(function () {
     Route::get('/PreguntasMaestra_/{questions}', 'show')->name('questionsShow');
     Route::get('/PreguntasMaestra_M/{questions}', 'edit')->name('questionsEdit');
     Route::put('/PreguntasMaestra_M/{questions}', 'update')->name('questionsUpdate');
-    Route::delete('/PreguntasMaestra_/1', 'index')->name('questionsDestroy');
+    Route::delete('/PreguntasMaestra_/{questions}', 'destroy')->name('questionsDestroy');
 });
 
 

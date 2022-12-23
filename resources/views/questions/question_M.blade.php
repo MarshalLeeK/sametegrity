@@ -62,6 +62,5 @@
         <x-layouts.formSave :module="$module" />
     </form>
 
-    <script src="{{ asset('js/questionss.js') }}"></script>
-
+    <script src="{{ asset('js/questions.js') }}"></script>
 </x-header>

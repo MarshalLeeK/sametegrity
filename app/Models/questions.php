@@ -10,4 +10,8 @@ class questions extends Model
 {
     use HasFactory, HasUuids;
 
+    // public function getRouteKeyName()
+    // {
+    //     return 'slug';
+    // }
 }
