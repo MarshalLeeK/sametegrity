@@ -26,7 +26,7 @@
                         id="open">
                         <i class="bi bi-check-circle-fill">
                             <input tittle="Pregunta Abierta" type="check" name="open"
-                                value="{{ old('open') ?? 0 }}" placeholder="vacio" hidden>
+                                value="{{ old('open') ?? 0 }}" placeholder="pregunta abierta" hidden>
                         </i>
                     </button>
                 </div>

@@ -110,6 +110,15 @@
                                 </a>
                             </div>
                         </div>
+                        <div class="col-3">
+                            <div class="btn btn-sm btn-primary border-secondary shadow" data-toggle="modal"
+                                data-target="#BaseMdodal">
+                                <a href="{{ route('replies') }}" class="text-white" title="Diagnósticos">
+                                    <i class="bi bi-x-diamond-fill"></i>
+                                    <label class="custom-control-label text-white"><b>Respuestas</b></label>
+                                </a>
+                            </div>
+                        </div>
 
                     </div>
                     <div class="w-100"> <br></div>

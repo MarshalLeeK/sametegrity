@@ -1,9 +1,8 @@
 document.addEventListener('DOMContentLoaded', (e) => {
 
     let questions = document.getElementById('questionsList');
-    // console.log(questions.rows.length>0);
-
-    if (questions.rows.length) {
+ 
+    if (questions) {
         questions.style.overflow = 'hidden';
         questions.rows[0].firstChild.nextSibling.classList.toggle('col-2');
         return false;
@@ -13,9 +12,6 @@ document.addEventListener('DOMContentLoaded', (e) => {
     for (let i = 0; i < 2; i++) {
         logic(checkButtons[i], 0);
     }
-
-
-
 });
 
 
@@ -39,11 +35,9 @@ function logic(button, update = 1) {
     let ClassbyInput = 'btn-' + alertColors[inputValue];
 
     if (update == 1) {
-
         inputValue = 1 - inputValue,
             ClassbyInput = 'btn-' + alertColors[inputValue];
         input.value = inputValue;
-
     }
 
     if (ClassbyInput != ClassButton[3]) {
@@ -51,9 +45,7 @@ function logic(button, update = 1) {
     }
 
     if (document.getElementsByName('unique_answer')[0].value == 0 && document.getElementsByName('open')[0].value == 1) {
-
         let buttonDefaultChanges = document.getElementById('unique_answer');
-
         document.getElementsByName('unique_answer').value == 1;
         buttonDefaultChanges.classList.replace(buttonDefaultChanges.classList[3], 'btn-' + alertColors[1]);
     }

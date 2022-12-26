@@ -1,5 +1,6 @@
 <?php
 
+
 namespace App\Http\Controllers;
 
 use App\Models\questions;
@@ -138,6 +139,7 @@ class QuestionsController extends Controller
     {
         //
         $questions->delete();
+        return redirect()->route($this->module);
     }
 
     public function saveRecord($questions = '')

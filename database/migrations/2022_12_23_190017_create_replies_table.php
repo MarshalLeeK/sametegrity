@@ -14,7 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('replies', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary()->unique();
+            $table->string('name');
+            $table->string('observation')->nullable();
+            $table->boolean('open')->default(1);
+            $table->boolean('z_xOne')->default(1);
             $table->timestamps();
         });
     }

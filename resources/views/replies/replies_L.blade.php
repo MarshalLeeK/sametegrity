@@ -16,5 +16,4 @@
                 </table>
             </div>
         </div>
-        <script src="{{ asset('js/questions.js') }}"></script>
 </x-header>

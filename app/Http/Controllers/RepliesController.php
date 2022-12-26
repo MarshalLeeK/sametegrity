@@ -4,17 +4,34 @@ namespace App\Http\Controllers;
 
 use App\Models\replies;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RepliesController extends Controller
 {
+    private  $module = 'replies';
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
+        $module = $this->module;
+        $view = 'L';
+        $columns = ['Nombre', 'Observación', 'Abierta', 'Estado'];
+        $searchbox = trim($request->get('searchbox'));
+        $rows = DB::table('replies')
+            ->select('id', 'name', 'observation', 'open', 'z_xOne')
+            ->where('name', 'LIKE', '%' . $searchbox . '%')
+            ->orWhere('observation', 'LIKE', '%' . $searchbox . '%')
+            ->orderBy('created_at', 'asc')
+            ->paginate(18);
+
+        return view($module . "." . $module . '_' . $view, compact('rows', 'searchbox', 'columns', 'module', 'view'));
+
+        // return $module;
     }
 
     /**
@@ -25,6 +42,9 @@ class RepliesController extends Controller
     public function create()
     {
         //
+        $module = $this->module;
+        $view = 'C';
+        return view($module . "." . $module . '_' . $view, compact('module', 'view'));
     }
 
     /**

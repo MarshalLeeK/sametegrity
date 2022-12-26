@@ -8,6 +8,7 @@ use App\Http\Controllers\PatientsController;
 use App\Http\Controllers\DiagnosisController;
 use App\Http\Controllers\HistoriesController;
 use App\Http\Controllers\QuestionsController;
+use App\Http\Controllers\RepliesController;
 use App\Mail\PacienteMailable;
 use App\Models\categoryDrugs;
 use Illuminate\Support\Facades\Mail;
@@ -24,22 +25,11 @@ use Illuminate\Support\Facades\Mail;
 |
 */
 
-// Route::get('/Loginsametegrity', function () {
-//     return view('login');
-// });
-
 
 // menu
 Route::get('/index', function () {
     return view('index');
 })->name('menu');
-
-// Prueba de envio de correos []
-// route::get('/confirmacionPaciente', function () {
-//     $correo = new PacienteMailable;
-//     Mail::to('julianrodriguez19961@gmail.com')->send($correo);
-//     return "Mensaje Enviado";
-// });
 
 //Login
 Route::controller(LoginController::class)->group(function () {
@@ -117,6 +107,17 @@ Route::controller(QuestionsController::class)->group(function () {
     Route::get('/PreguntasMaestra_M/{questions}', 'edit')->name('questionsEdit');
     Route::put('/PreguntasMaestra_M/{questions}', 'update')->name('questionsUpdate');
     Route::delete('/PreguntasMaestra_/{questions}', 'destroy')->name('questionsDestroy');
+});
+
+
+Route::controller(repliesController::class)->group(function () {
+    Route::get('/RespuestasMaestra_L', 'index')->name('replies');
+    Route::get('/RespuestasMaestra_C', 'create')->name('repliesCreate');
+    Route::post('/RespuestasMaestra_C', 'index')->name('repliesSave');
+    Route::get('/RespuestasMaestra_/{reply}', 'show')->name('repliesShow');
+    Route::get('/RespuestasMaestra_M', 'index')->name('repliesEdit');
+    Route::put('/RespuestasMaestra_M', 'index')->name('repliesUpdate');
+    Route::delete('/RespuestasMaestra', 'index')->name('repliesDestroy');
 });
 
 
