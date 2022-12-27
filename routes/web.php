@@ -102,7 +102,7 @@ Route::controller(CategoryDrugsController::class)->group(function () {
 Route::controller(QuestionsController::class)->group(function () {
     Route::get('/PreguntasMaestra_L', 'index')->name('questions');
     Route::get('/PreguntasMaestra_C', 'create')->name('questionsCreate');
-    Route::post('/PreguntasMaestra_C/Guardando', 'store')->name('questionsSave');
+    Route::post('/PreguntasMaestra_C/Guardando...', 'store')->name('questionsSave');
     Route::get('/PreguntasMaestra_/{questions}', 'show')->name('questionsShow');
     Route::get('/PreguntasMaestra_M/{questions}', 'edit')->name('questionsEdit');
     Route::put('/PreguntasMaestra_M/{questions}', 'update')->name('questionsUpdate');
@@ -113,11 +113,11 @@ Route::controller(QuestionsController::class)->group(function () {
 Route::controller(repliesController::class)->group(function () {
     Route::get('/RespuestasMaestra_L', 'index')->name('replies');
     Route::get('/RespuestasMaestra_C', 'create')->name('repliesCreate');
-    Route::post('/RespuestasMaestra_C', 'index')->name('repliesSave');
-    Route::get('/RespuestasMaestra_/{reply}', 'show')->name('repliesShow');
+    Route::post('/RespuestasMaestra_C/Guardando...', 'store')->name('repliesSave');
+    Route::get('/RespuestasMaestra_/{replies}', 'show')->name('repliesShow');
     Route::get('/RespuestasMaestra_M', 'index')->name('repliesEdit');
     Route::put('/RespuestasMaestra_M', 'index')->name('repliesUpdate');
-    Route::delete('/RespuestasMaestra', 'index')->name('repliesDestroy');
+    Route::delete('/RespuestasMaestra/{replies}', 'destroy')->name('repliesDestroy');
 });
 
 

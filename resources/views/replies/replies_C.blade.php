@@ -7,7 +7,6 @@
                 div-Class='form-group col-8' />
 
             <div class="form-group col-2">
-                {{-- <label for="status">Estado</label> --}}
                 <x-layouts.miscellaneous.inputLabel fieldname="status" showname="Estado" />
 
                 <select type="text" class="form-select" id="status" name="status" placeholder="Estado">
@@ -18,7 +17,7 @@
             </div>
 
             <div class="form-group col-2">
-                <x-layouts.miscellaneous.inputLabel fieldname="open" showname="Pregunta Abierta" />
+                <x-layouts.miscellaneous.inputLabel fieldname="open" showname="Respuesta a preguntas de tipo abierta" />
                 <br>
                 <button type="button" class="logic btn btn-sm btn-secondary"
                     title="¿Es una respuesta usada en preguntas de selección múltiple?" id="open">
@@ -29,23 +28,14 @@
                 </button>
             </div>
 
-            <div class="row">
-                <div class="col-sm-6">
-                    <x-layouts.miscellaneous.inputLabel fieldname="description" showname="Pregunta" />
-                    <textarea class="form-control" id="description" name="description" rows="20" placeholder="Descripción">{{ Str::upper(old('description')) }}</textarea>
-                    @error('description')
-                        <small class="text-danger"><strong>*{{ $message }}</strong></small>
-                    @enderror
-                </div>
-                <div class="col-sm-6">
-                    <x-layouts.miscellaneous.inputLabel fieldname="notes" showname="Notas" />
-                    <textarea class="form-control" id="notes" name="notes" rows="20" placeholder="Observación">{{ Str::upper(str_replace('.', ".\n", old('notes'))) }}</textarea>
-                </div>
+            <div class="col-sm-12">
+                <x-layouts.miscellaneous.inputLabel fieldname="observation" showname="Comentarios" />
+                <textarea class="form-control" id="observation" name="observation" rows="20" placeholder="Observación">{{ Str::upper(str_replace('.', ".\n", old('notes'))) }}</textarea>
             </div>
-            <hr class="w.100">
+
             <x-layouts.formSave :module="$module" />
     </form>
 
-    <script src="{{ asset('js/questions.js') }}"></script>
+    <script src="{{ asset('js/replies.js') }}"></script>
 
 </x-header>

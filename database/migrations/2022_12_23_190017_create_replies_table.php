@@ -17,7 +17,7 @@ return new class extends Migration
             $table->uuid('id')->primary()->unique();
             $table->string('name');
             $table->string('observation')->nullable();
-            $table->boolean('open')->default(1);
+            $table->boolean('open')->default(0);
             $table->boolean('z_xOne')->default(1);
             $table->timestamps();
         });

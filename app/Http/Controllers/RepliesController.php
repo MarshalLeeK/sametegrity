@@ -20,14 +20,14 @@ class RepliesController extends Controller
         //
         $module = $this->module;
         $view = 'L';
-        $columns = ['Nombre', 'Observación', 'Abierta', 'Estado'];
+        $columns = ['Respuesta', 'Observación', 'Abierta', 'Estado'];
         $searchbox = trim($request->get('searchbox'));
         $rows = DB::table('replies')
             ->select('id', 'name', 'observation', 'open', 'z_xOne')
             ->where('name', 'LIKE', '%' . $searchbox . '%')
             ->orWhere('observation', 'LIKE', '%' . $searchbox . '%')
             ->orderBy('created_at', 'asc')
-            ->paginate(18);
+            ->paginate(14);
 
         return view($module . "." . $module . '_' . $view, compact('rows', 'searchbox', 'columns', 'module', 'view'));
 
@@ -56,6 +56,21 @@ class RepliesController extends Controller
     public function store(Request $request)
     {
         //
+        $validated = $request->validate([
+            'name' => 'required|unique:replies|max:120',
+            'open' => 'required',
+        ]);
+
+        $replies = new replies;
+        $replies->name = $request->input('name');
+        $replies->open = $request->input('open');
+        $replies->z_xOne = $request->input('status');
+        $replies->observation = $request->input('observation');
+        $replies->save();
+
+
+        return $this->userRedirect(0, $replies);
+        // return redirect()->route($this->module);
     }
 
     /**
@@ -67,6 +82,9 @@ class RepliesController extends Controller
     public function show(replies $replies)
     {
         //
+        $module = $this->module;
+        $view = '_';
+        return view($module . '.' . $module . '_', compact('replies', 'module', 'view'));
     }
 
     /**
@@ -101,5 +119,16 @@ class RepliesController extends Controller
     public function destroy(replies $replies)
     {
         //
+        $replies->delete();
+        return $this->userRedirect();
+    }
+
+    public function userRedirect($list = 1, $replies = '')
+    {
+
+        if ($list == 1) {
+            return redirect()->route($this->module);
+        }
+        return redirect()->route($this->module . 'Show', compact('replies'));
     }
 }
