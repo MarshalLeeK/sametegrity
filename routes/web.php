@@ -115,8 +115,8 @@ Route::controller(repliesController::class)->group(function () {
     Route::get('/RespuestasMaestra_C', 'create')->name('repliesCreate');
     Route::post('/RespuestasMaestra_C/Guardando...', 'store')->name('repliesSave');
     Route::get('/RespuestasMaestra_/{replies}', 'show')->name('repliesShow');
-    Route::get('/RespuestasMaestra_M', 'index')->name('repliesEdit');
-    Route::put('/RespuestasMaestra_M', 'index')->name('repliesUpdate');
+    Route::get('/RespuestasMaestra_M/{replies}', 'edit')->name('repliesEdit');
+    Route::put('/RespuestasMaestra_M/{replies}', 'update')->name('repliesUpdate');
     Route::delete('/RespuestasMaestra/{replies}', 'destroy')->name('repliesDestroy');
 });
 

@@ -24,7 +24,7 @@
 
             <div class="col-sm-12">
                 <x-layouts.miscellaneous.inputLabel fieldname="observation" showname="Comentarios" />
-                <textarea class="form-control" id="observation" name="observation" rows="20" placeholder="Observación" readonly>{{ Str::upper(str_replace('.', ".\n", old('notes'))) }}</textarea>
+                <textarea class="form-control" id="observation" name="observation" rows="20" placeholder="Observación" readonly>{{ Str::upper(str_replace('.', ".\n", $replies->observation)) }}</textarea>
             </div>
 
         </div>

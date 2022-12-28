@@ -95,7 +95,9 @@ class RepliesController extends Controller
      */
     public function edit(replies $replies)
     {
-        //
+        $module = $this->module;
+        $view = 'M';
+        return view($module . '.' . $module . '_' . $view, compact('replies', 'module', 'view'));
     }
 
     /**
@@ -108,6 +110,19 @@ class RepliesController extends Controller
     public function update(Request $request, replies $replies)
     {
         //
+        $validated = $request->validate([
+            'name' => 'required|unique:replies,name,' . $replies->id . ',id|max:120',
+            'open' => 'required',
+        ]);
+
+
+        $replies->name = $request->input('name');
+        $replies->open = $request->input('open');
+        $replies->observation = $request->input('observation');
+        $replies->z_xOne = $request->input('status');
+        $replies->save();
+
+        return $this->userRedirect(0, $replies);
     }
 
     /**
