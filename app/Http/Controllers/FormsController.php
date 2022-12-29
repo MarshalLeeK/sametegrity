@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-
-use App\Models\replies;
 use Illuminate\Http\Request;
+use App\Models\forms;
 use Illuminate\Support\Facades\DB;
 
-class RepliesController extends Controller
+class FormsController extends Controller
 {
-    private  $module = 'replies';
+    //
+    private  $module = 'forms';
 
     /**
      * Display a listing of the resource.
@@ -23,7 +23,7 @@ class RepliesController extends Controller
         $view = 'L';
         $columns = ['Respuesta', 'Observación', 'Abierta', 'Estado'];
         $searchbox = trim($request->get('searchbox'));
-        $rows = DB::table('replies')
+        $rows = DB::table('forms')
             ->select('id', 'name', 'observation', 'open', 'z_xOne')
             ->where('name', 'LIKE', '%' . $searchbox . '%')
             ->orWhere('observation', 'LIKE', '%' . $searchbox . '%')
@@ -58,93 +58,93 @@ class RepliesController extends Controller
     {
         //
         $validated = $request->validate([
-            'name' => 'required|unique:replies|max:120',
+            'name' => 'required|unique:forms|max:120',
             'open' => 'required',
         ]);
 
-        $replies = new replies;
-        $replies->name = $request->input('name');
-        $replies->open = $request->input('open');
-        $replies->z_xOne = $request->input('status');
-        $replies->observation = $request->input('observation');
-        $replies->save();
+        $forms = new forms;
+        $forms->name = $request->input('name');
+        $forms->open = $request->input('open');
+        $forms->z_xOne = $request->input('status');
+        $forms->observation = $request->input('observation');
+        $forms->save();
 
 
-        return $this->userRedirect(0, $replies);
+        return $this->userRedirect(0, $forms);
         // return redirect()->route($this->module);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\replies  $replies
+     * @param  \App\Models\forms  $forms
      * @return \Illuminate\Http\Response
      */
-    public function show(replies $replies)
+    public function show(forms $forms)
     {
         //
         $module = $this->module;
         $view = '_';
-        return view($module . '.' . $module . '_', compact('replies', 'module', 'view'));
+        return view($module . '.' . $module . '_', compact('forms', 'module', 'view'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\replies  $replies
+     * @param  \App\Models\forms  $forms
      * @return \Illuminate\Http\Response
      */
-    public function edit(replies $replies)
+    public function edit(forms $forms)
     {
         $module = $this->module;
         $view = 'M';
-        return view($module . '.' . $module . '_' . $view, compact('replies', 'module', 'view'));
+        return view($module . '.' . $module . '_' . $view, compact('forms', 'module', 'view'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\replies  $replies
+     * @param  \App\Models\forms  $forms
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, replies $replies)
+    public function update(Request $request, forms $forms)
     {
         //
         $validated = $request->validate([
-            'name' => 'required|unique:replies,name,' . $replies->id . ',id|max:120',
+            'name' => 'required|unique:forms,name,' . $forms->id . ',id|max:120',
             'open' => 'required',
         ]);
 
 
-        $replies->name = $request->input('name');
-        $replies->open = $request->input('open');
-        $replies->observation = $request->input('observation');
-        $replies->z_xOne = $request->input('status');
-        $replies->save();
+        $forms->name = $request->input('name');
+        $forms->open = $request->input('open');
+        $forms->observation = $request->input('observation');
+        $forms->z_xOne = $request->input('status');
+        $forms->save();
 
-        return $this->userRedirect(0, $replies);
+        return $this->userRedirect(0, $forms);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\replies  $replies
+     * @param  \App\Models\forms  $forms
      * @return \Illuminate\Http\Response
      */
-    public function destroy(replies $replies)
+    public function destroy(forms $forms)
     {
         //
-        $replies->delete();
+        $forms->delete();
         return $this->userRedirect();
     }
 
-    public function userRedirect($list = 1, $replies = '')
+    public function userRedirect($list = 1, $forms = '')
     {
 
         if ($list == 1) {
             return redirect()->route($this->module);
         }
-        return redirect()->route($this->module . 'Show', compact('replies'));
+        return redirect()->route($this->module . 'Show', compact('forms'));
     }
 }
