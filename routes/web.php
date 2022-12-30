@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+
 use App\Http\Controllers\CategoryDrugsController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
@@ -10,10 +12,9 @@ use App\Http\Controllers\FormsController;
 use App\Http\Controllers\HistoriesController;
 use App\Http\Controllers\QuestionsController;
 use App\Http\Controllers\RepliesController;
-use App\Mail\PacienteMailable;
 use App\Models\categoryDrugs;
-use Illuminate\Support\Facades\Mail;
-
+use Doctrine\DBAL\Driver\Middleware;
+use Doctrine\DBAL\Logging\Middleware as LoggingMiddleware;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,17 +31,18 @@ use Illuminate\Support\Facades\Mail;
 // menu
 Route::get('/index', function () {
     return view('index');
-})->name('menu');
+})->middleware('auth')->name('menu');
 
 //Login
 Route::controller(LoginController::class)->group(function () {
     Route::get('/', 'index')->name('login');
     Route::post('/login', 'login')->name('signIn');
-    Route::get('/login/out', 'logout')->name('signOut');
+    Route::get('/login/out', 'logout')->middleware('auth')->name('signOut');
 });
 
+
 //Account Module
-Route::controller(RegisterControler::class)->group(function () {
+Route::controller(RegisterControler::class)->middleware('auth')->group(function () {
     Route::get('/usuarios_L', 'index')->name('user');
     Route::get('/usuario_C', 'create')->name('userCreate');
     Route::post('/usuario_C/Save', 'store')->name('userSave');
@@ -49,10 +51,10 @@ Route::controller(RegisterControler::class)->group(function () {
     Route::put('/usuario_M/{user}', 'update')->name('userUpdate');
     Route::put('/usuario/{user}', 'destroy')->name('userDestroy');
 });
-Route::resource('/usuario', RegisterControler::class);
+Route::resource('/usuario', RegisterControler::class)->middleware('auth');
 
 //Patient Module
-Route::controller(PatientsController::class)->group(function () {
+Route::controller(PatientsController::class)->middleware('auth')->group(function () {
     Route::get('/pacientes_L', 'index')->name('patient');
     Route::get('/paciente_C', 'create')->name('patientCreate');
     Route::post('/paciente_C/Save', 'store')->name('patientSave');
@@ -61,10 +63,10 @@ Route::controller(PatientsController::class)->group(function () {
     Route::put('/paciente_M/Update', 'update')->name('patientUpdate');
     Route::delete('/paciente/{patient}', 'destroy')->name('patientDestroy');
 });
-Route::resource('/patients', PatientsController::class);
+Route::resource('/patients', PatientsController::class)->middleware('auth');
 
 //Diagnosis Module
-Route::controller(Diagnosiscontroller::class)->group(function () {
+Route::controller(Diagnosiscontroller::class)->middleware('auth')->group(function () {
     Route::get('/diagnosticos_L', 'index')->name('diagnosis');
     Route::get('/diagnostico_C', 'create')->name('diagnosisCreate');
     Route::post('/diagnostico_C/Save', 'store')->name('diagnosisSave');
@@ -73,10 +75,10 @@ Route::controller(Diagnosiscontroller::class)->group(function () {
     Route::put('/diagnostico_M/{diagnosis}', 'update')->name('diagnosisUpdate');
     Route::delete('/diagnostico/{diagnosis}', 'destroy')->name('diagnosisDestroy');
 });
-Route::resource('/Diagnostico', Diagnosiscontroller::class);
+Route::resource('/Diagnostico', Diagnosiscontroller::class)->middleware('auth');
 
 
-Route::controller(HistoriesController::class)->group(function () {
+Route::controller(HistoriesController::class)->middleware('auth')->group(function () {
     Route::get('/Historias_L', 'index')->name('histories');
     Route::get('/Historia_C', 'create')->name('historiesCreate');
     Route::post('/Historia_C/Save', 'store')->name('historiesSave');
@@ -86,10 +88,10 @@ Route::controller(HistoriesController::class)->group(function () {
     Route::put('/Historia/{Historia}', 'destroy')->name('historiesDestroy');
 });
 
-Route::resource('/Historias', HistoriesController::class);
+Route::resource('/Historias', HistoriesController::class)->middleware('auth');
 
 
-Route::controller(CategoryDrugsController::class)->group(function () {
+Route::controller(CategoryDrugsController::class)->middleware('auth')->group(function () {
     Route::get('/CategoriaDrogas_L', 'index')->name('drugscategories');
     Route::get('/CategoriaDrogas_C', 'create')->name('drugscategoriesCreate');
     Route::post('/CategoriaDrogas_C/Save', 'store')->name('drugscategoriesSave');
@@ -100,7 +102,7 @@ Route::controller(CategoryDrugsController::class)->group(function () {
 });
 
 
-Route::controller(QuestionsController::class)->group(function () {
+Route::controller(QuestionsController::class)->middleware('auth')->group(function () {
     Route::get('/PreguntasMaestra_L', 'index')->name('questions');
     Route::get('/PreguntasMaestra_C', 'create')->name('questionsCreate');
     Route::post('/PreguntasMaestra_C/Guardando...', 'store')->name('questionsSave');
@@ -111,7 +113,7 @@ Route::controller(QuestionsController::class)->group(function () {
 });
 
 
-Route::controller(repliesController::class)->group(function () {
+Route::controller(repliesController::class)->middleware('auth')->group(function () {
     Route::get('/RespuestasMaestra_L', 'index')->name('replies');
     Route::get('/RespuestasMaestra_C', 'create')->name('repliesCreate');
     Route::post('/RespuestasMaestra_C/Guardando...', 'store')->name('repliesSave');
@@ -121,7 +123,7 @@ Route::controller(repliesController::class)->group(function () {
     Route::delete('/RespuestasMaestra/{replies}', 'destroy')->name('repliesDestroy');
 });
 
-Route::controller(FormsController::class)->group(function () {
+Route::controller(FormsController::class)->middleware('auth')->group(function () {
     Route::get('/Formulario_L', 'index')->name('forms');
     Route::get('/Formulario_C', 'create')->name('formsCreate');
     Route::post('/Formulario_C/Guardando...', 'store')->name('formsSave');

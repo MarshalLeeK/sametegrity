@@ -119,6 +119,15 @@
                                 </a>
                             </div>
                         </div>
+                        <div class="col-3">
+                            <div class="btn btn-sm btn-primary border-secondary shadow" data-toggle="modal"
+                                data-target="#BaseMdodal">
+                                <a href="{{ route('forms') }}" class="text-white" title="Diagnosticos">
+                                    <i class="bi bi-journal-bookmark-fill"></i>
+                                    <label class="custom-control-label text-white"><b>Formatos</b></label>
+                                </a>
+                            </div>
+                        </div>
 
                     </div>
                     <div class="w-100"> <br></div>

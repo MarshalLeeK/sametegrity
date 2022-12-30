@@ -19,8 +19,9 @@ return new class extends Migration
             $table->string('prefix');
             $table->string('lastCode')->default(0);
             $table->string('version')->default('0.0');
-            $table->string('description')->nullable();
-            $table->string('notes')->nullable();
+            $table->text('description')->nullable();
+            $table->text('notes')->nullable();
+            $table->boolean('z_xOne')->default(1);
             $table->timestamps();
         });
     }

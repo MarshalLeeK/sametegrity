@@ -21,18 +21,18 @@ class FormsController extends Controller
         //
         $module = $this->module;
         $view = 'L';
-        $columns = ['Respuesta', 'Observación', 'Abierta', 'Estado'];
+        $columns = ['Prefijo', 'Nombre',  'Ultimo Código', 'Versión', 'Descripcion', 'Notas', 'Estado'];
         $searchbox = trim($request->get('searchbox'));
         $rows = DB::table('forms')
-            ->select('id', 'name', 'observation', 'open', 'z_xOne')
+            ->select('id', 'prefix', 'name',  'lastCode', 'version', 'description', 'notes', 'z_xOne')
             ->where('name', 'LIKE', '%' . $searchbox . '%')
-            ->orWhere('observation', 'LIKE', '%' . $searchbox . '%')
+            ->orWhere('prefix', 'LIKE', '%' . $searchbox . '%')
+            ->orWhere('version', 'LIKE', '%' . $searchbox . '%')
+            ->orWhere('description', 'LIKE', '%' . $searchbox . '%')
             ->orderBy('created_at', 'asc')
             ->paginate(14);
 
         return view($module . "." . $module . '_' . $view, compact('rows', 'searchbox', 'columns', 'module', 'view'));
-
-        // return $module;
     }
 
     /**
