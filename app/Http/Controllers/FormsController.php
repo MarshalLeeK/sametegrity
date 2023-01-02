@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\forms;
+use App\Models\questions;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class FormsController extends Controller
 {
@@ -45,7 +47,9 @@ class FormsController extends Controller
         //
         $module = $this->module;
         $view = 'C';
-        return view($module . "." . $module . '_' . $view, compact('module', 'view'));
+        $uuid = Str::uuid();
+        $questionList = questions::all()->where('z_xOne', 1);
+        return view($module . "." . $module . '_' . $view, compact('module', 'view', 'uuid','questionList'));
     }
 
     /**
