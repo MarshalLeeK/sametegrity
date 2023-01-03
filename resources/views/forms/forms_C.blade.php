@@ -56,18 +56,22 @@
                                     <div class="modal-body">
                                         @foreach ($questionList as $question)
                                             <div class="input-group mb-3">
-                                                <span class="input-group-text"><sub>{{ $question->name }}</sub></span>
+                                                {{-- <span class="input-group-text"><sub>{{ $question->name }}</sub></span> --}}
                                                 <div class="form-control">
                                                     <label
-                                                        for="floatingInputGroup1">{{ strtolower($question->description) }}</label>
+                                                        for="floatingInputGroup1">{{ mb_strtolower($question->description) }}</label>
                                                 </div>
+                                                <span class="questionSelect input-group-text"><input
+                                                        class="form-check-input" type="checkbox"
+                                                        id="{{ $question->id }}"></span>
                                             </div>
                                         @endforeach
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
                                             data-bs-dismiss="modal">Cancelar</button>
-                                        <button type="button" class="btn btn-success bg-opcity-75">Confirmar</button>
+                                        <button type="button" class="btn btn-success bg-opcity-75"
+                                            id="addQuestions">Confirmar</button>
                                     </div>
                                 </div>
                             </div>
@@ -96,31 +100,8 @@
                                         <span class="text-muted">$12</span>
                                     </li>
                                 @endforeach
-                                {{-- 
-                                <li class="list-group-item">
-                                    <div>
-                                        <h6 class="my-0">Second product</h6>
-                                        <small class="text-muted">Brief description</small>
-                                    </div>
-                                    <span class="text-muted">$8</span>
-                                </li>
-                                <li class="list-group-item">
-                                    <div>
-                                        <h6 class="my-0">Third item</h6>
-                                        <small class="text-muted">Brief description</small>
-                                    </div>
-                                    <span class="text-muted">$5</span>
-                                </li>
-                                <li class="list-group-item bg-light">
-                                    <div class="text-success">
-                                        <h6 class="my-0">Promo code</h6>
-                                        <small>EXAMPLECODE</small>
-                                    </div>
-                                    <span class="text-success">-$5</span>
-                                </li> --}}
+
                             @endif
-
-
                         </ul>
                         <div class="ms-auto">
                             <span>Total máximo esperado</span>
@@ -136,7 +117,7 @@
                             </form> --}}
                     </div>
                     <div class="col-md-9 order-md-2 bg-second">
-                        <h4 class="mb-3">Billing address</h4>
+                        <h4 class="mb-3">PREGUNTA N1</h4>
                         <form class="needs-validation" novalidate="">
                             <div class="row">
                                 <div class="col-md-6 mb-3">
