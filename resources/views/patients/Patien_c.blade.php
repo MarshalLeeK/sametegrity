@@ -31,8 +31,8 @@
                                     <label for="tdoc" class="form-label">Tipo Documento</label>
                                     <select class="form-select" name="tdoc" id="tdoc" aria-label="">
                                         @foreach ($typeDocs as $typeDoc)
-                                            <option value="{{ $typeDoc->id }}"
-                                                {{ $typeDoc->id == '13' ? 'selected' : '-' }}> {{ $typeDoc->name }}
+                                            <option value="{{ $typeDoc->id }}" @selected($typeDoc->id == '13')>
+                                                {{ $typeDoc->name }}
                                             </option>
                                         @endforeach
                                     </Select>
@@ -41,8 +41,21 @@
                                 <div class="col-sm-3">
                                     <label for="dni" class="form-label">Número Documento</label>
                                     <input type="text" class="form-control" name="dni" id="dni"
-                                        placeholder="Número Documento" value="{{ old('dni') }}">
+                                        placeholder="Número Documento" value="123" />
                                     <x-layouts.dialoges.inputerror input='dni' />
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <label for="documentplace-country" class="form-label">Páis Expedición</label>
+                                    <select class="form-select" name="documentplace" id="documentplace-country"
+                                        aria-label="">
+                                        <option value="">Seleccionar opción</option>
+                                        @foreach ($countries as $country)
+                                            <option value="{{ $country['country_name'] }}" @selected($country['country_name'] == 'Colombia')>
+                                                {{ $country['country_name'] }}
+                                            </option>
+                                        @endforeach
+                                    </Select>
                                 </div>
 
                                 <div class="col-sm-3">
@@ -50,26 +63,26 @@
                                     <select class="form-select" name="documentplace" id="documentplace-state"
                                         aria-label="">
                                         <option value="">Seleccionar opción</option>
-                                        {{-- @foreach ($countries as $country)
-                                            <option value="{{ $country['country_name'] }}"
-                                                {{ $country['country_name'] == 'Colombia' ? 'selected' : '_' }}>
+                                        @foreach ($countries as $country)
+                                            <option value="{{ $country['country_name'] }}" @selected($country['country_name'] == 'Colombia')>
                                                 {{ $country['country_name'] }}
                                             </option>
-                                        @endforeach --}}
+                                        @endforeach
                                     </Select>
                                 </div>
 
                                 <div class="col-sm-3">
                                     <label for="documentplace-state" class="form-label">Ciudad Expedición</label>
                                     <select class="form-select" name="documentplace" id="documentplace" aria-label="">
-                                        @foreach ($countries as $country)
+                                        {{-- @foreach ($countries as $country)$this
                                             {{-- <option value="{{ $country['country_name'] }}"
                                                 {{ $country['country_name'] == 'Colombia' ? 'selected' : '_' }}>
                                                 {{ $country['country_name'] }}
-                                            </option> --}}
-                                        @endforeach
+                                            </option>                                         @endforeach --}}
                                     </Select>
                                 </div>
+
+                                <x-locations-api inputname="documentplace-country" />
 
                             </div>
 
@@ -103,8 +116,8 @@
                         </div>
                         <div class="col-sm-3">
                             <label for="borndate" class="form-label">Fecha Nacimiento</label>
-                            <input type="date" class="form-control" name="borndate" id="borndate" placeholder=""
-                                value="{{ old('borndate') }}">
+                            <input type="date" class="form-control" name="borndate" id="borndate"
+                                placeholder="" value="{{ old('borndate') }}">
                             <x-layouts.dialoges.inputerror input='borndate' />
                         </div>
 
@@ -137,7 +150,6 @@
                             <select class="form-select" name="borncountry" id="borncountry" aria-label="">
                                 <option value="colombia">Colombia</option>
                                 <option value="Argentina">Argentina</option>
-                                {{-- <x-locations-api /> --}}
                             </Select>
                         </div>
 

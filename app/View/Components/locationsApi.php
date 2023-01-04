@@ -3,30 +3,39 @@
 namespace App\View\Components;
 
 use Illuminate\Http\Request;
+// use Illuminate\Support\Facades\Request;
 use Illuminate\View\Component;
 
 class locationsApi extends Component
 {
+    public $inputname, $category, $value, $data;
 
-    public 
-    $country,$state,$to,$apires,$size,$headerlib,$lib,$body,
-    $clasification = ['country','state','city'],
-    $url = "https://www.universal-tutorial.com/api/", 
-    $token = "_sJrhBbZKEWeBaS4sxDRjWwaWG6oPy1CwlpwTl7YNZKjL36JWi0-FFHZj6l1icCmHYk";
+    // public
+    //     $country, $state, $to, $apires, $size, $headerlib, $lib, $body, $inputname,
+    //     $clasification = ['country', 'state', 'city'],
+    //     $url = "https://www.universal-tutorial.com/api/",
+    //     $token = "_sJrhBbZKEWeBaS4sxDRjWwaWG6oPy1CwlpwTl7YNZKjL36JWi0-FFHZj6l1icCmHYk";
 
-
+    // Request $request, $to = 'countries', $country = 'colombia', $state = 'Antioquia', $default = '0', 
     /**
      * Create a new component instance.
      * @return void
      */
 
-     public function __construct( Request $request , $to='countries', $country = 'colombia', $state= 'Antioquia' , $default = '0' )
+    public function __construct(Request $request, $inputname)
     {
-        
-        $body = $request;
+
+        // $body = $request;
         // var_dump($request);
 
-        return $body;
+        $category = explode('-', $inputname);
+
+        $this->inputname = $inputname;
+        $this->category = $category[1];
+        $this->value = $request->all(); // $value = ;
+        #r
+
+        // $this->inputname = $inputname;
 
         // $this->to = $to;
         // $this->country = $country;
@@ -64,13 +73,13 @@ class locationsApi extends Component
 
         // // $result = $items->json();
         // $this->apires = $items->json();
-        
+
         // if ( $default == 0 ) {
         //     return $this->apires;
         // }
     }
 
-    
+
 
     /**
      * Get the view / contents that represent the component.
@@ -82,5 +91,4 @@ class locationsApi extends Component
         // dd($borncountry);
         return view('components.locations-api');
     }
-
 }

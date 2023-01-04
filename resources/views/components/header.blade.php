@@ -33,7 +33,7 @@
 
 <body>
 
-
+    
     @if ($route != '/')
         <x-layouts.navbar :route="$route ?? 'menu'" :view="$view ?? 'L'" :module="$module ?? 'MDL-ND'" :row="$row ?? 'ROW-ND'" />
     @endif
