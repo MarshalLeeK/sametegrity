@@ -12,8 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet"
-        href="{{ Request::Path() != '/' ? URL::asset('css/structure.css') : URL::asset('css/guessStructure.css') }}">
-
+        href="{{ URL::asset(Request::Path() != '/' ? 'css/structure.css' : 'css/guessStructure.css') }}">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.2/dist/umd/popper.min.js"
         integrity="sha384-q9CRHqZndzlxGLOj+xrdLDJa9ittGte1NksRmgJKeCV9DrM7Kz868XYqsKWPpAmn" crossorigin="anonymous">
     </script>
@@ -33,7 +32,7 @@
 
 <body>
 
-    
+
     @if ($route != '/')
         <x-layouts.navbar :route="$route ?? 'menu'" :view="$view ?? 'L'" :module="$module ?? 'MDL-ND'" :row="$row ?? 'ROW-ND'" />
     @endif

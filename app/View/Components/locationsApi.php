@@ -3,12 +3,11 @@
 namespace App\View\Components;
 
 use Illuminate\Http\Request;
-// use Illuminate\Support\Facades\Request;
 use Illuminate\View\Component;
 
 class locationsApi extends Component
 {
-    public $inputname, $category, $value, $data;
+    public $inputname, $category, $value;
 
     // public
     //     $country, $state, $to, $apires, $size, $headerlib, $lib, $body, $inputname,
@@ -16,23 +15,32 @@ class locationsApi extends Component
     //     $url = "https://www.universal-tutorial.com/api/",
     //     $token = "_sJrhBbZKEWeBaS4sxDRjWwaWG6oPy1CwlpwTl7YNZKjL36JWi0-FFHZj6l1icCmHYk";
 
-    // Request $request, $to = 'countries', $country = 'colombia', $state = 'Antioquia', $default = '0', 
+    // Request $request, $to = 'countries', $country = 'colombia', $state = 'Antioquia', $default = '0',
     /**
      * Create a new component instance.
      * @return void
      */
 
-    public function __construct(Request $request, $inputname)
-    {
 
+
+    public function __construct(Request $request, $inputname = 'none', $value)
+    {   
+        // $inputname
+        // $request = $request->dni;
+        // return dd($request);
         // $body = $request;
         // var_dump($request);
 
-        $category = explode('-', $inputname);
+        // if ($inputname != 'none') {
+        //     $category = explode('-', $inputname);
 
-        $this->inputname = $inputname;
-        $this->category = $category[1];
-        $this->value = $request->all(); // $value = ;
+        //     $this->inputname = $inputname;
+        //     $this->category = $category[1];
+        //     $this->value = $value;
+        //     # code...
+        // }
+
+
         #r
 
         // $this->inputname = $inputname;
@@ -89,6 +97,6 @@ class locationsApi extends Component
     public function render()
     {
         // dd($borncountry);
-        return view('components.locations-api');
+        // return view('components.locations-api');
     }
 }

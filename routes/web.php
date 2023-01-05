@@ -143,3 +143,8 @@ Route::get('/formatos', function () {
     $categoriesDrugs = categoryDrugs::all()->where('z_xOne');
     return view('forms.Assist');
 })->name('Assist');
+
+Route::get('ajax', function () {
+    return view('mensaje');
+});
+Route::post('/getmsg', 'AjaxController@index');

@@ -1,7 +1,7 @@
 document.addEventListener('click', (e) => {
-  const clickedElement = e.target;
 
-  if (!clickedElement.matches('select') && !clickedElement.matches('.patientAlert') && !clickedElement.parentNode.matches('.patientAlert')) {
+  const clickedElement = e.target;
+  if (!clickedElement.matches(['select', '.patientAlert']) && !clickedElement.parentNode.matches('.patientAlert')) {
     return false;
   }
 
@@ -15,7 +15,14 @@ document.addEventListener('click', (e) => {
   if (elementType == 'Boton') {
     logic(elementId)
   } else {
-    // console.log('API')
+    if (elementId.split('-')[1] != 'country') {
+
+      dependInput = elementId.split('-')[0] + '-' + (elementId.split('-')[1] == 'state' ? 'country' : 'state');
+      dependValue = document.getElementById(dependInput);
+
+      console.log(dependValue.value);
+      // dependValue = 
+    }
   }
 
 });

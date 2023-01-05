@@ -46,7 +46,7 @@
                                 </div>
 
                                 <div class="col-sm-3">
-                                    <label for="documentplace-country" class="form-label">Páis Expedición</label>
+                                    <label for="documentplace-country" class="form-label">Páis Origen</label>
                                     <select class="form-select" name="documentplace" id="documentplace-country"
                                         aria-label="">
                                         <option value="">Seleccionar opción</option>
@@ -59,30 +59,19 @@
                                 </div>
 
                                 <div class="col-sm-3">
-                                    <label for="documentplace-state" class="form-label">Dpto Expedición</label>
+                                    <label for="documentplace-state" class="form-label">Deparatamento Nacimiento</label>
                                     <select class="form-select" name="documentplace" id="documentplace-state"
                                         aria-label="">
                                         <option value="">Seleccionar opción</option>
-                                        @foreach ($countries as $country)
-                                            <option value="{{ $country['country_name'] }}" @selected($country['country_name'] == 'Colombia')>
-                                                {{ $country['country_name'] }}
-                                            </option>
-                                        @endforeach
                                     </Select>
                                 </div>
 
                                 <div class="col-sm-3">
                                     <label for="documentplace-state" class="form-label">Ciudad Expedición</label>
                                     <select class="form-select" name="documentplace" id="documentplace" aria-label="">
-                                        {{-- @foreach ($countries as $country)$this
-                                            {{-- <option value="{{ $country['country_name'] }}"
-                                                {{ $country['country_name'] == 'Colombia' ? 'selected' : '_' }}>
-                                                {{ $country['country_name'] }}
-                                            </option>                                         @endforeach --}}
                                     </Select>
                                 </div>
 
-                                <x-locations-api inputname="documentplace-country" />
 
                             </div>
 

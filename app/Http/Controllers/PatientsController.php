@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 
 
+
 class PatientsController extends Controller
 {
 
@@ -39,6 +40,7 @@ class PatientsController extends Controller
             ->orWhere('age', 'LIKE', '%' . $searchbox . '%')
             ->orderBy('dni', 'asc')
             ->paginate(18);
+
         return view('patients.Patiens_I', compact('patients', 'searchbox', 'columns', 'module', 'view'));
     }
 
@@ -57,6 +59,20 @@ class PatientsController extends Controller
 
         session()->put('to', 'countries');
         $countries = $this->getDataApi();
+        session()->put('to', 'states');
+        session()->put('country', 'colombia');
+        $states = $this->getDataApi();
+
+        // foreach ($states as $state) {
+        //     Arr::add('cities', 'state', $state['state_name']);
+
+        //     # code...
+        // }
+
+        // foreach ($states as $state) {
+        //     session()->put('to', 'states');
+        //     session()->put('state', $state);
+        // }
 
         // session()->put('country', 'colombia');
         // $states = $this->getDataApi();
@@ -64,7 +80,7 @@ class PatientsController extends Controller
         // session()->put('to', 'cities');
         // $cities = $this->getDataApi();
 
-        return view('patients.Patien_c', compact('defaults', 'typeDocs', 'module', 'view', 'countries'));
+        return view('patients.Patien_c', compact('defaults', 'typeDocs', 'module', 'view', 'countries', 'states'));
     }
 
     /**

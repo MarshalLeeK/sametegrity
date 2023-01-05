@@ -3,11 +3,14 @@ $item = row de el resultado de json
 $headerlib = nombre de el encabezado respectivo de la libreria ['city','state','country'] --}}
 {{-- <option value="" > {{  }} </option> --}}
 
-
-{{-- @foreach ($clasification as $class)
-    <p>{{ $class }}</p>
+{{-- 
+@foreach ($request as $req)
+    <option>{{ $req }}</option>
 @endforeach --}}
 
-{{ $inputname }}
-{{ $category }}
-{{ dd($value) }}
+{{-- {{ $inputname }}
+{{ $category }} --}}
+
+{{-- <option value="1">Prueba</option>
+<option value="1">{{ $inputname }}</option> --}}
+{{-- <option value="1">{{ $value }}</option> --}}
