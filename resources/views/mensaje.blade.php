@@ -1,55 +1,44 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-    <title>Ajax Example</title>
+    <meta charset="UTF-8">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Test Api-Rest</title>
 
-
-
-    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> --}}
-
-    <script>
-        function getMessage() {
-
-            var request = new XMLHttpRequest();
-            document.querySelector('meta[name="csrf-token"]')['content']
-            // var data = document.getElementById('send').value;
-
-            console.log(data);
-
-            request.open('POST', '/getmsg');
-            request.onload = () => {
-
-                if (request.status == 200) {
-
-                    console.log('valor enviado');
-
-                } else {
-                    console.log('Error en la petición' + request.status);
-                }
-            }
-            request.send();
-
-            // var form = new FormData();
-
-            // $.ajax({
-            //     type: 'POST',
-            //     url: '/getmsg',
-            //     data: '_token = <?php echo csrf_token(); ?>',
-            //     success: function(data) {
-            //         $("#msg").html(data.msg);
-            //     }
-            // });
-        }
-    </script>
 </head>
 
 <body>
-    <div id='msg'>This message will be replaced using Ajax.
-        Click the button to replace the message.</div>
-    <?php
-    echo Form::button('Replace Message', ['onClick' => 'getMessage()', 'id' => 'send']);
-    ?>
+    <div class="col-sm-3">
+        <label for="documentplace-country" class="form-label">Páis Origen</label>
+        <select class="form-select" name="documentplace" id="documentplace-country" aria-label="">
+            <option value="" selected>COLOMBIA</option>
+        </Select>
+    </div>
+
+    <div class="col-sm-3">
+        <label for="documentplace-state" class="form-label">Deparatamento Nacimiento</label>
+        <select class="form-select" name="documentplace" id="documentplace-state" aria-label="">
+            <option value=""selected>ANTIOQUIA</option>
+        </Select>
+    </div>
+
+    <div class="col-sm-3">
+        <label for="documentplace-state" class="form-label">Ciudad Expedición</label>
+        <select class="form-select" name="documentplace" id="documentplace" aria-label="">
+            <option value=""></option>
+        </Select>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.2/axios.min.js"
+        integrity="sha512-QTnb9BQkG4fBYIt9JGvYmxPpd6TBeKp6lsUrtiVQsrJ9sb33Bn9s0wMQO9qVBFbPX3xHRAsBHvXlcsrnJjExjg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="{{ asset('js/getLocation.js') }}"></script> 
 </body>
 
 </html>

@@ -12,6 +12,7 @@ use App\Http\Controllers\FormsController;
 use App\Http\Controllers\HistoriesController;
 use App\Http\Controllers\QuestionsController;
 use App\Http\Controllers\RepliesController;
+use App\Http\Controllers\AjaxController;
 use App\Models\categoryDrugs;
 use Doctrine\DBAL\Driver\Middleware;
 use Doctrine\DBAL\Logging\Middleware as LoggingMiddleware;
@@ -144,7 +145,14 @@ Route::get('/formatos', function () {
     return view('forms.Assist');
 })->name('Assist');
 
-Route::get('ajax', function () {
+Route::get('/ajax', function () {
     return view('mensaje');
 });
-Route::post('/getmsg', 'AjaxController@index');
+
+Route::controller(AjaxController::class)->group(function () {
+    Route::post('/getmsg', 'index');
+});
+Route::post('getmsgxxxx', [AjaxController::class, 'AccionHeyner']);
+
+
+Route::post('AccionHeyner', [AjaxController::class, 'AccionHeyner']);
