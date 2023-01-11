@@ -13,7 +13,7 @@ class AjaxController extends Controller
     {
 
         $categoria = $request->id;
-        return json_encode($categoria);
+        return 'hola';
         // dd($request->data);
         // // echo $data;
         // // $msg = $data->id;
@@ -27,13 +27,13 @@ class AjaxController extends Controller
         $loquequierodevolver = "";
         try {
 
-            $loquequierodevolver = $request->id;
+            $response = $request->id;
 
             // dd($loquenecesito);
-            $mensaje = ['Titulo' => 'Éxito', 'Respuesta' => 'La consulta se realizó correctamente', 'Tipo' => 'success', "loquequierodevolver" => $loquequierodevolver];
+            // $mensaje = ['Titulo' => 'Éxito', 'Respuesta' => 'La consulta se realizó correctamente', 'Tipo' => 'success', "loquequierodevolver" => $loquequierodevolver];
         } catch (\Throwable $th) {
-            $mensaje = ['Titulo' => 'Error', 'Respuesta' => 'Algo salio mal comuniquese con su administrador', 'Tipo' => 'error'];
+            $response = ['Titulo' => 'Error', 'Respuesta' => 'Algo salio mal comuniquese con su administrador', 'Tipo' => 'error'];
         }
-        return json_encode($mensaje);
+        return json_encode($response);
     }
 }

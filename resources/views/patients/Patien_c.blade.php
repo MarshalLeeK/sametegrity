@@ -1,4 +1,4 @@
-<x-header hd-title="Nuevo Paciente" hd-meta-description="Nuevo Paciente" :module="$module" :view="$view">
+<x-header hd-title="Nuevo Paciente" hd-meta-description="Nuevo Paciente" :module="$module" :view="$view" csrf=1>
     <form id="patientform" action="{{ route($module . 'Save') }}" method="POST" class="p-2 form h-100"
         enctype="multipart/form-data">
         @csrf
@@ -29,7 +29,7 @@
 
                                 <div class="col-sm-3">
                                     <label for="tdoc" class="form-label">Tipo Documento</label>
-                                    <select class="form-select" name="tdoc" id="tdoc" aria-label="">
+                                    <select class="form-select" name="tdoc" id="tdoc" aria-label="" autofocus>
                                         @foreach ($typeDocs as $typeDoc)
                                             <option value="{{ $typeDoc->id }}" @selected($typeDoc->id == '13')>
                                                 {{ $typeDoc->name }}
@@ -47,42 +47,73 @@
 
                                 <div class="col-sm-3">
                                     <label for="documentplace-country" class="form-label">Páis Origen</label>
-                                    <select class="form-select" name="documentplace" id="documentplace-country"
+                                    <select class="form-select" name="documentplace-country" id="documentplace-country"
                                         aria-label="">
-                                        <option value="">Seleccionar opción</option>
-                                        @foreach ($countries as $country)
-                                            <option value="{{ $country['country_name'] }}" @selected($country['country_name'] == 'Colombia')>
-                                                {{ $country['country_name'] }}
-                                            </option>
-                                        @endforeach
+                                        <optgroup label="Seleccione país">
+
                                     </Select>
                                 </div>
 
                                 <div class="col-sm-3">
-                                    <label for="documentplace-state" class="form-label">Deparatamento Nacimiento</label>
-                                    <select class="form-select" name="documentplace" id="documentplace-state"
+                                    <label for="documentplace-state" class="form-label">Departamento / Estado</label>
+                                    <select class="form-select" name="documentplace-state" id="documentplace-state"
                                         aria-label="">
                                         <option value="">Seleccionar opción</option>
                                     </Select>
                                 </div>
 
                                 <div class="col-sm-3">
-                                    <label for="documentplace-state" class="form-label">Ciudad Expedición</label>
-                                    <select class="form-select" name="documentplace" id="documentplace" aria-label="">
+                                    <label for="documentplace-city" class="form-label">Ciudad Natal</label>
+                                    <select class="form-select" name="documentplace-city" id="documentplace-city"
+                                        aria-label="">
                                     </Select>
                                 </div>
 
 
-                            </div>
+                                <div class="col-sm-3">
+                                    <label for="documentplace-city-1" class="form-label">Ciudad expedición</label>
+                                    <select class="form-select" name="documentplace-city-" id="documentplace-city-1"
+                                        aria-label="">
+                                        <option value="Argentina">Seleccione Opcion</option>
+                                    </Select>
+                                </div>
 
-                            <div class="row col-12">
+                                <div class="col-sm-3">
+                                    <label for="gender" class="form-label">Género</label>
+                                    <select class="form-select" name="gender" id="gender" aria-label="">
+                                        <option value="" {{ old('gender') == '' ? 'selected' : '' }}>Género
+                                        </option>
+                                        <option value="0" {{ old('gender') == 0 ? 'selected' : '' }}>Mujer</option>
+                                        <option value="1" {{ old('gender') == 1 ? 'selected' : '' }}>Hombre
+                                        </option>
+                                        <option value="2" {{ old('gender') == 2 ? 'selected' : '' }}>Otro</option>
+                                    </Select>
+
+                                </div>
+                                <div class="col-sm-3">
+                                    <label for="borndate" class="form-label">Fecha Nacimiento</label>
+
+                                    <div class="input-group input-group-sm">
+                                        <input type="date" class="form-control col-2" name="borndate" id="borndate"
+                                            placeholder="" value="{{ old('borndate') }}">
+                                        <x-layouts.dialoges.inputerror input='borndate' />
+                                        <span class="input-group-text col-sm-4" id="basic-addon1">
+                                            <input type="number"
+                                                class="  form-control-plaintext form-control-sm dissabled text-end"
+                                                name="age" id="age" placeholder="Edad"
+                                                value="{{ old('age') }}" readonly></span>
+
+
+                                    </div>
+                                </div>
+
+
                                 <div class="col-sm-6">
                                     <label for="name" class="form-label">Nombre</label>
                                     <input type="text" class="form-control" name="name" id="name"
                                         placeholder="Nombres" value="{{ old('name') }}">
                                     <x-layouts.dialoges.inputerror input='name' />
                                 </div>
-
                                 <div class="col-sm-6">
                                     <label for="lastname" class="form-label">Apellido</label>
                                     <input type="text" class="form-control" name="lastname" id="lastname"
@@ -90,31 +121,11 @@
                                     <x-layouts.dialoges.inputerror input='lastname' />
                                 </div>
                             </div>
+
                         </div>
 
 
                         <div class="w-100 mt-2"></div>
-                        <div class="col-sm-3">
-                            <label for="gender" class="form-label">Género</label>
-                            <select class="form-select" name="gender" id="gender" aria-label="">
-                                <option value="" {{ old('gender') == '' ? 'selected' : '' }}>Género</option>
-                                <option value="0" {{ old('gender') == 0 ? 'selected' : '' }}>Mujer</option>
-                                <option value="1" {{ old('gender') == 1 ? 'selected' : '' }}>Hombre</option>
-                                <option value="2" {{ old('gender') == 2 ? 'selected' : '' }}>Otro</option>
-                            </Select>
-                        </div>
-                        <div class="col-sm-3">
-                            <label for="borndate" class="form-label">Fecha Nacimiento</label>
-                            <input type="date" class="form-control" name="borndate" id="borndate"
-                                placeholder="" value="{{ old('borndate') }}">
-                            <x-layouts.dialoges.inputerror input='borndate' />
-                        </div>
-
-                        <div class="col-sm-3">
-                            <label for="age" class="form-label">Edad</label>
-                            <input type="number" class="form-control" name="age" id="age"
-                                placeholder="Edad" value="{{ old('age') }}" readonly>
-                        </div>
 
                         <div class="col-sm-3">
                             <label for="academiclevel" class="form-label">Escolaridad</label>
@@ -131,28 +142,6 @@
                                 </option>
                                 <option value="4" {{ old('academiclevel') == 4 ? 'selected' : '' }}>
                                     Especialización</option>
-                            </Select>
-                        </div>
-
-                        <div class="col-sm-3">
-                            <label for="borncountry" class="form-label">Pais de nacimiento</label>
-                            <select class="form-select" name="borncountry" id="borncountry" aria-label="">
-                                <option value="colombia">Colombia</option>
-                                <option value="Argentina">Argentina</option>
-                            </Select>
-                        </div>
-
-                        <div class="col-sm-3">
-                            <label for="bornstate" class="form-label">Depto de nacimiento</label>
-                            <select class="form-select" name="bornstate" id="bornstate" aria-label="">
-                                <option value="Argentina">Seleccione Opcion</option>
-                            </Select>
-                        </div>
-
-                        <div class="col-sm-3">
-                            <label for="borncity" class="form-label">Ciudad de nacimiento</label>
-                            <select class="form-select" name="borncity" id="borncity" aria-label="">
-                                <option value="Argentina">Seleccione Opcion</option>
                             </Select>
                         </div>
 
@@ -174,18 +163,15 @@
                         </div>
 
                         <div class="col-sm-3">
-                            <label for="livecontry" class="form-label">Pais de Residencia</label>
-                            <select class="form-select" name="livecontry" id="livecontry" aria-label="">
-                                <option selected value="Colombia">Colombia</option>
-                                <option value='Andorra'>Andorra</option>
-                                <option value="Afganistan">Afganistan</option>
-                                <option value="Dubai">Dubai</option>
+                            <label for="live-country" class="form-label">Pais de Residencia</label>
+                            <select class="form-select" name="live-country" id="live-country" aria-label="">
+                                <option selected value="">Seleccione estado/depto</option>
                             </Select>
                         </div>
 
                         <div class="col-sm-3">
-                            <label for="livestate" class="form-label">Depto de Residencia</label>
-                            <select class="form-select" name="livestate" id="livestate" aria-label="">
+                            <label for="live-state" class="form-label">Depto de Residencia</label>
+                            <select class="form-select" name="live-state" id="live-state" aria-label="">
                                 <option selected value="">Seleccione estado/depto</option>
                                 <option value='Antioquia'>Antioquia</option>
                                 <option value="Santander">Santander</option>
@@ -194,8 +180,8 @@
                         </div>
 
                         <div class="col-sm-3">
-                            <label for="livecity" class="form-label">Ciudad de Residencia</label>
-                            <select class="form-select" name="livecity" id="livecity" aria-label="">
+                            <label for="live-city" class="form-label">Ciudad de Residencia</label>
+                            <select class="form-select" name="live-city" id="live-city" aria-label="">
                                 <option selected value="{{ old('dni') }}">Seleccione ciudad</option>
                                 <option value='Bello'>Bello</option>
                                 <option value="Medellin">Medellin</option>
@@ -217,7 +203,7 @@
                         </div>
 
 
-                        <div class="col-sm-12">
+                        <div class="col-sm-6">
                             <label for="address" class="form-label">Dirección </label>
                             <input type="text" class="form-control" name="address" id="address"
                                 placeholder="Dirección" value="{{ old('address') }}">
@@ -676,4 +662,6 @@
         </div>
     </form>
     <script src="{{ asset('js/patiencrud.js') }}"></script>
+    <script src="{{ asset('js/getLocation.js') }}"></script>
+
 </x-header>

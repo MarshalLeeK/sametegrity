@@ -9,6 +9,7 @@ use Illuminate\Database\Seeder;
 use Database\Seeders\PatientsSeeder;
 use Database\Seeders\UsersSeeder;
 use Database\Seeders\DiagnosisSeeder;
+use Database\Seeders\categoryDrugsSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -24,6 +25,7 @@ class DatabaseSeeder extends Seeder
         $this->call(TypeDocsSeeder::class);
         $this->call(DiagnosisSeeder::class);
         $this->call(questionSeeder::class);
+        $this->call(categoryDrugsSeeder::class);
         // questions::factory(10)->create();
     }
 }

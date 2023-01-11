@@ -57,11 +57,11 @@ class PatientsController extends Controller
         $defaults = ['defCountry' => 'Colombia', 'defState' => 'Antioquia',];
         $typeDocs = TypeDocs::get();
 
-        session()->put('to', 'countries');
-        $countries = $this->getDataApi();
-        session()->put('to', 'states');
-        session()->put('country', 'colombia');
-        $states = $this->getDataApi();
+        // session()->put('to', 'countries');
+        // $countries = $this->getDataApi();
+        // session()->put('to', 'states');
+        // session()->put('country', 'colombia');
+        // $states = $this->getDataApi();
 
         // foreach ($states as $state) {
         //     Arr::add('cities', 'state', $state['state_name']);
@@ -80,7 +80,7 @@ class PatientsController extends Controller
         // session()->put('to', 'cities');
         // $cities = $this->getDataApi();
 
-        return view('patients.Patien_c', compact('defaults', 'typeDocs', 'module', 'view', 'countries', 'states'));
+        return view('patients.Patien_c', compact('defaults', 'typeDocs', 'module', 'view'));
     }
 
     /**
@@ -295,6 +295,9 @@ class PatientsController extends Controller
 
     public function getDataApi()
     {
+
+        session()->put('to', 'countries');
+        $countries = $this->getDataApi();
 
         $to = session()->get('to');
         $country = session()->get('country');

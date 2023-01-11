@@ -13,6 +13,7 @@ use App\Http\Controllers\HistoriesController;
 use App\Http\Controllers\QuestionsController;
 use App\Http\Controllers\RepliesController;
 use App\Http\Controllers\AjaxController;
+use App\Http\Controllers\ApiController;
 use App\Models\categoryDrugs;
 use Doctrine\DBAL\Driver\Middleware;
 use Doctrine\DBAL\Logging\Middleware as LoggingMiddleware;
@@ -149,10 +150,9 @@ Route::get('/ajax', function () {
     return view('mensaje');
 });
 
-Route::controller(AjaxController::class)->group(function () {
+Route::controller(ApiController::class)->group(function () {
     Route::post('/getmsg', 'index');
 });
 Route::post('getmsgxxxx', [AjaxController::class, 'AccionHeyner']);
-
 
 Route::post('AccionHeyner', [AjaxController::class, 'AccionHeyner']);

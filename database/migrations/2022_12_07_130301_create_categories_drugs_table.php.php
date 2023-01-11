@@ -17,8 +17,10 @@ return new class extends Migration
     {
         //
         Schema::create('categoriesDrugs', function (Blueprint $table) {
-            $table->id();
-            $table->uuid('PK_UUID');
+
+            $table->charset = 'utf8';
+            $table->collation = 'utf8_spanish2_ci';
+            $table->uuid('id')->primary()->unique();
             $table->string('code', 10)->unique();
             $table->string('name', 255)->nullable();
             #Update to text on nextversión = error when insert because entry will be to long

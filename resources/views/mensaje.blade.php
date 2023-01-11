@@ -11,34 +11,29 @@
 </head>
 
 <body>
+
     <div class="col-sm-3">
-        <label for="documentplace-country" class="form-label">Páis Origen</label>
-        <select class="form-select" name="documentplace" id="documentplace-country" aria-label="">
-            <option value="" selected>COLOMBIA</option>
+        <label for="documentplace-country" class="form-label" autofocus>Páis Origen</label>
+        <select class="form-select" name="documentplace-country" id="documentplace-country">
+            <option selected="true" disabled="disabled">seleccione el país</option>
         </Select>
     </div>
 
     <div class="col-sm-3">
         <label for="documentplace-state" class="form-label">Deparatamento Nacimiento</label>
-        <select class="form-select" name="documentplace" id="documentplace-state" aria-label="">
-            <option value=""selected>ANTIOQUIA</option>
+        <select class="form-select" name="documentplace-state" id="documentplace-state" aria-label="">
+            <option selected="true" disabled="disabled">seleccione el departamento/estado</option>
         </Select>
     </div>
 
     <div class="col-sm-3">
-        <label for="documentplace-state" class="form-label">Ciudad Expedición</label>
-        <select class="form-select" name="documentplace" id="documentplace" aria-label="">
-            <option value=""></option>
+        <label for="documentplace-city" class="form-label">Ciudad Expedición</label>
+        <select class="form-select" name="documentplace-city" id="documentplace-city" aria-label="">
+            <option selected="true" disabled="disabled">seleccione la ciudad</option>
         </Select>
     </div>
 
-
-    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.2/axios.min.js"
-        integrity="sha512-QTnb9BQkG4fBYIt9JGvYmxPpd6TBeKp6lsUrtiVQsrJ9sb33Bn9s0wMQO9qVBFbPX3xHRAsBHvXlcsrnJjExjg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="{{ asset('js/getLocation.js') }}"></script> 
+    <script src="{{ asset('js/getLocation.js') }}"></script>
 </body>
 
 </html>
