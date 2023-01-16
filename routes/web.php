@@ -153,6 +153,10 @@ Route::get('/ajax', function () {
 Route::controller(ApiController::class)->group(function () {
     Route::post('/getmsg', 'index');
 });
-Route::post('getmsgxxxx', [AjaxController::class, 'AccionHeyner']);
 
+
+
+
+
+Route::post('getmsgxxxx', [AjaxController::class, 'AccionHeyner']);
 Route::post('AccionHeyner', [AjaxController::class, 'AccionHeyner']);

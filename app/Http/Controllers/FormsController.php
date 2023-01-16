@@ -50,6 +50,7 @@ class FormsController extends Controller
         $uuid = Str::uuid();
         $questionList = questions::all()->where('z_xOne', 1);
         return view($module . "." . $module . '_' . $view, compact('module', 'view', 'uuid','questionList'));
+        
     }
 
     /**

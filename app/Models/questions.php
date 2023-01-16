@@ -15,3 +15,4 @@ class questions extends Model
     //     return 'slug';
     // }
 }
+

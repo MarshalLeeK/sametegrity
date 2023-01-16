@@ -24,7 +24,6 @@
                             showname="Comentarios para el entrevistador" />
                     </div>
                 </div>
-
             </div>
 
             <div class="row">
@@ -32,18 +31,21 @@
                     <div class="col-md-3 order-md-1 mb-4 bg-primary bg-opacity-10">
 
                         <div class="hstack gap-3">
-                            <h4 class="d-flex-inline justify-content-between align-items-center p-1">
-                                <span class="text-center">Tabla Preguntas</span>
-                                <span class="badge badge-primary text-muted">3</span>
-                                <button type="button" class="btn btn-primary ms-auto" title="Agregar Pregunta"
-                                    id="addQuestion" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                    <i class="bi bi-plus-circle-fill"></i>
-                                </button>
-
-                            </h4>
+                            <h5 class="d-flex-inline justify-content-md-end align-items-center p-1">
+                                <small>
+                                    <span class="text-center">Preguntas asignadas:</span>
+                                    <span
+                                        class="badge badge-primary text-muted">{{ ($questionsRow ?? 0) == 0 ? 0 : $questionsRow->count() }}</span>
+                                    <button type="button" class="btn btn-sm btn-success ms-auto"
+                                        title="Agregar Pregunta" id="addQuestion" data-bs-toggle="modal"
+                                        data-bs-target="#questionList">
+                                        <i class="bi bi-plus-circle-fill"></i>
+                                    </button>
+                                </small>
+                            </h5>
                         </div>
 
-                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        <div class="modal fade" id="questionList" tabindex="-1" aria-labelledby="exampleModalLabel"
                             aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
@@ -56,7 +58,6 @@
                                     <div class="modal-body">
                                         @foreach ($questionList as $question)
                                             <div class="input-group mb-3">
-                                                {{-- <span class="input-group-text"><sub>{{ $question->name }}</sub></span> --}}
                                                 <div class="form-control">
                                                     <label
                                                         for="floatingInputGroup1">{{ mb_strtolower($question->description) }}</label>
@@ -107,14 +108,6 @@
                             <span>Total máximo esperado</span>
                             <strong>50</strong>
                         </div>
-                        {{-- <form class="card p-2">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Promo code">
-                                    <div class="input-group-append">
-                                        <button type="submit" class="btn btn-secondary">Redeem</button>
-                                    </div>
-                                </div>
-                            </form> --}}
                     </div>
                     <div class="col-md-9 order-md-2 bg-second">
                         <h4 class="mb-3">PREGUNTA N1</h4>
