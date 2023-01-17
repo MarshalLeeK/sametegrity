@@ -160,3 +160,13 @@ Route::controller(ApiController::class)->group(function () {
 
 Route::post('getmsgxxxx', [AjaxController::class, 'AccionHeyner']);
 Route::post('AccionHeyner', [AjaxController::class, 'AccionHeyner']);
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+});

@@ -37,25 +37,25 @@
                                     <span
                                         class="badge badge-primary text-muted">{{ ($questionsRow ?? 0) == 0 ? 0 : $questionsRow->count() }}</span>
                                     <button type="button" class="btn btn-sm btn-success ms-auto"
-                                        title="Agregar Pregunta" id="addQuestion" data-bs-toggle="modal"
+                                        title="Agregar Pregunta" id="questionsList" data-bs-toggle="modal"
                                         data-bs-target="#questionList">
-                                        <i class="bi bi-plus-circle-fill"></i>
+                                        <i class="bi bi-plus-circle-fill" name=></i>
                                     </button>
                                 </small>
                             </h5>
                         </div>
 
-                        <div class="modal fade" id="questionList" tabindex="-1" aria-labelledby="exampleModalLabel"
-                            aria-hidden="true">
+                        <div class="modal fade" id="questionList" tabindex="-1"
+                            aria-labelledby="datosGeneralesPregunta" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h1 class="modal-title text-center fs-5" id="exampleModalLabel">Agregar
+                                        <h1 class="modal-title text-center fs-5" id="datosGeneralesPregunta">Agregar
                                             preguntas</h1>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
                                     </div>
-                                    <div class="modal-body">
+                                    <div class="modal-body" id="question_list">
                                         @foreach ($questionList as $question)
                                             <div class="input-group mb-3">
                                                 <div class="form-control">
@@ -80,29 +80,15 @@
 
 
                         <ul class="list-group mb-1" id="questionList">
-
-                            @if (($questionsRow ?? 0) == 0)
-                                <li class="list-group-item">
-                                    <div>
-                                        <h6 class="my-0">Aún no hay prreguntas asociadas</h6>
-                                        <small class="text-muted">
-                                            oprima el botón <strong>+</strong>
-                                            para agregar una pregunta al formato
-                                        </small>
-                                    </div>
-                                </li>
-                            @else
-                                @foreach ($questionsRow as $questionRow)
-                                    <li class="list-group-item">
-                                        <div>
-                                            <h6 class="my-0">Product name</h6>
-                                            <small class="text-muted">Brief description</small>
-                                        </div>
-                                        <span class="text-muted">$12</span>
-                                    </li>
-                                @endforeach
-
-                            @endif
+                            <li class="list-group-item">
+                                <div>
+                                    <h6 class="my-0">Aún no hay prreguntas asociadas</h6>
+                                    <small class="text-muted">
+                                        oprima el botón <strong>+</strong>
+                                        para agregar una pregunta al formato
+                                    </small>
+                                </div>
+                            </li>
                         </ul>
                         <div class="ms-auto">
                             <span>Total máximo esperado</span>
