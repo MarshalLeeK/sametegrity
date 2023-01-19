@@ -16,7 +16,7 @@ document.addEventListener('click', (e) => {
                 return false;
             }
         }
-
+        
         localStorage.setItem('focus', 1);
         localStorage.setItem('field', id);
 

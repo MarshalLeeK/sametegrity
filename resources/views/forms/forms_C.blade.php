@@ -1,5 +1,6 @@
 <x-header hd-title="Formatos" hd-description="Datos generales sobre preguntas creadas" :module="$module"
-    :view="$view">
+    :view="$view" csrf=1>
+
     <x-layouts.titleBanner title-Module="FORMATOS" />
     <form class="container p-2 form h-100 bg-light" action="{{ route($module . 'Save') }}" method="POST">
         @csrf
@@ -39,7 +40,9 @@
                                     <button type="button" class="btn btn-sm btn-success ms-auto"
                                         title="Agregar Pregunta" id="questionsList" data-bs-toggle="modal"
                                         data-bs-target="#questionList">
-                                        <i class="bi bi-plus-circle-fill" name=></i>
+                                        <span class="pe-none">
+                                            <i class="bi bi-plus-circle-fill" name="questionsList"></i>
+                                        </span>
                                     </button>
                                 </small>
                             </h5>
@@ -56,17 +59,6 @@
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body" id="question_list">
-                                        @foreach ($questionList as $question)
-                                            <div class="input-group mb-3">
-                                                <div class="form-control">
-                                                    <label
-                                                        for="floatingInputGroup1">{{ mb_strtolower($question->description) }}</label>
-                                                </div>
-                                                <span class="questionSelect input-group-text"><input
-                                                        class="form-check-input" type="checkbox"
-                                                        id="{{ $question->id }}"></span>
-                                            </div>
-                                        @endforeach
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
@@ -79,8 +71,8 @@
                         </div>
 
 
-                        <ul class="list-group mb-1" id="questionList">
-                            <li class="list-group-item">
+                        <ul class="list-group mb-1 table-cell" id="formResumeQuestions">
+                            <li class="list-group-item" id='none'>
                                 <div>
                                     <h6 class="my-0">Aún no hay prreguntas asociadas</h6>
                                     <small class="text-muted">

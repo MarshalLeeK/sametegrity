@@ -128,6 +128,7 @@ Route::controller(repliesController::class)->middleware('auth')->group(function 
 Route::controller(FormsController::class)->middleware('auth')->group(function () {
     Route::get('/Formulario_L', 'index')->name('forms');
     Route::get('/Formulario_C', 'create')->name('formsCreate');
+    Route::post('Formulario_C', 'getQuestionList');
     Route::post('/Formulario_C/Guardando...', 'store')->name('formsSave');
     Route::get('/Formulario_/{forms}', 'show')->name('formsShow');
     Route::get('/Formulario_M/{forms}', 'edit')->name('formsEdit');
@@ -146,6 +147,10 @@ Route::get('/formatos', function () {
     return view('forms.Assist');
 })->name('Assist');
 
+
+
+
+
 Route::get('/ajax', function () {
     return view('mensaje');
 });
@@ -153,10 +158,6 @@ Route::get('/ajax', function () {
 Route::controller(ApiController::class)->group(function () {
     Route::post('/getmsg', 'index');
 });
-
-
-
-
 
 Route::post('getmsgxxxx', [AjaxController::class, 'AccionHeyner']);
 Route::post('AccionHeyner', [AjaxController::class, 'AccionHeyner']);

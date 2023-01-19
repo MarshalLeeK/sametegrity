@@ -49,8 +49,7 @@ class FormsController extends Controller
         $view = 'C';
         $uuid = Str::uuid();
         $questionList = questions::all()->where('z_xOne', 1);
-        return view($module . "." . $module . '_' . $view, compact('module', 'view', 'uuid','questionList'));
-        
+        return view($module . "." . $module . '_' . $view, compact('module', 'view', 'uuid', 'questionList'));
     }
 
     /**
@@ -151,5 +150,14 @@ class FormsController extends Controller
             return redirect()->route($this->module);
         }
         return redirect()->route($this->module . 'Show', compact('forms'));
+    }
+
+    public function getQuestionList(Request $request)
+    {
+        $nowKP = $request->data;
+        $questionList = DB::table('questions')
+            ->whereNotIn('id', $nowKP)
+            ->get();
+        return $questionList;
     }
 }
