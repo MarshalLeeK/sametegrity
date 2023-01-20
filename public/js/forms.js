@@ -1,3 +1,4 @@
+
 function includeFile(file = 'js/tableModifies.js') {
     var script = document.createElement('script');
     script.src = file;
@@ -20,7 +21,6 @@ document.addEventListener('click', (e) => {
     const clickedElement = e.target;
     if (clickedElement.matches('button')) {
 
-        console.log(clickedElement.id);
         if (clickedElement.id == 'questionsList') {
             return getMasterQuestionss();
         }
@@ -58,6 +58,21 @@ async function getMasterQuestionss() {
 
     postData(API_URL, data)
         .then(data => {
+
+            if (data.length == 0) {
+                var close = document.getElementById('questionList');
+                close = bootstrap.Modal.getInstance(close);
+                close._isTransitioning = false;
+                close.hide();
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Ups',
+                    text: 'Parece que todas las preguntas ya ingresadas al formato actual ',
+                    timer: 1600
+                })
+                return false;
+            }
+
             HTMLResponse.innerHTML = '';
             localStorage.masterQuestions = JSON.stringify(data);
             const div = document.createElement('div');
@@ -106,16 +121,41 @@ function addNewQuestions(checkedList = '') {
     const masterQuestions = JSON.parse(localStorage.masterQuestions);
     var tmpQuestions = new Array();
     var tmp = document.createElement('div');
+    var questions = [];
+    console.log(localStorage.currentQuestion.questions);
+    currentQuestion = localStorage.currentQuestion == undefined ? [] : JSON.parse(localStorage.currentQuestion);
+    console.log('currentQuestion');
+    console.log(currentQuestion);
 
     masterQuestions.forEach(question => {
         if (checkedList.includes(question.id)) {
+
             tmpQuestions.push(question);
             listRow = document.createElement('li');
             listRow.className = 'list-group-item';
             listRow.id = question.id;
+            questionTitle = document.createElement('h6');
+            questionTitle.className = 'my-0';
+            questionResume = document.createElement('small');
+            questionResume.className = 'text-muted';
+
+            questionTitle.innerHTML = `${question.name}`;
+            questionResume.innerHTML = `${question.description}`;
+
+            listRow.appendChild(questionTitle);
+            listRow.appendChild(questionResume);
             tmp.appendChild(listRow);
+
+            questions.push(question);
+            // console.log(questions);
+
         }
     });
+
+    localStorage.currentQuestion += JSON.stringify({ questions });
+    debugger;
+    console.log(questions);
+
 
     let HTMLResponse = document.getElementById('formResumeQuestions');
     let nowKP = HTMLResponse.querySelectorAll('li')[0];
@@ -124,11 +164,14 @@ function addNewQuestions(checkedList = '') {
     }
 
     tmp = tmp.innerHTML;
-    console.log(tmp);
-    HTMLResponse.appendChild(tmp);
+    HTMLResponse.innerHTML += tmp;
     var modalClose = document.getElementById('questionList');
     modalClose = bootstrap.Modal.getInstance(modalClose);
     modalClose.hide();
     localStorage.removeItem('masterQuestions');
+    localStorage.removeItem('masterQuestions');
+    let masterList = document.querySelector('#question_list');
+    masterList.innerHTML = '';
 
 }
+

@@ -7,7 +7,7 @@ document.addEventListener('click', (e) => {
 
         var template = '';
         id = elementClicked.id;
-        select = document.getElementById(id);
+        // select = document.getElementById(id);
 
         if (localStorage.getItem('focus') == 1) {
             if (id == localStorage.getItem('field')) {
@@ -38,7 +38,7 @@ document.addEventListener('click', (e) => {
 
         request.onload = () => {
 
-            if (request.status != 200) {
+            if (request.status != 200) {w
                 console.log("Status:" + request.status + " Error: " + request.statusText);
                 return false;
             }

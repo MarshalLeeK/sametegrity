@@ -73,13 +73,11 @@
 
                         <ul class="list-group mb-1 table-cell" id="formResumeQuestions">
                             <li class="list-group-item" id='none'>
-                                <div>
                                     <h6 class="my-0">Aún no hay prreguntas asociadas</h6>
                                     <small class="text-muted">
                                         oprima el botón <strong>+</strong>
                                         para agregar una pregunta al formato
                                     </small>
-                                </div>
                             </li>
                         </ul>
                         <div class="ms-auto">
