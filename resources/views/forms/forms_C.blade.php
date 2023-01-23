@@ -73,11 +73,13 @@
 
                         <ul class="list-group mb-1 table-cell" id="formResumeQuestions">
                             <li class="list-group-item" id='none'>
-                                    <h6 class="my-0">Aún no hay prreguntas asociadas</h6>
+                                <a href="" class="text-decoration-none">
+                                    <h6 class="my-0">Aún no hay preguntas asociadas</h6>
                                     <small class="text-muted">
                                         oprima el botón <strong>+</strong>
                                         para agregar una pregunta al formato
                                     </small>
+                                </a>
                             </li>
                         </ul>
                         <div class="ms-auto">
@@ -85,14 +87,29 @@
                             <strong>50</strong>
                         </div>
                     </div>
-                    <div class="col-md-9 order-md-2 bg-second">
-                        <h4 class="mb-3">PREGUNTA N1</h4>
+                    <div class="col-md-9 order-md-2 bg-second" id='showQuestion'>
+                        <h5 class="mb-3" id='ShowtitleQuestion'></h5>
                         <form class="needs-validation" novalidate="">
                             <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <span for="showQuestionDescribe">Descripción pregunta</span>
+                                    <span type="text" class="form-control" id="showQuestionDescribe"></span>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <span for="showQuestionType">Tipo Pregunta</span>
+                                    <select type="text" class="form-control" id="showQuestionType">
+
+                                    </select>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <span for="showQuestionDeppend">Depende de:</span>
+                                    <select type="text" class="form-control" id="showQuestionDeppend">
+
+                                    </select>
+                                </div>
                                 <div class="col-md-12 mb-3">
-                                    <label for="firstName">Descripción pregunta</label>
-                                    <input type="text" class="form-control" id="firstName" placeholder=""
-                                        value="" required="">
+                                    <span for="showQuestionNotes">Notas pregunta</span>
+                                    <textarea type="text" class="form-control" id="showQuestionNotes"></textarea>
                                 </div>
                             </div>
 

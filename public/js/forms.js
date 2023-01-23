@@ -33,6 +33,14 @@ document.addEventListener('click', (e) => {
         }
     }
 
+    if (clickedElement.tagName.toLowerCase() === 'a' || clickedElement.parentNode.tagName.toLowerCase() === 'a') {
+        let question = clickedElement.parentNode.tagName.toLowerCase() === 'a' ? clickedElement.parentNode : clickedElement;
+
+        if (question.matches('.go')) {
+            question = question.getAttribute('name');
+            showQuestion(question);
+        }
+    }
 });
 
 async function getMasterQuestionss() {
@@ -74,7 +82,9 @@ async function getMasterQuestionss() {
             }
 
             HTMLResponse.innerHTML = '';
-            localStorage.masterQuestions = JSON.stringify(data);
+            let masterQuestions = JSON.stringify(data);
+            localStorage.masterQuestions = masterQuestions;
+
             const div = document.createElement('div');
 
             data.forEach(question => {
@@ -105,11 +115,9 @@ async function getMasterQuestionss() {
 
             HTMLResponse.appendChild(div);
         });
-
-
     return false;
-
 }
+
 
 function addNewQuestions(checkedList = '') {
 
@@ -118,22 +126,25 @@ function addNewQuestions(checkedList = '') {
         return false;
     }
 
-    const masterQuestions = JSON.parse(localStorage.masterQuestions);
-    var tmpQuestions = new Array();
+    let masterQuestions = localStorage.masterQuestions;
+    masterQuestions = JSON.parse(masterQuestions);
     var tmp = document.createElement('div');
     var questions = [];
-    console.log(localStorage.currentQuestion.questions);
-    currentQuestion = localStorage.currentQuestion == undefined ? [] : JSON.parse(localStorage.currentQuestion);
-    console.log('currentQuestion');
-    console.log(currentQuestion);
 
     masterQuestions.forEach(question => {
+
         if (checkedList.includes(question.id)) {
 
-            tmpQuestions.push(question);
+            questions.push(question);
             listRow = document.createElement('li');
             listRow.className = 'list-group-item';
             listRow.id = question.id;
+
+            aLink = document.createElement('a');
+            aLink.className = 'go text-decoration-none';
+            aLink.name = question.id;
+
+
             questionTitle = document.createElement('h6');
             questionTitle.className = 'my-0';
             questionResume = document.createElement('small');
@@ -142,36 +153,51 @@ function addNewQuestions(checkedList = '') {
             questionTitle.innerHTML = `${question.name}`;
             questionResume.innerHTML = `${question.description}`;
 
-            listRow.appendChild(questionTitle);
-            listRow.appendChild(questionResume);
+            aLink.appendChild(questionTitle);
+            aLink.appendChild(questionResume);
+            listRow.appendChild(aLink);
             tmp.appendChild(listRow);
-
-            questions.push(question);
-            // console.log(questions);
 
         }
     });
 
-    localStorage.currentQuestion += JSON.stringify({ questions });
-    debugger;
-    console.log(questions);
-
+    let currentQuestion = localStorage.currentQuestion;
+    currentQuestion = typeof currentQuestion === 'undefined' ? [] : JSON.parse(currentQuestion);
+    questions.map(e => currentQuestion.push(e));
+    currentQuestion = JSON.stringify(currentQuestion);
+    localStorage.currentQuestion = currentQuestion;
 
     let HTMLResponse = document.getElementById('formResumeQuestions');
-    let nowKP = HTMLResponse.querySelectorAll('li')[0];
-    if (nowKP.id == 'none') {
+    let firtsRow = HTMLResponse.querySelectorAll('li')[0];
+
+    if (firtsRow.id == 'none') {
         HTMLResponse.innerHTML = '';
     }
 
     tmp = tmp.innerHTML;
     HTMLResponse.innerHTML += tmp;
+
     var modalClose = document.getElementById('questionList');
     modalClose = bootstrap.Modal.getInstance(modalClose);
     modalClose.hide();
-    localStorage.removeItem('masterQuestions');
-    localStorage.removeItem('masterQuestions');
+    localStorage.masterQuestions;
     let masterList = document.querySelector('#question_list');
     masterList.innerHTML = '';
-
 }
 
+function showQuestion(question = '') {
+
+    let currentQuestion = localStorage.currentQuestion;
+    currentQuestion = JSON.parse(currentQuestion);
+    question = currentQuestion.find((e) => e.id == question);
+
+    let tittleQuestion = document.getElementById('ShowtitleQuestion');
+    tittleQuestion.innerHTML = question.name;
+
+    let describeQestion = document.getElementById('showQuestionDescribe');
+    describeQestion.innerHTML = question.description;
+
+    let notesQestion = document.getElementById('showQuestionNotes');
+    notesQestion.innerHTML = typeof question.notes === 'undefined' ? '' : question.notes;
+
+}
