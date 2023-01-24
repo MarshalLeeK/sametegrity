@@ -47,6 +47,17 @@ document.getElementById('showQuestionType').addEventListener('change', (e) => {
     document.getElementById('ShowquestionCategories').style.display = (e.target.value == 0) ? 'none' : 'table';
 });
 
+document.getElementById('showQuestionDeppend').addEventListener('click', (e) => {
+
+    if (localStorage.check != 1 || typeof (localStorage.check) === 'undefined') {
+        console.log(localStorage.check);
+
+        localStorage.check = localStorage.check != 1 ? 1 : 0;
+    }
+    console.log(localStorage.check);
+
+});
+
 async function getMasterQuestionss() {
 
     const API_URL = 'Formulario_C';
@@ -220,8 +231,7 @@ function showQuestion(question = '') {
         elem = document.createElement('option');
         elem.id = e.id
         // console.log(elem);
-    })
-
+    });
 }
 
 function updateBeforeChange(id) {
@@ -246,4 +256,3 @@ function updateBeforeChange(id) {
     notesInp.value = '';
     return;
 }
-
