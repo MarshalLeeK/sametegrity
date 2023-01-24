@@ -93,12 +93,14 @@
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <span for="showQuestionDescribe">Descripción pregunta</span>
-                                    <span type="text" class="form-control" id="showQuestionDescribe"></span>
+                                    <span type="text" class="form-control" id="showQuestionDescribe">&nbsp;</span>
                                 </div>
                                 <div class="col-md-3 mb-3">
                                     <span for="showQuestionType">Tipo Pregunta</span>
                                     <select type="text" class="form-control" id="showQuestionType">
-
+                                        <option value="" selected>Seleccione tipo pregunta</option>
+                                        <option value="0">Abierta</option>
+                                        <option value="1">Categoría Sustancias</option>
                                     </select>
                                 </div>
                                 <div class="col-md-3 mb-3">
@@ -113,14 +115,14 @@
                                 </div>
                             </div>
 
-                            <table class="table table-bordered">
+                            <table class="table table-bordered" id="ShowquestionCategories">
                                 <caption>Lista de sustancias</caption>
-                                <thead class="text-white">
+                                <thead class="text-white" id="ShowquestionCategoriesEnc">
                                     <th class="col-3">Sustancia</th>
                                     <th class="col">No</th>
                                     <th class="col">Sí</th>
                                 </thead>
-                                <tbody>
+                                <tbody id="ShowquestionCategoriesDet">
                                     <tr>
                                         <th>a.Tabaco</th>
                                         <th></th>

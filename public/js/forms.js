@@ -26,7 +26,6 @@ document.addEventListener('click', (e) => {
         }
 
         if (clickedElement.id == 'addQuestions') {
-
             selected = document.getElementById('question_list').querySelectorAll('[type=checkbox]:checked');
             checkedList = [].slice.call(selected).map((e) => e.getAttribute('id'));
             return addNewQuestions(checkedList);
@@ -36,11 +35,16 @@ document.addEventListener('click', (e) => {
     if (clickedElement.tagName.toLowerCase() === 'a' || clickedElement.parentNode.tagName.toLowerCase() === 'a') {
         let question = clickedElement.parentNode.tagName.toLowerCase() === 'a' ? clickedElement.parentNode : clickedElement;
 
-        if (question.matches('.go')) {
+        if (question.matches('.go') && question.id != 'none') {
             question = question.getAttribute('name');
             showQuestion(question);
         }
     }
+});
+
+document.getElementById('showQuestionType').addEventListener('change', (e) => {
+    console.log(e.target.value);
+    document.getElementById('ShowquestionCategories').style.display = (e.target.value == 0) ? 'none' : 'table';
 });
 
 async function getMasterQuestionss() {
@@ -118,7 +122,6 @@ async function getMasterQuestionss() {
     return false;
 }
 
-
 function addNewQuestions(checkedList = '') {
 
     if (checkedList == '') {
@@ -162,8 +165,8 @@ function addNewQuestions(checkedList = '') {
     });
 
     let currentQuestion = localStorage.currentQuestion;
-    currentQuestion = typeof currentQuestion === 'undefined' ? [] : JSON.parse(currentQuestion);
-    questions.map(e => currentQuestion.push(e));
+    currentQuestion = typeof currentQuestion === 'undefined' || currentQuestion === 'null' ? [] : JSON.parse(currentQuestion);
+    questions.map((e) => currentQuestion.push(e));
     currentQuestion = JSON.stringify(currentQuestion);
     localStorage.currentQuestion = currentQuestion;
 
@@ -191,6 +194,14 @@ function showQuestion(question = '') {
     currentQuestion = JSON.parse(currentQuestion);
     question = currentQuestion.find((e) => e.id == question);
 
+    let showQuestion = document.getElementById('showQuestion');
+
+    if (showQuestion.getAttribute('name') != null && showQuestion.getAttribute('name') != question.id) {
+        updateBeforeChange(showQuestion.getAttribute('name'));
+    }
+
+    showQuestion.setAttribute('name', question.id);
+
     let tittleQuestion = document.getElementById('ShowtitleQuestion');
     tittleQuestion.innerHTML = question.name;
 
@@ -198,6 +209,41 @@ function showQuestion(question = '') {
     describeQestion.innerHTML = question.description;
 
     let notesQestion = document.getElementById('showQuestionNotes');
-    notesQestion.innerHTML = typeof question.notes === 'undefined' ? '' : question.notes;
+    notesQestion.value = typeof question.notes === 'undefined' ? '' : question.notes;
+
+    let QuestionDeppend = document.getElementById('showQuestionDeppend');
+
+    currentQuestion = localStorage.currentQuestion;
+    currentQuestion = JSON.parse(currentQuestion);
+
+    currentQuestion.map((e) => {
+        elem = document.createElement('option');
+        elem.id = e.id
+        // console.log(elem);
+    })
 
 }
+
+function updateBeforeChange(id) {
+
+    describeInp = document.getElementById('showQuestionDescribe');
+    typeInp = document.getElementById('showQuestionType');
+    deppendInp = document.getElementById('showQuestionDeppend');
+    notesInp = document.getElementById('showQuestionNotes');
+
+    let localCurrentQuestion = localStorage.currentQuestion;
+    localCurrentQuestion = JSON.parse(localCurrentQuestion);
+
+    localCurrentQuestion.map((e) => {
+        if (e.id == id) {
+            e.description = describeInp.innerHTML;
+            e.notes = notesInp.value;
+        }
+    });
+
+    localStorage.currentQuestion = JSON.stringify(localCurrentQuestion);
+    describeInp.value = '';
+    notesInp.value = '';
+    return;
+}
+
