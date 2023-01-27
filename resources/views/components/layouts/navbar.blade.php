@@ -1,5 +1,5 @@
 <header>
-    <nav class="navbar navbar-expand-lg" id="navbar">
+    <nav class="navbar navbar-expand-sm" id="navbar">
         <div class="container-fluid bg-white">
             {{-- LOGO --}}
             <a class="figure-img img-fluid rounded" href="#">

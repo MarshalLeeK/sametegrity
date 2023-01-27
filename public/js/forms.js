@@ -34,9 +34,12 @@ document.addEventListener('click', (e) => {
 
     if (clickedElement.tagName.toLowerCase() === 'a' || clickedElement.parentNode.tagName.toLowerCase() === 'a') {
         let question = clickedElement.parentNode.tagName.toLowerCase() === 'a' ? clickedElement.parentNode : clickedElement;
+        debugger;
 
         if (question.matches('.go') && question.id != 'none') {
             question = question.getAttribute('name');
+            showQuestionContainer = document.getElementById('showQuestion');
+            showQuestionContainer.style.display = showQuestionContainer.style.display == 'none' ? 'show' : 'none';
             showQuestion(question);
         }
     }
