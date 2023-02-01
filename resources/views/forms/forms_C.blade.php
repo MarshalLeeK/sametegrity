@@ -54,7 +54,8 @@
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h1 class="modal-title text-center fs-5" id="datosGeneralesPregunta">Agregar
-                                            preguntas</h1>
+                                            <span id='tittleModal'>pregunta</span>
+                                        </h1>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
                                     </div>
@@ -73,7 +74,7 @@
 
                         <ul class="list-group mb-1 table-cell" id="formResumeQuestions">
                             <li class="list-group-item" id='none'>
-                                <a href="" class="text-decoration-none">
+                                <a class="text-decoration-none">
                                     <h6 class="my-0">Aún no hay preguntas asociadas</h6>
                                     <small class="text-muted">
                                         oprima el botón <strong>+</strong>
@@ -87,7 +88,7 @@
                             <strong>50</strong>
                         </div>
                     </div>
-                    <div class="col-md-9 order-md-2 bg-second" id="showQuestion" style="display:hide">
+                    <div class="col-md-9 order-md-2 bg-second" id="showQuestion" style="display:none">
                         <h5 class="mb-3" id='ShowtitleQuestion'></h5>
                         <form class="needs-validation" novalidate="">
                             <div class="row">
@@ -109,80 +110,69 @@
 
                                     </select>
                                 </div>
+
+                                {{-- TABLE  ANSWERS --}}
+
+                                <div class="col-md-12 mb-3" id="divShowQuestionAnswers">
+                                    <table class="table table-bordered" id="showQuestionAnswers"
+                                        style="display:hidden">
+                                        <caption>
+                                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                                <strong>Lista de respuestas</strong>
+                                                <div class="ms-auto">
+                                                    <button class="btn btn-success btn-sm"
+                                                        id="newResponse">Agregar</button>
+                                                </div>
+                                            </div>
+                                        </caption>
+                                        <thead class="text-white" id="showQuestionAnswersEnc">
+                                            <th class="col-4" id='static'>Respuesta</th>
+                                            <th class="col-6" id='static'>Comentario</th>
+                                            <th class="col-2" id='static'>valor</th>
+                                        </thead>
+                                        <tbody id="showQuestionAnswersDet">
+                                            <tr>
+                                                <th colspan="2">Aún no hay respuestas asociadas</th>
+                                                <td class="table-active ms-auto text-end" title="Total posible">0
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                {{-- TABLE  QUESTIONS --}}
+                                <div class="col-md-12 mb-3" id="divShowQuestionsCategories" style="display:none">
+                                    <table class="table table-bordered" id="showquestionCategories">
+                                        <caption>
+                                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                                <strong>Lista de sustancias</strong>
+                                                <div class="ms-auto">
+                                                    <button class="btn btn-success btn-sm"
+                                                        disabled="disabled">Agregar</button>
+                                                </div>
+                                            </div>
+                                        </caption>
+                                        <thead class="text-white" id="ShowquestionCategoriesEnc">
+                                            <th class="col-3" id='static'>Sustancia</th>
+                                            <th scope="row">Aún no hay respuestas asociadas</th>
+                                        </thead>
+                                        <tbody id="ShowquestionCategoriesDet">
+                                            <tr>
+                                                <th scope="row">Aún no hay preguntas asociadas</th>
+                                                <td colspan="2" class="table-active ms-auto"
+                                                    title="Total posible">0
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
                                 <div class="col-md-12 mb-3">
                                     <span for="showQuestionNotes">Notas pregunta</span>
                                     <textarea type="text" class="form-control" id="showQuestionNotes"></textarea>
                                 </div>
                             </div>
 
-                            <table class="table table-bordered" id="ShowquestionCategories">
-                                <div class="form-control row">
-                                    <button disabled="disabled">Agregar Categoría</button>
-                                </div>
-                                <caption>Lista de sustancias</caption>
-                                <thead class="text-white" id="ShowquestionCategoriesEnc">
-                                    <th class="col-3">Sustancia</th>
-                                    <th class="col">No</th>
-                                    <th class="col">Sí</th>
-                                </thead>
-                                <tbody id="ShowquestionCategoriesDet">
-                                    <tr>
-                                        <th>a.Tabaco</th>
-                                        <th></th>
-                                        <th></th>
-                                    </tr>
-                                    <tr>
-                                        <th>b.Bebidas </th>
-                                        <th></th>
-                                        <th></th>
-                                    </tr>
-                                    <tr>
-                                        <th>c.Tabaco</th>
-                                        <th></th>
-                                        <th></th>
-                                    </tr>
-                                    <tr>
-                                        <th>d.Tabaco</th>
-                                        <th></th>
-                                        <th></th>
-                                    </tr>
-                                    <tr>
-                                        <th>e.Tabaco</th>
-                                        <th></th>
-                                        <th></th>
-                                    </tr>
-                                    <tr>
-                                        <th>f.Tabaco</th>
-                                        <th></th>
-                                        <th></th>
-                                    </tr>
-                                    <tr>
-                                        <th>g.Tabaco</th>
-                                        <th></th>
-                                        <th></th>
-                                    </tr>
-                                    <tr>
-                                        <th>h.Tabaco</th>
-                                        <th></th>
-                                        <th></th>
-                                    </tr>
-                                    <tr>
-                                        <th>i.Tabaco</th>
-                                        <th></th>
-                                        <th></th>
-                                    </tr>
-                                    <tr>
-                                        <th>j.Tabaco</th>
-                                        <th></th>
-                                        <th></th>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td colspan="2" class="table-active">Larry the Bird</td>
-                                        {{-- <td>@twitter</td> --}}
-                                    </tr>
-                                </tbody>
-                            </table>
 
                             <div class="mb-3">
                                 <label for="username">Sustancias</label>
@@ -197,74 +187,8 @@
                                     </div>
                                 </div>
                             </div>
-                            {{-- <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="save-info">
-                                <label class="custom-control-label" for="save-info">Save this information for next
-                                    time</label>
-                            </div>
-                            <hr class="mb-4">
 
-                            <h4 class="mb-3">Payment</h4>
-
-                            <div class="d-block my-3">
-                                <div class="custom-control custom-radio">
-                                    <input id="credit" name="paymentMethod" type="radio"
-                                        class="custom-control-input" checked="" required="">
-                                    <label class="custom-control-label" for="credit">Credit card</label>
-                                </div>
-                                <div class="custom-control custom-radio">
-                                    <input id="debit" name="paymentMethod" type="radio"
-                                        class="custom-control-input" required="">
-                                    <label class="custom-control-label" for="debit">Debit card</label>
-                                </div>
-                                <div class="custom-control custom-radio">
-                                    <input id="paypal" name="paymentMethod" type="radio"
-                                        class="custom-control-input" required="">
-                                    <label class="custom-control-label" for="paypal">Paypal</label>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <label for="cc-name">Name on card</label>
-                                    <input type="text" class="form-control" id="cc-name" placeholder=""
-                                        required="">
-                                    <small class="text-muted">Full name as displayed on card</small>
-                                    <div class="invalid-feedback">
-                                        Name on card is required
-                                    </div>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="cc-number">Credit card number</label>
-                                    <input type="text" class="form-control" id="cc-number" placeholder=""
-                                        required="">
-                                    <div class="invalid-feedback">
-                                        Credit card number is required
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-3 mb-3">
-                                    <label for="cc-expiration">Expiration</label>
-                                    <input type="text" class="form-control" id="cc-expiration" placeholder=""
-                                        required="">
-                                    <div class="invalid-feedback">
-                                        Expiration date required
-                                    </div>
-                                </div>
-                                <div class="col-md-3 mb-3">
-                                    <label for="cc-expiration">CVV</label>
-                                    <input type="text" class="form-control" id="cc-cvv" placeholder=""
-                                        required="">
-                                    <div class="invalid-feedback">
-                                        Security code required
-                                    </div>
-                                </div>
-                            </div>
-                            <hr class="mb-4"> --}}
                             <x-layouts.formSave module="forms" />
-
-                            {{-- <button class="btn btn-primary btn-lg btn-block" type="submit">Guardar</button>
-                            <button class="btn btn-secondary btn-lg btn-block" type="submit">Cancelar</button> --}}
                         </form>
                     </div>
                 </div>

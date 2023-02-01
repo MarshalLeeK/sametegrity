@@ -160,4 +160,19 @@ class FormsController extends Controller
             ->get();
         return $questionList;
     }
+
+    public function getAnswerList(Request $request)
+    {
+        echo $request['data'];
+
+
+        // echo 'Hola';
+        // $nowKP = $request->data;
+        // $answerList = DB::table('replies');
+        // //     ->whereNotIn('id', $nowKP)
+        // //     ->get();
+        // echo $answerList;
+
+        // return $answerList;
+    }
 }

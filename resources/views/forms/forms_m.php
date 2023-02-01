@@ -1,5 +1,4 @@
-<x-header hd-title="Formatos" hd-description="Datos generales sobre preguntas creadas" :module="$module"
-    :view="$view" csrf=1>
+<x-header hd-title="Formatos" hd-description="Datos generales sobre preguntas creadas" :module="$module" :view="$view" csrf=1>
 
     <x-layouts.titleBanner title-Module="FORMATOS" />
     <form class="container p-2 form h-100 bg-light" action="{{ route($module . 'Save') }}" method="POST">
@@ -9,20 +8,14 @@
                 <h2>Datos básicos</h2>
                 <div class="row-inline p-2 border-bottom">
                     <div class="row">
-                        <x-layouts.miscellaneous.inputdiv fieldname="name" showname="Nombre"
-                            placeholder="Nombre Formulario" div-Class='col-md-6' />
-                        <x-layouts.miscellaneous.inputdiv fieldname="prefix" showname="Prefijo" placeholder="Prefijo"
-                            div-Class='col-md-2' />
-                        <x-layouts.miscellaneous.inputdiv fieldname="lastCode" showname="Ultimo Código"
-                            placeholder="Ultimo código generado" div-Class='col-md-2' enable="1" value="0" />
-                        <x-layouts.miscellaneous.inputdiv fieldname="version" showname="Versión" placeholder="Versión"
-                            div-Class='col-md-2' />
+                        <x-layouts.miscellaneous.inputdiv fieldname="name" showname="Nombre" placeholder="Nombre Formulario" div-Class='col-md-6' />
+                        <x-layouts.miscellaneous.inputdiv fieldname="prefix" showname="Prefijo" placeholder="Prefijo" div-Class='col-md-2' />
+                        <x-layouts.miscellaneous.inputdiv fieldname="lastCode" showname="Ultimo Código" placeholder="Ultimo código generado" div-Class='col-md-2' enable="1" value="0" />
+                        <x-layouts.miscellaneous.inputdiv fieldname="version" showname="Versión" placeholder="Versión" div-Class='col-md-2' />
                         <p></p>
-                        <x-layouts.miscellaneous.textareaDiv div-class="col-md-6" fieldname="description"
-                            showname="Descripción del formato a aplicar" />
+                        <x-layouts.miscellaneous.textareaDiv div-class="col-md-6" fieldname="description" showname="Descripción del formato a aplicar" />
+                        <x-layouts.miscellaneous.textareaDiv div-class="col-md-6" fieldname="notes" showname="Comentarios para el entrevistador" />
 
-                        <x-layouts.miscellaneous.textareaDiv div-class="col-md-6" fieldname="notes"
-                            showname="Comentarios para el entrevistador" />
                     </div>
                 </div>
             </div>
@@ -35,11 +28,8 @@
                             <h5 class="d-flex-inline justify-content-md-end align-items-center p-1">
                                 <small>
                                     <span class="text-center">Preguntas asignadas:</span>
-                                    <span
-                                        class="badge badge-primary text-muted">{{ ($questionsRow ?? 0) == 0 ? 0 : $questionsRow->count() }}</span>
-                                    <button type="button" class="btn btn-sm btn-success ms-auto"
-                                        title="Agregar Pregunta" id="questionsList" data-bs-toggle="modal"
-                                        data-bs-target="#questionList">
+                                    <span class="badge badge-primary text-muted">{{ ($questionsRow ?? 0) == 0 ? 0 : $questionsRow->count() }}</span>
+                                    <button type="button" class="btn btn-sm btn-success ms-auto" title="Agregar Pregunta" id="questionsList" data-bs-toggle="modal" data-bs-target="#questionList">
                                         <span class="pe-none">
                                             <i class="bi bi-plus-circle-fill" name="questionsList"></i>
                                         </span>
@@ -48,23 +38,19 @@
                             </h5>
                         </div>
 
-                        <div class="modal fade" id="questionList" tabindex="-1"
-                            aria-labelledby="datosGeneralesPregunta" aria-hidden="true">
+                        <div class="modal fade" id="questionList" tabindex="-1" aria-labelledby="datosGeneralesPregunta" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h1 class="modal-title text-center fs-5" id="datosGeneralesPregunta">Agregar
                                             preguntas</h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body" id="question_list">
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">Cancelar</button>
-                                        <button type="button" class="btn btn-success bg-opcity-75"
-                                            id="addQuestions">Confirmar</button>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                        <button type="button" class="btn btn-success bg-opcity-75" id="addQuestions">Confirmar</button>
                                     </div>
                                 </div>
                             </div>
@@ -116,9 +102,7 @@
                             </div>
 
                             <table class="table table-bordered" id="ShowquestionCategories">
-                                <div class="form-control row">
-                                    <button disabled="disabled">Agregar Categoría</button>
-                                </div>
+                                
                                 <caption>Lista de sustancias</caption>
                                 <thead class="text-white" id="ShowquestionCategoriesEnc">
                                     <th class="col-3">Sustancia</th>
@@ -190,8 +174,7 @@
                                     <div class="input-group-prepend">
                                         {{-- <span class="input-group-text">@</span> --}}
                                     </div>
-                                    <input type="text" class="form-control" id="username" placeholder="Username"
-                                        required="">
+                                    <input type="text" class="form-control" id="username" placeholder="Username" required="">
                                     <div class="invalid-feedback" style="width: 100%;">
                                         {{-- Your username is required. --}}
                                     </div>
