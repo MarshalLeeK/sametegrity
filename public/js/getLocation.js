@@ -3,7 +3,7 @@ document.addEventListener('click', (e) => {
 
     elementClicked = e.target;
 
-    if (elementClicked.matches('select')) {
+    if (elementClicked.matches('.geo')) {
 
         var template = '';
         id = elementClicked.id;
@@ -16,7 +16,7 @@ document.addEventListener('click', (e) => {
                 return false;
             }
         }
-        
+
         localStorage.setItem('focus', 1);
         localStorage.setItem('field', id);
 
@@ -38,7 +38,8 @@ document.addEventListener('click', (e) => {
 
         request.onload = () => {
 
-            if (request.status != 200) {w
+            if (request.status != 200) {
+                w
                 console.log("Status:" + request.status + " Error: " + request.statusText);
                 return false;
             }

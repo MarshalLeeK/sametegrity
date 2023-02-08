@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Patients;
 use App\Models\TypeDocs;
+use App\Models\gender;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\PatientsRequest;
@@ -54,33 +55,11 @@ class PatientsController extends Controller
     {
         $module = $this->module;
         $view = 'C';
-        $defaults = ['defCountry' => 'Colombia', 'defState' => 'Antioquia',];
+        $defaults = ['defCountry' => 'Colombia', 'defState' => 'Antioquia', 'defState' => 'Medellín',];
         $typeDocs = TypeDocs::get();
+        $genders = Gender::all();
 
-        // session()->put('to', 'countries');
-        // $countries = $this->getDataApi();
-        // session()->put('to', 'states');
-        // session()->put('country', 'colombia');
-        // $states = $this->getDataApi();
-
-        // foreach ($states as $state) {
-        //     Arr::add('cities', 'state', $state['state_name']);
-
-        //     # code...
-        // }
-
-        // foreach ($states as $state) {
-        //     session()->put('to', 'states');
-        //     session()->put('state', $state);
-        // }
-
-        // session()->put('country', 'colombia');
-        // $states = $this->getDataApi();
-
-        // session()->put('to', 'cities');
-        // $cities = $this->getDataApi();
-
-        return view('patients.Patien_c', compact('defaults', 'typeDocs', 'module', 'view'));
+        return view('patients.Patien_c', compact('defaults', 'typeDocs', 'genders', 'module', 'view'));
     }
 
     /**
@@ -92,6 +71,8 @@ class PatientsController extends Controller
     public function store(PatientsRequest $request)
     {
 
+        dd($request);
+        return false;
         $uuid = Str::uuid();
         $patient = new Patients;
         $patient->kp_uuid =  $uuid;
@@ -129,6 +110,7 @@ class PatientsController extends Controller
         $patient->legalphone = $request->input('legalphone');
         $patient->legaladress = $request->input('legaladress');
         $patient->observation = $request->input('observation');
+
         $patient->violence = $request->input('violence');
         $patient->abused = $request->input('abused');
         $patient->fromwork = $request->input('fromwork');

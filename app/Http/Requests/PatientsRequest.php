@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Requests;
+
 use Illuminate\Foundation\Http\FormRequest;
 
 class PatientsRequest extends FormRequest
@@ -23,11 +24,10 @@ class PatientsRequest extends FormRequest
     public function rules()
     {
         return [
-            'dni'=>'required|unique:patients,dni',
-            'name'=>'required|min:3',
-            'lastname'=>'required|min:3',
-            'borndate'=>'required'
+            // 'dni' => 'required', 'unique:patients,dni' . !isset($this->id) ? null : $this->id,
+            'name' => 'required|min:3',
+            'lastname' => 'required|min:3',
+            'borndate' => 'required'
         ];
-
     }
 }

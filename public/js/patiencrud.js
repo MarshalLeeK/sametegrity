@@ -13,15 +13,14 @@ document.addEventListener('click', (e) => {
   elementType = clickedElement.matches('select') ? 'Listado' : 'Boton';
 
   if (elementType == 'Boton') {
-    logic(elementId)
-  } else {
-    if (elementId.split('-')[1] != 'country') {
+    logic(elementId);
+  }
 
+  if (elementType == 'Listado') {
+
+    if (clickedElement.matches('.geo')) {
       dependInput = elementId.split('-')[0] + '-' + (elementId.split('-')[1] == 'state' ? 'country' : 'state');
       dependValue = document.getElementById(dependInput);
-
-      console.log(dependValue.value);
-      // dependValue = 
     }
   }
 
@@ -53,11 +52,12 @@ $("#imageUpload").change(function (data) {
 });
 
 //Buttons Check Inputs
-
 function logic(button) {
   alertColors = ['secondary', 'primary'];
+
   z_xOne = document.getElementsByName(button);
-  updateVal = z_xOne[0].value == 0 ? 1 : 0;
-  document.getElementById(button).classList.toggle('btn-' + alertColors[z_xOne[0].value]);
-  document.getElementById(button).classList.toggle('btn-' + alertColors[updateVal]);
+  let checked = z_xOne[0].checked = z_xOne[0].checked == false ? true : false;
+
+  document.getElementById(button).classList.toggle('btn-' + alertColors[+checked == 0 ? 1 : 0]);
+  document.getElementById(button).classList.toggle('btn-' + alertColors[+checked]);
 }

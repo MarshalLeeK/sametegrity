@@ -41,69 +41,86 @@
                                 <div class="col-sm-3">
                                     <label for="dni" class="form-label">Número Documento</label>
                                     <input type="text" class="form-control" name="dni" id="dni"
-                                        placeholder="Número Documento" value="123" />
+                                        placeholder="Número Documento" />
                                     <x-layouts.dialoges.inputerror input='dni' />
                                 </div>
 
                                 <div class="col-sm-3">
-                                    <label for="documentplace-country" class="form-label">Páis Origen</label>
-                                    <select class="form-select" name="documentplace-country" id="documentplace-country"
-                                        aria-label="">
-                                        <optgroup label="Seleccione país">
-
+                                    <label for="documentplace-country" class="form-label">País Origen</label>
+                                    <select class="form-select geo" name="documentplace-country"
+                                        id="documentplace-country" aria-label="">
+                                        <optgroup label="Seleccione País origen">
+                                            <option
+                                                value="{{ !old('documentplace-country') ? 'Colombia' : old('documentplace-country') }}">
+                                                {{ !old('documentplace-country') ? 'Colombia' : old('documentplace-country') }}
+                                            </option>
                                     </Select>
                                 </div>
 
                                 <div class="col-sm-3">
-                                    <label for="documentplace-state" class="form-label">Departamento / Estado</label>
-                                    <select class="form-select" name="documentplace-state" id="documentplace-state"
+                                    <label for="documentplace-state" class="form-label">Departamento / Estado
+                                        Origen</label>
+                                    <select class="form-select geo" name="documentplace-state" id="documentplace-state"
                                         aria-label="">
-                                        <option value="">Seleccionar opción</option>
+                                        <optgroup label="Seleccione Departamento/Estado">
+                                            <option
+                                                value="{{ !old('documentplace-state') ? 'Antioquia' : old('documentplace-state') }}">
+                                                {{ !old('documentplace-state') ? 'Antioquia' : old('documentplace-state') }}
+                                            </option>
                                     </Select>
                                 </div>
 
                                 <div class="col-sm-3">
-                                    <label for="documentplace-city" class="form-label">Ciudad Natal</label>
-                                    <select class="form-select" name="documentplace-city" id="documentplace-city"
-                                        aria-label="">
+                                    <label for="documentplace-city" class="form-label">Ciudad Origen</label>
+                                    <select class="form-select geo" name="documentplace-city" id="documentplace-city"
+                                        aria-label="" value="{{ old('documentplace-city') }}">
+                                        <optgroup label="Seleccione Ciudad Nacimiento">
+                                            <option
+                                                value="{{ !old('documentplace-city') ? 'Medellín' : old('documentplace-city') }}">
+                                                {{ !old('documentplace-city') ? 'Medellín' : old('documentplace-city') }}
+                                            </option>
                                     </Select>
                                 </div>
-
 
                                 <div class="col-sm-3">
                                     <label for="documentplace-city-1" class="form-label">Ciudad expedición</label>
-                                    <select class="form-select" name="documentplace-city-" id="documentplace-city-1"
-                                        aria-label="">
-                                        <option value="Argentina">Seleccione Opcion</option>
+                                    <select class="form-select geo" name="documentplace-city-1"
+                                        id="documentplace-city-1" aria-label="">
+                                        <optgroup label="Seleccione Ciudad Expedición">
+                                            <option
+                                                value="{{ !old('documentplace-city-1') ? 'Medellín' : old('documentplace-city-1') }}">
+                                                {{ !old('documentplace-city-1') ? 'Medellín' : old('documentplace-city-1') }}
+                                            </option>
                                     </Select>
                                 </div>
 
                                 <div class="col-sm-3">
                                     <label for="gender" class="form-label">Género</label>
                                     <select class="form-select" name="gender" id="gender" aria-label="">
-                                        <option value="" {{ old('gender') == '' ? 'selected' : '' }}>Género
-                                        </option>
-                                        <option value="0" {{ old('gender') == 0 ? 'selected' : '' }}>Mujer</option>
-                                        <option value="1" {{ old('gender') == 1 ? 'selected' : '' }}>Hombre
-                                        </option>
-                                        <option value="2" {{ old('gender') == 2 ? 'selected' : '' }}>Otro</option>
+                                        <optgroup label="Seleccione Genero">
+                                            @foreach ($genders as $gender)
+                                                <option value="{{ $gender->id }}" @selected(old('gender') == $gender->name)>
+                                                    {{ $gender->name }}
+                                                </option>
+                                            @endforeach
                                     </Select>
-
                                 </div>
+
                                 <div class="col-sm-3">
                                     <label for="borndate" class="form-label">Fecha Nacimiento</label>
 
                                     <div class="input-group input-group-sm">
-                                        <input type="date" class="form-control col-2" name="borndate" id="borndate"
-                                            placeholder="" value="{{ old('borndate') }}">
-                                        <x-layouts.dialoges.inputerror input='borndate' />
+                                        <input type="date" class="form-control col-2" name="borndate"
+                                            id="borndate" placeholder="" value="{{ old('borndate') }}">
                                         <span class="input-group-text col-sm-4" id="basic-addon1">
                                             <input type="number"
                                                 class="  form-control-plaintext form-control-sm dissabled text-end"
                                                 name="age" id="age" placeholder="Edad"
-                                                value="{{ old('age') }}" readonly></span>
-
-
+                                                value="{{ old('age') }}" readonly>
+                                        </span>
+                                        @error('borndate')
+                                            <small class="text-danger"><strong>*{{ $message }}</strong></small>
+                                        @enderror
                                     </div>
                                 </div>
 
@@ -163,29 +180,32 @@
                         </div>
 
                         <div class="col-sm-3">
-                            <label for="live-country" class="form-label">Pais de Residencia</label>
-                            <select class="form-select" name="live-country" id="live-country" aria-label="">
-                                <option selected value="">Seleccione estado/depto</option>
+                            <label for="live-country" class="form-label">País de Residencia</label>
+                            <select class="form-select geo" name="live-country" id="live-country" aria-label="">
+                                <optgroup label="Seleccione País">
+                                    <option value="{{ !old('live-city') ? 'Colombia' : old('live-city') }}">
+                                        {{ !old('live-city') ? 'Colombia' : old('live-city') }}
+                                    </option>
                             </Select>
                         </div>
 
                         <div class="col-sm-3">
                             <label for="live-state" class="form-label">Depto de Residencia</label>
-                            <select class="form-select" name="live-state" id="live-state" aria-label="">
-                                <option selected value="">Seleccione estado/depto</option>
-                                <option value='Antioquia'>Antioquia</option>
-                                <option value="Santander">Santander</option>
-                                <option value="Cundinamarca">Cundinamarca</option>
+                            <select class="form-select geo" name="live-state" id="live-state" aria-label="">
+                                <optgroup label="Seleccione Estado/Departamento">
+                                    <option value="{{ !old('live-state') ? 'Antioquia' : old('live-state') }}">
+                                        {{ !old('live-state') ? 'Antioquia' : old('live-state') }}
+                                    </option>
                             </Select>
                         </div>
 
                         <div class="col-sm-3">
                             <label for="live-city" class="form-label">Ciudad de Residencia</label>
-                            <select class="form-select" name="live-city" id="live-city" aria-label="">
-                                <option selected value="{{ old('dni') }}">Seleccione ciudad</option>
-                                <option value='Bello'>Bello</option>
-                                <option value="Medellin">Medellin</option>
-                                <option value="Manizales">Manizales</option>
+                            <select class="form-select geo" name="live-city" id="live-city" aria-label="">
+                                <optgroup label="Seleccione Ciudad">
+                                    <option value="{{ !old('live-city') ? 'Medellín' : old('live-city') }}">
+                                        {{ !old('live-city') ? 'Medellín' : old('live-city') }}
+                                    </option>
                             </Select>
                         </div>
 
@@ -223,13 +243,13 @@
 
                         <div class="col-sm-6">
                             <label for="mail" class="form-label">Email </label>
-                            <input type="text" class="form-control" name="mail" id="mail"
+                            <input type="email" class="form-control" name="mail" id="mail"
                                 placeholder="Email" value="{{ old('mail') }}">
                         </div>
 
                         <div class="col-sm-6">
                             <label for="maileb" class="form-label">Facturación electronica </label>
-                            <input type="text" class="form-control" name="maileb" id="maileb"
+                            <input type="email" class="form-control" name="maileb" id="maileb"
                                 placeholder="Email Facturación" value="{{ old('maileb') }}">
                         </div>
 
@@ -241,8 +261,8 @@
                                         <button type="button" class="patientAlert btn btn-secondary"
                                             title="Violencia" id="violence">
                                             <i class="bi bi-bandaid-fill">
-                                                <input type="check" name="violence"
-                                                    value="{{ old('violence') == 1 ? 1 : 0 }}" hidden>
+                                                <input type="checkbox" name="violence" value="false"
+                                                    @checked(old('violence')) hidden>
                                             </i>
                                         </button>
                                     </div>
@@ -250,8 +270,8 @@
                                         <button type="button" class="patientAlert btn btn-secondary"
                                             title="Código Fucsia" id="abused">
                                             <i class="bi bi-balloon-fill">
-                                                <input type="check" name="abused"
-                                                    value="{{ old('abused') == 1 ? 1 : 0 }}" hidden>
+                                                <input type="checkbox" name="abused" value="false"
+                                                    @checked(old('abused')) hidden>
                                             </i>
                                         </button>
                                     </div>
@@ -259,8 +279,8 @@
                                         <button type="button" class="patientAlert btn btn-secondary"
                                             title="Medicina Laboral" id="fromwork">
                                             <i class="bi bi-prescription2">
-                                                <input type="check" name="fromwork"
-                                                    value="{{ old('fromwork') == 1 ? 1 : 0 }}" hidden>
+                                                <input type="checkbox" name="fromwork" value="false"
+                                                    @checked(old('fromwork')) hidden>
                                             </i>
                                         </button>
                                     </div>
@@ -268,7 +288,7 @@
                                         <button type="button" class="patientAlert btn btn-secondary" title="Tutela"
                                             id="guardianship">
                                             <i class="bi bi-file-earmark-zip-fill">
-                                                <input type="check" name="guardianship"
+                                                <input type="checkbox" name="guardianship" value="false"
                                                     value="{{ old('guardianship') == 1 ? 1 : 0 }}" hidden>
                                             </i>
                                         </button>
@@ -277,7 +297,7 @@
                                         <button type="button" class="patientAlert btn btn-secondary"
                                             title="Privados Libertad" id="gaoler">
                                             <i class="bi bi-door-closed-fill">
-                                                <input type="check" name="gaoler"
+                                                <input type="checkbox" name="gaoler" value="false"
                                                     value="{{ old('gaoler') == 1 ? 1 : 0 }}" hidden>
                                             </i>
                                         </button>
@@ -286,7 +306,7 @@
                                         <button type="button" class="patientAlert btn btn-secondary" title="ICBF"
                                             id="icbf">
                                             <i class="bi bi-file-earmark-person-fill">
-                                                <input type="check" name="icbf"
+                                                <input type="checkbox" name="icbf" value="false"
                                                     value="{{ old('icbf') == 1 ? 1 : 0 }}" hidden>
                                             </i>
                                         </button>
@@ -295,7 +315,7 @@
                                         <button type="button" class="patientAlert btn btn-secondary"
                                             title="Gestante" id="pregnant">
                                             <i class="bi bi-flower1">
-                                                <input type="check" name="pregnant"
+                                                <input type="checkbox" name="pregnant" value="false"
                                                     value="{{ old('pregnant') == 1 ? 1 : 0 }}" hidden>
                                             </i>
                                         </button>
@@ -304,7 +324,7 @@
                                         <button type="button" class="patientAlert btn btn-secondary"
                                             title="Riesgo Suicida" id="suicide">
                                             <i class="bi bi-exclamation-diamond-fill">
-                                                <input type="check" name="suicide"
+                                                <input type="checkbox" name="suicide" value="false"
                                                     value="{{ old('suicide') == 1 ? 1 : 0 }}" hidden>
                                             </i>
                                         </button>
@@ -313,7 +333,7 @@
                                         <button type="button" class="patientAlert btn btn-secondary"
                                             title="Paciente VIP" id="vip">
                                             <i class="bi bi-star-fill"></i>
-                                            <input type="check" name="vip"
+                                            <input type="checkbox" name="vip" value="false"
                                                 value="{{ old('vip') == 1 ? 1 : 0 }}" hidden>
                                         </button>
                                     </div>
@@ -347,7 +367,7 @@
                                         <button type="button" class="patientAlert btn btn-secondary"
                                             title="Asesoria Virtual" id="virtualadvice">
                                             <i class="bi bi-pc-display">
-                                                <input type="check" name="virtualadvice"
+                                                <input type="checkbox" name="virtualadvice" value="false"
                                                     value="{{ old('virtualadvice') == 1 ? 1 : 0 }}" hidden>
                                             </i>
                                         </button>
@@ -356,7 +376,7 @@
                                         <button type="button" class="patientAlert btn btn-secondary"
                                             title="Consulta Externa" id="external">
                                             <i class="bi bi-person-video2">
-                                                <input type="check" name="external"
+                                                <input type="checkbox" name="external" value="false"
                                                     value="{{ old('external') == 1 ? 1 : 0 }}" hidden>
                                             </i>
                                         </button>
@@ -365,7 +385,7 @@
                                         <button type="button" class="patientAlert btn btn-secondary"
                                             title="Hospitalización" id="hospitalitation">
                                             <i class="bi bi-h-circle-fill">
-                                                <input type="check" name="hospitalitation"
+                                                <input type="checkbox" name="hospitalitation" value="false"
                                                     value="{{ old('hospitalitation') == 1 ? 1 : 0 }}" hidden>
                                             </i>
                                         </button>
@@ -374,7 +394,7 @@
                                         <button type="button" class="patientAlert btn btn-secondary"
                                             title="Red Externa" id="externalTeam">
                                             <i class="bi bi-file-medical-fill">
-                                                <input type="check" name="externalTeam"
+                                                <input type="checkbox" name="externalTeam" value="false"
                                                     value="{{ old('externalTeam') == 1 ? 1 : 0 }}" hidden>
                                             </i>
                                         </button>
@@ -383,7 +403,7 @@
                                         <button type="button" class="patientAlert btn btn-secondary"
                                             title="CENPI (<14)" id="cenpi">
                                             <i class="bi bi-emoji-laughing-fill">
-                                                <input type="check" name="cenpi"
+                                                <input type="checkbox" name="cenpi" value="false"
                                                     value="{{ old('cenpi') == 1 ? 1 : 0 }}" hidden>
                                             </i>
                                         </button>
@@ -392,7 +412,7 @@
                                         <button type="button" class="patientAlert btn btn-secondary"
                                             title="SRPA (Adolecentes)" id="srpa">
                                             <i class="bi bi-earbuds">
-                                                <input type="check" name="srpa"
+                                                <input type="checkbox" name="srpa" value="false"
                                                     value="{{ old('srpa') == 1 ? 1 : 0 }}" hidden>
                                             </i>
                                         </button>
@@ -401,7 +421,7 @@
                                         <button type="button" class="patientAlert btn btn-secondary"
                                             title="Búsqueda Activa" id="activeselection">
                                             <i class="bi-binoculars-fill">
-                                                <input type="check" name="activeselection"
+                                                <input type="checkbox" name="activeselection" value="false"
                                                     value="{{ old('activeselection') == 1 ? 1 : 0 }}" hidden>
                                             </i>
                                         </button>
@@ -410,7 +430,7 @@
                                         <button type="button" class="patientAlert btn btn-secondary"
                                             title="Directo Prestador" id="through">
                                             <i class="bi bi-signpost-fill">
-                                                <input type="check" name="through"
+                                                <input type="checkbox" name="through" value="false"
                                                     value="{{ old('through') == 1 ? 1 : 0 }}" hidden>
                                             </i>
                                         </button>
@@ -419,7 +439,7 @@
                                         <button type="button" class="patientAlert btn btn-secondary"
                                             title="Particular" id="particular">
                                             <i class="bi bi-clipboard2-pulse-fill">
-                                                <input type="check" name="particular"
+                                                <input type="checkbox" name="particular" value="false"
                                                     value="{{ old('particular') == 1 ? 1 : 0 }}" hidden>
                                             </i>
                                         </button>
@@ -428,7 +448,7 @@
                                         <button type="button" class="patientAlert btn btn-secondary"
                                             title="Punta Piramide" id="pyramid">
                                             <i class="bi bi-triangle-half">
-                                                <input type="check" name="pyramid"
+                                                <input type="checkbox" name="pyramid" value="false"
                                                     value="{{ old('pyramid') == 1 ? 1 : 0 }}" hidden>
                                             </i>
                                         </button>
@@ -437,7 +457,7 @@
                                         <button type="button" class="patientAlert btn btn-secondary"
                                             title="Autoriza Llamadas" id="phoneAutorized">
                                             <i class="bi bi-telephone-outbound-fill">
-                                                <input type="check" name="phoneAutorized"
+                                                <input type="checkbox" name="phoneAutorized" value="false"
                                                     value="{{ old('phoneAutorized') == 1 ? 1 : 0 }}" hidden>
                                             </i>
                                         </button>
@@ -446,7 +466,7 @@
                                         <button type="button" class="patientAlert btn btn-secondary"
                                             title="Autoriza Correos" id="mailAutorized">
                                             <i class="bi bi-envelope-check-fill">
-                                                <input type="check" name="mailAutorized"
+                                                <input type="checkbox" name="mailAutorized" value="false"
                                                     value="{{ old('mailAutorized') == 1 ? 1 : 0 }}" hidden>
                                             </i>
                                         </button>
