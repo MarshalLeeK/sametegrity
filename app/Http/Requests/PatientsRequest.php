@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class PatientsRequest extends FormRequest
 {
@@ -24,10 +25,30 @@ class PatientsRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'dni' => 'required', 'unique:patients,dni' . !isset($this->id) ? null : $this->id,
+            'dni' => 'required|unique:patients|min:2|numeric',
             'name' => 'required|min:3',
             'lastname' => 'required|min:3',
-            'borndate' => 'required'
+            'tdoc' => 'required',
+            'cellphone' => 'required',
+            // 'borndate' => 'required',
+            // 'address' => 'required',
+            // 'documentplace-country' => 'required',
+            // 'documentplace-satate' => 'required',
+            // 'documentplace-city' => 'required',
+            // 'gender' => 'required',
+            // 'borndate' => 'required',
+            // 'academiclevel' => 'required',
+            // 'job' => 'required',
+            // 'live-country' => 'required',
+            // 'live-state' => 'required',
+            // 'live-city' => 'required',
+            // 'civilstate' => 'required',
+            // 'address' => 'required',
         ];
+
+        if (in_array($this->method(), ['PUT', 'PATCH'])) {
+            $id = $this->route()->parameter(('id'));
+            $rules['dni'] = ['required|min:2|numeric|unique:patients,dni,' . $id];
+        }
     }
 }

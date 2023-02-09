@@ -71,8 +71,6 @@ class PatientsController extends Controller
     public function store(PatientsRequest $request)
     {
 
-        dd($request);
-        return false;
         $uuid = Str::uuid();
         $patient = new Patients;
         $patient->kp_uuid =  $uuid;
@@ -111,24 +109,24 @@ class PatientsController extends Controller
         $patient->legaladress = $request->input('legaladress');
         $patient->observation = $request->input('observation');
 
-        $patient->violence = $request->input('violence');
-        $patient->abused = $request->input('abused');
-        $patient->fromwork = $request->input('fromwork');
-        $patient->guardianship = $request->input('guardianship');
-        $patient->gaoler = $request->input('gaoler');
-        $patient->icbf = $request->input('icbf');
-        $patient->pregnant = $request->input('pregnant');
-        $patient->suicide = $request->input('suicide');
-        $patient->virtualadvice = $request->input('virtualadvice');
-        $patient->hospitalitation = $request->input('hospitalitation');
-        $patient->external = $request->input('external');
-        $patient->cenpi = $request->input('cenpi');
-        $patient->srpa = $request->input('srpa');
-        $patient->activeselection = $request->input('activeselection');
-        $patient->through = $request->input('through');
-        $patient->pyramid = $request->input('pyramid');
+        $patient->violence = $request->input('violence') != false ? 1 : 0;
+        $patient->abused = $request->input('abused') != false ? 1 : 0;
+        $patient->fromwork = $request->input('fromwork') != false ? 1 : 0;
+        $patient->guardianship = $request->input('guardianship') != false ? 1 : 0;
+        $patient->gaoler = $request->input('gaoler') != false ? 1 : 0;
+        $patient->icbf = $request->input('icbf') != false ? 1 : 0;
+        $patient->pregnant = $request->input('pregnant') != false ? 1 : 0;
+        $patient->suicide = $request->input('suicide') != false ? 1 : 0;
+        $patient->virtualadvice = $request->input('virtualadvice') != false ? 1 : 0;
+        $patient->hospitalitation = $request->input('hospitalitation') != false ? 1 : 0;
+        $patient->external = $request->input('external') != false ? 1 : 0;
+        $patient->cenpi = $request->input('cenpi') != false ? 1 : 0;
+        $patient->srpa = $request->input('srpa') != false ? 1 : 0;
+        $patient->activeselection = $request->input('activeselection') != false ? 1 : 0;
+        $patient->through = $request->input('through') != false ? 1 : 0;
+        $patient->pyramid = $request->input('pyramid') != false ? 1 : 0;
         $patient->particular = $request->input('particular');
-        $patient->z_xOne = $request->input('z_xOne');
+        $patient->z_xOne = $request->input('z_xOne') != 0 ? 0 : 1;
 
         if ($request->hasFile('imageUpload')) {
             $photo = $request->file('imageUpload');
@@ -142,8 +140,9 @@ class PatientsController extends Controller
 
 
 
-        //retonar vista
         return $this->saveRecord($patient);
+        
+        #REVISAR
         // return redirect()->route('patientModule');
         // Se debe crear campo para poliza $patient->policy = $request->input('policy');
         // Se debe crear campo para poliza $patient->membertype = $request->input('membertype');

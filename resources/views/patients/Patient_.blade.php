@@ -1,25 +1,19 @@
 <x-header hd-title="Datos Paciente" hd-meta-description="Datos Paciente" :module="$module" :view="$view"
     :row="$patient">
     <div class="p-2 form h-100">
-        <div class="container bg-light">
+        <div class="container bg-light border">
             <main>
-                <div class="text-center">
-                    <h1 class=""><span class="w-100"> FICHA PACIENTE</span></h1>
-                    <hr class="my-1">
-                </div>
+                <x-layouts.tittlebar class="row h-100 text-center text-white" action='DATOS' alias='PACIENTE' />
                 <div class="row g-12">
                     <div class="col-md-12 col-lg-12">
-                        <h4 class="mb-3">Datos básicos</h4>
-                        <p class="lead">Por favor ingrese los datos relacionados al paciente</p>
-                        <hr class="my-1 pb-1">
                         <div class="row mt-g-3 p-2">
 
                             <div class="row-flex col-sm-2 d-inline-flex justify-content-center">
                                 <div class="avatar-upload">
-                                    <label class="avatar-preview"for="imageUpload">
-                                        <img src="{{ is_null($patient->photo) ? URL::asset('img/logo.png') : URL::asset('img/patients/photos/' . $patient->photo) }}"
+                                    <label class="avatar-preview" for="imageUpload">
+                                        <img src={{ URL::asset('img/' . (is_null($patient->photo) ? 'logo.png' : 'patients/photos/' . $patient->photo)) }}
                                             alt="{{ is_null($patient->photo) ? 'Logo Generado forma generica' : 'userUpload: ' . $patient->photo }}"
-                                            title="Cick para cargar imagen" class="img-fluid" id="imagePreview">
+                                            title="Foto del paciente" class="img-fluid" id="imagePreview">
                                     </label>
                                 </div>
                             </div>
@@ -30,12 +24,13 @@
 
                                     <div class="col-sm-3">
                                         <label for="tdoc" class="form-label">Tipo Documento</label>
+
                                         <select class="form-select" name="tdoc" id="tdoc" aria-label=""
-                                            disabled>
+                                            autofocus>
                                             @foreach ($typeDocs as $typeDoc)
-                                                <option value="{{ $typeDoc->id }}"
-                                                    {{ $typeDoc->id == $patient->documenttype ? 'selected' : '-' }}>
-                                                    {{ $typeDoc->name }} </option>
+                                                <option value="{{ $typeDoc->id }}" @selected($typeDoc->id == $patient->documenttype)>
+                                                    {{ $typeDoc->name }}
+                                                </option>
                                             @endforeach
                                         </Select>
                                     </div>
@@ -51,13 +46,7 @@
                                             aria-label="" disabled>
                                             <option value="">{{ $patient->documentplace }}</option>
                                         </Select>
-                                        {{-- <x-locations-api to="cities"/> --}}
-
-                                        {{-- <pre>
-                                            <x-locations-api />
-                                        </pre> --}}
                                     </div>
-
                                 </div>
 
                                 <div class="row col-12">

@@ -28,12 +28,15 @@ document.addEventListener('click', (e) => {
 
 //ACTUALIZAR FOTO
 $('#borndate').on('change', function () {
+
   const selectdate = $('#borndate').val();
   const today = moment(new Date());
-
   var borndate = moment(selectdate);
   var diff = today.diff(borndate, 'years')
   $('#age').val(diff);
+  
+  elementId = ''
+
 })
 
 
@@ -54,7 +57,6 @@ $("#imageUpload").change(function (data) {
 //Buttons Check Inputs
 function logic(button) {
   alertColors = ['secondary', 'primary'];
-
   z_xOne = document.getElementsByName(button);
   let checked = z_xOne[0].checked = z_xOne[0].checked == false ? true : false;
 

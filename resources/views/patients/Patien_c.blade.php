@@ -11,8 +11,8 @@
 
                         <div class="row-flex col-sm-2 d-inline-flex justify-content-center">
                             <div class="avatar-upload">
-                                <label class="avatar-preview"for="imageUpload">
-                                    <img src="{{ URL::asset('img/DefaultPhoto.png') }}"
+                                <label class="avatar-preview" for="imageUpload">
+                                    <img src="{{ URL::asset('img/logo.png') }}"
                                         alt="Logo Generado forma generica" title="Cick para cargar imagen"
                                         class="img-fluid" id="imagePreview">
                                 </label>
@@ -83,13 +83,13 @@
                                 </div>
 
                                 <div class="col-sm-3">
-                                    <label for="documentplace-city-1" class="form-label">Ciudad expedición</label>
-                                    <select class="form-select geo" name="documentplace-city-1"
-                                        id="documentplace-city-1" aria-label="">
+                                    <label for="documentlegal-city" class="form-label">Ciudad expedición</label>
+                                    <select class="form-select geo" name="documentlegal-city" id="documentlegal-city"
+                                        aria-label="">
                                         <optgroup label="Seleccione Ciudad Expedición">
                                             <option
-                                                value="{{ !old('documentplace-city-1') ? 'Medellín' : old('documentplace-city-1') }}">
-                                                {{ !old('documentplace-city-1') ? 'Medellín' : old('documentplace-city-1') }}
+                                                value="{{ !old('documentlegal-city') ? 'Medellín' : old('documentlegal-city') }}">
+                                                {{ !old('documentlegal-city') ? 'Medellín' : old('documentlegal-city') }}
                                             </option>
                                     </Select>
                                 </div>
@@ -110,17 +110,15 @@
                                     <label for="borndate" class="form-label">Fecha Nacimiento</label>
 
                                     <div class="input-group input-group-sm">
-                                        <input type="date" class="form-control col-2" name="borndate"
-                                            id="borndate" placeholder="" value="{{ old('borndate') }}">
+                                        <input type="date" class="form-control col-2" name="borndate" id="borndate"
+                                            placeholder="" value="{{ old('borndate') }}">
                                         <span class="input-group-text col-sm-4" id="basic-addon1">
                                             <input type="number"
                                                 class="  form-control-plaintext form-control-sm dissabled text-end"
                                                 name="age" id="age" placeholder="Edad"
                                                 value="{{ old('age') }}" readonly>
                                         </span>
-                                        @error('borndate')
-                                            <small class="text-danger"><strong>*{{ $message }}</strong></small>
-                                        @enderror
+                                        <x-layouts.dialoges.inputerror input='borndate' />
                                     </div>
                                 </div>
 
@@ -239,6 +237,8 @@
                             <label for="cellphone" class="form-label">Celular </label>
                             <input type="text" class="form-control" name="cellphone" id="cellphone"
                                 placeholder="Celular" value="{{ old('cellphone') }}">
+                            <x-layouts.dialoges.inputerror input='cellphone' />
+
                         </div>
 
                         <div class="col-sm-6">
@@ -257,8 +257,10 @@
                             <div class="col-sm-12 m-2" id="gbuttonbar">
 
                                 <div class="row">
+
                                     <div class="col-1">
-                                        <button type="button" class="patientAlert btn btn-secondary"
+                                        <button type="button"
+                                            class="patientAlert btn btn-sm btn-{{ old('violence') == true ? 'primary' : 'secondary' }}"
                                             title="Violencia" id="violence">
                                             <i class="bi bi-bandaid-fill">
                                                 <input type="checkbox" name="violence" value="false"
@@ -267,16 +269,18 @@
                                         </button>
                                     </div>
                                     <div class="col-1">
-                                        <button type="button" class="patientAlert btn btn-secondary"
+                                        <button type="button"
+                                            class="patientAlert btn btn-sm btn-{{ old('abused') == true ? 'primary' : 'secondary' }}"
                                             title="Código Fucsia" id="abused">
-                                            <i class="bi bi-balloon-fill">
+                                            <i class="bi bi-balloon">
                                                 <input type="checkbox" name="abused" value="false"
                                                     @checked(old('abused')) hidden>
                                             </i>
                                         </button>
                                     </div>
                                     <div class="col-1">
-                                        <button type="button" class="patientAlert btn btn-secondary"
+                                        <button type="button"
+                                            class="patientAlert btn btn-sm btn-{{ old('fromwork') == true ? 'primary' : 'secondary' }}"
                                             title="Medicina Laboral" id="fromwork">
                                             <i class="bi bi-prescription2">
                                                 <input type="checkbox" name="fromwork" value="false"
@@ -285,74 +289,81 @@
                                         </button>
                                     </div>
                                     <div class="col-1">
-                                        <button type="button" class="patientAlert btn btn-secondary" title="Tutela"
-                                            id="guardianship">
+                                        <button type="button"
+                                            class="patientAlert btn btn-sm btn-{{ old('guardianship') == true ? 'primary' : 'secondary' }}"
+                                            title="Tutela" id="guardianship">
                                             <i class="bi bi-file-earmark-zip-fill">
                                                 <input type="checkbox" name="guardianship" value="false"
-                                                    value="{{ old('guardianship') == 1 ? 1 : 0 }}" hidden>
+                                                    @checked(old('guardianship')) hidden>
                                             </i>
                                         </button>
                                     </div>
                                     <div class="col-1">
-                                        <button type="button" class="patientAlert btn btn-secondary"
+                                        <button type="button"
+                                            class="patientAlert btn btn-sm btn-{{ old('gaoler') == true ? 'primary' : 'secondary' }}"
                                             title="Privados Libertad" id="gaoler">
                                             <i class="bi bi-door-closed-fill">
                                                 <input type="checkbox" name="gaoler" value="false"
-                                                    value="{{ old('gaoler') == 1 ? 1 : 0 }}" hidden>
+                                                    @checked(old('gaoler')) hidden>
                                             </i>
                                         </button>
                                     </div>
                                     <div class="col-1">
-                                        <button type="button" class="patientAlert btn btn-secondary" title="ICBF"
-                                            id="icbf">
+                                        <button type="button"
+                                            class="patientAlert btn btn-sm btn-{{ old('icbf') == true ? 'primary' : 'secondary' }}"
+                                            title="ICBF" id="icbf">
                                             <i class="bi bi-file-earmark-person-fill">
                                                 <input type="checkbox" name="icbf" value="false"
-                                                    value="{{ old('icbf') == 1 ? 1 : 0 }}" hidden>
+                                                    @checked(old('icbf')) hidden>
                                             </i>
                                         </button>
                                     </div>
                                     <div class="col-1">
-                                        <button type="button" class="patientAlert btn btn-secondary"
+                                        <button type="button"
+                                            class="patientAlert btn btn-sm btn-{{ old('pregnant') == true ? 'primary' : 'secondary' }}"
                                             title="Gestante" id="pregnant">
-                                            <i class="bi bi-flower1">
+                                            <i class="bi bi-balloon-fill">
                                                 <input type="checkbox" name="pregnant" value="false"
-                                                    value="{{ old('pregnant') == 1 ? 1 : 0 }}" hidden>
+                                                    @checked(old('pregnant')) hidden>
                                             </i>
                                         </button>
                                     </div>
                                     <div class="col-1">
-                                        <button type="button" class="patientAlert btn btn-secondary"
+                                        <button type="button"
+                                            class="patientAlert btn btn-sm btn-{{ old('suicide') == true ? 'primary' : 'secondary' }}"
                                             title="Riesgo Suicida" id="suicide">
                                             <i class="bi bi-exclamation-diamond-fill">
                                                 <input type="checkbox" name="suicide" value="false"
-                                                    value="{{ old('suicide') == 1 ? 1 : 0 }}" hidden>
+                                                    @checked(old('suicide')) hidden>
                                             </i>
                                         </button>
                                     </div>
                                     <div class="col-1">
-                                        <button type="button" class="patientAlert btn btn-secondary"
+                                        <button type="button"
+                                            class="patientAlert btn btn-sm btn-{{ old('vip') == true ? 'primary' : 'secondary' }}"
                                             title="Paciente VIP" id="vip">
-                                            <i class="bi bi-star-fill"></i>
-                                            <input type="checkbox" name="vip" value="false"
-                                                value="{{ old('vip') == 1 ? 1 : 0 }}" hidden>
+                                            <i class="bi bi-star-fill">
+                                                <input type="checkbox" name="vip" value="false"
+                                                    @checked(old('vip')) hidden>
+                                            </i>
                                         </button>
                                     </div>
                                     <div class="col-1">
-                                        <button type="button" class="patientAlert btn btn-secondary"
+                                        <button type="button" class="patientAlert btn btn-sm btn-secondary"
                                             title="Sin asignación" id="">
                                             <i class="bi bi-slash-circle-fill">
                                             </i>
                                         </button>
                                     </div>
                                     <div class="col-1">
-                                        <button type="button" class="patientAlert btn btn-secondary"
+                                        <button type="button" class="patientAlert btn btn-sm btn-secondary"
                                             title="Sin asignación" id="">
                                             <i class="bi bi-slash-circle-fill">
                                             </i>
                                         </button>
                                     </div>
                                     <div class="col-1">
-                                        <button type="button" class="patientAlert btn btn-secondary"
+                                        <button type="button" class="patientAlert btn btn-sm btn-secondary"
                                             title="Sin asignación" id="">
                                             <i class="bi bi-slash-circle-fill">
                                             </i>
@@ -364,110 +375,122 @@
                             <div class="col-sm-12 m-2" id="abuttonbar">
                                 <div class="row">
                                     <div class="col-1">
-                                        <button type="button" class="patientAlert btn btn-secondary"
+                                        <button type="button"
+                                            class="patientAlert btn btn-sm btn-{{ old('virtualadvice') == true ? 'primary' : 'secondary' }}"
                                             title="Asesoria Virtual" id="virtualadvice">
                                             <i class="bi bi-pc-display">
                                                 <input type="checkbox" name="virtualadvice" value="false"
-                                                    value="{{ old('virtualadvice') == 1 ? 1 : 0 }}" hidden>
+                                                    @checked(old('virtualadvice')) hidden>
                                             </i>
                                         </button>
                                     </div>
                                     <div class="col-1">
-                                        <button type="button" class="patientAlert btn btn-secondary"
+                                        <button type="button"
+                                            class="patientAlert btn btn-sm btn-{{ old('external') == true ? 'primary' : 'secondary' }}"
                                             title="Consulta Externa" id="external">
                                             <i class="bi bi-person-video2">
                                                 <input type="checkbox" name="external" value="false"
-                                                    value="{{ old('external') == 1 ? 1 : 0 }}" hidden>
+                                                    @checked(old('external')) hidden>
                                             </i>
                                         </button>
                                     </div>
                                     <div class="col-1">
-                                        <button type="button" class="patientAlert btn btn-secondary"
+                                        <button type="button"
+                                            class="patientAlert btn btn-sm btn-{{ old('hospitalitation') == true ? 'primary' : 'secondary' }}"
                                             title="Hospitalización" id="hospitalitation">
                                             <i class="bi bi-h-circle-fill">
                                                 <input type="checkbox" name="hospitalitation" value="false"
-                                                    value="{{ old('hospitalitation') == 1 ? 1 : 0 }}" hidden>
+                                                    @checked(old('hospitalitation')) hidden>
                                             </i>
                                         </button>
                                     </div>
                                     <div class="col-1">
-                                        <button type="button" class="patientAlert btn btn-secondary"
+                                        <button type="button"
+                                            class="patientAlert btn btn-sm btn-{{ old('externalTeam') == true ? 'primary' : 'secondary' }}"
                                             title="Red Externa" id="externalTeam">
                                             <i class="bi bi-file-medical-fill">
                                                 <input type="checkbox" name="externalTeam" value="false"
-                                                    value="{{ old('externalTeam') == 1 ? 1 : 0 }}" hidden>
+                                                    @checked(old('externalTeam')) hidden>
                                             </i>
                                         </button>
                                     </div>
                                     <div class="col-1">
-                                        <button type="button" class="patientAlert btn btn-secondary"
+                                        <button type="button"
+                                            class="patientAlert btn btn-sm btn-{{ old('cenpi') == true ? 'primary' : 'secondary' }}"
                                             title="CENPI (<14)" id="cenpi">
                                             <i class="bi bi-emoji-laughing-fill">
                                                 <input type="checkbox" name="cenpi" value="false"
-                                                    value="{{ old('cenpi') == 1 ? 1 : 0 }}" hidden>
+                                                    @checked(old('cenpi')) hidden>
                                             </i>
                                         </button>
                                     </div>
                                     <div class="col-1">
-                                        <button type="button" class="patientAlert btn btn-secondary"
+                                        <button type="button"
+                                            class="patientAlert btn btn-sm btn-{{ old('srpa') == true ? 'primary' : 'secondary' }}"
                                             title="SRPA (Adolecentes)" id="srpa">
                                             <i class="bi bi-earbuds">
                                                 <input type="checkbox" name="srpa" value="false"
-                                                    value="{{ old('srpa') == 1 ? 1 : 0 }}" hidden>
+                                                    @checked(old('srpa')) hidden>
                                             </i>
                                         </button>
                                     </div>
                                     <div class="col-1">
-                                        <button type="button" class="patientAlert btn btn-secondary"
+                                        <button type="button"
+                                            class="patientAlert btn btn-sm btn-{{ old('activeselection') == true ? 'primary' : 'secondary' }}"
                                             title="Búsqueda Activa" id="activeselection">
                                             <i class="bi-binoculars-fill">
                                                 <input type="checkbox" name="activeselection" value="false"
-                                                    value="{{ old('activeselection') == 1 ? 1 : 0 }}" hidden>
+                                                    @checked(old('activeselection')) hidden>
                                             </i>
                                         </button>
                                     </div>
                                     <div class="col-1">
-                                        <button type="button" class="patientAlert btn btn-secondary"
+                                        <button type="button"
+                                            class="patientAlert btn btn-sm btn-{{ old('through') == true ? 'primary' : 'secondary' }}"
                                             title="Directo Prestador" id="through">
                                             <i class="bi bi-signpost-fill">
                                                 <input type="checkbox" name="through" value="false"
-                                                    value="{{ old('through') == 1 ? 1 : 0 }}" hidden>
+                                                    @checked(old('through')) hidden>
                                             </i>
                                         </button>
                                     </div>
                                     <div class="col-1">
-                                        <button type="button" class="patientAlert btn btn-secondary"
+                                        <button type="button"
+                                            class="patientAlert btn btn-sm btn-{{ old('particular') == true ? 'primary' : 'secondary' }}"
                                             title="Particular" id="particular">
                                             <i class="bi bi-clipboard2-pulse-fill">
                                                 <input type="checkbox" name="particular" value="false"
-                                                    value="{{ old('particular') == 1 ? 1 : 0 }}" hidden>
+                                                    @checked(old('particular')) hidden>
                                             </i>
                                         </button>
                                     </div>
                                     <div class="col-1">
-                                        <button type="button" class="patientAlert btn btn-secondary"
+                                        <button type="button"
+                                            class="patientAlert btn btn-sm btn-{{ old('pyramid') == true ? 'primary' : 'secondary' }}"
                                             title="Punta Piramide" id="pyramid">
                                             <i class="bi bi-triangle-half">
                                                 <input type="checkbox" name="pyramid" value="false"
-                                                    value="{{ old('pyramid') == 1 ? 1 : 0 }}" hidden>
+                                                    @checked(old('pyramid')) hidden>
                                             </i>
                                         </button>
                                     </div>
                                     <div class="col-1">
-                                        <button type="button" class="patientAlert btn btn-secondary"
+                                        <button type="button"
+                                            class="patientAlert btn btn-sm btn-{{ old('phoneAutorized') == true ? 'primary' : 'secondary' }}"
                                             title="Autoriza Llamadas" id="phoneAutorized">
                                             <i class="bi bi-telephone-outbound-fill">
                                                 <input type="checkbox" name="phoneAutorized" value="false"
-                                                    value="{{ old('phoneAutorized') == 1 ? 1 : 0 }}" hidden>
+                                                    @checked(old('phoneAutorized')) hidden>
                                             </i>
                                         </button>
                                     </div>
                                     <div class="col-1">
-                                        <button type="button" class="patientAlert btn btn-secondary"
+                                        <button type="button"
+                                            class="patientAlert btn btn-sm btn-{{ old('mailAutorized') == true ? 'primary' : 'secondary' }}"
                                             title="Autoriza Correos" id="mailAutorized">
                                             <i class="bi bi-envelope-check-fill">
                                                 <input type="checkbox" name="mailAutorized" value="false"
-                                                    value="{{ old('mailAutorized') == 1 ? 1 : 0 }}" hidden>
+                                                    @checked(old('mailAutorized')) hidden>
                                             </i>
                                         </button>
                                     </div>
