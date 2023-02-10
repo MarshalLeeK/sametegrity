@@ -1,6 +1,10 @@
 document.addEventListener('click', (e) => {
 
   const clickedElement = e.target;
+
+  console.log(clickedElement);
+  console.log(clickedElement.parent.node);
+  
   if (!clickedElement.matches(['select', '.patientAlert']) && !clickedElement.parentNode.matches('.patientAlert')) {
     return false;
   }
@@ -27,14 +31,16 @@ document.addEventListener('click', (e) => {
 });
 
 //ACTUALIZAR FOTO
-$('#borndate').on('change', function () {
+$('#borndate').on('blur', function () {
 
   const selectdate = $('#borndate').val();
   const today = moment(new Date());
   var borndate = moment(selectdate);
   var diff = today.diff(borndate, 'years')
+
   $('#age').val(diff);
-  
+
+
   elementId = ''
 
 })

@@ -26,10 +26,10 @@ class PatientsRequest extends FormRequest
     {
         return [
             'dni' => 'required|unique:patients|min:2|numeric',
-            'name' => 'required|min:3',
-            'lastname' => 'required|min:3',
+            'name' => 'required|alpha|min:3',
+            'lastname' => 'required|alpha|min:3',
             'tdoc' => 'required',
-            'cellphone' => 'required',
+            'cellphone' => 'required|min:7',
             // 'borndate' => 'required',
             // 'address' => 'required',
             // 'documentplace-country' => 'required',
@@ -48,7 +48,7 @@ class PatientsRequest extends FormRequest
 
         if (in_array($this->method(), ['PUT', 'PATCH'])) {
             $id = $this->route()->parameter(('id'));
-            $rules['dni'] = ['required|min:2|numeric|unique:patients,dni,' . $id];
+            $rules['dni'] = ['required|min:2|numeric|unique:patients,id,' . $id];
         }
     }
 }

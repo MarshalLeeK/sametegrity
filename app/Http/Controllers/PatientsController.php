@@ -125,7 +125,7 @@ class PatientsController extends Controller
         $patient->activeselection = $request->input('activeselection') != false ? 1 : 0;
         $patient->through = $request->input('through') != false ? 1 : 0;
         $patient->pyramid = $request->input('pyramid') != false ? 1 : 0;
-        $patient->particular = $request->input('particular');
+        $patient->particular = $request->input('particular') ? 1: 0;
         $patient->z_xOne = $request->input('z_xOne') != 0 ? 0 : 1;
 
         if ($request->hasFile('imageUpload')) {

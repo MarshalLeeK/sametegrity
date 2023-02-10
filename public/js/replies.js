@@ -21,8 +21,8 @@ document.addEventListener('click', (e) => {
     const clickedElement = e.target;
     if (clickedElement.matches('.logic')) {
         logic(clickedElement);
-
     }
+    
     if (clickedElement.parentNode.matches('.logic')) {
         logic(clickedElement.parentNode);
     }

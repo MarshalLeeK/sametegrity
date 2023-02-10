@@ -8,168 +8,167 @@
                 <main>
                     <div class="row g-4">
                         <x-layouts.miscellaneous.inputdiv div-class="form-group col-2" fieldname='patient_dni'
-                            showname='Documento' />
+                            showname='Documento' :value="$patient->dni" />
                         <x-layouts.miscellaneous.inputdiv div-class="form-group col-3" fieldname='fk_patient'
-                            showname='Paciente' />
+                            showname='Paciente' :value="$patient->name . ' ' . $patient->lastname" />
 
-                        <x-layouts.miscellaneous.inputdiv div-class="form-group col-2" fieldname='age' showname='Edad'
-                            type='number' enable=0 />
+                        <div class="col-sm-3">
+                            <label for="borndate" class="form-label">Fecha Nacimiento</label>
 
-                        <x-layouts.miscellaneous.inputdiv div-class="form-group col-3" fieldname='fk_eps'
+                            <div class="input-group input-group-sm">
+                                <input type="text" class="form-control col-2" name="borndate" id="borndate"
+                                    placeholder="" value="{{ $patient->borndate }}">
+                                <span class="input-group-text col-sm-4" id="basic-addon1">
+                                    <input type="number"
+                                        class="  form-control-plaintext form-control-sm dissabled text-end"
+                                        name="age" id="age" placeholder="Edad"
+                                        value="{{ Carbon\Carbon::now()->diffInYears($patient->borndate) }}" readonly>
+                                </span>
+                                <x-layouts.dialoges.inputerror input='borndate' />
+                            </div>
+                        </div>
+
+                        <x-layouts.miscellaneous.inputdiv div-class="form-group col-2" fieldname='fk_eps'
                             showname='Entidad' />
 
                         <x-layouts.miscellaneous.inputdiv div-class="form-group col-2" fieldname='fk_epstype'
                             showname='Régimen' />
+
+                        {{-- PROX VERSIÓN --}}
+                        {{-- Aqui se van a generar los botones con una consulta SQL que traiga los nombres de las columnas 
+                        que coincidan  --}}
 
                         <div class="container-sm mt-2">
                             <div class="row no-gutters">
                                 <div class="col-12 col-sm-6 col-md-10">
                                     <div class="row">
                                         <div class="col-sm-auto p-1">
-                                            <button type="button" class="check btn btn-primary" title="Violencia"
-                                                id="violence" onclick="logic(this);">
-                                                <i class="bi bi-bandaid-fill">
-                                                    <input type="check" name="violence" value="" hidden>
-                                                </i>
+                                            <button type="button"
+                                                class="patientAlert btn btn-sm btn-{{ $patient->violence == true ? 'primary' : 'secondary' }}"
+                                                title="Violencia" id="violence">
+                                                <i class="bi bi-bandaid-fill"> </i>
                                             </button>
                                         </div>
                                         <div class="col-sm-auto p-1">
-                                            <button type="button" class="btn btn-primary" title="Código Fucsia"
-                                                id="abused" onclick="logic(this);">
-                                                <i class="bi bi-exclamation-diamond-fill">
-
-                                                </i>
+                                            <button type="button"
+                                                class="btn btn-sm btn-{{ $patient->abused == true ? 'primary' : 'secondary' }}"
+                                                title="Código Fucsia" id="abused">
+                                                <i class="bi bi-exclamation-diamond-fill"> </i>
                                             </button>
                                         </div>
                                         <div class="col-sm-auto p-1">
-                                            <button type="button" class="btn btn-primary" title="Medicina Laboral"
-                                                id="fromwork" onclick="logic(this);">
-                                                <i class="bi bi-prescription2">
-                                                    <input type="check" name="fromwork" value="" hidden>
-                                                </i>
+                                            <button type="button"
+                                                class="btn btn-sm btn-{{ $patient->fromwork == true ? 'primary' : 'secondary' }}"
+                                                title="Medicina Laboral" id="fromwork">
+                                                <i class="bi bi-prescription2"></i>
                                             </button>
                                         </div>
                                         <div class="col-sm-auto p-1">
-                                            <button type="button" class="btn btn-primary" title="Tutela"
-                                                id="guardianship" onclick="logic(this);">
-                                                <i class="bi bi-file-earmark-zip-fill">
-                                                    <input type="check" name="guardianship" value="" hidden>
-                                                </i>
+                                            <button type="button"
+                                                class="btn btn-sm btn-{{ $patient->guardianship == true ? 'primary' : 'secondary' }}"
+                                                title="Tutela" id="guardianship">
+                                                <i class="bi bi-file-earmark-zip-fill"></i>
                                             </button>
                                         </div>
                                         <div class="col-sm-auto p-1">
-                                            <button type="button" class="btn btn-primary" title="Privados Libertad"
-                                                id="gaoler" onclick="logic(this);">
-                                                <i class="bi bi-door-closed-fill">
-                                                    <input type="check" name="gaoler" value="" hidden>
-                                                </i>
+                                            <button type="button"
+                                                class="btn btn-sm btn-{{ $patient->gaoler == true ? 'primary' : 'secondary' }}"
+                                                title="Privados Libertad" id="gaoler">
+                                                <i class="bi bi-door-closed-fill"></i>
                                             </button>
                                         </div>
                                         <div class="col-sm-auto p-1">
-                                            <button type="button" class="btn btn-primary" title="ICBF" id="icbf"
-                                                onclick="logic(this);">
-                                                <i class="bi bi-file-earmark-person-fill">
-                                                    <input type="check" name="icbf" value="" hidden>
-                                                </i>
+                                            <button type="button"
+                                                class="btn btn-sm btn-{{ $patient->icbf == true ? 'primary' : 'secondary' }}"
+                                                title="ICBF" id="icbf">
+                                                <i class="bi bi-file-earmark-person-fill"></i>
                                             </button>
                                         </div>
                                         <div class="col-sm-auto p-1">
-                                            <button type="button" class="btn btn-primary" title="Gestante"
-                                                id="pregnant" onclick="logic(this);">
-                                                <i class="bi bi-flower1">
-                                                    <input type="check" name="pregnant" value="" hidden>
-                                                </i>
+                                            <button type="button"
+                                                class="btn btn-sm btn-{{ $patient->pregnant == true ? 'primary' : 'secondary' }}"
+                                                title="Gestante" id="pregnant">
+                                                <i class="bi bi-balloon-fill"></i>
                                             </button>
                                         </div>
                                         <div class="col-sm-auto p-1">
-                                            <button type="button" class="btn btn-primary" title="Riesgo Suicida"
-                                                id="suicide" onclick="logic(this);">
-                                                <i class="bi bi-exclamation-diamond-fill">
-                                                    <input type="check" name="suicide" value="" hidden>
-                                                </i>
+                                            <button type="button"
+                                                class="btn btn-sm btn-{{ $patient->suicide == true ? 'primary' : 'secondary' }}"
+                                                title="Riesgo Suicida" id="suicide">
+                                                <i class="bi bi-emoji-frown-fill"></i>
                                             </button>
                                         </div>
 
                                         <div class="col-sm-auto p-1">
-                                            <button type="button" class="btn btn-primary" title="Asesoria Virtual"
-                                                id="virtualadvice" onclick="logic(this);">
+                                            <button type="button"
+                                                class="btn btn-sm btn-{{ $patient->virtualadvice == true ? 'primary' : 'secondary' }}"
+                                                title="Asesoria Virtual" id="virtualadvice">
                                                 <i class="bi bi-pc-display">
-                                                    <input type="check" name="virtualadvice" value="" hidden>
                                                 </i>
                                             </button>
                                         </div>
                                         <div class="col-sm-auto p-1">
-                                            <button type="button" class="btn btn-primary" title="Consulta Externa"
-                                                id="external" onclick="logic(this);">
+                                            <button type="button"
+                                                class="btn btn-sm btn-{{ $patient->external == true ? 'primary' : 'secondary' }}"
+                                                title="Consulta Externa" id="external">
                                                 <i class="bi bi-person-video2">
-                                                    <input type="check" name="external" value="" hidden>
                                                 </i>
                                             </button>
                                         </div>
                                         <div class="col-sm-auto p-1">
-                                            <button type="button" class="btn btn-primary" title="Hospitalización"
-                                                id="hospitalitation" onclick="logic(this);">
-                                                <i class="bi bi-h-circle-fill">
-                                                    <input type="check" name="hospitalitation" value=""
-                                                        hidden>
-                                                </i>
+                                            <button type="button"
+                                                class="btn btn-sm btn-{{ $patient->hospitalitation == true ? 'primary' : 'secondary' }}"
+                                                title="Hospitalización" id="hospitalitation">
+                                                <i class="bi bi-h-circle-fill"></i>
                                             </button>
                                         </div>
                                         <div class="col-sm-auto p-1">
-                                            <button type="button" class="btn btn-primary" title="Red Externa"
-                                                id="external" onclick="logic(this);">
-                                                <i class="bi bi-file-medical-fill">
-                                                    <input type="check" name="external" value="" hidden>
-                                                </i>
+                                            <button type="button"
+                                                class="btn btn-sm btn-{{ $patient->external == true ? 'primary' : 'secondary' }}"
+                                                title="Red Externa" id="external">
+                                                <i class="bi bi-file-medical-fill"></i>
                                             </button>
                                         </div>
                                         <div class="col-sm-auto p-1">
-                                            <button type="button" class="btn btn-primary" title="CENPI (<14)"
-                                                id="cenpi" onclick="logic(this);">
-                                                <i class="bi bi-emoji-laughing-fill">
-                                                    <input type="check" name="cenpi" value="" hidden>
-                                                </i>
+                                            <button type="button"
+                                                class="btn btn-sm btn-{{ $patient->cenpi == true ? 'primary' : 'secondary' }}"
+                                                title="CENPI (<14)" id="cenpi">
+                                                <i class="bi bi-emoji-laughing-fill"></i>
                                             </button>
                                         </div>
                                         <div class="col-sm-auto p-1">
-                                            <button type="button" class="btn btn-primary" title="SRPA (Adolecentes)"
-                                                id="srpa" onclick="logic(this);">
-                                                <i class="bi bi-earbuds">
-                                                    <input type="check" name="srpa" value="" hidden>
-                                                </i>
+                                            <button type="button"
+                                                class="btn btn-sm btn-{{ $patient->srpa == true ? 'primary' : 'secondary' }}"
+                                                title="SRPA (Adolecentes)" id="srpa">
+                                                <i class="bi bi-earbuds"></i>
                                             </button>
                                         </div>
                                         <div class="col-sm-auto p-1">
-                                            <button type="button" class="btn btn-primary" title="Búsqueda Activa"
-                                                id="activeselection" onclick="logic(this);">
-                                                <i class="bi-binoculars-fill">
-                                                    <input type="check" name="activeselection" value=""
-                                                        hidden>
-                                                </i>
+                                            <button type="button"
+                                                class="btn btn-sm btn-{{ $patient->activeselection == true ? 'primary' : 'secondary' }}"
+                                                title="Búsqueda Activa" id="activeselection">
+                                                <i class="bi-binoculars-fill"></i>
                                             </button>
                                         </div>
                                         <div class="col-sm-auto p-1">
-                                            <button type="button" class="btn btn-primary" title="Directo Prestador"
-                                                id="through" onclick="logic(this);">
-                                                <i class="bi bi-signpost-fill">
-                                                    <input type="check" name="through" value="" hidden>
-                                                </i>
+                                            <button type="button"
+                                                class="btn btn-sm btn-{{ $patient->through == true ? 'primary' : 'secondary' }}"
+                                                title="Directo Prestador" id="through">
+                                                <i class="bi bi-signpost-fill"></i>
                                             </button>
                                         </div>
                                         <div class="col-sm-auto p-1">
-                                            <button type="button" class="btn btn-primary" title="Particular"
-                                                id="particular" onclick="logic(this);">
-                                                <i class="bi bi-clipboard2-pulse-fill">
-                                                    <input type="check" name="particular" value="" hidden>
-                                                </i>
+                                            <button type="button"
+                                                class="btn btn-sm btn-{{ $patient->particular == true ? 'primary' : 'secondary' }}"
+                                                title="Particular" id="particular">
+                                                <i class="bi bi-clipboard2-pulse-fill"></i>
                                             </button>
                                         </div>
                                         <div class="col-sm-auto p-1">
-                                            <button type="button" class="btn btn-primary" title="Punta Piramide"
-                                                id="pyramid" onclick="logic(this);">
-                                                <i class="bi bi-triangle-half">
-                                                    <input type="check" name="pyramid" value="" hidden>
-                                                </i>
+                                            <button type="button"
+                                                class="btn btn-sm btn-{{ $patient->pyramid == true ? 'primary' : 'secondary' }}"
+                                                title="Punta Piramide" id="pyramid">
+                                                <i class="bi bi-triangle-half"></i>
                                             </button>
                                         </div>
                                     </div>
@@ -177,16 +176,20 @@
 
                                 <div class="col-6 col-md-2">
                                     <div class="row-col">
-                                        <button type="button" class="btn btn-primary" title="Asistió"
-                                            id="participate" onclick="logic(this);">
-                                            <i class="bi bi-check-circle-fill">
-                                                <input type="check" name="participate" value="" hidden>
+                                        <button type="button"
+                                            class="btn btn-sm btn-{{ $patient->participate == true ? 'primary' : 'secondary' }}"
+                                            title="Asistió" id="participate">
+                                            <i class="bi bi-check-circle-fill pe-none">
+                                                <input type="checkbox" name="participate" value="false"
+                                                    @checked(old('guardianship')) hidden>
                                             </i>
                                         </button>
-                                        <button type="button" class="btn btn-secondary" title="Teléconsulta"
-                                            id="virtual" onclick="logic(this);">
-                                            <i class="bi bi-webcam-fill">
-                                                <input type="check" name="virtual" value="" hidden>
+                                        <button type="button"
+                                            class="btn btn-sm btn-{{ $patient->virtual == true ? 'primary' : 'secondary' }}"
+                                            title="Teléconsulta" id="virtual">
+                                            <i class="bi bi-webcam-fill pe-none">
+                                                <input type="checkbox" name="virtual" value="false"
+                                                    @checked(old('guardianship')) hidden>
                                             </i>
                                         </button>
                                     </div>
@@ -721,8 +724,7 @@
                                                             <tr>
                                                                 <td>
                                                                     <button type="button" class="btn btn-secondary"
-                                                                        title="Teléconsulta"id="virtual"
-                                                                        onclick="logic(this);">
+                                                                        title="Teléconsulta"id="virtual">
                                                                         <i class="bi  bi-check-circle-fill"></i>
                                                                     </button>
                                                                 </td>
@@ -733,8 +735,7 @@
                                                                 </td>
                                                                 <td>
                                                                     <button type="button" class="btn btn-secondary"
-                                                                        title="Teléconsulta"id="virtual"
-                                                                        onclick="logic(this);">
+                                                                        title="Teléconsulta"id="virtual">
                                                                         <i class="bi  bi-check-circle-fill"></i>
                                                                     </button>
                                                                 </td>
@@ -750,8 +751,7 @@
                                                             <tr>
                                                                 <td>
                                                                     <button type="button" class="btn btn-secondary"
-                                                                        title="Teléconsulta"id="virtual"
-                                                                        onclick="logic(this);">
+                                                                        title="Teléconsulta"id="virtual">
                                                                         <i class="bi  bi-check-circle-fill"></i>
                                                                     </button>
                                                                 </td>
@@ -762,8 +762,7 @@
                                                                 </td>
                                                                 <td>
                                                                     <button type="button" class="btn btn-secondary"
-                                                                        title="Teléconsulta"id="virtual"
-                                                                        onclick="logic(this);">
+                                                                        title="Teléconsulta"id="virtual">
                                                                         <i class="bi  bi-check-circle-fill"></i>
                                                                     </button>
                                                                 </td>
@@ -803,8 +802,7 @@
                                                             <tr>
                                                                 <td>
                                                                     <button type="button" class="btn btn-secondary"
-                                                                        title="Teléconsulta"id="virtual"
-                                                                        onclick="logic(this);">
+                                                                        title="Teléconsulta"id="virtual">
                                                                         <i class="bi  bi-check-circle-fill"></i>
                                                                     </button>
                                                                 </td>
@@ -819,8 +817,7 @@
                                                                 <td>1 tableta diaria por 7 días</td>
                                                                 <td>
                                                                     <button type="button" class="btn btn-secondary"
-                                                                        title="Teléconsulta"id="virtual"
-                                                                        onclick="logic(this);">
+                                                                        title="Teléconsulta"id="virtual">
                                                                         <i class="bi  bi-check-circle-fill"></i>
                                                                     </button>
                                                                 </td>
@@ -828,8 +825,7 @@
                                                             <tr>
                                                                 <td>
                                                                     <button type="button" class="btn btn-secondary"
-                                                                        title="Teléconsulta"id="virtual"
-                                                                        onclick="logic(this);">
+                                                                        title="Teléconsulta"id="virtual">
                                                                         <i class="bi  bi-check-circle-fill"></i>
                                                                     </button>
                                                                 </td>
@@ -844,8 +840,7 @@
                                                                 <td>1 tableta diaria por 7 días</td>
                                                                 <td>
                                                                     <button type="button" class="btn btn-secondary"
-                                                                        title="Teléconsulta"id="virtual"
-                                                                        onclick="logic(this);">
+                                                                        title="Teléconsulta"id="virtual">
                                                                         <i class="bi  bi-check-circle-fill"></i>
                                                                     </button>
                                                                 </td>
@@ -904,8 +899,7 @@
                                                             <tr>
                                                                 <td scope="row">
                                                                     <button type="button" class="btn btn-secondary"
-                                                                        title="Teléconsulta"id="virtual"
-                                                                        onclick="logic(this);">
+                                                                        title="Teléconsulta"id="virtual">
                                                                         <i class="bi  bi-check-circle-fill"></i>
                                                                     </button>
                                                                 </td>
@@ -921,8 +915,7 @@
                                                                 </td>
                                                                 <td>
                                                                     <button type="button" class="btn btn-secondary"
-                                                                        title="Teléconsulta"id="virtual"
-                                                                        onclick="logic(this);">
+                                                                        title="Teléconsulta"id="virtual">
                                                                         <i class="bi  bi-check-circle-fill"></i>
                                                                     </button>
                                                                 </td>
@@ -931,8 +924,7 @@
                                                             <tr>
                                                                 <td scope="row">
                                                                     <button type="button" class="btn btn-secondary"
-                                                                        title="Teléconsulta"id="virtual"
-                                                                        onclick="logic(this);">
+                                                                        title="Teléconsulta"id="virtual">
                                                                         <i class="bi  bi-check-circle-fill"></i>
                                                                     </button>
                                                                 </td>
@@ -948,8 +940,7 @@
                                                                 </td>
                                                                 <td>
                                                                     <button type="button" class="btn btn-secondary"
-                                                                        title="Teléconsulta"id="virtual"
-                                                                        onclick="logic(this);">
+                                                                        title="Teléconsulta"id="virtual">
                                                                         <i class="bi  bi-check-circle-fill"></i>
                                                                     </button>
                                                                 </td>
@@ -957,8 +948,7 @@
                                                             <tr>
                                                                 <td scope="row">
                                                                     <button type="button" class="btn btn-secondary"
-                                                                        title="Teléconsulta"id="virtual"
-                                                                        onclick="logic(this);">
+                                                                        title="Teléconsulta"id="virtual">
                                                                         <i class="bi  bi-check-circle-fill"></i>
                                                                     </button>
                                                                 </td>
@@ -974,8 +964,7 @@
                                                                 </td>
                                                                 <td>
                                                                     <button type="button" class="btn btn-secondary"
-                                                                        title="Teléconsulta"id="virtual"
-                                                                        onclick="logic(this);">
+                                                                        title="Teléconsulta"id="virtual">
                                                                         <i class="bi  bi-check-circle-fill"></i>
                                                                     </button>
                                                                 </td>
@@ -983,8 +972,7 @@
                                                             <tr>
                                                                 <td scope="row">
                                                                     <button type="button" class="btn btn-secondary"
-                                                                        title="Teléconsulta"id="virtual"
-                                                                        onclick="logic(this);">
+                                                                        title="Teléconsulta"id="virtual">
                                                                         <i class="bi  bi-check-circle-fill"></i>
                                                                     </button>
                                                                 </td>
@@ -1000,8 +988,7 @@
                                                                 </td>
                                                                 <td>
                                                                     <button type="button" class="btn btn-secondary"
-                                                                        title="Teléconsulta"id="virtual"
-                                                                        onclick="logic(this);">
+                                                                        title="Teléconsulta"id="virtual">
                                                                         <i class="bi  bi-check-circle-fill"></i>
                                                                     </button>
                                                                 </td>

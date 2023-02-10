@@ -246,7 +246,7 @@
                                     <div class="col-1">
                                         <button type="button" class="btn btn-secondary" title="Código Fucsia"
                                             id="abused" onclick="logic(this);">
-                                            <i class="bi bi-balloon-fill">
+                                            <i class="bi-exclamation-diamond-fill">
                                                 <input type="check" name="abused"
                                                     value="{{ $patient->abused == 1 ? 1 : 0 }}" hidden>
                                             </i>

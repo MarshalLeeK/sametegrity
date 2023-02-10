@@ -84,7 +84,7 @@ Route::controller(HistoriesController::class)->middleware('auth')->group(functio
     Route::get('/Historias_L', 'index')->name('histories');
     Route::get('/Historia_C', 'create')->name('historiesCreate');
     Route::post('/Historia_C/Save', 'store')->name('historiesSave');
-    Route::get('/Historia_/{historia}', 'show')->name('historiesShow');
+    Route::get('/Historia_/{patient}', 'show')->name('historiesShow');
     Route::get('/Historia_M/{historia}', 'edit')->name('historiesEdit');
     Route::put('/Historia_M/{Historia}', 'update')->name('historiesUpdate');
     Route::put('/Historia/{Historia}', 'destroy')->name('historiesDestroy');

@@ -5,6 +5,6 @@
 
     {{-- field --}}
     <x-layouts.miscellaneous.inputField :fieldname="$fieldname" :showname="$showname" :type="$type ?? null" :class="$class ?? null"
-        :enable="$enable ?? null" :placeholder="$placeholder ?? null" :input-class="$inputclass ?? null" :value="$value ?? old($showname)" />
+        :enable="$enable ?? null" :placeholder="$placeholder ?? null" :input-class="$inputclass ?? null" :value="old($showname, $value ?? null)" />
 
 </div>

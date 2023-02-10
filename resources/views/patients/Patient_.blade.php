@@ -228,7 +228,7 @@
                                             <button type="button"
                                                 class="check btn btn-{{ $patient->abused == 0 ? 'secondary' : 'primary' }}"
                                                 title="Código Fucsia" id="abused" disabled>
-                                                <i class="bi bi-balloon-fill">
+                                                <i class="bi bi-exclamation-diamond-fill">
                                                     <input type="check" name="abused"
                                                         value="{{ $patient->abused }}" hidden>
                                                 </i>

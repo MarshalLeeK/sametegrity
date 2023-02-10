@@ -14,35 +14,32 @@ use Illuminate\Support\Facades\DB;
 class HistoriesController extends Controller
 {
 
-    private  $module='histories';
+    private  $module = 'histories';
 
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index( Request $request)
+    public function index(Request $request)
     {
         //
         // $patients = Patients::all();
         $module = $this->module;
         $view = 'L';
-        $columns=['Documento','Paciente','Proxima Cita','Programa Actual','Acompañante','Teléfono','Estado'];
-        
+        $columns = ['Documento', 'Paciente', 'Proxima Cita', 'Programa Actual', 'Acompañante', 'Teléfono', 'Estado'];
+
         $searchbox = trim($request->get('searchbox'));
-        $patients = DB::table('patients')
-                        ->select('id','dni','name','created_at','age','lastname','phone','z_xOne')
-                        ->where( 'name','LIKE','%'.$searchbox.'%')
-                        ->orWhere( 'lastname','LIKE','%'.$searchbox.'%')
-                        ->orWhere( 'dni','LIKE','%'.$searchbox.'%')
-                        ->orWhere( 'age','LIKE','%'.$searchbox.'%')
-                        ->orderBy( 'dni','asc')
-                        ->paginate(18);      
+        $histories = DB::table('patients')
+            ->select('id', 'dni', 'name', 'created_at', 'age', 'lastname', 'phone', 'z_xOne')
+            ->where('name', 'LIKE', '%' . $searchbox . '%')
+            ->orWhere('lastname', 'LIKE', '%' . $searchbox . '%')
+            ->orWhere('dni', 'LIKE', '%' . $searchbox . '%')
+            ->orWhere('age', 'LIKE', '%' . $searchbox . '%')
+            ->orderBy('dni', 'asc')
+            ->paginate(18);
 
-        return view('Medichalhistory.histories_l',compact('patients','searchbox','columns','module','view'));
-
-
-
+        return view('Medichalhistory.histories_l', compact('histories', 'searchbox', 'columns', 'module', 'view'));
     }
 
     /**
@@ -55,13 +52,13 @@ class HistoriesController extends Controller
         $module = $this->module;
         $view = 'C';
         $typeDocs = TypeDocs::get();
-        $patients = DB::table('patients')
-                        ->select('id','created_at','z_xOne')
-                        ->orderBy( 'created_at')
-                        ->paginate(15);      
-        $columnsAntecedentes = ['Nombre','Categoria','Observación'];
-        $columns=['Fecha','Especialidad'];
-        return view('Medichalhistory.histories_c',compact('module','view','typeDocs','patients','columns','columnsAntecedentes'));
+        $histories = DB::table('patients')
+            ->select('id', 'created_at', 'z_xOne')
+            ->orderBy('created_at')
+            ->paginate(15);
+        $columnsAntecedentes = ['Nombre', 'Categoria', 'Observación'];
+        $columns = ['Fecha', 'Especialidad'];
+        return view('Medichalhistory.histories_c', compact('module', 'view', 'typeDocs', 'histories', 'columns', 'columnsAntecedentes'));
     }
 
     /**
@@ -81,9 +78,20 @@ class HistoriesController extends Controller
      * @param  \App\Models\histories  $histories
      * @return \Illuminate\Http\Response
      */
-    public function show(histories $histories)
+    public function show(Patients $patient)
     {
         //
+        $module = $this->module;
+        $view = '_';
+        $typeDocs = TypeDocs::get();
+        $histories = DB::table('patients')
+            ->select('id', 'created_at', 'z_xOne')
+            ->orderBy('created_at')
+            ->paginate(15);
+        $columnsAntecedentes = ['Nombre', 'Categoria', 'Observación'];
+        $columns = ['Fecha', 'Especialidad'];
+
+        return view('Medichalhistory.histories_', compact('module', 'view', 'typeDocs', 'histories', 'patient', 'columns', 'columnsAntecedentes'));
     }
 
     /**

@@ -4,7 +4,6 @@
         @csrf
         <div class="container bg-light border">
             <x-layouts.tittlebar class="row h-100 text-center text-white" action='NUEVO' alias='PACIENTE' />
-
             <div class="row g-12">
                 <div class="col-md-12 col-lg-12">
                     <div class="row mt-g-3  p-2">
@@ -41,7 +40,7 @@
                                 <div class="col-sm-3">
                                     <label for="dni" class="form-label">Número Documento</label>
                                     <input type="text" class="form-control" name="dni" id="dni"
-                                        placeholder="Número Documento" />
+                                        placeholder="Número Documento" value/>
                                     <x-layouts.dialoges.inputerror input='dni' />
                                 </div>
 
@@ -272,7 +271,7 @@
                                         <button type="button"
                                             class="patientAlert btn btn-sm btn-{{ old('abused') == true ? 'primary' : 'secondary' }}"
                                             title="Código Fucsia" id="abused">
-                                            <i class="bi bi-balloon">
+                                            <i class="bi bi-exclamation-diamond-fill">
                                                 <input type="checkbox" name="abused" value="false"
                                                     @checked(old('abused')) hidden>
                                             </i>
@@ -332,7 +331,7 @@
                                         <button type="button"
                                             class="patientAlert btn btn-sm btn-{{ old('suicide') == true ? 'primary' : 'secondary' }}"
                                             title="Riesgo Suicida" id="suicide">
-                                            <i class="bi bi-exclamation-diamond-fill">
+                                            <i class="bi bi-emoji-frown-fill">
                                                 <input type="checkbox" name="suicide" value="false"
                                                     @checked(old('suicide')) hidden>
                                             </i>
