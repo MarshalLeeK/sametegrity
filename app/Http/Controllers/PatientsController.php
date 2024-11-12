@@ -19,6 +19,9 @@ class PatientsController extends Controller
 {
 
     private  $module = 'patient';
+    public $token_auth;
+    public $countries;
+    public $statesResponse;
 
     /**
      * Display a listing of the resource.
@@ -59,7 +62,74 @@ class PatientsController extends Controller
         $typeDocs = TypeDocs::get();
         $genders = Gender::all();
 
-        return view('patients.Patien_c', compact('defaults', 'typeDocs', 'genders', 'module', 'view'));
+
+
+        //---------------------SE AGREGA API QUE CARGA DATOS DE LOS PAISES-------------------------///
+
+         $url='https://www.universal-tutorial.com/api/';
+         $url_countries='https://www.universal-tutorial.com/api/countries/';
+         $token_api = "35Bx6GtadlB1nzrNGYWvdXfsgTWTGCdyDMc4gfUDuzziizF2qJ2p06IPx8TRbyKPPk8";
+         $user_email="sameinprogramador@gmail.com";
+
+            $response = Http::withHeaders([
+            "Accept"=> "application/json",
+            "api-token"=> $token_api,
+            "user-email"=> $user_email
+            ])->withoutVerifying()->get($url.'getaccesstoken');
+
+             $this->token_auth=$response->json('auth_token');
+
+
+        $countries = Http::withHeaders([
+        "Authorization"=> "Bearer ".$this->token_auth,
+        "Accept"=> "application/json"
+        ])->withoutVerifying()->get($url_countries);
+
+        $countriesResponse = $countries->json();
+
+        //------------------FIN DE API QUE CARGA LOS PAISES-------------------------//
+
+
+        //------------------OBTENEMOS LOS ESTADOS O DEPARTAMENTOS DEL PAIS------------------//
+
+         $url_states='https://www.universal-tutorial.com/api/states/Colombia';
+         $states = Http::withHeaders([
+             "Authorization"=> "Bearer ".$this->token_auth,
+             "Accept"=> "application/json"
+         ])->withoutVerifying()->get($url_states);
+
+         $statesResponse = $states->json();
+
+        //$this->statesResponse=[];
+        $states=$statesResponse;
+
+        //---------------------FIN DE API CARGANDO LOS DEPARTAMENTOS--------------------------//
+
+
+        //------------------OBTENEMOS LAS CIUDADES DE LOS DEPARTAMENTOS------------------//
+
+        $url_cities='https://www.universal-tutorial.com/api/cities/Antioquia';
+        $cities = Http::withHeaders([
+            "Authorization"=> "Bearer ".$this->token_auth,
+            "Accept"=> "application/json"
+        ])->withoutVerifying()->get($url_cities);
+
+        $citiesResponse = $cities->json();
+
+       //$this->statesResponse=[];
+       $cities=$citiesResponse;
+
+       //---------------------FIN DE API CARGANDO LOS DEPARTAMENTOS--------------------------//
+
+       
+
+
+
+
+
+
+
+        return view('patients.Patien_c', compact('defaults', 'typeDocs', 'genders', 'module', 'view','countriesResponse','states','cities'));
     }
 
     /**
@@ -109,23 +179,27 @@ class PatientsController extends Controller
         $patient->legaladress = $request->input('legaladress');
         $patient->observation = $request->input('observation');
 
-        $patient->violence = $request->input('violence') != false ? 1 : 0;
-        $patient->abused = $request->input('abused') != false ? 1 : 0;
-        $patient->fromwork = $request->input('fromwork') != false ? 1 : 0;
-        $patient->guardianship = $request->input('guardianship') != false ? 1 : 0;
-        $patient->gaoler = $request->input('gaoler') != false ? 1 : 0;
-        $patient->icbf = $request->input('icbf') != false ? 1 : 0;
-        $patient->pregnant = $request->input('pregnant') != false ? 1 : 0;
-        $patient->suicide = $request->input('suicide') != false ? 1 : 0;
-        $patient->virtualadvice = $request->input('virtualadvice') != false ? 1 : 0;
-        $patient->hospitalitation = $request->input('hospitalitation') != false ? 1 : 0;
-        $patient->external = $request->input('external') != false ? 1 : 0;
-        $patient->cenpi = $request->input('cenpi') != false ? 1 : 0;
-        $patient->srpa = $request->input('srpa') != false ? 1 : 0;
-        $patient->activeselection = $request->input('activeselection') != false ? 1 : 0;
-        $patient->through = $request->input('through') != false ? 1 : 0;
-        $patient->pyramid = $request->input('pyramid') != false ? 1 : 0;
-        $patient->particular = $request->input('particular') ? 1: 0;
+        
+        $patient->violence = $request->has('opciones') && in_array('opcion0', $request->input('opciones'));
+        $patient->abused = $request->has('opciones') && in_array('opcion1', $request->input('opciones'));
+        $patient->fromwork = $request->has('opciones') && in_array('opcion2', $request->input('opciones'));
+        $patient->guardianship = $request->has('opciones') && in_array('opcion3', $request->input('opciones'));
+        $patient->gaoler = $request->has('opciones') && in_array('opcion4', $request->input('opciones'));
+        $patient->icbf = $request->has('opciones') && in_array('opcion5', $request->input('opciones'));
+        $patient->pregnant = $request->has('opciones') && in_array('opcion6', $request->input('opciones'));
+        $patient->suicide = $request->has('opciones') && in_array('opcion7', $request->input('opciones'));
+         //$patient->vip = $request->has('opciones') && in_array('opcion8', $request->input('opciones'));
+        $patient->virtualadvice = $request->has('opciones') && in_array('opcion9', $request->input('opciones'));
+        $patient->external = $request->has('opciones') && in_array('opcion10', $request->input('opciones'));
+        $patient->hospitalitation = $request->has('opciones') && in_array('opcion11', $request->input('opciones'));
+        //$patient->externalTeam = $request->has('opciones') && in_array('opcion12', $request->input('opciones'));
+        $patient->cenpi = $request->has('opciones') && in_array('opcion13', $request->input('opciones'));
+        $patient->srpa = $request->has('opciones') && in_array('opcion14', $request->input('opciones'));
+        $patient->activeselection = $request->has('opciones') && in_array('opcion15', $request->input('opciones'));
+        $patient->through = $request->has('opciones') && in_array('opcion16', $request->input('opciones'));
+        $patient->particular = $request->has('opciones') && in_array('opcion17', $request->input('opciones'));
+        $patient->pyramid = $request->has('opciones') && in_array('opcion18', $request->input('opciones'));
+       
         $patient->z_xOne = $request->input('z_xOne') != 0 ? 0 : 1;
 
         if ($request->hasFile('imageUpload')) {
@@ -284,8 +358,10 @@ class PatientsController extends Controller
         $country = session()->get('country');
         $state = session()->get('state');
         $clasification = ['country', 'state', 'city'];
-        $url = "https://www.universal-tutorial.com/api/";
-        $token = "_sJrhBbZKEWeBaS4sxDRjWwaWG6oPy1CwlpwTl7YNZKjL36JWi0-FFHZj6l1icCmHYk";
+        $url = "https://www.universal-tutorial.com/api/getaccesstoken";
+        $token = "NeWei6kW-Skr9WV2GI-URHZQnLnEewLWTpB4l7SQ3GNSi3i-SiLUh8vEbiOmSz5bKXs";
+        //$url = "https://www.universal-tutorial.com/api/";
+        //$token = "_sJrhBbZKEWeBaS4sxDRjWwaWG6oPy1CwlpwTl7YNZKjL36JWi0-FFHZj6l1icCmHYk";
         $lib = "";
 
         if ($to == 'cities') {
@@ -304,7 +380,8 @@ class PatientsController extends Controller
         $getAuthToken = Http::withHeaders([
             "Accept" => "application/json",
             "api-token" => $token,
-            "user-email" => "julianrodriguez19961@gmail.com"
+            //"user-email" => "julianrodriguez19961@gmail.com"
+            "user-email" => "programadorsamein@gmail.com"
         ])->get($url . 'getaccesstoken');
 
         $token = $getAuthToken->json('auth_token');
@@ -317,4 +394,60 @@ class PatientsController extends Controller
         $result = $items->json();
         return $result;
     }
+
+
+    
+    public function countries (Request $request){
+        $url='https://www.universal-tutorial.com/api/getaccesstoken';
+        $url_countries='https://www.universal-tutorial.com/api/countries/';
+        $token = "NeWei6kW-Skr9WV2GI-URHZQnLnEewLWTpB4l7SQ3GNSi3i-SiLUh8vEbiOmSz5bKXs";
+        $user_email="programadorsamein@gmail.com";
+
+        $response = Http::withHeaders([
+            "Accept"=> "application/json",
+            "api-token"=> $token,
+            "user-email"=> $user_email
+        ])->get($url);
+
+        $this->token_auth=$response->json('auth_token');
+
+        $countries = Http::withHeaders([
+            "Authorization"=> "Bearer ".$this->token_auth,
+            "Accept"=> "application/json"
+        ])->get($url_countries);
+
+        $this->countries=$countries->json();
+
+        //dd($this->countries);
+
+        
+
+    }
+
+
+
+    public function getStates(Request $request){
+        $url_states='https://www.universal-tutorial.com/api/states/'.$request->input('documentplace-country');
+        $states = Http::withHeaders([
+            "Authorization"=> "Bearer ".$this->token_auth,
+            "Accept"=> "application/json"
+        ])->get($url_states);
+
+        //dd($states->json());
+        $this->statesResponse = $states->json();
+
+    }
+
+
+    public function getCities(Request $request){
+        $url_cities='https://www.universal-tutorial.com/api/cities/'.$request->input('livecity');
+        $cities = Http::withHeaders([
+            "Authorization"=> "Bearer ".$this->token_auth,
+            "Accept"=> "application/json"
+        ])->get($url_cities);
+
+        dd($cities->json());
+    }
+
+
 }

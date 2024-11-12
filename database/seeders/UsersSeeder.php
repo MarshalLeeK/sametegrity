@@ -23,7 +23,7 @@ class UsersSeeder extends Seeder
 
         $user = new User();
         $user->id = '11';
-        $user->dni = '000000000';
+        $user->dni = '000000001';
         $user->name = $name;
         $user->lastname = $lastname;
         $user->slug = Str::slug($name.' '.$lastname);

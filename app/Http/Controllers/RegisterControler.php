@@ -63,7 +63,7 @@ class RegisterControler extends Controller
     public function store(RegisterRequest $request)
     {
 
-        $user = new User;
+        $user = new User();
         $user->dni = $request->input('dni');
         $user->name = $request->input('name');
         $user->lastname = $request->input('lastname');
@@ -76,6 +76,7 @@ class RegisterControler extends Controller
         $user->password = $request->input('password');
         $user->save();
 
+       
         return $this->saveRecord($user);
     }
 

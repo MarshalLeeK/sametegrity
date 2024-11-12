@@ -10,6 +10,10 @@
         }
     </style>
     <link rel="stylesheet" href="{{ URL::asset('css/indexLv.css') }}">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
 </head>
 
 <body>
@@ -65,7 +69,7 @@
                         </div>
                         {{-- </div>
 
-                    <div class="btnMenuArea row justify-content-between "> --}}
+                        <div class="btnMenuArea row justify-content-between "> --}}
                         <div class="col-3">
                             <div class="btn btn-sm btn-primary border-secondary shadow">
                                 <a href="http://192.168.1.22/samebit" target="_blank" class="text-white" title="C-A-D">
@@ -105,7 +109,7 @@
                             <div class="btn btn-sm btn-primary border-secondary shadow" data-toggle="modal"
                                 data-target="#BaseMdodal">
                                 <a href="{{ route('questions') }}" class="text-white" title="Diagnósticos">
-                                    <i class="bi bi-x-diamond-fill"></i>
+                                    <i class="bi bi-patch-question"></i>
                                     <label class="custom-control-label text-white"><b>Preguntas</b></label>
                                 </a>
                             </div>
@@ -129,7 +133,94 @@
                             </div>
                         </div>
 
+
+                        <div class="col-3">
+                            <div class="btn btn-sm btn-primary border-secondary shadow" data-toggle="modal"
+                                data-target="#BaseMdodal">
+                                <a href="{{ route('files') }}" class="text-white" title="Gestion Documental">
+                                    <i class="bi bi-journals"></i>
+                                    <label class="custom-control-label text-white"><b>Gestión Documental</b></label>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col-3">
+                            <div class="btn btn-sm btn-primary border-secondary shadow" data-toggle="modal"
+                                data-target="#BaseMdodal">
+                                <a href="{{ route('noveltyList') }}" class="text-white" title="Novedades">
+                                    <i class="bi bi-envelope-paper"></i>
+                                    <label class="custom-control-label text-white"><b>Novedades</b></label>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col-3">
+                            <div class="btn btn-sm btn-primary border-secondary shadow" data-toggle="modal"
+                                data-target="#BaseMdodal">
+                                <a href="{{ route('groups') }}" class="text-white" title="Grupos">
+                                    <i class="bi bi-calendar2-week-fill"></i>
+                                    <label class="custom-control-label text-white"><b>Grupos</b></label>
+                                </a>
+                            </div>
+                        </div>
+
+
+                        <div class="col-3">
+                            <div class="btn btn-sm btn-primary border-secondary shadow" data-toggle="modal"
+                                data-target="#BaseMdodal">
+                                <a href="{{ route('headquarters') }}" class="text-white" title="Sedes">
+                                    <i class="bi bi-building"></i>
+                                    <label class="custom-control-label text-white"><b>Sedes</b></label>
+                                </a>
+                            </div>
+                        </div>
+
+
+                        <div class="col-3">
+                            <div class="btn btn-sm btn-primary border-secondary shadow" data-toggle="modal"
+                                data-target="#BaseMdodal">
+                                <a href="{{ route('patientgroups') }}" class="text-white" title="Tester">
+                                    <i class="bi bi-collection"></i>
+                                    <label class="custom-control-label text-white"><b>Registro Grupos</b></label>
+                                </a>
+                            </div>
+                        </div>
+    
+                        <div class="col-3">
+                            <div class="btn btn-sm btn-primary border-secondary shadow" data-toggle="modal"
+                                data-target="#BaseMdodal">
+                                <a href="{{ route('patientgroups') }}" class="text-white" title="Tester">
+                                    <i class="bi bi-clipboard2-minus"></i>
+                                    <label class="custom-control-label text-white"><b>Pruebas</b></label>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col-3">
+                            <div class="btn btn-sm btn-primary border-secondary shadow" data-toggle="modal"
+                                data-target="#BaseMdodal">
+                                <a href="{{ route('patientgroups') }}" class="text-white" title="Tester">
+                                    <i class="bi bi-ticket"></i>
+                                    <label class="custom-control-label text-white"><b>Sin asignar</b></label>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col-3">
+                            <div class="btn btn-sm btn-primary border-secondary shadow" data-toggle="modal"
+                                data-target="#BaseMdodal">
+                                <a href="{{ route('patientgroups') }}" class="text-white" title="Tester">
+                                    <i class="bi bi-ticket"></i>
+                                    <label class="custom-control-label text-white"><b>Sin asignar</b></label>
+                                </a>
+                            </div>
+                        </div>
+
+                        
+
                     </div>
+
+                    
                     <div class="w-100"> <br></div>
 
                     {{-- 
@@ -210,7 +301,7 @@
                 </div>
                 <div class="row">
                     <div class="col mb-2">
-                        <div class="col">
+                        {{-- <div class="col">
                             <div class="card flex-md-row mb-3 shadow-md h-md-250">
                                 <div class="card-body d-flex flex-column align-items-start">
                                     <strong class="d-inline-block mb-2 text-primary">Manejo de pacientes [presentado
@@ -222,6 +313,7 @@
                                     <p class="card-text mb-auto">Aquí va el contenido que se desee ingresar como una
                                         noticia,blog,avance,recordatorio,etc</p>
                                     <a href="#">Clic para ver más</a>
+                                    
 
                                     <img class="card-img-right flex-auto d-none d-lg-block mt-2 mx-2"
                                         data-src="{{ URL::asset('img/bluebanner.png') }}" alt="Thumbnail [160*160]"
@@ -229,113 +321,58 @@
                                         src="{{ URL::asset('img/bluebanner.png') }}" data-holder-rendered="true" />
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col mb-2">
-                        <div class="col">
-                            <div class="card flex-md-row mb-3 shadow-md h-md-250">
-                                <div class="card-body d-flex flex-column align-items-start">
-                                    <strong class="d-inline-block mb-2 text-primary">Manejo de pacientes [presentado
-                                        por:]</strong>
-                                    <h3 class="mb-0">
-                                        <a class="text-dark" href="#">Cultural</a>
-                                    </h3>
-                                    <div class="mb-1 text-muted">Nov 12</div>
-                                    <p class="card-text mb-auto">Aquí va el contenido que se desee ingresar como una
-                                        noticia,blog,avance,recordatorio,etc</p>
-                                    <a href="#">Clic para ver más</a>
+                        </div> --}}
 
-                                    <img class="card-img-right flex-auto d-none d-lg-block mt-2 mx-2"
-                                        data-src="{{ URL::asset('img/bluebanner.png') }}" alt="Thumbnail [160*160]"
-                                        src="{{ URL::asset('img/bluebanner.png') }}"style="width: 180px; height: 180Px;"
-                                        src="{{ URL::asset('img/bluebanner.png') }}" data-holder-rendered="true" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col mb-2">
-                        <div class="col">
-                            <div class="card flex-md-row mb-3 shadow-md h-md-250">
-                                <div class="card-body d-flex flex-column align-items-start">
-                                    <strong class="d-inline-block mb-2 text-primary">Manejo de pacientes [presentado
-                                        por:]</strong>
-                                    <h3 class="mb-0">
-                                        <a class="text-dark" href="#">Cultural</a>
-                                    </h3>
-                                    <div class="mb-1 text-muted">Nov 12</div>
-                                    <p class="card-text mb-auto">Aquí va el contenido que se desee ingresar como una
-                                        noticia,blog,avance,recordatorio,etc</p>
-                                    <a href="#">Clic para ver más</a>
+                        {{-- DIV CONTENEDOR PARA LAS NOVEDADES REGISTRADAS --}}
 
-                                    <img class="card-img-right flex-auto d-none d-lg-block mt-2 mx-2"
-                                        data-src="{{ URL::asset('img/bluebanner.png') }}" alt="Thumbnail [160*160]"
-                                        src="{{ URL::asset('img/bluebanner.png') }}"style="width: 180px; height: 180Px;"
-                                        src="{{ URL::asset('img/bluebanner.png') }}" data-holder-rendered="true" />
+                <!-- Vista (index.blade.php) -->
+                    <div id="noveltyCarousel" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            @foreach ($novelties as $index => $novelty)
+                                <div class="carousel-item @if($index === 0) active @endif">
+                                    <div class="card flex-md-row mb-3 shadow-md h-md-250">
+                                        <div class="card-body d-flex flex-column align-items-start">
+                                            <strong class="d-inline-block mb-2 text-primary">{{ $novelty->category }}</strong>
+                                            <h3 class="mb-0">
+                                                <a class="text-dark" href="#">{{ $novelty->title }}</a>
+                                            </h3>
+                                            <div class="mb-1 text-muted">{{ $novelty->date }}</div> <!-- Sin formateo -->
+                                            <p class="card-text mb-auto">{{ $novelty->description }}</p>
+                                            <a href="#">Clic para ver más</a>
+                                        </div>
+                                        <img class="card-img-right flex-auto d-none d-lg-block mt-4 mx-2"
+                                            src="{{ URL::asset('img/bluebanner.png') }}" alt="Thumbnail"
+                                            style="width: 180px; height: 180px;">
+                                    </div>
                                 </div>
-                            </div>
+                            @endforeach
                         </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#noveltyCarousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#noveltyCarousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
                     </div>
-                    <div class="col mb-2">
-                        <div class="col">
-                            <div class="card flex-md-row mb-3 shadow-md h-md-250">
-                                <div class="card-body d-flex flex-column align-items-start">
-                                    <strong class="d-inline-block mb-2 text-primary">Manejo de pacientes [presentado
-                                        por:]</strong>
-                                    <h3 class="mb-0">
-                                        <a class="text-dark" href="#">Cultural</a>
-                                    </h3>
-                                    <div class="mb-1 text-muted">Nov 12</div>
-                                    <p class="card-text mb-auto">Aquí va el contenido que se desee ingresar como una
-                                        noticia,blog,avance,recordatorio,etc</p>
-                                    <a href="#">Clic para ver más</a>
 
-                                    <img class="card-img-right flex-auto d-none d-lg-block mt-2 mx-2"
-                                        data-src="{{ URL::asset('img/bluebanner.png') }}" alt="Thumbnail [160*160]"
-                                        src="{{ URL::asset('img/bluebanner.png') }}"style="width: 180px; height: 180Px;"
-                                        src="{{ URL::asset('img/bluebanner.png') }}" data-holder-rendered="true" />
-                                </div>
-                            </div>
-                        </div>
+
+                        
+
+
+
+
+
                     </div>
+                    
+                   
+                   
                 </div>
-                {{-- <div class="row mb-2">
-                    <div class="col-1 col-sm-md-6">
-                        <div class="card flex-md-row mb-3 shadow-md h-md-250">
-                            <div class="card-body d-flex flex-column align-items-start">
-                                <strong class="d-inline-block mb-2 text-primary">Cronologpia</strong>
-                                <h3 class="mb-0">
-                                    <a class="text-dark" href="#">Featured post</a>
-                                </h3>
-                                <div class="mb-1 text-muted">Nov 12</div>
-                                <p class="card-text mb-auto">Aquí va el contenido que se desee ingresar como una
-                                    noticia,blog,avance,recordatorio,etc</p>
-                                <a href="#">Clic para ver más</a>
-                            </div>
-                            <img class="card-img-right flex-auto d-none d-lg-block mt-4 mx-2"
-                                data-src="{{ URL::asset('img/bluebanner.png') }}" alt="Thumbnail [160*160]"
-                                src="{{ URL::asset('img/bluebanner.png') }}"style="width: 180px; height: 180Px;"
-                                src="{{ URL::asset('img/bluebanner.png') }}" data-holder-rendered="true">
-                        </div>
-                    </div>
-                    <div class="col-1 col-sm-md-6">
-                        <div class="card flex-md-row mb-3 shadow-md h-md-250">
-                            <div class="card-body d-flex flex-column align-items-start">
-                                <strong class="d-inline-block mb-2 text-success">Proximos eventos</strong>
-                                <h3 class="mb-0">
-                                    <a class="text-dark" href="#">Post title</a>
-                                </h3>
-                                <div class="mb-1 text-muted">Nov 11</div>
-                                <p class="card-text mb-auto">Aquí va el contenido que se desee ingresar como una
-                                    noticia,blog,avance,recordatorio,etc</p>
-                                <a href="#">Clic para ver más</a>
-                            </div>
-                            <img class="card-img-right flex-auto d-none d-lg-block mt-4 mx-2"
-                                data-src="{{ URL::asset('img/bluebanner.png') }}" alt="Thumbnail [160*160]"
-                                src="{{ URL::asset('img/bluebanner.png') }}"style="width: 180px; height: 180Px;"
-                                src="{{ URL::asset('img/bluebanner.png') }}" data-holder-rendered="true">
-                        </div>
-                    </div>
-                </div> --}}
+
+
+
+                
             </div>
 
         </div>

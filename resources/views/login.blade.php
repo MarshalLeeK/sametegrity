@@ -1,4 +1,43 @@
 <x-header hd-title="LOGIN" hd-description="Login desarrollador por samein sas">
+
+{{-- <!---Se imprime la lista desde la base de datos que contiene las novedades registradas--->
+
+<div  class="container p-5">
+       <a href="{{ route('novelty.novelty_create') }}"> Agregar nueva </a>
+    <ul>
+       @foreach ($novelties as $novelty)
+
+       <li>
+
+           <div class="col">
+               <div class="card flex-md-row mb-3 shadow-md h-md-250">
+                   <div class="card-body d-flex flex-column align-items-start">
+                       <strong class="d-inline-block mb-2 text-primary">{{ $novelty->subtitle}}
+                        <br>[presentado
+                           por:]{{ $novelty->published_by}}</strong>
+                       <h3 class="mb-0">
+                           <a class="text-dark" href="#">{{ $novelty->title}}</a>
+                       </h3>
+                       <div class="mb-1 text-muted">{{ $novelty->date}}</div>
+                       <p class="card-text mb-auto">{{ $novelty->description}}</p>
+                       <a href="#">Clic para ver más</a>
+
+                       <img class="card-img-right flex-auto d-none d-lg-block mt-2 mx-2"
+                           data-src="{{ URL::asset('img/bluebanner.png') }}" alt="Thumbnail [160*160]"
+                           src="{{ URL::asset('img/bluebanner.png') }}"style="width: 180px; height: 180Px;"
+                           src="{{ URL::asset('img/bluebanner.png') }}" data-holder-rendered="true" />
+                   </div>
+               </div>
+           </div>
+       </li>
+
+       @endforeach
+   </ul> 
+   {{ $novelties->links() }}
+
+  </div>  --}}
+
+
     <div class="container p-5">
         <section class="vh-100">
             <div class="container-fluid h-100">
@@ -44,5 +83,7 @@
                 </div>
             </div>
         </section>
+       
     </div>
+ 
 </x-header>

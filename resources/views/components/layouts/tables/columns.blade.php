@@ -4,5 +4,8 @@
     @endif
 @endforeach
 @if (!isset($hiddenButtons))
+
     <th class="text-center">OPCIONES</th>
+    
 @endif
+

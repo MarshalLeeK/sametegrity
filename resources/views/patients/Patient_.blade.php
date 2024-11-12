@@ -152,9 +152,18 @@
 
                             <div class="col-sm-3">
                                 <label for="livestate" class="form-label">Depto de Residencia</label>
-                                <select class="form-select" name="livestate" id="livestate" aria-label="" disabled>
+                                {{-- <select class="form-select" name="livestate" id="livestate" aria-label="" disabled>
                                     <option value='{{ $patient->fklivestate }}' selected>{{ $patient->fklivestate }}
                                     </option>
+                                </Select> --}}
+                                <select class="form-select" name="livestate" id="livestate" aria-label="" disabled>
+                                    <option value="0" {{ $patient->fklivestate ==0 ? 'selected' : '' }}>ANTIOQUIA </option>
+                                    <option value="1" {{ $patient->fklivestate == 1 ? 'selected' : '' }}> AMAZONAS</option>
+                                    <option value="2" {{ $patient->fklivestate == 2 ? 'selected' : '' }}>ARAUCA</option>
+                                    <option value="3" {{ $patient->fklivestate == 3 ? 'selected' : '' }}>ATLÁNTICO</option>
+                                    <option value="4" {{ $patient->fklivestate == 4 ? 'selected' : '' }}>BOLÍVAR</option>
+                                    <option value="5" {{ $patient->fklivestate == 5? 'selected' : '' }}>BOYACÁ</option>
+                                    <option value="6" {{ $patient->fklivestate == 6? 'selected' : '' }}>CALDAS</option>
                                 </Select>
                             </div>
 

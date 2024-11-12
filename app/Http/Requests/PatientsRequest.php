@@ -29,7 +29,7 @@ class PatientsRequest extends FormRequest
             'name' => 'required|alpha|min:3',
             'lastname' => 'required|alpha|min:3',
             'tdoc' => 'required',
-            'cellphone' => 'required|min:7',
+            'cellphone' => 'required|min:10',
             // 'borndate' => 'required',
             // 'address' => 'required',
             // 'documentplace-country' => 'required',

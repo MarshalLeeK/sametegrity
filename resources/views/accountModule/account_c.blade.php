@@ -61,6 +61,7 @@ hd-meta-description="Nuevo Usuario"
                                 <label for="lastname" class="form-label">Apellido</label>
                                 <input type="text" class="form-control" name="lastname" id="lastname" placeholder="" value="{{ old('lastname') }}">
                             </div>
+
                             <div class="col-sm-6">
                                 <label for="email" class="form-label">Correo Electronico</label>
                                 <input type="text" class="form-control" name="email" id="email" placeholder="Correo Electronico" value="{{ old('email') }}">
@@ -68,6 +69,34 @@ hd-meta-description="Nuevo Usuario"
                                     <small class="text-danger"><strong>*{{ $message }}</strong></small>
                                 @enderror
                             </div>
+
+
+
+                            <div class="col-sm-6">
+                                <label for="gender" class="form-label">Genero</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="inputGroupSelect01">Genero</label>
+                                    </div>
+                                    <select type="text" class="form-control" name="gender" id="gender">
+                                        <option value="0" {{ old('privilegeSet') == 0  ? 'selected' : '' ; }}>Otro</option>
+                                        <option value="22" {{ old('privilegeSet') == 5  ? 'selected' : '' ; }}>Femenino</option>
+                                        <option value="1" {{ old('privilegeSet') == 1  ? 'selected' : '' ; }}>Hombre Trans</option>
+                                        <option value="2" {{ old('privilegeSet') == 2  ? 'selected' : '' ; }}>Mujer Trans</option>
+                                        <option value="3" {{ old('privilegeSet') == 3  ? 'selected' : '' ; }}>No binario</option>
+                                        <option value="4" {{ old('privilegeSet') == 4  ? 'selected' : '' ; }}>Masculino</option>
+                                    </select>
+                                    @error('gender')
+                                        <small class="text-danger"><strong>*{{ $message }}</strong></small>
+                                    @enderror
+                                </div>
+                            </div>
+
+
+
+
+
+
                             <div class="col-6">
                                 <label for="username" class="form-label">Nombre de usuario</label>
                                 <div class="input-group has-validation">

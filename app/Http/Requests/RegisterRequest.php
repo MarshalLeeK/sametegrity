@@ -27,6 +27,7 @@ class RegisterRequest extends FormRequest
             'dni'=>'required|unique:users,dni',
             'name'=>'required|min:3',
             'lastname'=>'required|min:3',
+            //'slug'=>'required|slug',
             'privilegeSet'=>'required',
             'email'=>'unique:users,email',
             'username'=>'required|unique:users,username',

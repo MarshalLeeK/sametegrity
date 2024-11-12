@@ -22,8 +22,16 @@
                 </td>
             @endforeach
             @if (!isset($hiddenButtons))
+            {{-- <td class="align-middle">
+                
+                    <div class="btn btn-info" role="alert" aria-label="Estilo basico">
+                    <a href="Archivos/{{ $row->file }}" target="blank"> VER </a> 
+               
+                </div>
+            </td> --}}
                 <td class="align-middle">
                     <div class="row">
+                        
                         <div class="btn-group" role="group" aria-label="Estilo basico">
                             <button class="btn btn-primary btn-md col-sm"
                                 onclick="location.href = '{{ route($module . 'Show', $row->id) }}';">
